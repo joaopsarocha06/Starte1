@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Planos de Cursos - Startê | SENAC</title>
+
+  <meta name="description"
+    content="Conheça os cursos do SENAC: profissionalizantes, técnicos, de graduação e pós-graduação. Encontre a área ideal para sua carreira.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Planos de Cursos - Startê SENAC">
+  <meta property="og:description"
+    content="Explore áreas de conhecimento e impulsione sua carreira com os cursos do SENAC.">
+  <meta property="og:image" content="imagens/logo-branco.png">
+  <meta property="og:url" content="https://www.exemplo.com/cursos.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="./css/cursos.css">
+</head>
+
+<body>
+
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
+
+  <header class="main-header">
+
+    <div class="container header-container">
+
+      <!-- LOGO -->
+
+      <div class="logo-area">
+
+        <a href="home.html" aria-label="Página inicial do Startê">
+
+          <img src="imagens/Senac_logo.svg.webp" alt="Logo Senac" class="logo-img">
+
+        </a>
+
+      </div>
+
+
+      <!-- MENU PRINCIPAL -->
+
+      <nav class="nav-menu" id="mainNav" aria-label="Menu principal">
+        <ul class="nav-list">
+          <li>
+            <a href="home.html" class="nav-link">
+              HOME
+            </a>
+          </li>
+          <li>
+            <a href="cursos.html" class="nav-link active" aria-current="page">
+              CURSOS
+            </a>
+          </li>
+          <li>
+            <a href="conduta.html" class="nav-link">
+              CONDUTA
+            </a>
+          </li>
+          <li>
+            <a href="eventos.html" class="nav-link">
+              EVENTOS
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- ÁREA DE AÇÕES -->
+
+      <div class="action-area">
+        <!-- PERFIL DO USUÁRIO -->
+
+        <div class="user-profile" id="userProfile">
+
+          <button type="button" class="user-profile-button" id="userProfileButton" aria-expanded="false"
+            aria-haspopup="true">
+
+            <span class="user-profile-icon">
+              <i class="fas fa-user" aria-hidden="true"></i>
+            </span>
+
+            <span class="user-profile-info">
+
+              <span class="user-profile-welcome">
+                Bem-vindo
+              </span>
+
+              <span class="user-profile-name" id="userProfileName">
+                Usuário
+              </span>
+
+            </span>
+            <i class="fas fa-chevron-down user-profile-arrow" aria-hidden="true"></i>
+          </button>
+          <div class="user-profile-menu" id="userProfileMenu" role="menu">
+            <button type="button" class="user-profile-menu-item" id="profileButton" role="menuitem">
+              <i class="fas fa-user" aria-hidden="true"></i>
+              <span>
+                Meu perfil
+              </span>
+            </button>
+            <div class="user-profile-divider"></div>
+            <button type="button" class="user-profile-menu-item logout" id="logoutButton" role="menuitem">
+              <i class="fas fa-right-from-bracket" aria-hidden="true"></i>
+              <span>
+                Sair
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- =========================================================
+       CONTEÚDO PRINCIPAL
+  ========================================================== -->
+
+  <main class="main-content container">
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <span class="hero-tag">
+          PORTAL DE CURSOS SENAC
+        </span>
+
+        <h1 class="hero-title">
+          Cursos que transformam seu
+          <span class="highlight-orange">
+            futuro
+          </span>
+        </h1>
+
+        <p class="hero-description">
+          Qualificação profissional de qualidade para você
+          aprender, crescer e conquistar oportunidades.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="https://dn.senac.br/educacao-profissional/organizacao-da-oferta/cursos-tecnicos/"
+            class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+            Planos de Cursos
+          </a>
+        </div>
+      </div>
+      <div class="hero-media">
+
+        <img src="imagens/ChatGPT Image 28 de ago. de 2026, 08_38_04.png"
+          alt="Estudante do SENAC utilizando um notebook" class="hero-img">
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CATEGORIAS
+    ====================================================== -->
+
+    <section class="categories-section">
+
+
+      <div class="section-header">
+
+        <span class="section-tag">
+          ÁREAS DE CONHECIMENTO
+        </span>
+
+
+        <h2>
+          Explore áreas de conhecimento
+        </h2>
+
+
+        <p>
+          Entenda melhor os cursos que você irá trabalhar!
+        </p>
+
+      </div>
+
+
+      <div class="cards-grid">
+
+
+        <!-- =================================================
+             ARTES E CULTURA
+        ================================================== -->
+
+        <article class="category-card">
+          <div class="card-image-wrapper">
+            <img src="imagens/artes.png" alt="Ilustração representando Artes e Cultura" class="card-img-artes"
+              loading="lazy" decoding="async">
+          </div>
+
+          <div class="card-content">
+            <h3 class="text-orange">
+              Artes e Cultura
+            </h3>
+            <p>
+              Desperte sua criatividade com cursos de arte,
+              design, música, teatro e muito mais.
+            </p>
+            <a href="#" class="card-link text-orange" data-category="Artes e Cultura">
+              Ver cursos
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <!-- =================================================
+             T.I
+        ================================================== -->
+
+        <article class="category-card">
+          <div class="card-image-wrapper">
+            <img src="imagens/ti.png" alt="Ilustração representando Tecnologia da Informação" class="card-img-ti"
+              loading="lazy" decoding="async">
+          </div>
+
+          <div class="card-content">
+            <h3 class="text-green">
+              T.I
+            </h3>
+            <p>
+              Tecnologia e inovação para o mundo digital.
+              Do básico ao avançado.
+            </p>
+            <a href="#" class="card-link text-green" data-category="T.I">
+
+              Ver cursos
+            </a>
+          </div>
+        </article>
+
+
+        <!-- =================================================
+             GESTÃO E COMÉRCIO
+        ================================================== -->
+
+        <article class="category-card">
+
+          <div class="card-image-wrapper">
+
+            <img src="imagens/gestao.png" alt="Ilustração representando Gestão e Comércio" class="card-img-gestao"
+              loading="lazy" decoding="async">
+
+          </div>
+
+
+          <div class="card-content">
+
+            <h3 class="text-blue">
+              Gestão e Comércio
+            </h3>
+
+
+            <p>
+
+              Desenvolva habilidades em gestão, negócios,
+              finanças e liderança.
+
+            </p>
+
+
+            <a href="#" class="card-link text-blue" data-category="Gestão e Comércio">
+              Ver cursos
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <!-- =================================================
+             SAÚDE
+        ================================================== -->
+
+        <article class="category-card">
+
+          <div class="card-image-wrapper">
+
+            <img src="imagens/saude.png" alt="Ilustração representando Saúde" class="card-img-saude" loading="lazy"
+              decoding="async">
+
+          </div>
+
+
+          <div class="card-content">
+
+            <h3 class="text-red">
+              Saúde
+            </h3>
+
+
+            <p>
+
+              Cursos para quem quer cuidar de vidas
+              e fazer a diferença.
+
+            </p>
+
+
+            <a href="#" class="card-link text-red" data-category="Saúde">
+
+              Ver cursos
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <!-- =================================================
+             APRENDIZAGEM
+        ================================================== -->
+
+        <article class="category-card">
+
+          <div class="card-image-wrapper">
+
+            <img src="imagens/aprendizagem.png" alt="Ilustração representando Aprendizagem"
+              class="card-img-aprendizagem" loading="lazy" decoding="async">
+
+          </div>
+
+
+          <div class="card-content">
+
+            <h3 class="text-purple">
+              Aprendizagem
+            </h3>
+
+
+            <p>
+
+              Cursos para desenvolver habilidades,
+              idiomas e competências para a vida.
+
+            </p>
+
+
+            <a href="#" class="card-link text-purple" data-category="Aprendizagem">
+              Ver cursos
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================== PLATAFORMAS DE APRENDIZAGEM ====================================================== -->
+    <section class="learning-platforms-section" aria-labelledby="titulo-plataformas">
+      <div class="container">
+
+        <div class="learning-platforms-header"> <span class="section-tag">PLATAFORMAS DE APRENDIZAGEM</span>
+          <h2 id="titulo-plataformas"> Continue aprendendo com nossos parceiros </h2>
+          <p> Acesse plataformas de aprendizagem e desenvolva novas habilidades para sua carreira. </p>
+        </div>
+
+        <div class="learning-platforms-content">
+          <div class="learning-platforms-links">
+             <!-- SABER SENAC --> <a href=""
+              class="platform-link platform-sabersenac" target="_blank" rel="noopener noreferrer"
+              aria-label="Acessar Saber Senac"> <span class="platform-icon"> <img src="imagens/sabersenac.png" alt=""> </span> <span class="platform-info"> <strong>Saber Senac</strong>
+                <small>Acessar plataforma</small> </span> <i class="fas fa-arrow-up-right-from-square platform-arrow"
+                aria-hidden="true"></i> </a>
+                
+                <!-- MICROSOFT LEARN --> <a href="https://learn.microsoft.com/pt-br/"
+              class="platform-link platform-microsoft" target="_blank" rel="noopener noreferrer"
+              aria-label="Acessar Microsoft Learn"> <span class="platform-icon"> <img src="imagens/mlearn.avif" alt=""> </span> <span class="platform-info"> <strong>Microsoft Learn</strong>
+                <small>Acessar plataforma</small> </span> <i class="fas fa-arrow-up-right-from-square platform-arrow"
+                aria-hidden="true"></i> </a> 
+                
+                <!-- CACHOLA --> <a href="https://cachola.senac.br/" class="platform-link platform-cachola"
+              target="_blank" rel="noopener noreferrer" aria-label="Acessar Cachola"> <span class="platform-icon"> <img src="imagens/logo-cachola.png" alt=""> </span> <span class="platform-info">
+                <strong>Cachola</strong> <small>Acessar plataforma</small> </span> <i
+                class="fas fa-arrow-up-right-from-square platform-arrow" aria-hidden="true"></i> </a> 
+                
+                <!-- ORANGO --> <a
+              href="https://orango.senac.br/" class="platform-link platform-orango" target="_blank" rel="noopener noreferrer"
+              aria-label="Acessar Orango"> <span class="platform-icon"> <img src="imagens/orango.jpg" alt=""></span> <span class="platform-info"> <strong>Orango</strong> <small>Acessar
+                  plataforma</small> </span> <i class="fas fa-arrow-up-right-from-square platform-arrow"
+                aria-hidden="true"></i> </a> 
+                
+                <!-- CISCO NETWORKING ACADEMY --> <a href="https://www.netacad.com/"
+              class="platform-link platform-cisco" target="_blank" rel="noopener noreferrer"
+              aria-label="Acessar Cisco Networking Academy"> <span class="platform-icon"> <img src="imagens/netacad.png" alt=""> </span> <span class="platform-info">
+                <strong>Cisco Networking Academy</strong> <small>Acessar plataforma</small> </span> <i
+                class="fas fa-arrow-up-right-from-square platform-arrow" aria-hidden="true"></i> </a> </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         BENEFÍCIOS
+    ====================================================== -->
+
+    <section class="benefits-section">
+
+
+      <div class="section-header benefits-header">
+
+        <span class="section-tag">
+          POR QUE ESCOLHER?
+        </span>
+
+
+        <h2>
+          Por que escolher trabalhar no SENAC?
+        </h2>
+
+
+        <p>
+
+          Uma formação pensada para preparar você
+          para os desafios do mercado de trabalho.
+
+        </p>
+
+      </div>
+
+
+      <div class="benefits-grid">
+
+
+        <div class="benefits-list">
+
+
+          <!-- BENEFÍCIO 1 -->
+
+          <div class="benefit-item">
+
+            <div class="benefit-icon">
+
+              <i class="fas fa-file-alt" aria-hidden="true">
+              </i>
+
+            </div>
+
+
+            <div>
+
+              <h4>
+                Conteúdo atualizado
+              </h4>
+
+              <p>
+
+                Cursos alinhados às tendências
+                e necessidades do mercado.
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- BENEFÍCIO 2 -->
+
+          <div class="benefit-item">
+
+            <div class="benefit-icon">
+
+              <i class="fas fa-laptop-house" aria-hidden="true">
+              </i>
+
+            </div>
+
+
+            <div>
+
+              <h4>
+                Infraestrutura moderna
+              </h4>
+
+              <p>
+
+                Salas equipadas e laboratórios
+                preparados para sua formação.
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- BENEFÍCIO 3 -->
+
+          <div class="benefit-item">
+
+            <div class="benefit-icon">
+
+              <i class="fas fa-award" aria-hidden="true">
+              </i>
+
+            </div>
+
+
+            <div>
+
+              <h4>
+                Certificação reconhecida
+              </h4>
+
+              <p>
+
+                Formação valorizada no mercado
+                de trabalho.
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- BENEFÍCIO 4 -->
+
+          <div class="benefit-item">
+
+            <div class="benefit-icon">
+
+              <i class="fas fa-hands-helping" aria-hidden="true">
+              </i>
+
+            </div>
+
+            <div>
+              <h4>
+                Apoio ao Profissional
+              </h4>
+
+              <p>
+                Suporte durante toda sua jornada
+                de trabalho.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="benefits-image">
+
+          <img src="imagens/ChatGPT Image 6 de ago. de 2026, 09_49_081.png" alt="Prédio do SENAC" loading="lazy"
+            decoding="async">
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+
+  <footer class="site-footer">
+
+
+    <div class="linha-topo"></div>
+
+
+    <div class="footer-container">
+
+
+      <!-- SOBRE -->
+
+      <div class="footer-sobre" id="sobrenos">
+
+
+        <img src="./imagens/logo-branco.png" alt="Logo Senac" class="logo">
+
+
+        <p>
+
+          Instituição de educação profissional aberta a toda
+          a sociedade, com a missão de desenvolver pessoas e
+          organizações para o mundo do trabalho. O Serviço
+          Nacional de Aprendizagem Comercial – Senac, pessoa
+          jurídica de direito privado, sem fins lucrativos,
+          foi criado pelo Decreto-lei nº 8.621 de 10 de janeiro
+          de 1946. Neste mesmo ano, foi fundado também seu
+          Departamento Regional de Pernambuco, instalado em
+          14 de outubro.
+
+        </p>
+
+
+        <div class="footer-badges">
+
+          <img src="./imagens/prevencao.png" alt="Programa prevenção">
+
+
+          <img src="./imagens/logo.png" alt="Startê" class="starte-logo">
+
+        </div>
+
+      </div>
+
+
+      <!-- REDES SOCIAIS -->
+
+      <div class="footer-redes" id="contatos">
+
+
+        <h3>
+          Conecte-se
+        </h3>
+
+
+        <div class="social-icons">
+
+
+          <a href="#" aria-label="WhatsApp">
+
+            <img src="./imagens/telefoneverde.png" alt="">
+
+          </a>
+
+
+          <a href="#" aria-label="Twitter">
+
+            <img src="./imagens/twitter.png" alt="">
+
+          </a>
+
+
+          <a href="#" aria-label="Instagram">
+
+            <img src="./imagens/instagram.png" alt="">
+
+          </a>
+
+
+          <a href="#" aria-label="Facebook">
+
+            <img src="./imagens/facebook.png" alt="">
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- PESQUISA E PARCEIROS -->
+
+      <div class="footer-links">
+
+
+        <div class="titulo">
+
+          <div class="barra"></div>
+
+          <h2>
+            Pesquise
+          </h2>
+
+        </div>
+
+
+        <form class="footer-search" id="footerSearchForm">
+
+          <input type="search" id="footerSearch" placeholder="Pesquisar cursos e notícias"
+            aria-label="Pesquisar no site">
+
+
+          <button type="submit" id="footerSearchBtn" aria-label="Pesquisar">
+
+            <i class="fas fa-search" aria-hidden="true">
+            </i>
+
+          </button>
+
+        </form>
+
+
+        <div class="titulo parceiros-title">
+
+          <div class="barra"></div>
+
+          <h2>
+            Parceiros
+          </h2>
+
+        </div>
+
+
+        <div class="parceiros">
+
+
+          <a href="#">
+            Fecomércio Pernambuco
+          </a>
+
+
+          <span>|</span>
+
+
+          <a href="#">
+            Sesc Pernambuco
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- LOCALIZAÇÃO -->
+
+    <div class="footer-local">
+
+      <i class="fas fa-location-dot" aria-hidden="true">
+      </i>
+
+
+      <a href="https://maps.app.goo.gl/6A3dxDU1zrD2bHD7A" target="_blank" rel="noopener noreferrer">
+
+        Pernambuco - Av. Visconde de Suassuna, 500 -
+        Santo Amaro - Recife
+
+      </a>
+
+    </div>
+
+
+    <!-- RODAPÉ INFERIOR -->
+
+    <div class="footer-bottom">
+
+
+      <img src="./imagens/logo-branco.png" alt="Senac">
+
+
+      <p>
+        © 2026 Todos os Direitos Reservados.
+      </p>
+
+
+      <div class="empresa">
+
+
+        <strong>
+          Para sua empresa
+        </strong>
+
+
+        <a href="#">
+          Atendimento Corporativo
+        </a>
+
+
+        <a href="#">
+          Programa de Aprendizagem
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================================================
+       VOLTAR AO TOPO
+  ========================================================== -->
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">
+
+    <i class="fas fa-chevron-up" aria-hidden="true">
+    </i>
+
+  </button>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+
+</html>

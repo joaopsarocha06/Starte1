@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - Startê | SENAC</title>
+
+    <meta name="description" content="Acesse sua conta Startê utilizando seu e-mail institucional do SENAC.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <!-- =====================================================
+             LADO VISUAL
+        ====================================================== -->
+
+        <section class="login-visual">
+
+            <div class="visual-overlay"></div>
+
+            <div class="visual-content">
+
+                <a href="home.html" class="visual-logo">
+                    <img src="imagens/logo-branco.png" alt="Logo SENAC">
+                </a>
+
+                <div class="visual-text">
+
+                    <span class="visual-tag">
+                        STARTÊ
+                    </span>
+
+                    <h1>
+                        Seu futuro começa
+                        <span>aqui.</span>
+                    </h1>
+
+                    <p>
+                        Acesse sua conta e continue sua jornada profissional com o SENAC.
+                    </p>
+
+                </div>
+
+                <div class="visual-footer">
+
+                    <span>
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        Educação que transforma
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ÁREA DE LOGIN
+        ====================================================== -->
+
+        <section class="login-content">
+
+            <div class="login-container">
+
+                <!-- LOGO MOBILE -->
+
+                <a href="home.html" class="mobile-logo">
+
+                    <img src="imagens/logo.png" alt="Startê">
+
+                </a>
+
+
+                <!-- =================================================
+                     CABEÇALHO
+                ================================================== -->
+
+                <div class="form-header">
+
+                    <span class="form-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+
+                    <h2 id="formTitle">
+                        Bem-vindo de volta!
+                    </h2>
+
+                    <p id="formSubtitle">
+                        Entre com seu e-mail institucional para continuar.
+                    </p>
+
+                </div>
+
+
+                <!-- =================================================
+                     ABAS
+                ================================================== -->
+
+                <div class="form-tabs">
+
+                    <button type="button" class="form-tab active" id="loginTab">
+
+                        Entrar
+
+                    </button>
+
+                    <button type="button" class="form-tab" id="registerTab">
+
+                        Criar conta
+
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     FORMULÁRIO DE LOGIN
+                ================================================== -->
+
+                <form class="auth-form active" id="loginForm" novalidate>
+
+                    <!-- E-MAIL -->
+
+                    <div class="input-group">
+
+                        <label for="loginEmail">
+                            E-mail institucional
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <input type="email" id="loginEmail" name="email" placeholder="seuemail@pe.senac.br"
+                                autocomplete="email" required>
+
+                        </div>
+
+                        <small class="input-hint">
+                            Use seu e-mail institucional SENAC.
+                        </small>
+
+                    </div>
+
+
+                    <!-- SENHA -->
+
+                    <div class="input-group">
+
+                        <div class="label-row">
+
+                            <label for="loginPassword">
+                                Senha
+                            </label>
+
+                            <a href="#" id="forgotPassword">
+                                Esqueci minha senha
+                            </a>
+
+                        </div>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input type="password" id="loginPassword" name="password" placeholder="Digite sua senha"
+                                autocomplete="current-password" required>
+
+                            <button type="button" class="password-toggle" data-target="loginPassword"
+                                aria-label="Mostrar senha">
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MENSAGEM DO LOGIN -->
+
+                    <div class="form-message" id="loginMessage" role="alert">
+                    </div>
+
+
+                    <!-- BOTÃO ENTRAR -->
+
+                    <button type="submit" class="submit-button">
+
+                        <span>
+                            Entrar
+                        </span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+
+                    <!-- IR PARA CADASTRO -->
+
+                    <div class="form-bottom">
+
+                        <span>
+                            Ainda não possui uma conta?
+                        </span>
+
+                        <button type="button" id="goRegister">
+
+                            Criar conta
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <!-- =================================================
+                     FORMULÁRIO DE CADASTRO
+                ================================================== -->
+
+                <form class="auth-form" id="registerForm" novalidate>
+
+                    <!-- NOME -->
+
+                    <div class="input-group">
+
+                        <label for="registerName">
+                            Nome completo
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <input type="text" id="registerName" name="name" placeholder="Digite seu nome completo"
+                                autocomplete="name" required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- E-MAIL -->
+
+                    <div class="input-group">
+
+                        <label for="registerEmail">
+                            E-mail institucional
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <input type="email" id="registerEmail" name="email" placeholder="seuemail@pe.senac.br"
+                                autocomplete="email" required>
+
+                        </div>
+
+                        <small class="input-hint">
+                            Permitidos: @pe.senac.br ou @edu.pe.senac.br
+                        </small>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         SENHA DO CADASTRO
+                    ================================================== -->
+
+                    <div class="input-group">
+
+                        <label for="registerPassword">
+                            Senha
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input type="password" id="registerPassword" name="password" placeholder="Crie uma senha"
+                                autocomplete="new-password" minlength="8" required>
+
+                            <button type="button" class="password-toggle" data-target="registerPassword"
+                                aria-label="Mostrar senha">
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- REQUISITOS DA SENHA -->
+
+                        <div class="password-requirements" id="passwordRequirements">
+
+                            <p class="requirement" id="reqLength">
+
+                                <i class="fas fa-circle"></i>
+
+                                Mínimo de 8 caracteres
+
+                            </p>
+
+                            <p class="requirement" id="reqUppercase">
+
+                                <i class="fas fa-circle"></i>
+
+                                Pelo menos 1 letra maiúscula
+
+                            </p>
+
+                            <p class="requirement" id="reqLowercase">
+
+                                <i class="fas fa-circle"></i>
+
+                                Pelo menos 1 letra minúscula
+
+                            </p>
+
+                            <p class="requirement" id="reqNumber">
+
+                                <i class="fas fa-circle"></i>
+
+                                Pelo menos 1 número
+
+                            </p>
+
+                            <p class="requirement" id="reqSpecial">
+
+                                <i class="fas fa-circle"></i>
+
+                                Pelo menos 1 caractere especial
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- FORÇA DA SENHA -->
+
+                        <p class="password-strength" id="passwordStrength" aria-live="polite">
+                        </p>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         CONFIRMAR SENHA
+                    ================================================== -->
+
+                    <div class="input-group">
+
+                        <label for="registerPasswordConfirm">
+                            Confirmar senha
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input type="password" id="registerPasswordConfirm" name="passwordConfirm"
+                                placeholder="Digite a senha novamente" autocomplete="new-password" required>
+
+                            <button type="button" class="password-toggle" data-target="registerPasswordConfirm"
+                                aria-label="Mostrar senha">
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </button>
+
+                        </div>
+
+                        <!-- MENSAGEM DE CONFIRMAÇÃO -->
+
+                        <small class="password-match" id="passwordMatch" aria-live="polite">
+                        </small>
+
+                    </div>
+
+
+                    <!-- MENSAGEM DO CADASTRO -->
+
+                    <div class="form-message" id="registerMessage" role="alert">
+                    </div>
+
+
+                    <!-- BOTÃO CRIAR CONTA -->
+
+                    <button type="submit" class="submit-button">
+
+                        <span>
+                            Criar minha conta
+                        </span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+
+                    <!-- IR PARA LOGIN -->
+
+                    <div class="form-bottom">
+
+                        <span>
+                            Já possui uma conta?
+                        </span>
+
+                        <button type="button" id="goLogin">
+
+                            Entrar
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <!-- =================================================
+                     INFORMAÇÃO DE SEGURANÇA
+                ================================================== -->
+
+                <div class="security-info">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>
+                        Acesso exclusivo para usuários com
+                        e-mail institucional SENAC.
+                    </span>
+
+                </div>
+
+
+                <!-- =================================================
+                     COPYRIGHT
+                ================================================== -->
+
+                <div class="copyright">
+
+                    © 2026 Startê — SENAC Pernambuco
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         SUPABASE
+    ========================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <!-- =========================================================
+         JAVASCRIPT DO LOGIN
+    ========================================================== -->
+
+    <script src="./js/login.js"></script>
+
+</body>
+
+</html>

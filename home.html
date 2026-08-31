@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Home - Startê</title>
+
+  <meta name="description"
+    content="Startê - Página inicial do Senac. Conheça cursos profissionalizantes, técnicos e de graduação.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Startê - SENAC">
+  <meta property="og:description" content="Educação profissional de excelência há mais de 75 anos.">
+  <meta property="og:image" content="imagens/logo-branco.png">
+  <meta property="og:url" content="https://www.exemplo.com/home.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="./css/home.css">
+</head>
+
+<body>
+
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
+
+  <header class="main-header">
+    <div class="container header-container">
+
+      <div class="logo-area">
+        <a href="home.html" aria-label="Página inicial do Startê">
+          <img src="imagens/Senac_logo.svg.webp" alt="Logo Senac" class="logo-img">
+        </a>
+      </div>
+
+      <nav class="nav-menu" id="mainNav" aria-label="Menu principal">
+        <ul class="nav-list">
+          <li>
+            <a href="home.html" class="nav-link active" aria-current="page">
+              HOME
+            </a>
+          </li>
+
+          <li>
+            <a href="cursos.html" class="nav-link">
+              CURSOS
+            </a>
+          </li>
+
+          <li>
+            <a href="conduta.html" class="nav-link">
+              CONDUTA
+            </a>
+          </li>
+
+          <li>
+            <a href="eventos.html" class="nav-link">
+              EVENTOS
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="action-area">
+        <!-- PERFIL DO USUÁRIO -->
+        <div class="user-profile" id="userProfile">
+
+          <button type="button" class="user-profile-button" id="userProfileButton" aria-expanded="false"
+            aria-haspopup="true">
+
+            <span class="user-profile-icon">
+              <i class="fas fa-user" aria-hidden="true"></i>
+            </span>
+
+            <span class="user-profile-info">
+
+              <span class="user-profile-welcome">
+                Bem-vindo
+              </span>
+
+              <span class="user-profile-name" id="userProfileName">
+                Usuário
+              </span>
+
+            </span>
+
+            <i class="fas fa-chevron-down user-profile-arrow" aria-hidden="true"></i>
+
+          </button>
+
+
+          <div class="user-profile-menu" id="userProfileMenu" role="menu">
+
+            <button type="button" class="user-profile-menu-item" id="profileButton" role="menuitem">
+
+              <i class="fas fa-user" aria-hidden="true"></i>
+
+              <span>
+                Meu perfil
+              </span>
+
+            </button>
+
+
+            <div class="user-profile-divider"></div>
+
+
+            <button type="button" class="user-profile-menu-item logout" id="logoutButton" role="menuitem">
+
+              <i class="fas fa-right-from-bracket" aria-hidden="true"></i>
+
+              <span>
+                Sair
+              </span>
+
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       CONTEÚDO PRINCIPAL
+  ========================================================== -->
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="container hero-container">
+
+        <div class="hero-text">
+
+          <h1>
+            Como o
+            <span class="text-orange">SENAC</span>
+            transforma carreiras?
+          </h1>
+
+          <p>
+            Há gerações, o Senac impulsiona a educação profissional de excelência, capacitando milhares de talentos para
+            as exigências do mercado por meio de formações presenciais e a distância em diversas áreas do conhecimento.
+          </p>
+
+          <a href="cursos.html" class="btn-cursos">
+
+            Áreas de Atuação
+
+            <i class="fas fa-chevron-right" aria-hidden="true">
+            </i>
+
+          </a>
+
+        </div>
+
+
+        <div class="hero-image-character">
+
+          <img src="imagens/ChatGPT Image 28 de ago. de 2026, 08_38_04.png" alt="Personagem Senac" class="character-img">
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FEATURES
+    ====================================================== -->
+
+    <section class="features">
+
+      <div class="container text-center">
+
+        <h2 class="section-title">
+          Como funciona o SENAC?
+        </h2>
+
+        <p class="section-subtitle">
+          O SENAC oferece cursos livres, técnicos, graduação,
+          pós-graduação e educação a distância, conectando teoria
+          e prática para desenvolver competências exigidas pelo
+          mercado de trabalho.
+        </p>
+
+
+        <div class="features-grid">
+
+          <div class="feature-card">
+
+            <div class="card-icon icon-yellow">
+
+              <i class="fas fa-user-graduate" aria-hidden="true">
+              </i>
+
+            </div>
+
+            <h3>
+              Cursos Profissionalizantes
+            </h3>
+
+            <p>
+              Capacitação rápida para quem deseja ingressar
+              ou se atualizar no mercado de trabalho.
+            </p>
+
+          </div>
+
+
+          <div class="feature-card">
+
+            <div class="card-icon icon-orange">
+
+              <i class="fas fa-briefcase" aria-hidden="true">
+              </i>
+
+            </div>
+
+            <h3>
+              Cursos Técnicos
+            </h3>
+
+            <p>
+              Formação técnica reconhecida nacionalmente,
+              preparando profissionais para diferentes setores.
+            </p>
+
+          </div>
+
+
+          <div class="feature-card">
+
+            <div class="card-icon icon-orange-light">
+
+              <i class="fas fa-book-open" aria-hidden="true">
+              </i>
+
+            </div>
+
+            <h3>
+              Graduação e Pós-graduação
+            </h3>
+
+            <p>
+              Ensino superior com foco em inovação,
+              empregabilidade e desenvolvimento profissional.
+            </p>
+
+          </div>
+
+
+          <div class="feature-card">
+
+            <div class="card-icon icon-yellow-dark">
+
+              <i class="fas fa-globe" aria-hidden="true">
+              </i>
+
+            </div>
+
+            <h3>
+              Educação a Distância
+            </h3>
+
+            <p>
+              Flexibilidade para estudar de onde estiver,
+              com a qualidade reconhecida do SENAC.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ESTRUTURA MODERNA
+    ====================================================== -->
+
+    <section class="modern-structure-section">
+
+      <div class="container">
+
+        <div class="structure-grid-wrapper">
+
+
+          <div class="structure-info-side">
+
+            <h2 class="structure-main-title">
+              Estrutura moderna para aprender na prática
+            </h2>
+
+            <p class="structure-paragraph">
+              As unidades do SENAC contam com laboratórios
+              especializados, bibliotecas, ambientes tecnológicos
+              e espaços que simulam situações reais do mercado
+              de trabalho.
+            </p>
+
+
+            <div class="metrics-display-grid">
+
+
+              <div class="metric-card-item">
+
+                <span class="metric-badge-icon">
+
+                  <i class="fa-solid fa-user" aria-hidden="true">
+                  </i>
+
+                </span>
+
+                <h3 class="metric-number-val">
+                  1,5 milhão+
+                </h3>
+
+                <p class="metric-caption-text">
+                  Alunos atendidos por ano
+                </p>
+
+              </div>
+
+
+              <div class="metric-card-item">
+
+                <span class="metric-badge-icon">
+
+                  <i class="fa-solid fa-building" aria-hidden="true">
+                  </i>
+
+                </span>
+
+                <h3 class="metric-number-val">
+                  711
+                </h3>
+
+                <p class="metric-caption-text">
+                  Unidades educacionais no Brasil
+                </p>
+
+              </div>
+
+
+              <div class="metric-card-item">
+
+                <span class="metric-badge-icon">
+
+                  <i class="fa-solid fa-book-open" aria-hidden="true">
+                  </i>
+
+                </span>
+
+                <h3 class="metric-number-val">
+                  800+
+                </h3>
+
+                <p class="metric-caption-text">
+                  Cursos presenciais e EAD
+                </p>
+
+              </div>
+
+
+              <div class="metric-card-item">
+
+                <span class="metric-badge-icon">
+
+                  <i class="fa-solid fa-trophy" aria-hidden="true">
+                  </i>
+
+                </span>
+
+                <h3 class="metric-number-val">
+                  Desde 1946
+                </h3>
+
+                <p class="metric-caption-text">
+                  Transformando vidas por meio da educação profissional
+                </p>
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+
+          <div class="structure-visual-side">
+
+            <div class="ellipse-bg-decoration"></div>
+
+            <img src="imagens/estrutura.png" alt="Unidade moderna Senac" class="building-render-img">
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+
+  <footer class="site-footer">
+
+    <div class="linha-topo"></div>
+
+    <div class="footer-container">
+
+
+      <div class="footer-sobre" id="sobrenos">
+
+        <img src="./imagens/logo-branco.png" alt="Logo Senac" class="logo">
+
+        <p>
+          Instituição de educação profissional aberta a toda
+          a sociedade, com a missão de desenvolver pessoas e
+          organizações para o mundo do trabalho. O Serviço
+          Nacional de Aprendizagem Comercial – Senac, pessoa
+          jurídica de direito privado, sem fins lucrativos,
+          foi criado pelo Decreto-lei nº 8.621 de 10 de janeiro
+          de 1946. Neste mesmo ano, foi fundado também seu
+          Departamento Regional de Pernambuco, instalado em
+          14 de outubro.
+        </p>
+
+
+        <div class="footer-badges">
+
+          <img src="./imagens/prevencao.png" alt="Programa prevenção">
+
+          <img src="./imagens/logo.png" alt="Startê" class="starte-logo">
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-redes" id="contatos">
+
+        <h3>
+          Conecte-se
+        </h3>
+
+        <div class="social-icons">
+
+          <a href="#" aria-label="WhatsApp">
+
+            <img src="./imagens/telefoneverde.png" alt="">
+
+          </a>
+
+          <a href="#" aria-label="Twitter">
+
+            <img src="./imagens/twitter.png" alt="">
+
+          </a>
+
+          <a href="#" aria-label="Instagram">
+
+            <img src="./imagens/instagram.png" alt="">
+
+          </a>
+
+          <a href="#" aria-label="Facebook">
+
+            <img src="./imagens/facebook.png" alt="">
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-links">
+
+
+        <div class="titulo">
+
+          <div class="barra"></div>
+
+          <h2>
+            Pesquise
+          </h2>
+
+        </div>
+
+
+        <div class="footer-search">
+
+          <input type="text" id="footerSearch" placeholder="Pesquisar cursos e notícias" aria-label="Pesquisar no site">
+
+          <button id="footerSearchBtn" type="button" aria-label="Pesquisar">
+
+            <i class="fas fa-search" aria-hidden="true">
+            </i>
+
+          </button>
+
+        </div>
+
+
+        <div class="titulo parceiros-title">
+
+          <div class="barra"></div>
+
+          <h2>
+            Parceiros
+          </h2>
+
+        </div>
+
+
+        <div class="parceiros">
+
+          <a href="#">
+            Fecomércio Pernambuco
+          </a>
+
+          <span>|</span>
+
+          <a href="#">
+            Sesc Pernambuco
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-local">
+
+      <i class="fas fa-location-dot" aria-hidden="true">
+      </i>
+
+      <a href="https://maps.app.goo.gl/6A3dxDU1zrD2bHD7A" target="_blank" rel="noopener">
+
+        Pernambuco - Av. Visconde de Suassuna, 500 -
+        Santo Amaro - Recife
+
+      </a>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <img src="./imagens/logo-branco.png" alt="Senac">
+
+      <p>
+        © 2026 Todos os Direitos Reservados.
+      </p>
+
+
+      <div class="empresa">
+
+        <strong>
+          Para sua empresa
+        </strong>
+
+        <a href="#">
+          Atendimento Corporativo
+        </a>
+
+        <a href="#">
+          Programa de Aprendizagem
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================================================
+       VOLTAR AO TOPO
+  ========================================================== -->
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">
+
+    <i class="fas fa-chevron-up" aria-hidden="true">
+    </i>
+
+  </button>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/auth.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+
+</html>
