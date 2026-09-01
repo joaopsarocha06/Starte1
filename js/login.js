@@ -1,86 +1,172 @@
 /* ==========================================================================
    LOGIN.JS — STARTÊ / SENAC
-   Funcionalidades:
-   1. Cadastro de usuário
-   2. Login
-   3. Validação de senha reforçada
-   4. Confirmação de senha
-   5. Indicador de força da senha
-   6. Mostrar/ocultar senha
-   7. Persistência do usuário
-   8. Redirecionamento após login
-   9. Compatibilidade com login.html atual
+
+   Responsabilidades:
+   1. Conectar ao Supabase Auth
+   2. Cadastro de usuário
+   3. Login
+   4. Validação de senha
+   5. Confirmação de senha
+   6. Indicador de força
+   7. Mostrar / ocultar senha
+   8. Redirecionamento para home.html
+   9. Recuperação de senha
+   10. Compatibilidade com login.html
    ========================================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+
+    /* ======================================================================
+       CONFIGURAÇÃO SUPABASE
+       ====================================================================== */
+
+    const SUPABASE_URL =
+        "https://fdpytnlvkdfvumejlbip.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_G2loVvADj59-2OQZVNhl5w_PA4bIYgf";
+
+
+    /* ======================================================================
+       VERIFICAR SE SUPABASE FOI CARREGADO
+       ====================================================================== */
+
+    if (!window.supabase) {
+
+        console.error(
+            "Supabase não foi carregado."
+        );
+
+        return;
+    }
+
+
+    /* ======================================================================
+       CRIAR CLIENTE
+       ====================================================================== */
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY,
+            {
+                auth: {
+                    persistSession: true,
+                    autoRefreshToken: true,
+                    detectSessionInUrl: true
+                }
+            }
+        );
+
 
     /* ======================================================================
        ELEMENTOS — LOGIN
        ====================================================================== */
 
-    const loginForm = document.getElementById("loginForm");
-    const loginEmail = document.getElementById("loginEmail");
-    const loginPassword = document.getElementById("loginPassword");
-    const loginMessage = document.getElementById("loginMessage");
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const loginEmail =
+        document.getElementById("loginEmail");
+
+    const loginPassword =
+        document.getElementById("loginPassword");
+
+    const loginMessage =
+        document.getElementById("loginMessage");
+
 
     /* ======================================================================
        ELEMENTOS — CADASTRO
        ====================================================================== */
 
-    const registerForm = document.getElementById("registerForm");
-    const registerName = document.getElementById("registerName");
-    const registerEmail = document.getElementById("registerEmail");
-    const registerPassword = document.getElementById("registerPassword");
-    const registerPasswordConfirm = document.getElementById(
-        "registerPasswordConfirm"
-    );
+    const registerForm =
+        document.getElementById("registerForm");
 
-    const registerMessage = document.getElementById("registerMessage");
+    const registerName =
+        document.getElementById("registerName");
+
+    const registerEmail =
+        document.getElementById("registerEmail");
+
+    const registerPassword =
+        document.getElementById("registerPassword");
+
+    const registerPasswordConfirm =
+        document.getElementById(
+            "registerPasswordConfirm"
+        );
+
+    const registerMessage =
+        document.getElementById("registerMessage");
+
 
     /* ======================================================================
        ELEMENTOS — ABAS
        ====================================================================== */
 
-    const loginTab = document.getElementById("loginTab");
-    const registerTab = document.getElementById("registerTab");
+    const loginTab =
+        document.getElementById("loginTab");
 
-    const goRegister = document.getElementById("goRegister");
-    const goLogin = document.getElementById("goLogin");
+    const registerTab =
+        document.getElementById("registerTab");
 
-    const formTitle = document.getElementById("formTitle");
-    const formSubtitle = document.getElementById("formSubtitle");
+    const goRegister =
+        document.getElementById("goRegister");
+
+    const goLogin =
+        document.getElementById("goLogin");
+
+    const formTitle =
+        document.getElementById("formTitle");
+
+    const formSubtitle =
+        document.getElementById("formSubtitle");
+
 
     /* ======================================================================
        CONFIGURAÇÕES
        ====================================================================== */
 
-    const MINIMO_SENHA = 8;
-
     const SENHA_REGEX = {
+
         tamanho: /.{8,}/,
+
         maiuscula: /[A-Z]/,
+
         minuscula: /[a-z]/,
+
         numero: /[0-9]/,
+
         especial: /[^A-Za-z0-9]/
+
     };
 
-    const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const EMAIL_REGEX =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 
     const EMAIL_SENAC_REGEX =
         /^[^\s@]+@(pe\.senac\.br|edu\.pe\.senac\.br)$/i;
 
 
     /* ======================================================================
-       FUNÇÃO — MOSTRAR MENSAGEM
+       MOSTRAR MENSAGEM
        ====================================================================== */
 
-    function mostrarMensagem(elemento, mensagem, tipo = "error") {
+    function mostrarMensagem(
+        elemento,
+        mensagem,
+        tipo = "error"
+    ) {
 
         if (!elemento) {
             return;
         }
 
-        elemento.textContent = mensagem;
+        elemento.textContent =
+            mensagem;
 
         elemento.classList.remove(
             "error",
@@ -95,12 +181,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         elemento.classList.add("show");
 
-        elemento.style.display = "block";
+        elemento.style.display =
+            "block";
     }
 
 
     /* ======================================================================
-       FUNÇÃO — LIMPAR MENSAGEM
+       LIMPAR MENSAGEM
        ====================================================================== */
 
     function limparMensagem(elemento) {
@@ -121,22 +208,34 @@ document.addEventListener("DOMContentLoaded", () => {
             "show"
         );
 
-        elemento.style.display = "none";
+        elemento.style.display =
+            "none";
     }
 
 
     /* ======================================================================
-       VALIDAÇÃO DA SENHA
+       VALIDAR SENHA
        ====================================================================== */
 
     function validarSenha(senha) {
 
         return {
-            tamanho: SENHA_REGEX.tamanho.test(senha),
-            maiuscula: SENHA_REGEX.maiuscula.test(senha),
-            minuscula: SENHA_REGEX.minuscula.test(senha),
-            numero: SENHA_REGEX.numero.test(senha),
-            especial: SENHA_REGEX.especial.test(senha)
+
+            tamanho:
+                SENHA_REGEX.tamanho.test(senha),
+
+            maiuscula:
+                SENHA_REGEX.maiuscula.test(senha),
+
+            minuscula:
+                SENHA_REGEX.minuscula.test(senha),
+
+            numero:
+                SENHA_REGEX.numero.test(senha),
+
+            especial:
+                SENHA_REGEX.especial.test(senha)
+
         };
     }
 
@@ -147,32 +246,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function senhaEstaForte(senha) {
 
-        const requisitos = validarSenha(senha);
+        const requisitos =
+            validarSenha(senha);
 
         return (
+
             requisitos.tamanho &&
+
             requisitos.maiuscula &&
+
             requisitos.minuscula &&
+
             requisitos.numero &&
+
             requisitos.especial
+
         );
     }
 
 
     /* ======================================================================
-       INDICADOR DE FORÇA DA SENHA
+       INDICADOR DE FORÇA
        ====================================================================== */
 
     function atualizarForcaSenha(senha) {
 
         const passwordStrength =
-            document.getElementById("passwordStrength");
+            document.getElementById(
+                "passwordStrength"
+            );
 
         if (!passwordStrength) {
             return;
         }
 
-        const requisitos = validarSenha(senha);
+        const requisitos =
+            validarSenha(senha);
 
         let pontos = 0;
 
@@ -196,13 +305,11 @@ document.addEventListener("DOMContentLoaded", () => {
             pontos++;
         }
 
-
         passwordStrength.classList.remove(
             "weak",
             "medium",
             "strong"
         );
-
 
         if (!senha) {
 
@@ -211,42 +318,50 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         if (pontos <= 2) {
 
-            passwordStrength.classList.add("weak");
+            passwordStrength.classList.add(
+                "weak"
+            );
 
             passwordStrength.textContent =
                 "Senha fraca";
 
         } else if (pontos <= 4) {
 
-            passwordStrength.classList.add("medium");
+            passwordStrength.classList.add(
+                "medium"
+            );
 
             passwordStrength.textContent =
                 "Senha média";
 
         } else {
 
-            passwordStrength.classList.add("strong");
+            passwordStrength.classList.add(
+                "strong"
+            );
 
             passwordStrength.textContent =
                 "Senha forte";
-
         }
     }
 
 
     /* ======================================================================
-       ATUALIZAR REQUISITOS VISUAIS
+       ATUALIZAR REQUISITOS
        ====================================================================== */
 
     function atualizarRequisitosSenha(senha) {
 
-        const requisitos = validarSenha(senha);
+        const requisitos =
+            validarSenha(senha);
 
 
-        function atualizarElemento(id, valido) {
+        function atualizarElemento(
+            id,
+            valido
+        ) {
 
             const elemento =
                 document.getElementById(id);
@@ -294,7 +409,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 icone.classList.add(
                     "fa-circle"
                 );
-
             }
         }
 
@@ -322,68 +436,6 @@ document.addEventListener("DOMContentLoaded", () => {
         atualizarElemento(
             "reqSpecial",
             requisitos.especial
-        );
-
-
-        /* Compatibilidade com IDs antigos */
-
-        atualizarElemento(
-            "requisitoTamanho",
-            requisitos.tamanho
-        );
-
-        atualizarElemento(
-            "requisitoMaiuscula",
-            requisitos.maiuscula
-        );
-
-        atualizarElemento(
-            "requisitoMinuscula",
-            requisitos.minuscula
-        );
-
-        atualizarElemento(
-            "requisitoNumero",
-            requisitos.numero
-        );
-
-        atualizarElemento(
-            "requisitoEspecial",
-            requisitos.especial
-        );
-    }
-
-
-    /* ======================================================================
-       DIGITAÇÃO DA SENHA
-       ====================================================================== */
-
-    if (registerPassword) {
-
-        registerPassword.addEventListener(
-            "input",
-            () => {
-
-                const senha =
-                    registerPassword.value;
-
-                atualizarForcaSenha(
-                    senha
-                );
-
-                atualizarRequisitosSenha(
-                    senha
-                );
-
-                if (
-                    registerPasswordConfirm &&
-                    registerPasswordConfirm.value
-                ) {
-
-                    validarConfirmacaoSenha();
-
-                }
-            }
         );
     }
 
@@ -447,6 +499,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /* ======================================================================
+       DIGITAÇÃO DA SENHA
+       ====================================================================== */
+
+    if (registerPassword) {
+
+        registerPassword.addEventListener(
+            "input",
+            () => {
+
+                const senha =
+                    registerPassword.value;
+
+                atualizarForcaSenha(
+                    senha
+                );
+
+                atualizarRequisitosSenha(
+                    senha
+                );
+
+                if (
+                    registerPasswordConfirm &&
+                    registerPasswordConfirm.value
+                ) {
+
+                    validarConfirmacaoSenha();
+                }
+            }
+        );
+    }
+
+
+    /* ======================================================================
+       DIGITAÇÃO DA CONFIRMAÇÃO
+       ====================================================================== */
+
     if (registerPasswordConfirm) {
 
         registerPasswordConfirm.addEventListener(
@@ -460,7 +549,10 @@ document.addEventListener("DOMContentLoaded", () => {
        MOSTRAR / OCULTAR SENHA
        ====================================================================== */
 
-    function configurarToggleSenha(botao, campo) {
+    function configurarToggleSenha(
+        botao,
+        campo
+    ) {
 
         if (!botao || !campo) {
             return;
@@ -477,7 +569,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (mostrando) {
 
-                    campo.type = "password";
+                    campo.type =
+                        "password";
 
                     botao.setAttribute(
                         "aria-label",
@@ -486,7 +579,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 } else {
 
-                    campo.type = "text";
+                    campo.type =
+                        "text";
 
                     botao.setAttribute(
                         "aria-label",
@@ -498,6 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const icone =
                     botao.querySelector("i");
 
+
                 if (icone) {
 
                     icone.classList.toggle(
@@ -508,103 +603,50 @@ document.addEventListener("DOMContentLoaded", () => {
                         "fa-eye-slash"
                     );
                 }
+
             }
         );
     }
 
 
     /* ======================================================================
-       CONFIGURAR TODOS OS BOTÕES DE SENHA
+       CONFIGURAR TODOS OS TOGGLES
        ====================================================================== */
 
     document
-        .querySelectorAll(".password-toggle")
-        .forEach(botao => {
+        .querySelectorAll(
+            ".password-toggle"
+        )
+        .forEach(
+            botao => {
 
-            const target =
-                botao.getAttribute("data-target");
+                const target =
+                    botao.getAttribute(
+                        "data-target"
+                    );
 
-            const campo =
-                document.getElementById(target);
+                const campo =
+                    document.getElementById(
+                        target
+                    );
 
-            configurarToggleSenha(
-                botao,
-                campo
-            );
-        });
-
-
-    /* ======================================================================
-       BANCO LOCAL DE USUÁRIOS
-       ====================================================================== */
-
-    function obterUsuarios() {
-
-        try {
-
-            const dados =
-                localStorage.getItem(
-                    "usuariosStarte"
+                configurarToggleSenha(
+                    botao,
+                    campo
                 );
-
-            if (!dados) {
-                return [];
             }
-
-            const usuarios =
-                JSON.parse(dados);
-
-            return Array.isArray(usuarios)
-                ? usuarios
-                : [];
-
-        } catch (erro) {
-
-            console.error(
-                "Erro ao carregar usuários:",
-                erro
-            );
-
-            return [];
-        }
-    }
-
-
-    function salvarUsuarios(usuarios) {
-
-        localStorage.setItem(
-            "usuariosStarte",
-            JSON.stringify(usuarios)
         );
-    }
 
 
     /* ======================================================================
-       SALVAR USUÁRIO LOGADO
-       ====================================================================== */
-
-    function salvarUsuarioLogado(usuario) {
-
-        localStorage.setItem(
-            "usuarioLogado",
-            JSON.stringify({
-                id: usuario.id,
-                nome: usuario.nome,
-                email: usuario.email
-            })
-        );
-    }
-
-
-    /* ======================================================================
-       CADASTRO
+       CADASTRO — SUPABASE AUTH
        ====================================================================== */
 
     if (registerForm) {
 
         registerForm.addEventListener(
             "submit",
-            event => {
+            async event => {
 
                 event.preventDefault();
 
@@ -632,9 +674,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     registerPasswordConfirm?.value || "";
 
 
-                /* ----------------------------------------------------------
-                   NOME
-                   ---------------------------------------------------------- */
+                /* ==========================================================
+                   VALIDAR NOME
+                ========================================================== */
 
                 if (!nome) {
 
@@ -664,9 +706,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                /* ----------------------------------------------------------
-                   E-MAIL
-                   ---------------------------------------------------------- */
+                /* ==========================================================
+                   VALIDAR E-MAIL
+                ========================================================== */
 
                 if (!email) {
 
@@ -696,11 +738,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                /* ----------------------------------------------------------
-                   E-MAIL SENAC
-                   ---------------------------------------------------------- */
+                /* ==========================================================
+                   VALIDAR E-MAIL SENAC
+                ========================================================== */
 
-                if (!EMAIL_SENAC_REGEX.test(email)) {
+                if (
+                    !EMAIL_SENAC_REGEX.test(
+                        email
+                    )
+                ) {
 
                     mostrarMensagem(
                         registerMessage,
@@ -714,9 +760,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                /* ----------------------------------------------------------
-                   SENHA
-                   ---------------------------------------------------------- */
+                /* ==========================================================
+                   VALIDAR SENHA
+                ========================================================== */
 
                 if (!senha) {
 
@@ -732,10 +778,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                /* ----------------------------------------------------------
-                   SENHA FORTE
-                   ---------------------------------------------------------- */
-
                 if (!senhaEstaForte(senha)) {
 
                     mostrarMensagem(
@@ -750,9 +792,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                /* ----------------------------------------------------------
-                   CONFIRMAÇÃO
-                   ---------------------------------------------------------- */
+                /* ==========================================================
+                   CONFIRMAR SENHA
+                ========================================================== */
 
                 if (!confirmacao) {
 
@@ -768,7 +810,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                if (senha !== confirmacao) {
+                if (
+                    senha !== confirmacao
+                ) {
 
                     mostrarMensagem(
                         registerMessage,
@@ -782,82 +826,177 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                /* ----------------------------------------------------------
-                   USUÁRIOS EXISTENTES
-                   ---------------------------------------------------------- */
+                /* ==========================================================
+                   DESABILITAR BOTÃO
+                ========================================================== */
 
-                const usuarios =
-                    obterUsuarios();
+                const submitButton =
+                    registerForm.querySelector(
+                        ".submit-button"
+                    );
 
-
-                const usuarioExistente =
-                    usuarios.find(
-                        usuario =>
-                            usuario.email
-                                ?.toLowerCase() === email
+                const submitText =
+                    submitButton?.querySelector(
+                        "span"
                     );
 
 
-                if (usuarioExistente) {
+                if (submitButton) {
+                    submitButton.disabled = true;
+                }
+
+                if (submitText) {
+                    submitText.textContent =
+                        "Criando conta...";
+                }
+
+
+                /* ==========================================================
+                   CRIAR USUÁRIO NO SUPABASE
+                ========================================================== */
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient.auth.signUp({
+
+                        email: email,
+
+                        password: senha,
+
+                        options: {
+
+                            data: {
+
+                                nome: nome,
+
+                                name: nome,
+
+                                full_name: nome
+
+                            },
+
+                            emailRedirectTo:
+                                window.location.origin +
+                                "/login.html"
+
+                        }
+
+                    });
+
+
+                /* ==========================================================
+                   ERRO
+                ========================================================== */
+
+                if (error) {
+
+                    console.error(
+                        "Erro no cadastro:",
+                        error
+                    );
+
+
+                    let mensagem =
+                        "Não foi possível criar sua conta.";
+
+
+                    if (
+                        error.message
+                            ?.toLowerCase()
+                            .includes(
+                                "already registered"
+                            )
+                    ) {
+
+                        mensagem =
+                            "Este e-mail já está cadastrado.";
+
+                    } else if (
+                        error.message
+                            ?.toLowerCase()
+                            .includes(
+                                "password"
+                            )
+                    ) {
+
+                        mensagem =
+                            "A senha informada não atende aos requisitos.";
+
+                    } else if (
+                        error.message
+                            ?.toLowerCase()
+                            .includes(
+                                "email"
+                            )
+                    ) {
+
+                        mensagem =
+                            "Verifique o e-mail informado.";
+
+                    }
+
 
                     mostrarMensagem(
                         registerMessage,
-                        "Este e-mail já está cadastrado.",
+                        mensagem,
                         "error"
                     );
 
-                    registerEmail?.focus();
+
+                    if (submitButton) {
+                        submitButton.disabled =
+                            false;
+                    }
+
+                    if (submitText) {
+                        submitText.textContent =
+                            "Criar minha conta";
+                    }
 
                     return;
                 }
 
 
-                /* ----------------------------------------------------------
-                   CRIAR USUÁRIO
-                   ---------------------------------------------------------- */
+                /* ==========================================================
+                   CADASTRO COM CONFIRMAÇÃO DE E-MAIL
+                ========================================================== */
 
-                const novoUsuario = {
+                if (
+                    data.user &&
+                    !data.session
+                ) {
 
-                    id:
-                        Date.now(),
+                    mostrarMensagem(
+                        registerMessage,
+                        "Cadastro realizado! Verifique seu e-mail institucional para confirmar a conta.",
+                        "success"
+                    );
 
-                    nome:
-                        nome,
+                    registerForm.reset();
 
-                    email:
-                        email,
+                    atualizarForcaSenha("");
 
-                    senha:
-                        senha,
+                    atualizarRequisitosSenha("");
 
-                    criadoEm:
-                        new Date()
-                            .toISOString()
-                };
+                    if (submitButton) {
+                        submitButton.disabled =
+                            false;
+                    }
 
+                    if (submitText) {
+                        submitText.textContent =
+                            "Criar minha conta";
+                    }
 
-                usuarios.push(
-                    novoUsuario
-                );
-
-
-                salvarUsuarios(
-                    usuarios
-                );
-
-
-                /* ----------------------------------------------------------
-                   SALVAR SESSÃO
-                   ---------------------------------------------------------- */
-
-                salvarUsuarioLogado(
-                    novoUsuario
-                );
+                    return;
+                }
 
 
-                /* ----------------------------------------------------------
-                   MENSAGEM
-                   ---------------------------------------------------------- */
+                /* ==========================================================
+                   CADASTRO COM LOGIN AUTOMÁTICO
+                ========================================================== */
 
                 mostrarMensagem(
                     registerMessage,
@@ -866,44 +1005,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
 
 
-                /* ----------------------------------------------------------
-                   LIMPAR CAMPOS
-                   ---------------------------------------------------------- */
-
-                registerForm.reset();
-
-                atualizarForcaSenha("");
-
-                atualizarRequisitosSenha("");
-
-
-                /* ----------------------------------------------------------
-                   REDIRECIONAR
-                   ---------------------------------------------------------- */
-
                 setTimeout(
                     () => {
 
                         window.location.href =
-                            "home.html";
+                            "./home.html";
 
                     },
-                    1000
+                    800
                 );
+
             }
         );
     }
 
 
     /* ======================================================================
-       LOGIN
+       LOGIN — SUPABASE AUTH
        ====================================================================== */
 
     if (loginForm) {
 
         loginForm.addEventListener(
             "submit",
-            event => {
+            async event => {
 
                 event.preventDefault();
 
@@ -922,9 +1047,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     loginPassword?.value || "";
 
 
-                /* ----------------------------------------------------------
+                /* ==========================================================
                    CAMPOS VAZIOS
-                   ---------------------------------------------------------- */
+                ========================================================== */
 
                 if (!email || !senha) {
 
@@ -938,32 +1063,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                /* ----------------------------------------------------------
-                   BUSCAR USUÁRIO
-                   ---------------------------------------------------------- */
+                /* ==========================================================
+                   VALIDAR E-MAIL
+                ========================================================== */
 
-                const usuarios =
-                    obterUsuarios();
-
-
-                const usuario =
-                    usuarios.find(
-                        item =>
-                            item.email
-                                ?.toLowerCase() === email &&
-                            item.senha === senha
-                    );
-
-
-                /* ----------------------------------------------------------
-                   USUÁRIO NÃO ENCONTRADO
-                   ---------------------------------------------------------- */
-
-                if (!usuario) {
+                if (!EMAIL_REGEX.test(email)) {
 
                     mostrarMensagem(
                         loginMessage,
-                        "E-mail ou senha incorretos.",
+                        "Digite um e-mail válido.",
                         "error"
                     );
 
@@ -971,39 +1079,130 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                /* ----------------------------------------------------------
-                   SALVAR SESSÃO
-                   ---------------------------------------------------------- */
+                /* ==========================================================
+                   BOTÃO
+                ========================================================== */
 
-                salvarUsuarioLogado(
-                    usuario
-                );
+                const submitButton =
+                    loginForm.querySelector(
+                        ".submit-button"
+                    );
 
-
-                /* ----------------------------------------------------------
-                   MENSAGEM DE SUCESSO
-                   ---------------------------------------------------------- */
-
-                mostrarMensagem(
-                    loginMessage,
-                    `Bem-vindo, ${usuario.nome}!`,
-                    "success"
-                );
+                const submitText =
+                    submitButton?.querySelector(
+                        "span"
+                    );
 
 
-                /* ----------------------------------------------------------
-                   REDIRECIONAMENTO
-                   ---------------------------------------------------------- */
+                if (submitButton) {
+                    submitButton.disabled = true;
+                }
 
-                setTimeout(
-                    () => {
+                if (submitText) {
+                    submitText.textContent =
+                        "Entrando...";
+                }
 
-                        window.location.href =
-                            "home.html";
 
-                    },
-                    800
-                );
+                /* ==========================================================
+                   LOGIN SUPABASE
+                ========================================================== */
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient.auth
+                        .signInWithPassword({
+
+                            email: email,
+
+                            password: senha
+
+                        });
+
+
+                /* ==========================================================
+                   ERRO
+                ========================================================== */
+
+                if (error) {
+
+                    console.error(
+                        "Erro no login:",
+                        error
+                    );
+
+
+                    let mensagem =
+                        "E-mail ou senha incorretos.";
+
+
+                    if (
+                        error.message
+                            ?.toLowerCase()
+                            .includes(
+                                "email not confirmed"
+                            )
+                    ) {
+
+                        mensagem =
+                            "Seu e-mail ainda não foi confirmado. Verifique sua caixa de entrada.";
+
+                    }
+
+
+                    mostrarMensagem(
+                        loginMessage,
+                        mensagem,
+                        "error"
+                    );
+
+
+                    if (submitButton) {
+                        submitButton.disabled =
+                            false;
+                    }
+
+                    if (submitText) {
+                        submitText.textContent =
+                            "Entrar";
+                    }
+
+                    return;
+                }
+
+
+                /* ==========================================================
+                   LOGIN REALIZADO
+                ========================================================== */
+
+                if (data?.session) {
+
+                    mostrarMensagem(
+                        loginMessage,
+                        "Login realizado com sucesso!",
+                        "success"
+                    );
+
+
+                    /*
+                     * Pequeno atraso para
+                     * mostrar a mensagem.
+                     */
+
+                    setTimeout(
+                        () => {
+
+                            window.location.href =
+                                "./home.html";
+
+                        },
+                        500
+                    );
+
+                }
+
             }
         );
     }
@@ -1016,24 +1215,31 @@ document.addEventListener("DOMContentLoaded", () => {
     function abrirCadastro() {
 
         if (loginForm) {
+
             loginForm.classList.remove(
                 "active"
             );
         }
 
+
         if (registerForm) {
+
             registerForm.classList.add(
                 "active"
             );
         }
 
+
         if (loginTab) {
+
             loginTab.classList.remove(
                 "active"
             );
         }
 
+
         if (registerTab) {
+
             registerTab.classList.add(
                 "active"
             );
@@ -1071,24 +1277,31 @@ document.addEventListener("DOMContentLoaded", () => {
     function abrirLogin() {
 
         if (registerForm) {
+
             registerForm.classList.remove(
                 "active"
             );
         }
 
+
         if (loginForm) {
+
             loginForm.classList.add(
                 "active"
             );
         }
 
+
         if (registerTab) {
+
             registerTab.classList.remove(
                 "active"
             );
         }
 
+
         if (loginTab) {
+
             loginTab.classList.add(
                 "active"
             );
@@ -1173,148 +1386,119 @@ document.addEventListener("DOMContentLoaded", () => {
 
         forgotPassword.addEventListener(
             "click",
-            event => {
+            async event => {
 
                 event.preventDefault();
+
+
+                const email =
+                    loginEmail?.value
+                        .trim()
+                        .toLowerCase() || "";
+
+
+                if (!email) {
+
+                    mostrarMensagem(
+                        loginMessage,
+                        "Digite seu e-mail para recuperar a senha.",
+                        "warning"
+                    );
+
+                    loginEmail?.focus();
+
+                    return;
+                }
+
+
+                if (!EMAIL_REGEX.test(email)) {
+
+                    mostrarMensagem(
+                        loginMessage,
+                        "Digite um e-mail válido.",
+                        "warning"
+                    );
+
+                    return;
+                }
+
+
+                const {
+                    error
+                } =
+                    await supabaseClient.auth
+                        .resetPasswordForEmail(
+                            email,
+                            {
+                                redirectTo:
+                                    window.location.origin +
+                                    "/login.html"
+                            }
+                        );
+
+
+                if (error) {
+
+                    console.error(
+                        "Erro ao recuperar senha:",
+                        error
+                    );
+
+                    mostrarMensagem(
+                        loginMessage,
+                        "Não foi possível enviar o e-mail de recuperação.",
+                        "error"
+                    );
+
+                    return;
+                }
 
 
                 mostrarMensagem(
                     loginMessage,
-                    "A recuperação de senha será disponibilizada em uma próxima etapa.",
-                    "warning"
+                    "Se o e-mail estiver cadastrado, você receberá as instruções para redefinir sua senha.",
+                    "success"
                 );
+
             }
         );
     }
 
 
     /* ======================================================================
-       CARREGAR USUÁRIO LOGADO
+       SE JÁ ESTIVER LOGADO
        ====================================================================== */
 
-    function carregarUsuarioLogado() {
-
-        try {
-
-            const dados =
-                localStorage.getItem(
-                    "usuarioLogado"
-                );
+    const {
+        data
+    } =
+        await supabaseClient.auth.getSession();
 
 
-            if (!dados) {
-                return;
-            }
+    if (data?.session) {
 
+        /*
+         * Se o usuário já está autenticado
+         * e abriu login.html, mandamos
+         * diretamente para a home.
+         */
 
-            const usuario =
-                JSON.parse(dados);
-
-
-            if (!usuario) {
-                return;
-            }
-
-
-            const elementosNome =
-                document.querySelectorAll(
-                    "#userProfileName, .user-profile-name, [data-user-name]"
-                );
-
-
-            elementosNome.forEach(
-                elemento => {
-
-                    elemento.textContent =
-                        usuario.nome || "Usuário";
-                }
-            );
-
-
-            const elementosEmail =
-                document.querySelectorAll(
-                    "[data-user-email]"
-                );
-
-
-            elementosEmail.forEach(
-                elemento => {
-
-                    elemento.textContent =
-                        usuario.email || "";
-                }
-            );
-
-
-        } catch (erro) {
-
-            console.error(
-                "Erro ao carregar usuário logado:",
-                erro
-            );
-        }
-    }
-
-
-    carregarUsuarioLogado();
-
-
-    /* ======================================================================
-       LOGOUT
-       ====================================================================== */
-
-    const logoutButton =
-        document.getElementById(
-            "logoutButton"
-        );
-
-
-    if (logoutButton) {
-
-        logoutButton.addEventListener(
-            "click",
-            event => {
-
-                event.preventDefault();
-
-
-                localStorage.removeItem(
-                    "usuarioLogado"
-                );
-
-
-                window.location.href =
-                    "index.html";
-            }
-        );
+        window.location.href =
+            "./home.html";
     }
 
 
     /* ======================================================================
-       INICIALIZAÇÃO DA SENHA
-       ====================================================================== */
-
-    if (registerPassword) {
-
-        atualizarForcaSenha(
-            registerPassword.value
-        );
-
-        atualizarRequisitosSenha(
-            registerPassword.value
-        );
-    }
-
-
-    /* ======================================================================
-       ENTER / ESC
+       ESC — LIMPAR MENSAGENS
        ====================================================================== */
 
     document.addEventListener(
         "keydown",
         event => {
 
-            if (event.key !== "Escape") {
+            if (
+                event.key !== "Escape"
+            ) {
                 return;
             }
 
@@ -1327,5 +1511,21 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         }
     );
+
+
+    /* ======================================================================
+       INICIALIZAÇÃO
+       ====================================================================== */
+
+    if (registerPassword) {
+
+        atualizarForcaSenha(
+            registerPassword.value
+        );
+
+        atualizarRequisitosSenha(
+            registerPassword.value
+        );
+    }
 
 });
