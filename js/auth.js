@@ -373,7 +373,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                  */
 
                 window.location.href =
-                    "login.html";
+                    "index.html";
             }
         );
     }
@@ -424,12 +424,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 !window.location.pathname
                     .toLowerCase()
                     .endsWith(
-                        "login.html"
+                        "home.html"
                     )
             ) {
 
                 window.location.href =
-                    "login.html";
+                    "home.html";
 
             }
 
