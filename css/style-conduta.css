@@ -1,63 +1,79 @@
 /* ==========================================================================
    STYLE-CONDUTA.CSS — STARTÊ / SENAC
+   ==========================================================================
    Página: Código de Ética e Conduta
-   Estrutura:
-   1. Variáveis e configurações globais
-   2. Header
-   3. Conteúdo principal / Hero
-   4. Seção de compromissos
-   5. Seção Plano Pedagógico
-   6. Seção Temas e Diretrizes
-   7. Footer
-   8. Botão voltar ao topo
-   9. Responsividade
+
+   ORGANIZAÇÃO:
+   01. VARIÁVEIS
+   02. RESET
+   03. BASE
+   04. HEADER
+   05. PÍLULA DE NAVEGAÇÃO
+   06. PERFIL DO USUÁRIO
+   07. ACESSIBILIDADE
+   08. HERO / CONTEÚDO PRINCIPAL
+   09. SEÇÃO COMPROMISSOS
+   10. PLANO PEDAGÓGICO
+   11. DOCUMENTO PDF
+   12. TEMAS E DIRETRIZES
+   13. FOOTER
+   14. VOLTAR AO TOPO
+   15. RESPONSIVIDADE
    ========================================================================== */
 
 
 /* ==========================================================================
-   1. VARIÁVEIS E CONFIGURAÇÕES GLOBAIS
+   01. VARIÁVEIS
    ========================================================================== */
 
 :root {
     --senac-blue: #0b5195;
     --senac-blue-dark: #004a94;
-    --senac-blue-deep: #003f7d;
-
     --senac-orange: #ea941f;
     --senac-orange-dark: #d68211;
-    --senac-orange-light: #f7b84b;
 
     --text-dark: #002f6c;
+    --text-title: #19376d;
     --text-paragraph: #707070;
 
-    --white: #ffffff;
     --bg-light: #f7f9fb;
-    --bg-soft: #f2f6fa;
+    --white: #ffffff;
+    --black: #222222;
 
-    --border-light: rgba(0, 47, 108, 0.08);
-    --shadow-light: 0 10px 30px rgba(0, 47, 108, 0.08);
-    --shadow-medium: 0 18px 45px rgba(0, 47, 108, 0.12);
-
-    --font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+    --success: #248a52;
+    --danger: #d64545;
 
     --container-width: 90vw;
     --container-max-width: 1440px;
 
     --header-height: 90px;
 
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+    --radius-pill: 999px;
+
+    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.10);
+    --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.14);
+
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
+
+    --font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
 
 /* ==========================================================================
-   RESET
+   02. RESET
    ========================================================================== */
 
-* {
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html {
@@ -65,24 +81,27 @@ html {
 }
 
 body {
-    font-family: var(--font-family);
-    background: var(--white);
-    color: var(--text-dark);
+    min-height: 100vh;
+
     overflow-x: hidden;
+
+    background-color: var(--bg-light);
+
+    color: var(--text-dark);
+
+    font-family: var(--font-family);
+    line-height: 1.5;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-img {
-    max-width: 100%;
-    display: block;
+body.no-scroll {
+    overflow: hidden;
 }
 
-button,
-input {
-    font-family: inherit;
-}
-
-button {
-    cursor: pointer;
+ul {
+    list-style: none;
 }
 
 a {
@@ -90,45 +109,102 @@ a {
     text-decoration: none;
 }
 
-ul {
-    list-style: none;
+button,
+input,
+textarea {
+    font: inherit;
 }
 
+button {
+    border: 0;
+    cursor: pointer;
+}
 
-/* ==========================================================================
-   CONTAINER PADRÃO
-   ========================================================================== */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
 
 .container {
-    width: var(--container-width);
-    max-width: var(--container-max-width);
+    width: min(var(--container-width), var(--container-max-width));
     margin: 0 auto;
 }
 
+.text-center {
+    text-align: center;
+}
+
 
 /* ==========================================================================
-   2. HEADER
+   03. BASE
+   ========================================================================== */
+
+::selection {
+    background-color: var(--senac-blue);
+    color: var(--white);
+}
+
+section {
+    position: relative;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-dark);
+}
+
+p {
+    color: var(--text-paragraph);
+}
+
+
+/* ==========================================================================
+   04. HEADER
    ========================================================================== */
 
 .main-header {
-    position: relative;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
     width: 100%;
     height: var(--header-height);
-    background: var(--white);
-    border-bottom: 1px solid rgba(0, 47, 108, 0.06);
+
+    display: flex;
+    align-items: center;
+
+    background: transparent;
+
     z-index: 1000;
+
+    pointer-events: none;
+}
+
+.main-header .logo-area,
+.main-header .nav-menu,
+.main-header .action-area {
+    pointer-events: auto;
 }
 
 .header-container {
-    width: var(--container-width);
-    max-width: var(--container-max-width);
-    height: 100%;
-    margin: 0 auto;
+    width: min(var(--container-width), var(--container-max-width));
 
     display: grid;
-    grid-template-columns: 180px minmax(0, 1fr) 260px;
+
+    grid-template-columns:
+        180px minmax(0, 1fr) 260px;
+
     align-items: center;
+
     gap: 30px;
+
+    margin: 0 auto;
 }
 
 
@@ -139,7 +215,9 @@ ul {
 .logo-area {
     display: flex;
     align-items: center;
-    height: 100%;
+    justify-content: flex-start;
+
+    flex-shrink: 0;
 }
 
 .logo-area a {
@@ -150,25 +228,67 @@ ul {
 .logo-img {
     width: auto;
     height: 56px;
+
     object-fit: contain;
+
+    filter:
+        drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+
+    transition: transform var(--transition-fast);
+}
+
+.logo-area a:hover .logo-img {
+    transform: scale(1.03);
 }
 
 
 /* ==========================================================================
-   MENU PRINCIPAL
+   05. PÍLULA DE NAVEGAÇÃO
    ========================================================================== */
 
 .nav-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: fixed;
+
+    top: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 2000;
+
+    padding: 14px 40px;
+
+    background-color: rgba(240, 242, 245, 0.88);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    border-radius: var(--radius-pill);
+
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.08),
+        0 1px 4px rgba(0, 0, 0, 0.04);
+
+    transition:
+        background-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+.nav-menu:hover {
+    background-color: rgba(240, 242, 245, 0.95);
+
+    box-shadow:
+        0 6px 24px rgba(0, 0, 0, 0.10),
+        0 1px 5px rgba(0, 0, 0, 0.05);
 }
 
 .nav-list {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 42px;
+
+    gap: 32px;
 }
 
 .nav-link {
@@ -177,43 +297,48 @@ ul {
     display: inline-flex;
     align-items: center;
 
-    padding: 10px 0;
+    color: #333333;
 
-    color: var(--text-dark);
+    font-size: 16px;
+    font-weight: 800;
 
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 
     transition:
-        color var(--transition-normal),
-        transform var(--transition-normal);
+        color var(--transition-fast),
+        transform var(--transition-fast);
 }
 
 .nav-link::after {
     content: "";
 
     position: absolute;
-    left: 0;
-    bottom: 2px;
+
+    left: 50%;
+    bottom: -7px;
 
     width: 0;
     height: 3px;
 
-    border-radius: 10px;
+    border-radius: var(--radius-pill);
 
-    background: var(--senac-orange);
+    background-color: var(--senac-orange);
 
-    transition: width var(--transition-normal);
+    transform: translateX(-50%);
+
+    transition: width var(--transition-fast);
 }
 
 .nav-link:hover {
     color: var(--senac-blue);
+
+    transform: translateY(-1px);
 }
 
 .nav-link:hover::after,
 .nav-link.active::after {
-    width: 100%;
+    width: 75%;
 }
 
 .nav-link.active {
@@ -222,45 +347,62 @@ ul {
 
 
 /* ==========================================================================
-   ÁREA DE AÇÕES / PERFIL
+   06. PERFIL DO USUÁRIO
    ========================================================================== */
 
 .action-area {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: flex-end;
+
+    min-width: 0;
 }
 
 .user-profile {
     position: relative;
-}
-
-.user-profile-button {
-    min-height: 54px;
 
     display: flex;
     align-items: center;
+}
+
+.user-profile-button {
+    display: flex;
+    align-items: center;
+
     gap: 10px;
 
-    padding: 7px 12px 7px 8px;
+    min-height: 48px;
 
-    border: 1px solid rgba(11, 81, 149, 0.12);
-    border-radius: 14px;
+    padding: 6px 10px 6px 7px;
 
-    background: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    border-radius: var(--radius-pill);
+
+    background-color: rgba(240, 242, 245, 0.88);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
     color: var(--text-dark);
 
+    box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.07);
+
     transition:
-        background var(--transition-normal),
-        border-color var(--transition-normal),
-        box-shadow var(--transition-normal);
+        background-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
 }
 
 .user-profile-button:hover,
 .user-profile-button[aria-expanded="true"] {
-    background: #f7fafc;
-    border-color: rgba(11, 81, 149, 0.22);
-    box-shadow: 0 7px 20px rgba(0, 47, 108, 0.08);
+    background-color: rgba(255, 255, 255, 0.96);
+
+    box-shadow:
+        0 7px 22px rgba(0, 0, 0, 0.10);
+
+    transform: translateY(-1px);
 }
 
 .user-profile-icon {
@@ -275,52 +417,54 @@ ul {
 
     border-radius: 50%;
 
-    background: var(--senac-blue);
+    background-color: var(--senac-blue);
+
     color: var(--white);
 
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .user-profile-info {
-    min-width: 82px;
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 
-    line-height: 1.15;
+    min-width: 70px;
+
+    line-height: 1.1;
 }
 
 .user-profile-welcome {
     margin-bottom: 3px;
 
-    color: #777;
+    color: #777777;
 
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 600;
 }
 
 .user-profile-name {
-    max-width: 120px;
+    max-width: 125px;
 
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 
     color: var(--text-dark);
 
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 800;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .user-profile-arrow {
-    margin-left: 3px;
+    margin-left: 2px;
 
     color: var(--senac-blue);
 
-    font-size: 11px;
+    font-size: 10px;
 
-    transition: transform var(--transition-normal);
+    transition: transform var(--transition-fast);
 }
 
 .user-profile-button[aria-expanded="true"] .user-profile-arrow {
@@ -334,35 +478,39 @@ ul {
 
 .user-profile-menu {
     position: absolute;
+
     top: calc(100% + 10px);
     right: 0;
 
-    width: 210px;
+    width: 215px;
 
     padding: 8px;
 
-    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.06);
 
-    border: 1px solid rgba(0, 47, 108, 0.08);
-    border-radius: 14px;
+    border-radius: var(--radius-md);
 
-    box-shadow: var(--shadow-medium);
+    background-color: var(--white);
+
+    box-shadow: var(--shadow-md);
 
     opacity: 0;
     visibility: hidden;
+
     transform: translateY(-8px);
 
     transition:
-        opacity var(--transition-normal),
-        visibility var(--transition-normal),
-        transform var(--transition-normal);
+        opacity var(--transition-fast),
+        visibility var(--transition-fast),
+        transform var(--transition-fast);
 
-    z-index: 1100;
+    z-index: 3000;
 }
 
 .user-profile-menu.show {
     opacity: 1;
     visibility: visible;
+
     transform: translateY(0);
 }
 
@@ -371,14 +519,15 @@ ul {
 
     display: flex;
     align-items: center;
+
     gap: 12px;
 
-    padding: 12px;
+    padding: 12px 13px;
 
-    border: 0;
-    border-radius: 9px;
+    border-radius: var(--radius-sm);
 
-    background: transparent;
+    background-color: transparent;
+
     color: var(--text-dark);
 
     font-size: 13px;
@@ -387,7 +536,7 @@ ul {
     text-align: left;
 
     transition:
-        background var(--transition-fast),
+        background-color var(--transition-fast),
         color var(--transition-fast);
 }
 
@@ -400,45 +549,74 @@ ul {
 }
 
 .user-profile-menu-item:hover {
-    background: #f1f6fa;
+    background-color: #f3f6f9;
 }
 
 .user-profile-menu-item.logout {
-    color: #c0392b;
+    color: var(--danger);
 }
 
 .user-profile-menu-item.logout i {
-    color: #c0392b;
+    color: var(--danger);
+}
+
+.user-profile-menu-item.logout:hover {
+    background-color: #fff2f2;
+
+    color: var(--danger);
 }
 
 .user-profile-divider {
+    width: 100%;
     height: 1px;
 
     margin: 5px 0;
 
-    background: rgba(0, 47, 108, 0.08);
+    background-color: #eeeeee;
 }
 
 
 /* ==========================================================================
-   3. CONTEÚDO PRINCIPAL / HERO
+   07. ACESSIBILIDADE
+   ========================================================================== */
+
+.nav-link:focus-visible,
+.btn-acao:focus-visible,
+.btn-voltar:focus-visible,
+.btn-ouvidoria:focus-visible,
+.btn-plano-pdf:focus-visible,
+.user-profile-button:focus-visible,
+.user-profile-menu-item:focus-visible,
+.footer-search button:focus-visible,
+.back-to-top:focus-visible {
+    outline: 2px solid var(--senac-orange);
+
+    outline-offset: 3px;
+}
+
+
+/* ==========================================================================
+   08. HERO / CONTEÚDO PRINCIPAL
    ========================================================================== */
 
 .container-senac {
-    width: var(--container-width);
-    max-width: var(--container-max-width);
+    width: min(var(--container-width), var(--container-max-width));
 
-    min-height: 610px;
+    min-height: 760px;
 
     margin: 0 auto;
 
+    padding-top: calc(var(--header-height) + 55px);
+    padding-bottom: 80px;
+
     display: grid;
-    grid-template-columns: 1fr 0.9fr;
+
+    grid-template-columns:
+        minmax(0, 1fr) minmax(420px, 0.9fr);
+
     align-items: center;
 
     gap: 70px;
-
-    padding: 70px 0 80px;
 }
 
 
@@ -460,9 +638,10 @@ ul {
 .btn-voltar {
     display: inline-flex;
     align-items: center;
+
     gap: 7px;
 
-    margin-bottom: 32px;
+    margin-bottom: 30px;
 
     color: var(--senac-blue);
 
@@ -470,17 +649,18 @@ ul {
     font-weight: 700;
 
     transition:
-        color var(--transition-normal),
-        transform var(--transition-normal);
+        color var(--transition-fast),
+        transform var(--transition-fast);
 }
 
 .btn-voltar:hover {
     color: var(--senac-blue-dark);
+
     transform: translateX(-4px);
 }
 
 .seta-voltar {
-    transition: transform var(--transition-normal);
+    transition: transform var(--transition-fast);
 }
 
 .btn-voltar:hover .seta-voltar {
@@ -496,17 +676,20 @@ ul {
     display: inline-flex;
     align-items: center;
 
-    margin-bottom: 20px;
+    margin-bottom: 18px;
+
     padding: 8px 15px;
 
-    border-radius: 30px;
+    border-radius: var(--radius-pill);
 
-    background: rgba(234, 148, 31, 0.12);
+    background-color: rgba(234, 148, 31, 0.12);
+
     color: var(--senac-orange-dark);
 
     font-size: 11px;
     font-weight: 800;
-    letter-spacing: 0.8px;
+
+    letter-spacing: 0.7px;
 }
 
 
@@ -515,14 +698,18 @@ ul {
    ========================================================================== */
 
 .titulo-principal {
-    margin-bottom: 24px;
+    max-width: 720px;
+
+    margin-bottom: 22px;
 
     color: var(--text-dark);
 
-    font-size: clamp(38px, 4vw, 58px);
+    font-size: clamp(42px, 4.3vw, 58px);
+
     font-weight: 800;
 
     line-height: 1.12;
+
     letter-spacing: -1.5px;
 }
 
@@ -536,16 +723,15 @@ ul {
    ========================================================================== */
 
 .descricao-texto {
-    max-width: 670px;
+    max-width: 650px;
 
-    margin-bottom: 32px;
+    margin-bottom: 30px;
 
     color: var(--text-paragraph);
 
     font-size: 16px;
-    font-weight: 400;
 
-    line-height: 1.8;
+    line-height: 1.75;
 }
 
 
@@ -557,34 +743,40 @@ ul {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
 
-    padding: 15px 23px;
+    gap: 10px;
 
-    border-radius: 9px;
+    min-height: 48px;
 
-    background: var(--senac-blue);
+    padding: 13px 22px;
+
+    border-radius: var(--radius-sm);
+
+    background-color: var(--senac-blue);
+
     color: var(--white);
 
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: 800;
 
-    box-shadow: 0 8px 20px rgba(11, 81, 149, 0.18);
+    box-shadow: var(--shadow-sm);
 
     transition:
-        background var(--transition-normal),
-        transform var(--transition-normal),
-        box-shadow var(--transition-normal);
+        background-color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
 }
 
 .btn-acao:hover {
-    background: var(--senac-blue-dark);
-    transform: translateY(-3px);
-    box-shadow: 0 13px 27px rgba(11, 81, 149, 0.25);
+    background-color: var(--senac-blue-dark);
+
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-md);
 }
 
 .seta-acao {
-    transition: transform var(--transition-normal);
+    transition: transform var(--transition-fast);
 }
 
 .btn-acao:hover .seta-acao {
@@ -593,51 +785,56 @@ ul {
 
 
 /* ==========================================================================
-   IMAGEM / DIAGRAMA
+   IMAGEM DO HERO
    ========================================================================== */
 
 .conteudo-direita {
     display: flex;
+
     align-items: center;
     justify-content: center;
 }
 
 .imagem-diagrama {
     width: 100%;
-    max-width: 570px;
+    max-width: 590px;
 
     object-fit: contain;
 
-    filter: drop-shadow(0 18px 30px rgba(0, 47, 108, 0.08));
+    filter:
+        drop-shadow(0 18px 35px rgba(0, 0, 0, 0.08));
 
-    transition: transform 0.5s ease;
+    transition:
+        transform 0.5s ease;
 }
 
 .imagem-diagrama:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
 }
 
 
 /* ==========================================================================
-   4. SEÇÃO DE COMPROMISSOS
+   09. SEÇÃO COMPROMISSOS
    ========================================================================== */
 
 .container-compromissos {
     width: 100%;
 
-    padding: 85px 5vw;
+    padding: 95px 0;
 
-    background: var(--bg-light);
+    background-color: var(--bg-light);
 }
 
 .cards-compromissos-grid {
-    width: 100%;
-    max-width: var(--container-max-width);
+    width: min(var(--container-width), var(--container-max-width));
 
     margin: 0 auto;
 
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr;
+
+    grid-template-columns:
+        1.25fr 1fr 1fr;
+
     gap: 20px;
 }
 
@@ -649,25 +846,25 @@ ul {
 .card-compromisso-destaque {
     grid-row: span 2;
 
+    min-height: 315px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    min-height: 300px;
-
     padding: 38px;
 
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
 
-    background: var(--senac-blue);
+    background-color: var(--senac-blue);
 
-    color: var(--white);
-
-    box-shadow: var(--shadow-light);
+    box-shadow: var(--shadow-md);
 }
 
 .card-compromisso-destaque h2 {
-    margin-bottom: 18px;
+    margin-bottom: 17px;
+
+    color: var(--white);
 
     font-size: 28px;
     font-weight: 800;
@@ -676,76 +873,86 @@ ul {
 }
 
 .card-compromisso-destaque p {
-    color: rgba(255, 255, 255, 0.88);
+    color: rgba(255, 255, 255, 0.84);
 
-    font-size: 15px;
-    line-height: 1.8;
+    font-size: 14px;
+
+    line-height: 1.75;
 }
 
 
 /* ==========================================================================
-   CARDS INDIVIDUAIS
+   CARDS DE COMPROMISSO
    ========================================================================== */
 
 .card-compromisso-item {
-    min-height: 140px;
+    min-height: 147px;
 
-    padding: 27px;
+    padding: 26px;
 
-    border: 1px solid var(--border-light);
-    border-radius: 16px;
+    border: 1px solid rgba(0, 47, 108, 0.07);
 
-    background: var(--white);
+    border-radius: var(--radius-md);
 
-    box-shadow: var(--shadow-light);
+    background-color: var(--white);
+
+    box-shadow: var(--shadow-sm);
 
     transition:
         transform var(--transition-normal),
-        box-shadow var(--transition-normal);
+        box-shadow var(--transition-normal),
+        border-color var(--transition-normal);
 }
 
 .card-compromisso-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-medium);
+    border-color: rgba(11, 81, 149, 0.15);
+
+    transform: translateY(-4px);
+
+    box-shadow: var(--shadow-md);
 }
 
 .card-compromisso-item h3 {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 
     color: var(--text-dark);
 
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 800;
+
+    line-height: 1.35;
 }
 
 .card-compromisso-item p {
     color: var(--text-paragraph);
 
-    font-size: 13px;
+    font-size: 12px;
+
     line-height: 1.65;
 }
 
 
 /* ==========================================================================
-   5. SEÇÃO PLANO PEDAGÓGICO
+   10. PLANO PEDAGÓGICO
    ========================================================================== */
 
 .container-plano-pedagogico {
-    width: var(--container-width);
-    max-width: var(--container-max-width);
+    width: min(var(--container-width), var(--container-max-width));
 
     margin: 0 auto;
 
-    padding: 100px 0 95px;
+    padding: 105px 0 100px;
+
+    background-color: var(--white);
 }
 
 
 /* ==========================================================================
-   CABEÇALHO DO PLANO PEDAGÓGICO
+   CABEÇALHO DA SEÇÃO
    ========================================================================== */
 
 .plano-pedagogico-header {
-    max-width: 850px;
+    max-width: 760px;
 
     margin: 0 auto 55px;
 
@@ -755,24 +962,27 @@ ul {
 .plano-pedagogico-badge {
     display: inline-flex;
     align-items: center;
+
     gap: 8px;
 
-    margin-bottom: 18px;
-    padding: 8px 16px;
+    margin-bottom: 15px;
 
-    border-radius: 30px;
+    padding: 7px 15px;
 
-    background: rgba(11, 81, 149, 0.08);
+    border-radius: var(--radius-pill);
+
+    background-color: rgba(11, 81, 149, 0.08);
 
     color: var(--senac-blue);
 
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 800;
+
     letter-spacing: 0.8px;
 }
 
 .plano-pedagogico-badge i {
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .plano-pedagogico-header h2 {
@@ -780,11 +990,11 @@ ul {
 
     color: var(--text-dark);
 
-    font-size: clamp(32px, 4vw, 48px);
+    font-size: clamp(30px, 4vw, 44px);
+
     font-weight: 800;
 
     line-height: 1.15;
-    letter-spacing: -1px;
 }
 
 .plano-pedagogico-header h2 span {
@@ -792,98 +1002,99 @@ ul {
 }
 
 .plano-pedagogico-header p {
-    max-width: 750px;
+    max-width: 650px;
 
     margin: 0 auto;
 
     color: var(--text-paragraph);
 
-    font-size: 15px;
-    line-height: 1.8;
+    font-size: 16px;
+
+    line-height: 1.7;
 }
 
 
 /* ==========================================================================
-   CONTEÚDO PRINCIPAL DO PLANO
+   CONTEÚDO INTRODUTÓRIO
    ========================================================================== */
 
 .plano-pedagogico-conteudo {
     width: 100%;
 }
 
-
-/* ==========================================================================
-   INTRODUÇÃO
-   ========================================================================== */
-
 .plano-pedagogico-introducao {
     display: grid;
-    grid-template-columns: 105px 1fr;
-    gap: 30px;
-    align-items: flex-start;
 
-    margin-bottom: 42px;
-    padding: 38px;
+    grid-template-columns:
+        90px minmax(0, 1fr);
 
-    border: 1px solid rgba(11, 81, 149, 0.08);
-    border-radius: 20px;
+    align-items: start;
 
-    background: linear-gradient(
-        135deg,
-        #f5f9fd 0%,
-        #ffffff 100%
-    );
+    gap: 28px;
 
-    box-shadow: var(--shadow-light);
+    margin-bottom: 45px;
+
+    padding: 35px;
+
+    border: 1px solid rgba(0, 47, 108, 0.07);
+
+    border-radius: var(--radius-lg);
+
+    background-color: var(--bg-light);
+
+    box-shadow: var(--shadow-sm);
 }
 
 .plano-icone-principal {
-    width: 82px;
-    height: 82px;
+    width: 70px;
+    height: 70px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 20px;
+    border-radius: var(--radius-md);
 
-    background: var(--senac-blue);
+    background-color: var(--senac-blue);
+
     color: var(--white);
 
-    font-size: 32px;
+    font-size: 26px;
 
-    box-shadow: 0 12px 25px rgba(11, 81, 149, 0.18);
+    box-shadow: var(--shadow-sm);
 }
 
 .plano-kicker {
     display: block;
 
-    margin-bottom: 8px;
+    margin-bottom: 7px;
 
     color: var(--senac-orange-dark);
 
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: 1px;
+
+    letter-spacing: 0.9px;
 }
 
 .plano-pedagogico-introducao h3 {
-    margin-bottom: 14px;
+    margin-bottom: 13px;
 
     color: var(--text-dark);
 
-    font-size: 25px;
+    font-size: 24px;
     font-weight: 800;
 
     line-height: 1.3;
 }
 
 .plano-pedagogico-introducao p {
-    margin-bottom: 11px;
+    margin-bottom: 10px;
 
     color: var(--text-paragraph);
 
     font-size: 14px;
+
     line-height: 1.75;
 }
 
@@ -898,27 +1109,31 @@ ul {
 
 .plano-pedagogico-cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
     gap: 18px;
 
     margin-bottom: 45px;
 }
 
 .plano-card {
-    min-height: 145px;
-
     display: flex;
     align-items: flex-start;
-    gap: 18px;
 
-    padding: 25px;
+    gap: 17px;
+
+    min-height: 145px;
+
+    padding: 24px;
 
     border: 1px solid rgba(0, 47, 108, 0.07);
-    border-radius: 16px;
 
-    background: var(--white);
+    border-radius: var(--radius-md);
 
-    box-shadow: 0 8px 25px rgba(0, 47, 108, 0.06);
+    background-color: var(--white);
+
+    box-shadow: var(--shadow-sm);
 
     transition:
         transform var(--transition-normal),
@@ -927,16 +1142,16 @@ ul {
 }
 
 .plano-card:hover {
-    transform: translateY(-5px);
+    border-color: rgba(11, 81, 149, 0.15);
 
-    border-color: rgba(11, 81, 149, 0.16);
+    transform: translateY(-4px);
 
-    box-shadow: var(--shadow-medium);
+    box-shadow: var(--shadow-md);
 }
 
 .plano-card-icone {
-    width: 48px;
-    height: 48px;
+    width: 46px;
+    height: 46px;
 
     display: flex;
     align-items: center;
@@ -944,71 +1159,81 @@ ul {
 
     flex-shrink: 0;
 
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
 
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .plano-card-icone.azul {
-    background: rgba(11, 81, 149, 0.1);
+    background-color: rgba(11, 81, 149, 0.09);
+
     color: var(--senac-blue);
 }
 
 .plano-card-icone.laranja {
-    background: rgba(234, 148, 31, 0.13);
+    background-color: rgba(234, 148, 31, 0.12);
+
     color: var(--senac-orange-dark);
 }
 
 .plano-card h4 {
-    margin-bottom: 8px;
+    margin-bottom: 7px;
 
     color: var(--text-dark);
 
     font-size: 15px;
     font-weight: 800;
+
+    line-height: 1.35;
 }
 
 .plano-card p {
     color: var(--text-paragraph);
 
-    font-size: 13px;
+    font-size: 12px;
+
     line-height: 1.65;
 }
 
 
 /* ==========================================================================
-   BOX DO PDF
+   11. DOCUMENTO PDF
    ========================================================================== */
 
 .plano-pdf-box {
     display: grid;
-    grid-template-columns: 65px 1fr auto;
+
+    grid-template-columns:
+        58px minmax(0, 1fr) auto;
+
     align-items: center;
-    gap: 22px;
 
-    padding: 25px 28px;
+    gap: 20px;
 
-    border-radius: 18px;
+    padding: 24px 27px;
 
-    background: var(--senac-blue);
+    border-radius: var(--radius-lg);
 
-    box-shadow: 0 15px 35px rgba(11, 81, 149, 0.18);
+    background-color: var(--senac-blue);
+
+    box-shadow: var(--shadow-md);
 }
 
 .plano-pdf-icone {
-    width: 58px;
-    height: 58px;
+    width: 56px;
+    height: 56px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 13px;
+    border-radius: var(--radius-md);
 
-    background: rgba(255, 255, 255, 0.14);
+    background-color: rgba(255, 255, 255, 0.12);
+
     color: var(--white);
 
-    font-size: 25px;
+    font-size: 23px;
 }
 
 .plano-pdf-texto span {
@@ -1020,11 +1245,12 @@ ul {
 
     font-size: 9px;
     font-weight: 800;
-    letter-spacing: 1px;
+
+    letter-spacing: 0.9px;
 }
 
 .plano-pdf-texto h3 {
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 
     color: var(--white);
 
@@ -1033,9 +1259,10 @@ ul {
 }
 
 .plano-pdf-texto p {
-    color: rgba(255, 255, 255, 0.78);
+    color: rgba(255, 255, 255, 0.76);
 
     font-size: 12px;
+
     line-height: 1.5;
 }
 
@@ -1043,70 +1270,75 @@ ul {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 9px;
 
-    min-width: 145px;
+    gap: 8px;
 
-    padding: 13px 18px;
+    min-height: 44px;
 
-    border-radius: 9px;
+    padding: 11px 18px;
 
-    background: var(--senac-orange);
+    border-radius: var(--radius-sm);
+
+    background-color: var(--senac-orange);
+
     color: var(--white);
 
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 800;
 
     white-space: nowrap;
 
     transition:
-        background var(--transition-normal),
-        transform var(--transition-normal),
-        box-shadow var(--transition-normal);
+        background-color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
 }
 
 .btn-plano-pdf:hover {
-    background: var(--senac-orange-dark);
+    background-color: var(--senac-orange-dark);
 
     transform: translateY(-2px);
 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-sm);
 }
 
 
 /* ==========================================================================
-   6. SEÇÃO TEMAS E DIRETRIZES
+   12. TEMAS E DIRETRIZES
    ========================================================================== */
 
 .container-temas-ouvidoria {
     width: 100%;
 
-    padding: 95px 5vw;
+    padding: 100px 0;
 
-    background: var(--bg-light);
+    background-color: var(--bg-light);
 }
 
 .grid-temas-ouvidoria {
-    width: 100%;
-    max-width: var(--container-max-width);
+    width: min(var(--container-width), var(--container-max-width));
 
     margin: 0 auto;
 
     display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
+
+    grid-template-columns:
+        minmax(350px, 0.85fr) minmax(0, 1.15fr);
+
+    align-items: center;
 
     gap: 70px;
 }
 
 
 /* ==========================================================================
-   CARD LARANJA / DIRETRIZES
+   CARD DE DIRETRIZES
    ========================================================================== */
 
 .card-ouvidoria-laranja {
     position: relative;
 
-    min-height: 450px;
+    min-height: 500px;
 
     overflow: hidden;
 
@@ -1116,21 +1348,21 @@ ul {
 
     padding: 35px;
 
-    border-radius: 22px;
+    border-radius: var(--radius-lg);
 
-    background: var(--senac-orange);
+    background-color: var(--senac-orange);
 
-    box-shadow: var(--shadow-medium);
+    box-shadow: var(--shadow-lg);
 }
 
 .avatar-container {
     position: absolute;
 
     top: 0;
-    right: 0;
+    left: 0;
 
     width: 100%;
-    height: 210px;
+    height: 235px;
 
     display: flex;
     justify-content: center;
@@ -1141,13 +1373,14 @@ ul {
 
 .avatar-personagem {
     width: auto;
-    height: 230px;
+    height: 245px;
 
     object-fit: contain;
 }
 
 .conteudo-ouvidoria {
     position: relative;
+
     z-index: 2;
 }
 
@@ -1158,18 +1391,19 @@ ul {
 
     color: var(--white);
 
-    font-size: 27px;
+    font-size: 28px;
     font-weight: 800;
 
     line-height: 1.2;
 }
 
 .conteudo-ouvidoria p {
-    margin-bottom: 24px;
+    margin-bottom: 22px;
 
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.88);
 
     font-size: 13px;
+
     line-height: 1.7;
 }
 
@@ -1178,25 +1412,28 @@ ul {
     align-items: center;
     justify-content: center;
 
-    padding: 12px 22px;
+    min-height: 43px;
 
-    border-radius: 8px;
+    padding: 11px 21px;
 
-    background: var(--white);
+    border-radius: var(--radius-sm);
+
+    background-color: var(--white);
+
     color: var(--senac-orange-dark);
 
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 800;
 
     transition:
-        transform var(--transition-normal),
-        box-shadow var(--transition-normal);
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
 }
 
 .btn-ouvidoria:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 
-    box-shadow: 0 9px 20px rgba(0, 0, 0, 0.14);
+    box-shadow: var(--shadow-sm);
 }
 
 
@@ -1206,29 +1443,33 @@ ul {
 
 .conteudo-temas {
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
 }
 
 .titulo-secao-temas {
-    margin-bottom: 12px;
+    margin-bottom: 13px;
 
     color: var(--text-dark);
 
-    font-size: 32px;
+    font-size: clamp(28px, 3vw, 38px);
+
     font-weight: 800;
 
-    line-height: 1.2;
+    line-height: 1.15;
 }
 
 .descricao-secao-temas {
-    max-width: 700px;
+    max-width: 650px;
 
-    margin-bottom: 35px;
+    margin-bottom: 32px;
 
     color: var(--text-paragraph);
 
     font-size: 14px;
+
     line-height: 1.7;
 }
 
@@ -1239,37 +1480,47 @@ ul {
 
 .grid-topicos-temas {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
 }
 
 .topico-item {
     display: flex;
     align-items: flex-start;
-    gap: 15px;
+
+    gap: 14px;
+
+    min-height: 125px;
 
     padding: 20px;
 
-    border-radius: 14px;
+    border: 1px solid rgba(0, 47, 108, 0.07);
 
-    background: var(--white);
+    border-radius: var(--radius-md);
 
-    border: 1px solid rgba(0, 47, 108, 0.06);
+    background-color: var(--white);
+
+    box-shadow: var(--shadow-sm);
 
     transition:
         transform var(--transition-normal),
-        box-shadow var(--transition-normal);
+        box-shadow var(--transition-normal),
+        border-color var(--transition-normal);
 }
 
 .topico-item:hover {
+    border-color: rgba(11, 81, 149, 0.15);
+
     transform: translateY(-4px);
 
-    box-shadow: var(--shadow-light);
+    box-shadow: var(--shadow-md);
 }
 
 .topico-icone {
-    width: 45px;
-    height: 45px;
+    width: 43px;
+    height: 43px;
 
     display: flex;
     align-items: center;
@@ -1277,40 +1528,45 @@ ul {
 
     flex-shrink: 0;
 
-    border-radius: 11px;
+    border-radius: var(--radius-sm);
 
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .icone-azul {
-    background: rgba(11, 81, 149, 0.1);
+    background-color: rgba(11, 81, 149, 0.09);
+
     color: var(--senac-blue);
 }
 
 .icone-laranja {
-    background: rgba(234, 148, 31, 0.12);
+    background-color: rgba(234, 148, 31, 0.12);
+
     color: var(--senac-orange-dark);
 }
 
 .topico-texto h4 {
-    margin-bottom: 7px;
+    margin-bottom: 6px;
 
     color: var(--text-dark);
 
     font-size: 14px;
     font-weight: 800;
+
+    line-height: 1.35;
 }
 
 .topico-texto p {
     color: var(--text-paragraph);
 
-    font-size: 12px;
+    font-size: 11px;
+
     line-height: 1.6;
 }
 
 
 /* ==========================================================================
-   7. FOOTER
+   13. FOOTER
    ========================================================================== */
 
 footer {
@@ -1318,7 +1574,8 @@ footer {
 
     width: 100%;
 
-    background: #003f7d;
+    background-color: var(--senac-blue-deep, #003f7d);
+
     color: var(--white);
 }
 
@@ -1326,21 +1583,22 @@ footer {
     width: 100%;
     height: 5px;
 
-    background: var(--senac-orange);
+    background-color: var(--senac-orange);
 }
 
 .footer-container {
-    width: var(--container-width);
-    max-width: var(--container-max-width);
+    width: min(var(--container-width), var(--container-max-width));
 
     margin: 0 auto;
 
     padding: 65px 0 50px;
 
     display: grid;
-    grid-template-columns: 1.25fr 0.65fr 1fr;
 
-    gap: 65px;
+    grid-template-columns:
+        1.25fr 0.65fr 1fr;
+
+    gap: 60px;
 }
 
 
@@ -1350,30 +1608,32 @@ footer {
 
 .footer-sobre .logo {
     width: 125px;
-    height: auto;
 
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 .footer-sobre p {
     max-width: 570px;
 
-    color: rgba(255, 255, 255, 0.76);
+    color: rgba(255, 255, 255, 0.74);
 
-    font-size: 12px;
+    font-size: 11px;
+
     line-height: 1.75;
 }
 
 .footer-badges {
     display: flex;
     align-items: center;
+
     gap: 18px;
 
-    margin-top: 25px;
+    margin-top: 24px;
 }
 
 .footer-badges img {
     width: auto;
+
     max-width: 105px;
     max-height: 50px;
 
@@ -1390,23 +1650,24 @@ footer {
    ========================================================================== */
 
 .footer-redes h3 {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 
     color: var(--white);
 
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 800;
 }
 
 .social-icons {
     display: flex;
     align-items: center;
-    gap: 10px;
+
+    gap: 9px;
 }
 
 .social-icons a {
-    width: 39px;
-    height: 39px;
+    width: 38px;
+    height: 38px;
 
     display: flex;
     align-items: center;
@@ -1414,29 +1675,29 @@ footer {
 
     border-radius: 50%;
 
-    background: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.10);
 
     transition:
-        background var(--transition-normal),
-        transform var(--transition-normal);
+        background-color var(--transition-fast),
+        transform var(--transition-fast);
 }
 
 .social-icons a:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.20);
 
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
 .social-icons img {
-    width: 19px;
-    height: 19px;
+    width: 18px;
+    height: 18px;
 
     object-fit: contain;
 }
 
 
 /* ==========================================================================
-   LINKS / PESQUISA
+   LINKS DO FOOTER
    ========================================================================== */
 
 .footer-links {
@@ -1447,24 +1708,25 @@ footer {
 .titulo {
     display: flex;
     align-items: center;
+
     gap: 10px;
 
-    margin-bottom: 15px;
+    margin-bottom: 14px;
 }
 
 .titulo .barra {
     width: 4px;
-    height: 20px;
+    height: 19px;
 
-    border-radius: 5px;
+    border-radius: var(--radius-pill);
 
-    background: var(--senac-orange);
+    background-color: var(--senac-orange);
 }
 
 .titulo h2 {
     color: var(--white);
 
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 800;
 }
 
@@ -1473,62 +1735,68 @@ footer {
 
     width: 100%;
 
-    margin-bottom: 32px;
+    margin-bottom: 30px;
 }
 
 .footer-search input {
-    min-width: 0;
     flex: 1;
 
+    min-width: 0;
     height: 42px;
 
-    padding: 0 14px;
+    padding: 0 13px;
 
     border: 0;
+
     outline: none;
 
-    border-radius: 7px 0 0 7px;
+    border-radius:
+        var(--radius-sm) 0 0 var(--radius-sm);
 
-    background: var(--white);
+    background-color: var(--white);
+
     color: var(--text-dark);
 
     font-size: 12px;
 }
 
 .footer-search input::placeholder {
-    color: #999;
+    color: #999999;
 }
 
 .footer-search button {
-    width: 45px;
+    width: 44px;
     height: 42px;
 
-    border: 0;
-    border-radius: 0 7px 7px 0;
+    border-radius:
+        0 var(--radius-sm) var(--radius-sm) 0;
 
-    background: var(--senac-orange);
+    background-color: var(--senac-orange);
+
     color: var(--white);
 
-    transition: background var(--transition-normal);
+    transition:
+        background-color var(--transition-fast);
 }
 
 .footer-search button:hover {
-    background: var(--senac-orange-dark);
+    background-color: var(--senac-orange-dark);
 }
 
 .parceiros {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
+    flex-wrap: wrap;
+
     gap: 8px;
 
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.70);
 
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .parceiros a {
-    transition: color var(--transition-normal);
+    transition: color var(--transition-fast);
 }
 
 .parceiros a:hover {
@@ -1541,26 +1809,30 @@ footer {
    ========================================================================== */
 
 .footer-local {
-    width: var(--container-width);
-    max-width: var(--container-max-width);
+    width: min(var(--container-width), var(--container-max-width));
 
     margin: 0 auto;
 
-    padding: 18px 0;
+    padding: 17px 0;
 
     display: flex;
     align-items: center;
-    gap: 10px;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 9px;
 
-    color: rgba(255, 255, 255, 0.75);
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
 
-    font-size: 12px;
+    color: rgba(255, 255, 255, 0.70);
+
+    font-size: 10px;
 }
 
 .footer-local i {
     color: var(--senac-orange);
+}
+
+.footer-local a {
+    transition: color var(--transition-fast);
 }
 
 .footer-local a:hover {
@@ -1578,30 +1850,34 @@ footer {
     padding: 18px 5vw;
 
     display: grid;
-    grid-template-columns: auto 1fr auto;
+
+    grid-template-columns:
+        auto 1fr auto;
+
     align-items: center;
+
     gap: 25px;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 .footer-bottom img {
     width: 75px;
-    height: auto;
 }
 
 .footer-bottom p {
-    color: rgba(255, 255, 255, 0.62);
+    color: rgba(255, 255, 255, 0.58);
 
-    font-size: 10px;
+    font-size: 9px;
 }
 
 .empresa {
     display: flex;
     align-items: center;
-    gap: 16px;
 
-    font-size: 10px;
+    gap: 15px;
+
+    font-size: 9px;
 }
 
 .empresa strong {
@@ -1609,9 +1885,9 @@ footer {
 }
 
 .empresa a {
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.62);
 
-    transition: color var(--transition-normal);
+    transition: color var(--transition-fast);
 }
 
 .empresa a:hover {
@@ -1620,7 +1896,7 @@ footer {
 
 
 /* ==========================================================================
-   8. BOTÃO VOLTAR AO TOPO
+   14. VOLTAR AO TOPO
    ========================================================================== */
 
 .back-to-top {
@@ -1629,109 +1905,114 @@ footer {
     right: 25px;
     bottom: 25px;
 
-    width: 48px;
-    height: 48px;
+    width: 46px;
+    height: 46px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border: 0;
     border-radius: 50%;
 
-    background: var(--senac-blue);
+    background-color: var(--senac-blue);
+
     color: var(--white);
 
-    box-shadow: 0 10px 25px rgba(0, 47, 108, 0.22);
+    box-shadow: var(--shadow-md);
 
     opacity: 0;
     visibility: hidden;
-    transform: translateY(15px);
+
+    transform: translateY(12px);
 
     transition:
         opacity var(--transition-normal),
         visibility var(--transition-normal),
         transform var(--transition-normal),
-        background var(--transition-normal);
+        background-color var(--transition-fast);
 
-    z-index: 999;
+    z-index: 900;
 }
 
 .back-to-top.show {
     opacity: 1;
     visibility: visible;
+
     transform: translateY(0);
 }
 
 .back-to-top:hover {
-    background: var(--senac-orange);
+    background-color: var(--senac-orange);
+
     transform: translateY(-3px);
 }
 
 
 /* ==========================================================================
-   9. RESPONSIVIDADE
+   15. RESPONSIVIDADE
    ========================================================================== */
 
 
 /* ==========================================================================
-   TABLETS — ATÉ 1100PX
+   ATÉ 1200PX
    ========================================================================== */
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
 
     .header-container {
-        grid-template-columns: 160px minmax(0, 1fr) 220px;
+        grid-template-columns:
+            160px minmax(0, 1fr) 220px;
+
         gap: 20px;
     }
 
-    .nav-list {
-        gap: 25px;
+    .nav-menu {
+        padding: 13px 30px;
     }
 
-    .user-profile-info {
-        min-width: 70px;
+    .nav-list {
+        gap: 26px;
+    }
+
+    .nav-link {
+        font-size: 14px;
     }
 
     .container-senac {
-        grid-template-columns: 1fr 0.85fr;
+        grid-template-columns:
+            minmax(0, 1fr) minmax(360px, 0.85fr);
+
         gap: 45px;
     }
 
     .titulo-principal {
-        font-size: clamp(36px, 4.5vw, 50px);
+        font-size: clamp(40px, 4.5vw, 53px);
     }
 
     .cards-compromissos-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1.2fr 1fr;
     }
 
     .card-compromisso-destaque {
-        grid-row: auto;
-        grid-column: span 2;
-        min-height: auto;
+        grid-row: span 2;
     }
 
     .grid-temas-ouvidoria {
-        gap: 40px;
-    }
-
-    .footer-container {
-        grid-template-columns: 1fr 1fr;
         gap: 45px;
     }
 
-    .footer-sobre {
-        grid-column: span 2;
+    .footer-container {
+        gap: 40px;
     }
 }
 
 
 /* ==========================================================================
-   TABLETS — ATÉ 850PX
+   ATÉ 1000PX
    ========================================================================== */
 
-@media (max-width: 850px) {
+@media (max-width: 1000px) {
 
     .main-header {
         height: auto;
@@ -1739,14 +2020,17 @@ footer {
     }
 
     .header-container {
-        grid-template-columns: 1fr auto;
+        grid-template-columns:
+            1fr auto;
+
         grid-template-areas:
             "logo action"
             "nav nav";
 
-        height: auto;
+        min-height: var(--header-height);
 
-        padding: 15px 0;
+        padding-top: 12px;
+        padding-bottom: 12px;
     }
 
     .logo-area {
@@ -1760,36 +2044,26 @@ footer {
     .nav-menu {
         grid-area: nav;
 
-        justify-content: flex-start;
+        position: static;
 
-        padding-top: 8px;
-    }
+        width: max-content;
+        max-width: 100%;
 
-    .nav-list {
-        width: 100%;
+        margin: 10px auto 0;
 
-        justify-content: flex-start;
+        transform: none;
 
-        gap: 28px;
-
-        overflow-x: auto;
-        padding-bottom: 4px;
-    }
-
-    .nav-link {
-        white-space: nowrap;
+        padding: 11px 25px;
     }
 
     .container-senac {
+        min-height: auto;
+
+        padding-top: 180px;
+
         grid-template-columns: 1fr;
 
-        padding-top: 60px;
-
-        text-align: left;
-    }
-
-    .conteudo-esquerda {
-        align-items: flex-start;
+        gap: 45px;
     }
 
     .conteudo-direita {
@@ -1800,18 +2074,68 @@ footer {
         max-width: 470px;
     }
 
-    .container-plano-pedagogico {
-        padding-top: 80px;
-        padding-bottom: 80px;
+    .plano-pedagogico-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-container {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .footer-sobre {
+        grid-column: span 2;
+    }
+}
+
+
+/* ==========================================================================
+   ATÉ 800PX
+   ========================================================================== */
+
+@media (max-width: 800px) {
+
+    .nav-menu {
+        width: 90vw;
+
+        overflow-x: auto;
+
+        justify-content: center;
+    }
+
+    .nav-list {
+        gap: 23px;
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    .container-senac {
+        padding-top: 165px;
+    }
+
+    .cards-compromissos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-compromisso-destaque {
+        grid-row: auto;
     }
 
     .plano-pedagogico-introducao {
-        grid-template-columns: 80px 1fr;
-        gap: 22px;
+        grid-template-columns: 75px 1fr;
     }
 
-    .plano-pedagogico-cards {
-        grid-template-columns: 1fr;
+    .plano-pdf-box {
+        grid-template-columns:
+            56px minmax(0, 1fr);
+    }
+
+    .btn-plano-pdf {
+        grid-column: span 2;
+
+        justify-self: start;
     }
 
     .grid-temas-ouvidoria {
@@ -1819,35 +2143,40 @@ footer {
     }
 
     .card-ouvidoria-laranja {
-        min-height: 430px;
+        min-height: 470px;
     }
 }
 
 
 /* ==========================================================================
-   CELULARES — ATÉ 650PX
+   ATÉ 600PX
    ========================================================================== */
 
-@media (max-width: 650px) {
+@media (max-width: 600px) {
 
     :root {
         --container-width: 90vw;
     }
 
+    .main-header {
+        min-height: 75px;
+    }
+
     .header-container {
         width: 90vw;
+
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     .logo-img {
-        height: 48px;
+        height: 46px;
     }
 
     .user-profile-button {
-        min-height: 46px;
+        min-height: 42px;
 
-        padding: 5px 8px 5px 5px;
-
-        border-radius: 12px;
+        padding: 4px 8px 4px 5px;
     }
 
     .user-profile-icon {
@@ -1856,42 +2185,57 @@ footer {
     }
 
     .user-profile-welcome {
-        font-size: 9px;
+        font-size: 8px;
     }
 
     .user-profile-name {
         max-width: 75px;
-        font-size: 11px;
+
+        font-size: 10px;
     }
 
     .user-profile-arrow {
         display: none;
     }
 
+    .nav-menu {
+        width: 90vw;
+
+        padding: 10px 18px;
+
+        margin-top: 8px;
+    }
+
     .nav-list {
-        gap: 22px;
+        justify-content: flex-start;
+
+        gap: 20px;
     }
 
     .nav-link {
-        font-size: 11px;
+        font-size: 10px;
     }
 
-
-    /* HERO */
-
     .container-senac {
-        min-height: auto;
+        width: 90vw;
 
-        padding: 45px 0 65px;
+        padding-top: 145px;
+        padding-bottom: 65px;
 
         gap: 35px;
     }
 
     .btn-voltar {
-        margin-bottom: 25px;
+        margin-bottom: 23px;
+
+        font-size: 12px;
     }
 
     .badge-tag {
+        margin-bottom: 15px;
+
+        padding: 7px 12px;
+
         font-size: 9px;
     }
 
@@ -1910,7 +2254,8 @@ footer {
     .descricao-texto {
         margin-bottom: 25px;
 
-        font-size: 14px;
+        font-size: 13px;
+
         line-height: 1.7;
     }
 
@@ -1926,27 +2271,33 @@ footer {
     /* COMPROMISSOS */
 
     .container-compromissos {
-        padding: 60px 5vw;
+        padding: 65px 0;
     }
 
     .cards-compromissos-grid {
-        grid-template-columns: 1fr;
+        width: 90vw;
 
         gap: 15px;
     }
 
     .card-compromisso-destaque {
-        grid-column: auto;
+        min-height: auto;
 
         padding: 28px;
     }
 
     .card-compromisso-destaque h2 {
-        font-size: 24px;
+        font-size: 23px;
+    }
+
+    .card-compromisso-destaque p {
+        font-size: 12px;
     }
 
     .card-compromisso-item {
-        padding: 23px;
+        min-height: auto;
+
+        padding: 22px;
     }
 
 
@@ -1955,15 +2306,15 @@ footer {
     .container-plano-pedagogico {
         width: 90vw;
 
-        padding: 65px 0;
+        padding: 75px 0;
     }
 
     .plano-pedagogico-header {
-        margin-bottom: 38px;
+        margin-bottom: 40px;
     }
 
     .plano-pedagogico-header h2 {
-        font-size: 32px;
+        font-size: 31px;
     }
 
     .plano-pedagogico-header p {
@@ -1973,37 +2324,34 @@ footer {
     .plano-pedagogico-introducao {
         grid-template-columns: 1fr;
 
-        padding: 25px;
+        gap: 18px;
 
-        gap: 20px;
+        padding: 25px;
     }
 
     .plano-icone-principal {
-        width: 65px;
-        height: 65px;
+        width: 62px;
+        height: 62px;
 
-        font-size: 25px;
+        font-size: 23px;
     }
 
     .plano-pedagogico-introducao h3 {
-        font-size: 21px;
+        font-size: 20px;
     }
 
     .plano-pedagogico-introducao p {
-        font-size: 13px;
+        font-size: 12px;
     }
 
-    .plano-card {
-        padding: 20px;
+    .plano-pedagogico-cards {
+        grid-template-columns: 1fr;
 
         gap: 14px;
     }
 
-    .plano-card-icone {
-        width: 42px;
-        height: 42px;
-
-        font-size: 16px;
+    .plano-card {
+        padding: 20px;
     }
 
     .plano-card h4 {
@@ -2011,22 +2359,23 @@ footer {
     }
 
     .plano-card p {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .plano-pdf-box {
-        grid-template-columns: 50px 1fr;
+        grid-template-columns:
+            50px minmax(0, 1fr);
 
-        gap: 16px;
+        gap: 15px;
 
-        padding: 22px;
+        padding: 20px;
     }
 
     .plano-pdf-icone {
-        width: 50px;
-        height: 50px;
+        width: 48px;
+        height: 48px;
 
-        font-size: 21px;
+        font-size: 20px;
     }
 
     .plano-pdf-texto h3 {
@@ -2034,34 +2383,40 @@ footer {
     }
 
     .plano-pdf-texto p {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .btn-plano-pdf {
-        grid-column: span 2;
-
         width: 100%;
+
+        grid-column: span 2;
     }
 
 
     /* TEMAS */
 
     .container-temas-ouvidoria {
-        padding: 65px 5vw;
+        padding: 70px 0;
+    }
+
+    .grid-temas-ouvidoria {
+        width: 90vw;
+
+        gap: 40px;
     }
 
     .card-ouvidoria-laranja {
-        min-height: 500px;
+        min-height: 520px;
 
         padding: 28px;
     }
 
     .avatar-container {
-        height: 215px;
+        height: 225px;
     }
 
     .avatar-personagem {
-        height: 220px;
+        height: 225px;
     }
 
     .conteudo-ouvidoria h2 {
@@ -2069,7 +2424,7 @@ footer {
     }
 
     .conteudo-ouvidoria p {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .grid-topicos-temas {
@@ -2077,7 +2432,7 @@ footer {
     }
 
     .titulo-secao-temas {
-        font-size: 27px;
+        font-size: 28px;
     }
 
 
@@ -2098,7 +2453,7 @@ footer {
     }
 
     .footer-sobre p {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .footer-local {
@@ -2106,17 +2461,17 @@ footer {
 
         align-items: flex-start;
 
-        font-size: 10px;
+        font-size: 9px;
 
         line-height: 1.5;
     }
 
     .footer-bottom {
-        padding: 20px 5vw;
-
         grid-template-columns: 1fr;
 
-        gap: 15px;
+        gap: 14px;
+
+        padding: 20px 5vw;
     }
 
     .footer-bottom img {
@@ -2126,32 +2481,31 @@ footer {
     .empresa {
         flex-wrap: wrap;
 
-        gap: 10px;
+        gap: 9px;
     }
 
     .back-to-top {
-        right: 16px;
-        bottom: 16px;
+        right: 15px;
+        bottom: 15px;
 
-        width: 43px;
-        height: 43px;
+        width: 42px;
+        height: 42px;
     }
 }
 
 
 /* ==========================================================================
-   CELULARES PEQUENOS — ATÉ 420PX
+   ATÉ 420PX
    ========================================================================== */
 
 @media (max-width: 420px) {
 
     .header-container {
-        grid-template-columns: 1fr auto;
         gap: 10px;
     }
 
     .logo-img {
-        height: 43px;
+        height: 42px;
     }
 
     .user-profile-info {
@@ -2159,39 +2513,51 @@ footer {
     }
 
     .user-profile-button {
-        padding: 5px;
+        padding: 4px;
 
         border: 0;
+
+        background-color: transparent;
+
         box-shadow: none;
     }
 
     .user-profile-button:hover,
     .user-profile-button[aria-expanded="true"] {
+        background-color: transparent;
+
         box-shadow: none;
+
+        transform: none;
+    }
+
+    .nav-menu {
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     .nav-list {
-        gap: 18px;
+        gap: 17px;
     }
 
     .nav-link {
-        font-size: 10px;
+        font-size: 9px;
     }
 
     .container-senac {
-        padding-top: 35px;
+        padding-top: 135px;
     }
 
     .titulo-principal {
-        font-size: 31px;
+        font-size: 30px;
     }
 
     .plano-pedagogico-header h2 {
-        font-size: 28px;
+        font-size: 27px;
     }
 
     .plano-pedagogico-badge {
-        font-size: 9px;
+        font-size: 8px;
     }
 
     .plano-card {
@@ -2199,17 +2565,17 @@ footer {
     }
 
     .card-ouvidoria-laranja {
-        min-height: 540px;
+        min-height: 550px;
     }
 
     .social-icons {
-        gap: 8px;
+        gap: 7px;
     }
 }
 
 
 /* ==========================================================================
-   ACESSIBILIDADE
+   REDUÇÃO DE MOVIMENTO
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
