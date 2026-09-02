@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mural Docente | Startê SENAC</title>
+
+    <meta name="description"
+        content="Mural Docente Startê SENAC para acompanhamento de alunos, registros e observações pedagógicas.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="./css/mural.css">
+</head>
+
+<body>
+
+    <!-- ================================================================
+         HEADER
+         ================================================================ -->
+
+    <header class="main-header">
+
+        <div class="container header-container">
+
+            <!-- LOGO -->
+
+            <div class="logo-area">
+
+                <a href="home.html" aria-label="Página inicial do Startê">
+
+                    <img
+                        src="imagens/Senac_logo.svg.webp"
+                        alt="Logo Senac"
+                        class="logo-img">
+
+                </a>
+
+            </div>
+
+
+            <!-- MENU -->
+
+            <nav
+                class="nav-menu"
+                id="mainNav"
+                aria-label="Menu principal">
+
+                <ul class="nav-list">
+
+                    <li>
+                        <a
+                            href="home.html"
+                            class="nav-link">
+                            HOME
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="cursos.html"
+                            class="nav-link">
+                            CURSOS
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="conduta.html"
+                            class="nav-link">
+                            CONDUTA
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="eventos.html"
+                            class="nav-link">
+                            EVENTOS
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="mural.html"
+                            class="nav-link active"
+                            aria-current="page">
+                            MURAL DOCENTE
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+
+            <!-- PERFIL -->
+
+            <div class="action-area">
+
+                <div
+                    class="user-profile"
+                    id="userProfile">
+
+                    <button
+                        type="button"
+                        class="user-profile-button"
+                        id="userProfileButton"
+                        aria-expanded="false"
+                        aria-haspopup="true">
+
+                        <span class="user-profile-icon">
+
+                            <i
+                                class="fas fa-user"
+                                aria-hidden="true">
+                            </i>
+
+                        </span>
+
+
+                        <span class="user-profile-info">
+
+                            <span class="user-profile-welcome">
+                                Bem-vindo
+                            </span>
+
+                            <span
+                                class="user-profile-name"
+                                id="userProfileName">
+                                Usuário
+                            </span>
+
+                        </span>
+
+
+                        <i
+                            class="fas fa-chevron-down user-profile-arrow"
+                            aria-hidden="true">
+                        </i>
+
+                    </button>
+
+
+                    <!-- MENU DO PERFIL -->
+
+                    <div
+                        class="user-profile-menu"
+                        id="userProfileMenu"
+                        role="menu">
+
+                        <button
+                            type="button"
+                            class="user-profile-menu-item"
+                            id="profileButton"
+                            role="menuitem">
+
+                            <i
+                                class="fas fa-user"
+                                aria-hidden="true">
+                            </i>
+
+                            <span>
+                                Meu perfil
+                            </span>
+
+                        </button>
+
+
+                        <div class="user-profile-divider"></div>
+
+
+                        <button
+                            type="button"
+                            class="user-profile-menu-item logout"
+                            id="logoutButton"
+                            role="menuitem">
+
+                            <i
+                                class="fas fa-right-from-bracket"
+                                aria-hidden="true">
+                            </i>
+
+                            <span>
+                                Sair
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================================================
+         HERO
+         ================================================================ -->
+
+    <section class="mural-hero">
+
+        <div class="mural-hero-content">
+
+            <span class="section-label">
+
+                <i
+                    class="fa-solid fa-chalkboard-user"
+                    aria-hidden="true">
+                </i>
+
+                MURAL DOCENTE
+
+            </span>
+
+
+            <h1>
+                Acompanhe seus alunos e registre
+                observações sobre o desenvolvimento
+                acadêmico.
+            </h1>
+
+
+            <p>
+                Registre feedbacks, acompanhe a evolução
+                e contribua para o sucesso dos seus alunos.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================================
+         CONTEÚDO
+         ================================================================ -->
+
+    <main class="mural-container">
+
+
+        <!-- ============================================================
+             FILTROS
+             ============================================================ -->
+
+        <section class="filtros">
+
+            <div class="campo busca">
+
+                <label for="buscarAluno">
+                    Buscar aluno
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i
+                        class="fa-solid fa-magnifying-glass"
+                        aria-hidden="true">
+                    </i>
+
+                    <input
+                        type="text"
+                        id="buscarAluno"
+                        placeholder="Buscar aluno por nome..."
+                        autocomplete="off">
+
+                </div>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="filtroTurma">
+                    Turma
+                </label>
+
+                <select id="filtroTurma">
+
+                    <option value="">
+                        Todas as turmas
+                    </option>
+
+                    <option value="2026.1">
+                        Turma 2026.1
+                    </option>
+
+                    <option value="2026.2">
+                        Turma 2026.2
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="filtroCurso">
+                    Curso
+                </label>
+
+                <select id="filtroCurso">
+
+                    <option value="">
+                        Todos os cursos
+                    </option>
+
+                    <option value="informatica">
+                        Técnico em Informática
+                    </option>
+
+                    <option value="administracao">
+                        Técnico em Administração
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn-filtrar"
+                onclick="filtrarAlunos()">
+
+                <i
+                    class="fa-solid fa-filter"
+                    aria-hidden="true">
+                </i>
+
+                Filtrar
+
+            </button>
+
+        </section>
+
+
+        <!-- ============================================================
+             DASHBOARD
+             ============================================================ -->
+
+        <section class="dashboard">
+
+
+            <!-- ========================================================
+                 ALUNOS
+                 ======================================================== -->
+
+            <div class="card alunos-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-kicker">
+                            ACOMPANHAMENTO
+                        </span>
+
+                        <h2>
+                            Alunos
+                        </h2>
+
+                    </div>
+
+
+                    <span class="contador">
+                        12 alunos
+                    </span>
+
+                </div>
+
+
+                <div id="listaAlunos">
+
+
+                    <!-- ALUNO 1 -->
+
+                    <article
+                        class="aluno"
+                        data-nome="João Pedro Silva"
+                        data-turma="2026.1"
+                        data-curso="informatica">
+
+                        <div class="avatar">
+
+                            <i
+                                class="fa-solid fa-user"
+                                aria-hidden="true">
+                            </i>
+
+                        </div>
+
+
+                        <div class="aluno-info">
+
+                            <h3>
+                                João Pedro Silva
+                            </h3>
+
+                            <span>
+                                Técnico em Informática
+                                <b>•</b>
+                                Turma 2026.1
+                            </span>
+
+                        </div>
+
+
+                        <div class="ultima-observacao">
+
+                            <span>
+                                Última observação:
+                                <strong>
+                                    25/08/2026
+                                </strong>
+                            </span>
+
+                            <p>
+                                "Apresentou boa evolução nas
+                                atividades práticas..."
+                            </p>
+
+                        </div>
+
+
+                        <div class="acoes">
+
+                            <button
+                                type="button"
+                                class="btn-perfil">
+
+                                <i
+                                    class="fa-regular fa-eye"
+                                    aria-hidden="true">
+                                </i>
+
+                                Ver perfil
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="btn-observacao"
+                                onclick="abrirModal('João Pedro Silva')">
+
+                                <i
+                                    class="fa-solid fa-plus"
+                                    aria-hidden="true">
+                                </i>
+
+                                Observação
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ALUNO 2 -->
+
+                    <article
+                        class="aluno"
+                        data-nome="Maria Eduarda Santos"
+                        data-turma="2026.1"
+                        data-curso="informatica">
+
+                        <div class="avatar">
+
+                            <i
+                                class="fa-solid fa-user"
+                                aria-hidden="true">
+                            </i>
+
+                        </div>
+
+
+                        <div class="aluno-info">
+
+                            <h3>
+                                Maria Eduarda Santos
+                            </h3>
+
+                            <span>
+                                Técnico em Informática
+                                <b>•</b>
+                                Turma 2026.1
+                            </span>
+
+                        </div>
+
+
+                        <div class="ultima-observacao">
+
+                            <span>
+                                Última observação:
+                                <strong>
+                                    20/08/2026
+                                </strong>
+                            </span>
+
+                            <p>
+                                "Participa ativamente das aulas
+                                e demonstra interesse..."
+                            </p>
+
+                        </div>
+
+
+                        <div class="acoes">
+
+                            <button
+                                type="button"
+                                class="btn-perfil">
+
+                                <i
+                                    class="fa-regular fa-eye"
+                                    aria-hidden="true">
+                                </i>
+
+                                Ver perfil
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="btn-observacao"
+                                onclick="abrirModal('Maria Eduarda Santos')">
+
+                                <i
+                                    class="fa-solid fa-plus"
+                                    aria-hidden="true">
+                                </i>
+
+                                Observação
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ALUNO 3 -->
+
+                    <article
+                        class="aluno"
+                        data-nome="Lucas Gabriel Oliveira"
+                        data-turma="2026.1"
+                        data-curso="informatica">
+
+                        <div class="avatar">
+
+                            <i
+                                class="fa-solid fa-user"
+                                aria-hidden="true">
+                            </i>
+
+                        </div>
+
+
+                        <div class="aluno-info">
+
+                            <h3>
+                                Lucas Gabriel Oliveira
+                            </h3>
+
+                            <span>
+                                Técnico em Informática
+                                <b>•</b>
+                                Turma 2026.1
+                            </span>
+
+                        </div>
+
+
+                        <div class="ultima-observacao">
+
+                            <span>
+                                Última observação:
+                                <strong>
+                                    18/08/2026
+                                </strong>
+                            </span>
+
+                            <p>
+                                "Dificuldade em lógica, mas com
+                                melhora significativa."
+                            </p>
+
+                        </div>
+
+
+                        <div class="acoes">
+
+                            <button
+                                type="button"
+                                class="btn-perfil">
+
+                                <i
+                                    class="fa-regular fa-eye"
+                                    aria-hidden="true">
+                                </i>
+
+                                Ver perfil
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="btn-observacao"
+                                onclick="abrirModal('Lucas Gabriel Oliveira')">
+
+                                <i
+                                    class="fa-solid fa-plus"
+                                    aria-hidden="true">
+                                </i>
+
+                                Observação
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ALUNO 4 -->
+
+                    <article
+                        class="aluno"
+                        data-nome="Ana Beatriz Lima"
+                        data-turma="2026.1"
+                        data-curso="informatica">
+
+                        <div class="avatar">
+
+                            <i
+                                class="fa-solid fa-user"
+                                aria-hidden="true">
+                            </i>
+
+                        </div>
+
+
+                        <div class="aluno-info">
+
+                            <h3>
+                                Ana Beatriz Lima
+                            </h3>
+
+                            <span>
+                                Técnico em Informática
+                                <b>•</b>
+                                Turma 2026.1
+                            </span>
+
+                        </div>
+
+
+                        <div class="ultima-observacao">
+
+                            <span>
+                                Última observação:
+                                <strong>
+                                    15/08/2026
+                                </strong>
+                            </span>
+
+                            <p>
+                                "Excelente desempenho nas
+                                atividades práticas."
+                            </p>
+
+                        </div>
+
+
+                        <div class="acoes">
+
+                            <button
+                                type="button"
+                                class="btn-perfil">
+
+                                <i
+                                    class="fa-regular fa-eye"
+                                    aria-hidden="true">
+                                </i>
+
+                                Ver perfil
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="btn-observacao"
+                                onclick="abrirModal('Ana Beatriz Lima')">
+
+                                <i
+                                    class="fa-solid fa-plus"
+                                    aria-hidden="true">
+                                </i>
+
+                                Observação
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ALUNO 5 -->
+
+                    <article
+                        class="aluno"
+                        data-nome="Rafael Souza Pereira"
+                        data-turma="2026.1"
+                        data-curso="informatica">
+
+                        <div class="avatar">
+
+                            <i
+                                class="fa-solid fa-user"
+                                aria-hidden="true">
+                            </i>
+
+                        </div>
+
+
+                        <div class="aluno-info">
+
+                            <h3>
+                                Rafael Souza Pereira
+                            </h3>
+
+                            <span>
+                                Técnico em Informática
+                                <b>•</b>
+                                Turma 2026.1
+                            </span>
+
+                        </div>
+
+
+                        <div class="ultima-observacao sem-observacao">
+
+                            <span>
+                                Nenhuma observação registrada
+                            </span>
+
+                            <p>
+                                Seja o primeiro a registrar
+                                uma observação.
+                            </p>
+
+                        </div>
+
+
+                        <div class="acoes">
+
+                            <button
+                                type="button"
+                                class="btn-perfil">
+
+                                <i
+                                    class="fa-regular fa-eye"
+                                    aria-hidden="true">
+                                </i>
+
+                                Ver perfil
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="btn-observacao"
+                                onclick="abrirModal('Rafael Souza Pereira')">
+
+                                <i
+                                    class="fa-solid fa-plus"
+                                    aria-hidden="true">
+                                </i>
+
+                                Observação
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================================
+                 SIDEBAR
+                 ======================================================== -->
+
+            <aside class="sidebar">
+
+
+                <!-- RESUMO -->
+
+                <div class="card resumo">
+
+                    <div class="resumo-title">
+
+                        <div class="icone-resumo">
+
+                            <i
+                                class="fa-solid fa-chart-column"
+                                aria-hidden="true">
+                            </i>
+
+                        </div>
+
+                        <div>
+
+                            <span class="card-kicker">
+                                VISÃO GERAL
+                            </span>
+
+                            <h2>
+                                Resumo da turma
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="estatisticas">
+
+                        <div class="estatistica">
+
+                            <strong>
+                                12
+                            </strong>
+
+                            <span>
+                                Total de alunos
+                            </span>
+
+                        </div>
+
+
+                        <div class="estatistica">
+
+                            <strong>
+                                8
+                            </strong>
+
+                            <span>
+                                Com observações
+                            </span>
+
+                        </div>
+
+
+                        <div class="estatistica">
+
+                            <strong>
+                                4
+                            </strong>
+
+                            <span>
+                                Sem observações
+                            </span>
+
+                        </div>
+
+
+                        <div class="estatistica">
+
+                            <strong>
+                                66%
+                            </strong>
+
+                            <span>
+                                Alunos acompanhados
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OBSERVAÇÕES -->
+
+                <div class="card observacoes">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="card-kicker">
+                                ACOMPANHAMENTO
+                            </span>
+
+                            <h2>
+                                Observações recentes
+                            </h2>
+
+                        </div>
+
+                        <a href="#">
+                            Ver todas
+                        </a>
+
+                    </div>
+
+
+                    <div class="observacao-item">
+
+                        <div class="obs-icon">
+
+                            <i
+                                class="fa-regular fa-file-lines"
+                                aria-hidden="true">
+                            </i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                João Pedro Silva
+                            </strong>
+
+                            <small>
+                                25/08/2026 às 14:30
+                            </small>
+
+                            <p>
+                                "Apresentou boa evolução nas
+                                atividades práticas..."
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="observacao-item">
+
+                        <div class="obs-icon">
+
+                            <i
+                                class="fa-regular fa-file-lines"
+                                aria-hidden="true">
+                            </i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Maria Eduarda Santos
+                            </strong>
+
+                            <small>
+                                20/08/2026 às 10:15
+                            </small>
+
+                            <p>
+                                "Participa ativamente das aulas
+                                e demonstra interesse..."
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="observacao-item">
+
+                        <div class="obs-icon">
+
+                            <i
+                                class="fa-regular fa-file-lines"
+                                aria-hidden="true">
+                            </i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Lucas Gabriel Oliveira
+                            </strong>
+
+                            <small>
+                                18/08/2026 às 16:45
+                            </small>
+
+                            <p>
+                                "Dificuldade em lógica, mas com
+                                melhora significativa."
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn-todas">
+
+                        Ver todas as observações
+
+                    </button>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================================================================
+         FOOTER
+         ================================================================ -->
+
+    <footer>
+
+        <div class="linha-topo"></div>
+
+
+        <div class="footer-container">
+
+
+            <!-- SOBRE -->
+
+            <div class="footer-sobre">
+
+                <img
+                    src="./imagens/logo-branco.png"
+                    alt="Logo Senac"
+                    class="logo">
+
+
+                <p>
+                    Instituição de educação profissional aberta
+                    a toda a sociedade, com a missão de desenvolver
+                    pessoas e organizações para o mundo do trabalho.
+                </p>
+
+
+                <div class="footer-badges">
+
+                    <img
+                        src="./imagens/prevencao.png"
+                        alt="Programa prevenção">
+
+                    <img
+                        src="./imagens/logo.png"
+                        alt="Startê"
+                        class="starte-logo">
+
+                </div>
+
+            </div>
+
+
+            <!-- REDES -->
+
+            <div class="footer-redes">
+
+                <h3>
+                    Conecte-se
+                </h3>
+
+
+                <div class="social-icons">
+
+                    <a
+                        href="#"
+                        aria-label="Facebook">
+
+                        <i class="fa-brands fa-facebook-f"></i>
+
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="Instagram">
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="YouTube">
+
+                        <i class="fa-brands fa-youtube"></i>
+
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="LinkedIn">
+
+                        <i class="fa-brands fa-linkedin-in"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PESQUISA -->
+
+            <div class="footer-links">
+
+                <div class="titulo">
+
+                    <div class="barra"></div>
+
+                    <h2>
+                        Pesquise por Cursos e Notícias
+                    </h2>
+
+                </div>
+
+
+                <div class="footer-search">
+
+                    <input
+                        type="text"
+                        id="footerSearch"
+                        placeholder="Pesquisar"
+                        aria-label="Pesquisar no site">
+
+                    <button
+                        type="button"
+                        id="footerSearchBtn"
+                        aria-label="Pesquisar">
+
+                        <i
+                            class="fas fa-search"
+                            aria-hidden="true">
+                        </i>
+
+                    </button>
+
+                </div>
+
+
+                <div class="titulo">
+
+                    <div class="barra"></div>
+
+                    <h2>
+                        Parceiros
+                    </h2>
+
+                </div>
+
+
+                <div class="parceiros">
+
+                    <a href="#">
+                        Fecomércio Pernambuco
+                    </a>
+
+                    <a href="#">
+                        Sesc Pernambuco
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- LOCALIZAÇÃO -->
+
+        <div class="footer-local">
+
+            <i
+                class="fas fa-location-dot"
+                aria-hidden="true">
+            </i>
+
+            <a
+                href="https://maps.app.goo.gl/6A3dxDU1zrD2bHD7A"
+                target="_blank"
+                rel="noopener">
+
+                Pernambuco - Av. Visconde de Suassuna,
+                500 - Santo Amaro - Recife
+
+            </a>
+
+        </div>
+
+
+        <!-- BOTTOM -->
+
+        <div class="footer-bottom">
+
+            <img
+                src="./imagens/logo-branco.png"
+                alt="Senac">
+
+
+            <p>
+                © 2026 Todos os Direitos Reservados.
+            </p>
+
+
+            <div class="empresa">
+
+                <strong>
+                    Para sua empresa
+                </strong>
+
+                <a href="#">
+                    Atendimento Corporativo
+                </a>
+
+                <a href="#">
+                    Programa de Aprendizagem
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================================================================
+         BOTÃO VOLTAR AO TOPO
+         ================================================================ -->
+
+    <button
+        class="back-to-top"
+        id="backToTop"
+        aria-label="Voltar ao topo">
+
+        <i
+            class="fas fa-chevron-up"
+            aria-hidden="true">
+        </i>
+
+    </button>
+
+
+    <!-- ================================================================
+         MODAL — NOVA OBSERVAÇÃO
+         ================================================================ -->
+
+    <div
+        class="modal-overlay"
+        id="modal">
+
+        <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="tituloModal">
+
+
+            <button
+                type="button"
+                class="fechar"
+                id="btnFecharModal"
+                aria-label="Fechar">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+            <span class="section-label">
+                NOVA OBSERVAÇÃO
+            </span>
+
+
+            <h2 id="tituloModal">
+                Registrar feedback
+            </h2>
+
+
+            <p class="modal-subtitulo">
+                Adicione uma observação sobre o desenvolvimento
+                do aluno.
+            </p>
+
+
+            <label for="alunoSelecionado">
+                Aluno
+            </label>
+
+            <input
+                type="text"
+                id="alunoSelecionado"
+                readonly>
+
+
+            <label for="tipoObservacao">
+                Tipo de observação
+            </label>
+
+            <select id="tipoObservacao">
+
+                <option value="Desempenho acadêmico">
+                    Desempenho acadêmico
+                </option>
+
+                <option value="Comportamento">
+                    Comportamento
+                </option>
+
+                <option value="Participação">
+                    Participação
+                </option>
+
+                <option value="Frequência">
+                    Frequência
+                </option>
+
+                <option value="Desenvolvimento">
+                    Desenvolvimento
+                </option>
+
+                <option value="Outro">
+                    Outro
+                </option>
+
+            </select>
+
+
+            <label for="textoObservacao">
+                Observação
+            </label>
+
+            <textarea
+                id="textoObservacao"
+                placeholder="Digite aqui sua observação sobre o aluno..."></textarea>
+
+
+            <div class="modal-acoes">
+
+                <button
+                    type="button"
+                    class="btn-cancelar"
+                    id="btnCancelarModal">
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn-salvar"
+                    onclick="salvarObservacao()">
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Salvar observação
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================================
+         SCRIPTS
+         ================================================================ -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="./js/auth.js"></script>
+
+    <script src="./js/mural.js"></script>
+
+</body>
+
+</html>
