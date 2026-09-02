@@ -154,13 +154,10 @@ ol {
 
     margin: 0 auto;
 
-    display: flex;
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr) 240px;
     align-items: center;
-    justify-content: space-between;
-
-    gap: 20px;
-
-    position: relative;
+    gap: 30px;
 }
 
 
@@ -199,7 +196,7 @@ ol {
 }
 
 
-./* ==========================================================================
+/* ==========================================================================
    3. MENU / PÍLULA FLUTUANTE
    ========================================================================== */
 
@@ -2025,11 +2022,10 @@ footer {
     }
 
     .nav-menu {
-        position: static;
-
-        transform: none;
-
-        margin: 0 auto;
+        position: fixed;
+        top: 18px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .action-area {
