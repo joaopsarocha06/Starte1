@@ -4,344 +4,1462 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Código de Conduta - Startê</title>
 
-    <!-- Meta tags para SEO e compartilhamento -->
+    <!-- ================================================================
+         META TAGS
+         ================================================================ -->
+
     <meta name="description"
-        content="Conheça o Código de Ética e Conduta do SENAC: princípios, valores e normas que orientam nossas atitudes e decisões.">
+        content="Conheça o Código de Ética e Conduta e o Plano Pedagógico do SENAC: princípios, valores, diretrizes educacionais e normas que orientam nossas atitudes e decisões.">
+
     <meta property="og:type" content="website">
     <meta property="og:title" content="Código de Conduta - Startê SENAC">
-    <meta property="og:description" content="Ética e conduta que constroem um SENAC melhor. Acesse o código completo.">
+    <meta property="og:description"
+        content="Ética, conduta e educação profissional que contribuem para a construção de um SENAC melhor.">
     <meta property="og:image" content="imagens/logo-branco.png">
-    <meta property="og:url" content="https://www.exemplo.com/conduta.html">
+    <meta property="og:url" content="https://starte1.vercel.app/conduta.html">
 
-    <!-- Fonte Open Sans -->
+
+    <!-- ================================================================
+         FONTE
+         ================================================================ -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="./css/style-conduta.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- ================================================================
+         CSS
+         ================================================================ -->
+
+    <link rel="stylesheet" href="./css/style-conduta.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
 </head>
 
+
 <body>
+
+
+    <!-- ================================================================
+         HEADER
+         ================================================================ -->
+
     <header class="main-header">
 
         <div class="container header-container">
+
+
             <!-- LOGO -->
+
             <div class="logo-area">
+
                 <a href="home.html" aria-label="Página inicial do Startê">
+
                     <img src="imagens/Senac_logo.svg.webp" alt="Logo Senac" class="logo-img">
+
                 </a>
+
             </div>
-            <!-- MENU PRINCIPAL -->
+
+
+
+            <!-- ========================================================
+                 MENU PRINCIPAL
+                 ======================================================== -->
+
             <nav class="nav-menu" id="mainNav" aria-label="Menu principal">
+
                 <ul class="nav-list">
+
                     <li>
+
                         <a href="home.html" class="nav-link">
+
                             HOME
+
                         </a>
+
                     </li>
+
+
                     <li>
+
                         <a href="cursos.html" class="nav-link">
+
                             CURSOS
+
                         </a>
+
                     </li>
+
+
                     <li>
+
                         <a href="conduta.html" class="nav-link active" aria-current="page">
+
                             CONDUTA
+
                         </a>
+
                     </li>
+
+
                     <li>
+
                         <a href="eventos.html" class="nav-link">
+
                             EVENTOS
+
                         </a>
+
                     </li>
+
                 </ul>
+
             </nav>
-            <!-- ÁREA DE AÇÕES -->
+
+
+
+            <!-- ========================================================
+                 ÁREA DO USUÁRIO
+                 ======================================================== -->
+
             <div class="action-area">
-                <!-- PERFIL DO USUÁRIO -->
+
+
                 <div class="user-profile" id="userProfile">
+
+
+                    <!-- BOTÃO DO PERFIL -->
+
                     <button type="button" class="user-profile-button" id="userProfileButton" aria-expanded="false"
                         aria-haspopup="true">
+
+
                         <span class="user-profile-icon">
-                            <i class="fas fa-user" aria-hidden="true"></i>
+
+                            <i class="fas fa-user" aria-hidden="true">
+                            </i>
+
                         </span>
+
+
                         <span class="user-profile-info">
+
                             <span class="user-profile-welcome">
+
                                 Bem-vindo
+
                             </span>
+
+
                             <span class="user-profile-name" id="userProfileName">
+
                                 Usuário
+
                             </span>
+
                         </span>
-                        <i class="fas fa-chevron-down user-profile-arrow" aria-hidden="true"></i>
+
+
+                        <i class="fas fa-chevron-down user-profile-arrow" aria-hidden="true">
+                        </i>
+
+
                     </button>
+
+
+
+                    <!-- =================================================
+                         MENU DO PERFIL
+                         ================================================= -->
+
                     <div class="user-profile-menu" id="userProfileMenu" role="menu">
+
+
                         <button type="button" class="user-profile-menu-item" id="profileButton" role="menuitem">
-                            <i class="fas fa-user" aria-hidden="true"></i>
+
+                            <i class="fas fa-user" aria-hidden="true">
+                            </i>
+
                             <span>
                                 Meu perfil
                             </span>
+
                         </button>
+
+
                         <div class="user-profile-divider"></div>
+
+
                         <button type="button" class="user-profile-menu-item logout" id="logoutButton" role="menuitem">
-                            <i class="fas fa-right-from-bracket" aria-hidden="true"></i>
+
+                            <i class="fas fa-right-from-bracket" aria-hidden="true">
+                            </i>
+
                             <span>
                                 Sair
                             </span>
+
                         </button>
+
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
 
     </header>
 
+
+
+    <!-- ================================================================
+         HERO / APRESENTAÇÃO
+         ================================================================ -->
+
     <main class="container-senac">
+
+
+        <!-- ============================================================
+             CONTEÚDO ESQUERDO
+             ============================================================ -->
 
         <section class="conteudo-esquerda">
 
+
+            <!-- BOTÃO VOLTAR -->
+
             <a href="./home.html" class="btn-voltar">
+
                 <svg class="seta-voltar" viewBox="0 0 24 24" width="16" height="16">
+
                     <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="#0b5195" />
+
                 </svg>
+
                 Voltar
+
             </a>
 
-            <span class="badge-tag">CÓDIGO DE ÉTICA E CONDUTA</span>
+
+
+            <!-- IDENTIFICAÇÃO -->
+
+            <span class="badge-tag">
+
+                CÓDIGO DE ÉTICA E CONDUTA
+
+            </span>
+
+
+
+            <!-- TÍTULO -->
 
             <h1 class="titulo-principal">
-                Ética e conduta que constroem um <br>
-                <span class="destaque-senac">SENAC</span> melhor.
+
+                Ética e conduta que constroem um
+                <br>
+
+                <span class="destaque-senac">
+                    SENAC
+                </span>
+
+                melhor.
+
             </h1>
 
+
+
+            <!-- DESCRIÇÃO -->
+
             <p class="descricao-texto">
-                Nosso Código de Ética e Conduta apresenta os princípios, valores e normas que orientam nossas atitudes,
-                relações e decisões no dia a dia, em prol da missão institucional e do interesse público.
+
+                Nosso Código de Ética e Conduta apresenta os princípios,
+                valores e normas que orientam nossas atitudes, relações
+                e decisões no dia a dia, em prol da missão institucional
+                e do interesse público.
+
             </p>
 
-            <a href="#" class="btn-acao">
+
+
+            <!-- BOTÃO DO CÓDIGO -->
+
+            <a href="#temas" class="btn-acao">
+
                 Acessar o código completo
+
                 <svg class="seta-acao" viewBox="0 0 24 24" width="18" height="18">
+
                     <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="#ffffff" />
+
                 </svg>
+
             </a>
+
 
         </section>
 
+
+
+        <!-- ============================================================
+             IMAGEM DIREITA
+             ============================================================ -->
+
         <aside class="conteudo-direita">
+
             <img src="imagens/conduta1.png" alt="Diagrama de ética e conduta com ícones circulares"
                 class="imagem-diagrama">
+
         </aside>
+
 
     </main>
 
+
+
+    <!-- ================================================================
+         COMPROMISSOS
+         ================================================================ -->
+
     <section class="container-compromissos">
+
+
         <div class="cards-compromissos-grid">
 
+
+            <!-- CARD PRINCIPAL -->
+
             <div class="card-compromisso-destaque">
-                <h2>O que é o código de Ética e Conduta?</h2>
-                <p>Nosso Código de Ética e Conduta apresenta os princípios, valores e normas que orientam nossas
-                    atitudes, relações e decisões no dia a dia, em prol da missão institucional e do interesse público.
+
+                <h2>
+
+                    O que é o código de
+                    Ética e Conduta?
+
+                </h2>
+
+
+                <p>
+
+                    Nosso Código de Ética e Conduta apresenta os princípios,
+                    valores e normas que orientam nossas atitudes, relações
+                    e decisões no dia a dia, em prol da missão institucional
+                    e do interesse público.
+
                 </p>
+
             </div>
 
-            <div class="card-compromisso-item">
-                <h3>Compromisso com as pessoas</h3>
-                <p>Valorização, respeito à diversidade e promoção de um ambiente ético e inclusivo.</p>
-            </div>
+
+
+            <!-- CARD 1 -->
 
             <div class="card-compromisso-item">
-                <h3>Integridade em Primeiro Lugar</h3>
-                <p>Atuação com honestidade, responsabilidade e imparcialidade em todas as situações.</p>
+
+                <h3>
+
+                    Compromisso com as pessoas
+
+                </h3>
+
+
+                <p>
+
+                    Valorização, respeito à diversidade e promoção de um
+                    ambiente ético e inclusivo.
+
+                </p>
+
             </div>
 
-            <div class="card-compromisso-item">
-                <h3>Conformidade e Transparência</h3>
-                <p>Cumprimento das leis, normas e políticas com prestação de contas e clareza nas relações.</p>
-            </div>
+
+
+            <!-- CARD 2 -->
 
             <div class="card-compromisso-item">
-                <h3>Excelência no serviço Público</h3>
-                <p>Qualidade, eficiência e foco no interesse público em tudo o que fazemos.</p>
+
+                <h3>
+
+                    Integridade em Primeiro Lugar
+
+                </h3>
+
+
+                <p>
+
+                    Atuação com honestidade, responsabilidade e
+                    imparcialidade em todas as situações.
+
+                </p>
+
             </div>
+
+
+
+            <!-- CARD 3 -->
+
+            <div class="card-compromisso-item">
+
+                <h3>
+
+                    Conformidade e Transparência
+
+                </h3>
+
+
+                <p>
+
+                    Cumprimento das leis, normas e políticas com prestação
+                    de contas e clareza nas relações.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- CARD 4 -->
+
+            <div class="card-compromisso-item">
+
+                <h3>
+
+                    Excelência no serviço Público
+
+                </h3>
+
+
+                <p>
+
+                    Qualidade, eficiência e foco no interesse público
+                    em tudo o que fazemos.
+
+                </p>
+
+            </div>
+
 
         </div>
+
     </section>
 
-    <section class="container-temas-ouvidoria">
+
+
+    <!-- =================================================================
+         ================================================================
+         SEÇÃO PLANO PEDAGÓGICO
+         ================================================================
+         ================================================================= -->
+
+    <section class="container-plano-pedagogico" id="plano-pedagogico">
+
+
+        <!-- =============================================================
+             CABEÇALHO DA SEÇÃO
+             ============================================================= -->
+
+        <div class="plano-pedagogico-header">
+
+
+            <!-- BADGE -->
+
+            <div class="plano-pedagogico-badge">
+
+                <i class="fas fa-graduation-cap" aria-hidden="true">
+                </i>
+
+                PLANO PEDAGÓGICO
+
+            </div>
+
+
+
+            <!-- TÍTULO -->
+
+            <h2>
+
+                Plano Pedagógico do
+                <span>SENAC</span>
+
+            </h2>
+
+
+
+            <!-- DESCRIÇÃO -->
+
+            <p>
+
+                Conheça as diretrizes que orientam as práticas educacionais,
+                o desenvolvimento das competências e a formação dos alunos
+                para os desafios do mundo do trabalho.
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- =============================================================
+             INTRODUÇÃO DO PLANO PEDAGÓGICO
+             ============================================================= -->
+
+        <div class="plano-pedagogico-conteudo">
+
+
+            <div class="plano-pedagogico-introducao">
+
+
+                <!-- ÍCONE -->
+
+                <div class="plano-icone-principal">
+
+                    <i class="fas fa-book-open" aria-hidden="true">
+                    </i>
+
+                </div>
+
+
+
+                <!-- TEXTO -->
+
+                <div>
+
+
+                    <span class="plano-kicker">
+
+                        EDUCAÇÃO PROFISSIONAL
+
+                    </span>
+
+
+
+                    <h3>
+
+                        Uma formação conectada
+                        com o mundo do trabalho
+
+                    </h3>
+
+
+
+                    <p>
+
+                        O Plano Pedagógico reúne orientações para organizar
+                        o processo de ensino e aprendizagem, valorizando o
+                        desenvolvimento integral do aluno, a autonomia,
+                        a prática profissional e a construção de conhecimentos
+                        aplicáveis à realidade.
+
+                    </p>
+
+
+
+                    <p>
+
+                        A proposta busca aproximar teoria e prática,
+                        estimular a participação do estudante e fortalecer
+                        competências necessárias para sua trajetória
+                        acadêmica, profissional e cidadã.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================================================
+                 CARDS DO PLANO PEDAGÓGICO
+                 ========================================================= -->
+
+            <div class="plano-pedagogico-cards">
+
+
+                <!-- =====================================================
+                     CARD 1
+                     ===================================================== -->
+
+                <article class="plano-card">
+
+
+                    <div class="plano-card-icone azul">
+
+                        <i class="fas fa-bullseye" aria-hidden="true">
+                        </i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+
+                            Objetivos educacionais
+
+                        </h4>
+
+
+                        <p>
+
+                            Promover uma formação significativa,
+                            desenvolvendo conhecimentos, habilidades
+                            e atitudes para a atuação profissional.
+
+                        </p>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- =====================================================
+                     CARD 2
+                     ===================================================== -->
+
+                <article class="plano-card">
+
+
+                    <div class="plano-card-icone laranja">
+
+                        <i class="fas fa-lightbulb" aria-hidden="true">
+                        </i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+
+                            Princípios pedagógicos
+
+                        </h4>
+
+
+                        <p>
+
+                            Valorizar autonomia, protagonismo, inclusão,
+                            ética, colaboração e aprendizagem ao longo
+                            da vida.
+
+                        </p>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- =====================================================
+                     CARD 3
+                     ===================================================== -->
+
+                <article class="plano-card">
+
+
+                    <div class="plano-card-icone azul">
+
+                        <i class="fas fa-chalkboard-teacher" aria-hidden="true">
+                        </i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+
+                            Metodologia de ensino
+
+                        </h4>
+
+
+                        <p>
+
+                            Utilizar estratégias que aproximem o conteúdo
+                            de situações práticas e estimulem a participação
+                            ativa do aluno.
+
+                        </p>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- =====================================================
+                     CARD 4
+                     ===================================================== -->
+
+                <article class="plano-card">
+
+
+                    <div class="plano-card-icone laranja">
+
+                        <i class="fas fa-chart-line" aria-hidden="true">
+                        </i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+
+                            Avaliação da aprendizagem
+
+                        </h4>
+
+
+                        <p>
+
+                            Acompanhar o desenvolvimento das competências
+                            de forma contínua, considerando resultados
+                            e evolução do estudante.
+
+                        </p>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- =====================================================
+                     CARD 5
+                     ===================================================== -->
+
+                <article class="plano-card">
+
+
+                    <div class="plano-card-icone azul">
+
+                        <i class="fas fa-user-graduate" aria-hidden="true">
+                        </i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+
+                            Acompanhamento do aluno
+
+                        </h4>
+
+
+                        <p>
+
+                            Favorecer o acompanhamento pedagógico e a
+                            identificação de necessidades ao longo
+                            da formação.
+
+                        </p>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- =====================================================
+                     CARD 6
+                     ===================================================== -->
+
+                <article class="plano-card">
+
+
+                    <div class="plano-card-icone laranja">
+
+                        <i class="fas fa-briefcase" aria-hidden="true">
+                        </i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+
+                            Preparação profissional
+
+                        </h4>
+
+
+                        <p>
+
+                            Desenvolver competências alinhadas às demandas
+                            profissionais, à inovação e às transformações
+                            do mercado de trabalho.
+
+                        </p>
+
+                    </div>
+
+
+                </article>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =============================================================
+             DOCUMENTO OFICIAL / PDF
+             ============================================================= -->
+
+        <div class="plano-pdf-box">
+
+
+            <!-- ÍCONE PDF -->
+
+            <div class="plano-pdf-icone">
+
+                <i class="fas fa-file-pdf" aria-hidden="true">
+                </i>
+
+            </div>
+
+
+
+            <!-- TEXTO -->
+
+            <div class="plano-pdf-texto">
+
+                <span>
+                    DOCUMENTO OFICIAL
+                </span>
+
+
+                <h3>
+
+                    Plano Pedagógico completo
+
+                </h3>
+
+
+                <p>
+
+                    Acesse o documento em PDF para consultar o conteúdo
+                    completo do Plano Pedagógico.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- =========================================================
+                 BOTÃO DO PDF
+                 
+                 =========================================================
+                 
+                 COLOQUE O PDF NESTE CAMINHO:
+
+                 pdf/plano-pedagogico.pdf
+
+                 ESTRUTURA:
+
+                 projeto/
+                 ├── conduta.html
+                 ├── pdf/
+                 │   └── plano-pedagogico.pdf
+                 └── ...
+
+                 ========================================================= -->
+
+            <a href="pdf/diretrizes_MPS  2024.pdf" class="btn-plano-pdf" target="_blank" rel="noopener">
+
+                <i class="fas fa-file-arrow-down" aria-hidden="true">
+                </i>
+
+                Acessar PDF
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================================================================
+         DIRETRIZES E TEMAS
+         ================================================================ -->
+
+    <section class="container-temas-ouvidoria" id="temas">
+
+
         <div class="grid-temas-ouvidoria">
+
+
+            <!-- ========================================================
+                 CARD DIRETRIZES
+                 ======================================================== -->
 
             <div class="card-ouvidoria-laranja">
 
+
+                <!-- PERSONAGEM -->
+
                 <div class="avatar-container">
-                    <img src="imagens/boneca1.png" alt="Assistente Virtual Senac" class="avatar-personagem" />
+
+                    <img src="imagens/boneca1.png" alt="Assistente Virtual Senac" class="avatar-personagem">
+
                 </div>
 
+
+
+                <!-- CONTEÚDO -->
+
                 <div class="conteudo-ouvidoria">
-                    <h2>Confira mais Diretrizes do SENAC</h2>
-                    <p>Cabe ao Departamento Nacional do Senac produzir diretrizes sobre educação profissional de forma
-                        articulada com os Departamentos Regionais do Senac, visando garantir coesão e abrangência
-                        nacional, de forma a subsidiar as ações educacionais nos estados.</p>
+
+
+                    <h2>
+
+                        Confira mais
+                        Diretrizes do SENAC
+
+                    </h2>
+
+
+
+                    <p>
+
+                        Cabe ao Departamento Nacional do Senac produzir
+                        diretrizes sobre educação profissional de forma
+                        articulada com os Departamentos Regionais do Senac,
+                        visando garantir coesão e abrangência nacional,
+                        de forma a subsidiar as ações educacionais nos estados.
+
+                    </p>
+
+
+
                     <a href="https://dn.senac.br/educacao-profissional/organizacao-da-oferta/diretrizes-educacionais/"
-                        class="btn-ouvidoria">Diretrizes</a>
+                        class="btn-ouvidoria" target="_blank" rel="noopener">
+
+                        Diretrizes
+
+                    </a>
+
+
                 </div>
+
 
             </div>
 
+
+
+            <!-- ========================================================
+                 PRINCIPAIS TEMAS
+                 ======================================================== -->
+
             <div class="conteudo-temas">
-                <h2 class="titulo-secao-temas">Principais temas abordados</h2>
-                <p class="descricao-secao-temas">Nosso Código de Ética e Conduta apresenta os princípios, valores e
-                    normas que orientam nossas atitudes, relações</p>
+
+
+                <h2 class="titulo-secao-temas">
+
+                    Principais temas abordados
+
+                </h2>
+
+
+
+                <p class="descricao-secao-temas">
+
+                    Nosso Código de Ética e Conduta apresenta os princípios,
+                    valores e normas que orientam nossas atitudes e relações
+                    no ambiente institucional.
+
+                </p>
+
+
+
+                <!-- =====================================================
+                     GRID DOS TEMAS
+                     ===================================================== -->
 
                 <div class="grid-topicos-temas">
 
+
+                    <!-- TEMA 1 -->
+
                     <div class="topico-item">
+
+
                         <div class="topico-icone icone-azul">
-                            <i class="fas fa-file-alt" aria-hidden="true"></i>
+
+                            <i class="fas fa-file-alt" aria-hidden="true">
+                            </i>
+
                         </div>
+
+
                         <div class="topico-texto">
-                            <h4>Princípios e Normas</h4>
-                            <p>Direitos, deveres e valores que orientam a conduta.</p>
+
+                            <h4>
+
+                                Princípios e Normas
+
+                            </h4>
+
+
+                            <p>
+
+                                Direitos, deveres e valores que orientam
+                                a conduta.
+
+                            </p>
+
                         </div>
+
+
                     </div>
 
+
+
+                    <!-- TEMA 2 -->
+
                     <div class="topico-item">
+
+
                         <div class="topico-icone icone-laranja">
-                            <i class="fas fa-users" aria-hidden="true"></i>
+
+                            <i class="fas fa-users" aria-hidden="true">
+                            </i>
+
                         </div>
+
+
                         <div class="topico-texto">
-                            <h4>Objetivos e Cultura</h4>
-                            <p>Compromissos e cultura organizacional.</p>
+
+                            <h4>
+
+                                Objetivos e Cultura
+
+                            </h4>
+
+
+                            <p>
+
+                                Compromissos e cultura organizacional.
+
+                            </p>
+
                         </div>
+
+
                     </div>
 
+
+
+                    <!-- TEMA 3 -->
+
                     <div class="topico-item">
+
+
                         <div class="topico-icone icone-azul">
-                            <i class="fas fa-balance-scale" aria-hidden="true"></i>
+
+                            <i class="fas fa-balance-scale" aria-hidden="true">
+                            </i>
+
                         </div>
+
+
                         <div class="topico-texto">
-                            <h4>Infrações e Sanções</h4>
-                            <p>Condutas inadequadas e medidas disciplinares.</p>
+
+                            <h4>
+
+                                Infrações e Sanções
+
+                            </h4>
+
+
+                            <p>
+
+                                Condutas inadequadas e medidas
+                                disciplinares.
+
+                            </p>
+
                         </div>
+
+
                     </div>
 
+
+
+                    <!-- TEMA 4 -->
+
                     <div class="topico-item">
+
+
                         <div class="topico-icone icone-laranja">
-                            <i class="fas fa-gavel" aria-hidden="true"></i>
+
+                            <i class="fas fa-gavel" aria-hidden="true">
+                            </i>
+
                         </div>
+
+
                         <div class="topico-texto">
-                            <h4>Processos Judiciais</h4>
-                            <p>Diretrizes para atuação em processos judiciais e extrajudiciais.</p>
+
+                            <h4>
+
+                                Processos Judiciais
+
+                            </h4>
+
+
+                            <p>
+
+                                Diretrizes para atuação em processos
+                                judiciais e extrajudiciais.
+
+                            </p>
+
                         </div>
+
+
                     </div>
+
 
                 </div>
+
+
             </div>
 
+
         </div>
+
+
     </section>
+
+
+
+    <!-- ================================================================
+         FOOTER
+         ================================================================ -->
 
     <footer>
 
+
+        <!-- LINHA LARANJA -->
+
         <div class="linha-topo"></div>
+
+
 
         <div class="footer-container">
 
+
+            <!-- ========================================================
+                 SOBRE
+                 ======================================================== -->
+
             <div class="footer-sobre" id="sobrenos">
+
 
                 <img src="./imagens/logo-branco.png" alt="Logo Senac" class="logo">
 
+
                 <p>
-                    Instituição de educação profissional aberta a toda a sociedade, com a missão de desenvolver pessoas
-                    e organizações para o mundo do trabalho. O Serviço Nacional de Aprendizagem Comercial – Senac,
-                    pessoa jurídica
-                    de direito privado, sem fins lucrativos, foi criado pelo Decreto-lei nº 8.621 de 10 de janeiro de
-                    1946. Neste mesmo ano, foi fundado também seu
-                    Departamento Regional de Pernambuco, instalado em 14 de outubro.
+
+                    Instituição de educação profissional aberta a toda
+                    a sociedade, com a missão de desenvolver pessoas
+                    e organizações para o mundo do trabalho.
+
+                    O Serviço Nacional de Aprendizagem Comercial – Senac,
+                    pessoa jurídica de direito privado, sem fins lucrativos,
+                    foi criado pelo Decreto-lei nº 8.621 de 10 de janeiro
+                    de 1946.
+
+                    Neste mesmo ano, foi fundado também seu Departamento
+                    Regional de Pernambuco, instalado em 14 de outubro.
+
                 </p>
 
+
+
                 <div class="footer-badges">
+
                     <img src="./imagens/prevencao.png" alt="Programa prevenção">
+
+
                     <img src="./imagens/logo.png" alt="Startê" class="starte-logo">
+
                 </div>
 
+
             </div>
+
+
+
+            <!-- ========================================================
+                 REDES SOCIAIS
+                 ======================================================== -->
 
             <div class="footer-redes" id="contatos">
 
-                <h3>Conecte-se</h3>
+
+                <h3>
+
+                    Conecte-se
+
+                </h3>
+
+
 
                 <div class="social-icons">
-                    <a href="#" aria-label="WhatsApp"><img src="./imagens/telefoneverde.png" alt=""></a>
-                    <a href="#" aria-label="Twitter"><img src="./imagens/twitter.png" alt=""></a>
-                    <a href="#" aria-label="Instagram"><img src="./imagens/instagram.png" alt=""></a>
-                    <a href="#" aria-label="Facebook"><img src="./imagens/facebook.png" alt=""></a>
+
+
+                    <a href="#" aria-label="WhatsApp">
+
+                        <img src="./imagens/telefoneverde.png" alt="">
+
+                    </a>
+
+
+
+                    <a href="#" aria-label="Twitter">
+
+                        <img src="./imagens/twitter.png" alt="">
+
+                    </a>
+
+
+
+                    <a href="#" aria-label="Instagram">
+
+                        <img src="./imagens/instagram.png" alt="">
+
+                    </a>
+
+
+
+                    <a href="#" aria-label="Facebook">
+
+                        <img src="./imagens/facebook.png" alt="">
+
+                    </a>
+
+
                 </div>
 
+
             </div>
+
+
+
+            <!-- ========================================================
+                 LINKS / PESQUISA
+                 ======================================================== -->
 
             <div class="footer-links">
 
+
                 <div class="titulo">
+
                     <div class="barra"></div>
-                    <h2>Pesquise por Cursos e Notícias</h2>
+
+                    <h2>
+
+                        Pesquise por Cursos e Notícias
+
+                    </h2>
+
                 </div>
+
+
 
                 <div class="footer-search">
+
+
                     <input type="text" id="footerSearch" placeholder="Pesquisar" aria-label="Pesquisar no site">
+
+
                     <button id="footerSearchBtn" aria-label="Pesquisar">
-                        <i class="fas fa-search" aria-hidden="true"></i>
+
+                        <i class="fas fa-search" aria-hidden="true">
+                        </i>
+
                     </button>
+
+
                 </div>
+
+
+
+                <!-- PARCEIROS -->
 
                 <div class="titulo">
+
                     <div class="barra"></div>
-                    <h2>Parceiros</h2>
+
+                    <h2>
+
+                        Parceiros
+
+                    </h2>
+
                 </div>
 
+
+
                 <div class="parceiros">
-                    <a href="#">Fecomércio Pernambuco</a>
+
+
+                    <a href="#">
+
+                        Fecomércio Pernambuco
+
+                    </a>
+
+
                     <span>|</span>
-                    <a href="#">Sesc Pernambuco</a>
+
+
+                    <a href="#">
+
+                        Sesc Pernambuco
+
+                    </a>
+
+
                 </div>
+
 
             </div>
 
+
         </div>
 
+
+
+        <!-- ================================================================
+             LOCALIZAÇÃO
+             ================================================================ -->
+
         <div class="footer-local">
-            <i class="fas fa-location-dot" aria-hidden="true"></i>
-            <a href="https://maps.app.goo.gl/6A3dxDU1zrD2bHD7A" target="_blank" rel="noopener">Pernambuco - Av. Visconde
-                de Suassuna, 500 - Santo Amaro - Recife</a>
+
+
+            <i class="fas fa-location-dot" aria-hidden="true">
+            </i>
+
+
+            <a href="https://maps.app.goo.gl/6A3dxDU1zrD2bHD7A" target="_blank" rel="noopener">
+
+                Pernambuco - Av. Visconde de Suassuna, 500 -
+                Santo Amaro - Recife
+
+            </a>
+
+
         </div>
+
+
+
+        <!-- ================================================================
+             RODAPÉ INFERIOR
+             ================================================================ -->
 
         <div class="footer-bottom">
 
+
             <img src="./imagens/logo-branco.png" alt="Senac">
 
-            <p>© 2026 Todos os Direitos Reservados.</p>
+
+
+            <p>
+
+                © 2026 Todos os Direitos Reservados.
+
+            </p>
+
+
 
             <div class="empresa">
-                <strong>Para sua empresa</strong>
-                <a href="#">Atendimento Corporativo</a>
-                <a href="#">Programa de Aprendizagem</a>
+
+
+                <strong>
+
+                    Para sua empresa
+
+                </strong>
+
+
+                <a href="#">
+
+                    Atendimento Corporativo
+
+                </a>
+
+
+                <a href="#">
+
+                    Programa de Aprendizagem
+
+                </a>
+
+
             </div>
+
 
         </div>
 
+
     </footer>
 
-    <!-- Botão voltar ao topo -->
+    <!-- ================================================================
+         BOTÃO VOLTAR AO TOPO
+         ================================================================ -->
+
     <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
-        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+
+        <i class="fas fa-chevron-up" aria-hidden="true">
+        </i>
+
     </button>
+    <!-- ================================================================
+         SCRIPTS
+         ================================================================ -->
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script src="js/auth.js"></script>
+
     <script src="js/script.js"></script>
+
+
 </body>
 
 </html>
