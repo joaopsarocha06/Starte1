@@ -199,99 +199,95 @@ ol {
 }
 
 
-/* --------------------------------------------------------------------------
-   MENU PRINCIPAL
-   -------------------------------------------------------------------------- */
+./* ==========================================================================
+   3. MENU / PÍLULA FLUTUANTE
+   ========================================================================== */
 
 .nav-menu {
-    position: absolute;
+  position: fixed;
 
-    top: 20px;
-    left: 50%;
+  top: 20px;
+  left: 50%;
 
-    transform: translateX(-50%);
+  transform: translateX(-50%);
 
-    z-index: 2000;
+  z-index: 2000;
 
-    padding: 14px 40px;
+  padding: 14px 40px;
 
-    background-color: rgba(240, 242, 245, 0.88);
+  background-color: rgba(240, 242, 245, 0.88);
 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
-    border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 
-    border-radius: var(--radius-pill);
+  border-radius: 35px;
 
-    box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.08),
-        0 1px 4px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.04);
 
-    pointer-events: auto;
+  transition:
+    background-color var(--transition-normal),
+    box-shadow var(--transition-normal);
 }
 
 .nav-list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
 }
 
 .nav-link {
-    position: relative;
+  position: relative;
 
-    display: inline-flex;
-    align-items: center;
+  display: inline-flex;
+  align-items: center;
 
-    padding: 4px 0;
+  font-size: 16px;
+  font-weight: 800;
 
-    color: #333333;
+  color: #333333;
 
-    font-size: 16px;
-    font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 
-    letter-spacing: 0.5px;
-
-    white-space: nowrap;
-
-    transition:
-        color var(--transition-fast),
-        transform var(--transition-fast);
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .nav-link::after {
-    content: "";
+  content: "";
 
-    position: absolute;
+  position: absolute;
 
-    left: 0;
-    bottom: -4px;
+  left: 50%;
+  bottom: -7px;
 
-    width: 0;
-    height: 2px;
+  width: 0;
+  height: 3px;
 
-    background-color: var(--senac-orange);
+  border-radius: 5px;
 
-    border-radius: var(--radius-pill);
+  background-color: var(--senac-orange);
 
-    transition: width var(--transition-normal);
+  transform: translateX(-50%);
+
+  transition: width var(--transition-fast);
 }
 
-.nav-link:hover {
-    color: var(--senac-blue);
-    transform: translateY(-1px);
+.nav-link:hover,
+.nav-link.active {
+  color: var(--senac-orange);
 }
 
 .nav-link:hover::after,
 .nav-link.active::after {
-    width: 100%;
+  width: 70%;
 }
 
-.nav-link.active {
-    color: var(--senac-blue);
-}
 
 
 /* ==========================================================================
