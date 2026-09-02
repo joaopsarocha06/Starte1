@@ -156,7 +156,9 @@ ol {
 
     display: grid;
     grid-template-columns: 180px minmax(0, 1fr) 240px;
+
     align-items: center;
+
     gap: 30px;
 }
 
@@ -177,6 +179,8 @@ ol {
 .logo-area a {
     display: flex;
     align-items: center;
+
+    pointer-events: auto;
 }
 
 .logo-img {
@@ -197,94 +201,112 @@ ol {
 
 
 /* ==========================================================================
-   3. MENU / PÍLULA FLUTUANTE
+   MENU / PÍLULA FLUTUANTE
    ========================================================================== */
 
 .nav-menu {
-  position: fixed;
+    position: fixed;
 
-  top: 20px;
-  left: 50%;
+    top: 20px;
+    left: 50%;
 
-  transform: translateX(-50%);
+    transform: translateX(-50%);
 
-  z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  padding: 14px 40px;
+    width: max-content;
+    max-width: 94vw;
 
-  background-color: rgba(240, 242, 245, 0.88);
+    padding: 14px 40px;
 
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(240, 242, 245, 0.88);
 
-  border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
-  border-radius: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
 
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.08),
-    0 1px 4px rgba(0, 0, 0, 0.04);
+    border-radius: 35px;
 
-  transition:
-    background-color var(--transition-normal),
-    box-shadow var(--transition-normal);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.08),
+        0 1px 4px rgba(0, 0, 0, 0.04);
+
+    z-index: 2000;
+
+    pointer-events: auto;
+
+    transition:
+        background-color var(--transition-normal),
+        box-shadow var(--transition-normal);
 }
 
 .nav-list {
-  display: flex;
-  align-items: center;
-  gap: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 32px;
+
+    margin: 0;
+    padding: 0;
 }
 
 .nav-link {
-  position: relative;
+    position: relative;
 
-  display: inline-flex;
-  align-items: center;
+    display: inline-flex;
+    align-items: center;
 
-  font-size: 16px;
-  font-weight: 800;
+    color: #333333;
 
-  color: #333333;
+    font-size: 16px;
+    font-weight: 800;
 
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 
-  transition:
-    color var(--transition-fast),
-    transform var(--transition-fast);
+    text-decoration: none;
+
+    cursor: pointer;
+    pointer-events: auto;
+
+    transition:
+        color var(--transition-fast),
+        transform var(--transition-fast);
 }
 
 .nav-link::after {
-  content: "";
+    content: "";
 
-  position: absolute;
+    position: absolute;
 
-  left: 50%;
-  bottom: -7px;
+    left: 50%;
+    bottom: -7px;
 
-  width: 0;
-  height: 3px;
+    width: 0;
+    height: 3px;
 
-  border-radius: 5px;
+    border-radius: 5px;
 
-  background-color: var(--senac-orange);
+    background-color: var(--senac-orange);
 
-  transform: translateX(-50%);
+    transform: translateX(-50%);
 
-  transition: width var(--transition-fast);
+    transition: width var(--transition-fast);
 }
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--senac-orange);
+    color: var(--senac-orange);
 }
 
 .nav-link:hover::after,
 .nav-link.active::after {
-  width: 70%;
+    width: 70%;
 }
-
 
 
 /* ==========================================================================
@@ -2023,9 +2045,26 @@ footer {
 
     .nav-menu {
         position: fixed;
+
         top: 18px;
         left: 50%;
+
         transform: translateX(-50%);
+
+        width: max-content;
+        max-width: 94vw;
+
+        pointer-events: auto;
+    }
+
+    .nav-list {
+        gap: 24px;
+    }
+
+    .nav-link {
+        font-size: 13px;
+
+        pointer-events: auto;
     }
 
     .action-area {
@@ -2140,17 +2179,19 @@ footer {
     .header-container {
         width: 92vw;
 
-        flex-wrap: wrap;
+        display: grid;
 
-        justify-content: center;
+        grid-template-columns: 1fr auto;
+
+        align-items: center;
 
         gap: 14px;
     }
 
     .logo-area {
-        width: 100%;
+        width: auto;
 
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .logo-img {
@@ -2158,27 +2199,40 @@ footer {
     }
 
     .nav-menu {
-        order: 3;
+        position: fixed;
 
-        width: 100%;
+        top: 18px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: max-content;
+        max-width: 94vw;
 
         padding: 11px 16px;
 
         overflow-x: auto;
 
-        border-radius: 24px;
+        border-radius: 35px;
+
+        pointer-events: auto;
     }
 
     .nav-list {
-        gap: 22px;
+        display: flex;
 
+        align-items: center;
         justify-content: center;
+
+        gap: 22px;
 
         min-width: max-content;
     }
 
     .nav-link {
         font-size: 12px;
+
+        pointer-events: auto;
     }
 
     .action-area {
@@ -2372,8 +2426,12 @@ footer {
     }
 
     .nav-menu {
+        top: 16px;
+
         padding-left: 13px;
         padding-right: 13px;
+
+        max-width: 92vw;
     }
 
     .nav-list {
