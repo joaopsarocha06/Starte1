@@ -3,7 +3,7 @@
 
    Responsabilidades:
    1. Menu mobile
-   2. Busca do header
+   2. Busca do header 
    3. Busca do footer
    4. Botão voltar ao topo
    5. Animações
