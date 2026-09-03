@@ -275,10 +275,10 @@ button,
    ========================================================================== */
 
 .nav-menu {
-  position: absolute;
+  position: fixed;
 
   top: 20px;
-  left: 50%;
+  left: calc(50% + 55px);
 
   transform: translateX(-50%);
 
@@ -321,17 +321,11 @@ button,
 
 .action-area {
   position: relative;
-
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: flex-end;
-
-  gap: 12px;
-
-  flex-shrink: 0;
-
+  gap: 20px;
   z-index: 2100;
 }
 
