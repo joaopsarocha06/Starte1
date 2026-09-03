@@ -28,109 +28,33 @@
 
 <body>
 
-  <!-- =========================================================
-       HEADER
-  ========================================================== -->
-
   <header class="main-header">
-    <div class="container header-container">
-
-      <div class="logo-area">
-        <a href="home.html" aria-label="Página inicial do Startê">
-          <img src="imagens/Senac_logo.svg.webp" alt="Logo Senac" class="logo-img">
-        </a>
-      </div>
-
+    <div class="container header-container"> <!-- LOGO -->
+      <div class="logo-area"> <a href="home.html" aria-label="Página inicial do Startê"> <img
+            src="imagens/Senac_logo.svg.webp" alt="Logo Senac" class="logo-img"> </a> </div> <!-- MENU PRINCIPAL -->
       <nav class="nav-menu" id="mainNav" aria-label="Menu principal">
         <ul class="nav-list">
-          <li>
-            <a href="home.html" class="nav-link active" aria-current="page">
-              HOME
-            </a>
-          </li>
-
-          <li>
-            <a href="cursos.html" class="nav-link">
-              CURSOS
-            </a>
-          </li>
-
-          <li>
-            <a href="conduta.html" class="nav-link">
-              CONDUTA
-            </a>
-          </li>
-
-          <li>
-            <a href="eventos.html" class="nav-link">
-              EVENTOS
-            </a>
-          </li>
-
-          <li>
-            <a href="mural.html" class="nav-link">
-              MURAL DOCENTE
-            </a>
-          </li>
+          <li> <a href="home.html" class="nav-link active" aria-current="page"> HOME </a> </li>
+          <li> <a href="cursos.html" class="nav-link"> CURSOS </a> </li>
+          <li> <a href="conduta.html" class="nav-link"> CONDUTA </a> </li>
+          <li> <a href="eventos.html" class="nav-link"> EVENTOS </a> </li>
+          <li> <a href="mural.html" class="nav-link"> MURAL DOCENTE </a> </li>
         </ul>
-      </nav>
-
-      <div class="action-area">
-        <!-- PERFIL DO USUÁRIO -->
-        <div class="user-profile" id="userProfile">
-
-          <button type="button" class="user-profile-button" id="userProfileButton" aria-expanded="false"
-            aria-haspopup="true">
-
-            <span class="user-profile-icon">
-              <i class="fas fa-user" aria-hidden="true"></i>
-            </span>
-
-            <span class="user-profile-info">
-
-              <span class="user-profile-welcome">
-                Bem-vindo
-              </span>
-
-              <span class="user-profile-name" id="userProfileName">
-                Usuário
-              </span>
-
-            </span>
-
-            <i class="fas fa-chevron-down user-profile-arrow" aria-hidden="true"></i>
-
-          </button>
-
-
-          <div class="user-profile-menu" id="userProfileMenu" role="menu">
-
-            <button type="button" class="user-profile-menu-item" id="profileButton" role="menuitem">
-
-              <i class="fas fa-user" aria-hidden="true"></i>
-
-              <span>
-                Meu perfil
-              </span>
-
-            </button>
-
-
-            <div class="user-profile-divider"></div>
-
-
-            <button type="button" class="user-profile-menu-item logout" id="logoutButton" role="menuitem">
-
-              <i class="fas fa-right-from-bracket" aria-hidden="true"></i>
-
-              <span>
-                Sair
-              </span>
-
-            </button>
-
+      </nav> <!-- ÁREA DE AÇÕES -->
+      <div class="action-area"> <!-- PERFIL DO USUÁRIO -->
+        <div class="user-profile" id="userProfile"> <button type="button" class="user-profile-button"
+            id="userProfileButton" aria-expanded="false" aria-haspopup="true" aria-controls="userProfileMenu"> <span
+              class="user-profile-icon"> <i class="fas fa-user" aria-hidden="true"></i> </span> <span
+              class="user-profile-info"> <span class="user-profile-welcome"> Bem-vindo </span> <span
+                class="user-profile-name" id="userProfileName"> Usuário </span> </span> <i
+              class="fas fa-chevron-down user-profile-arrow" aria-hidden="true"></i> </button> <!-- MENU DO PERFIL -->
+          <div class="user-profile-menu" id="userProfileMenu" role="menu"> <button type="button"
+              class="user-profile-menu-item" id="profileButton" role="menuitem"> <i class="fas fa-user"
+                aria-hidden="true"></i> <span> Meu perfil </span> </button>
+            <div class="user-profile-divider"></div> <button type="button" class="user-profile-menu-item logout"
+              id="logoutButton" role="menuitem"> <i class="fas fa-right-from-bracket" aria-hidden="true"></i> <span>
+                Sair </span> </button>
           </div>
-
         </div>
       </div>
     </div>
@@ -175,7 +99,8 @@
 
         <div class="hero-image-character">
 
-          <img src="imagens/ChatGPT Image 28 de ago. de 2026, 08_38_04.png" alt="Personagem Senac" class="character-img">
+          <img src="imagens/ChatGPT Image 28 de ago. de 2026, 08_38_04.png" alt="Personagem Senac"
+            class="character-img">
 
         </div>
 
@@ -616,9 +541,9 @@
 
   </button>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/auth.js"></script>
-<script src="js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
 
 </body>
 
