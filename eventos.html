@@ -2,858 +2,905 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Portal de Eventos | Startê SENAC</title>
+    <title>Eventos | Startê - SENAC</title>
 
-  <meta name="description"
-    content="Cadastre e consulte eventos do SENAC. Envie documentos, escolha local, data e público-alvo de forma rápida e organizada.">
+    <meta
+        name="description"
+        content="Cadastre, consulte e gerencie eventos da plataforma Startê SENAC."
+    >
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Portal de Eventos | Startê SENAC">
-  <meta property="og:description" content="Cadastre novos eventos e gerencie anexos, local, data e público-alvo.">
-  <meta property="og:image" content="imagens/logo-branco.png">
-  <meta property="og:url" content="https://www.exemplo.com/eventos.html">
+    <!-- =========================================================
+         FONTES
+    ========================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+    <!-- =========================================================
+         FONT AWESOME
+    ========================================================== -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/eventos.css">
+    <!-- =========================================================
+         CSS
+    ========================================================== -->
+    <link rel="stylesheet" href="css/eventos.css">
 </head>
 
 <body>
 
-  <!-- ==========================================================
-       HEADER
-       ========================================================== -->
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
 
-  <header class="main-header">
+    <header class="main-header">
 
-    <div class="container header-container">
+        <div class="container header-container">
 
-      <!-- LOGO -->
-      <div class="logo-area">
-        <a href="home.html" aria-label="Página inicial do Startê">
+            <!-- LOGO -->
+            <div class="logo-area">
 
-          <img src="imagens/Senac_logo.svg.webp" alt="Logo SENAC" class="logo-img">
+                <a
+                    href="home.html"
+                    aria-label="Página inicial do Startê"
+                >
 
-        </a>
-      </div>
+                    <img
+                        src="imagens/Senac_logo.svg.webp"
+                        alt="Logo SENAC"
+                        class="logo-img"
+                    >
 
-      <!-- MENU PRINCIPAL -->
-      <nav class="nav-menu" id="mainNav" aria-label="Menu principal">
-
-        <ul class="nav-list">
-
-          <li>
-            <a href="home.html" class="nav-link">
-              Home
-            </a>
-          </li>
-
-          <li>
-            <a href="cursos.html" class="nav-link">
-              Cursos
-            </a>
-          </li>
-
-          <li>
-            <a href="conduta.html" class="nav-link">
-              Conduta
-            </a>
-          </li>
-
-          <li>
-            <a href="eventos.html" class="nav-link active" aria-current="page">
-              Eventos
-            </a>
-          </li>
-
-          <li>
-            <a href="mural.html" class="nav-link">
-              MURAL DOCENTE
-            </a>
-          </li>
-
-        </ul>
-
-      </nav>
-
-      <!-- ÁREA DE AÇÕES -->
-      <div class="action-area">
-        <!-- PERFIL -->
-        <div class="user-profile" id="userProfile">
-
-          <button type="button" class="user-profile-button" id="userProfileButton" aria-expanded="false"
-            aria-haspopup="true">
-
-            <span class="user-profile-icon">
-              <i class="fas fa-user" aria-hidden="true"></i>
-            </span>
-
-            <span class="user-profile-info">
-
-              <span class="user-profile-welcome">
-                Bem-vindo
-              </span>
-
-              <span class="user-profile-name" id="userProfileName">
-                Usuário
-              </span>
-
-            </span>
-
-            <i class="fas fa-chevron-down user-profile-arrow" aria-hidden="true">
-            </i>
-
-          </button>
-
-          <!-- MENU DO PERFIL -->
-          <div class="user-profile-menu" id="userProfileMenu" role="menu">
-
-            <button type="button" class="user-profile-menu-item" id="profileButton" role="menuitem">
-
-              <i class="fas fa-user" aria-hidden="true">
-              </i>
-
-              <span>Meu perfil</span>
-
-            </button>
-
-            <div class="user-profile-divider"></div>
-
-            <button type="button" class="user-profile-menu-item logout" id="logoutButton" role="menuitem">
-
-              <i class="fas fa-right-from-bracket" aria-hidden="true">
-              </i>
-
-              <span>Sair</span>
-
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </header>
-
-
-  <!-- ==========================================================
-       CONTEÚDO PRINCIPAL
-       ========================================================== -->
-
-  <main>
-
-    <!-- ========================================================
-         COMO FUNCIONA
-         ======================================================== -->
-
-    <section class="como-funciona" aria-labelledby="titulo-como-funciona">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <span class="section-label">
-            Portal de Eventos
-          </span>
-
-          <h1 id="titulo-como-funciona">
-            Como funciona o Portal de Eventos SENAC?
-          </h1>
-
-          <p>
-            Cadastre seu evento de forma simples, rápida e organizada.
-          </p>
-
-        </div>
-
-
-        <!-- CARDS -->
-        <div class="cards">
-
-          <article class="info-card">
-
-            <div class="card-icon">
-              <img src="imagens/Rectangle 465.png" alt="">
-            </div>
-
-            <h2>Anexos</h2>
-
-            <p>
-              Envie documentos e arquivos necessários para o evento.
-            </p>
-
-          </article>
-
-
-          <article class="info-card">
-
-            <div class="card-icon">
-              <img src="imagens/image 271.png" alt="">
-            </div>
-
-            <h2>Data do evento</h2>
-
-            <p>
-              Informe a data em que o evento será realizado.
-            </p>
-
-          </article>
-
-
-          <article class="info-card">
-
-            <div class="card-icon">
-              <img src="imagens/image 272.png" alt="">
-            </div>
-
-            <h2>Local</h2>
-
-            <p>
-              Escolha o local onde o evento acontecerá.
-            </p>
-
-          </article>
-
-
-          <article class="info-card">
-
-            <div class="card-icon">
-              <img src="imagens/image 273.png" alt="">
-            </div>
-
-            <h2>Público-alvo</h2>
-
-            <p>
-              Defina quem poderá participar do evento.
-            </p>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ========================================================
-         CADASTRO DO EVENTO
-         ======================================================== -->
-
-    <section class="cadastro-evento" aria-labelledby="titulo-cadastro">
-
-      <div class="container">
-
-        <div class="container-formulario">
-
-          <!-- FORMULÁRIO -->
-          <div class="lado-formulario">
-
-            <div class="form-header">
-
-              <span class="section-label">
-                Novo evento
-              </span>
-
-              <h2 id="titulo-cadastro">
-                Cadastrar novo evento
-              </h2>
-
-              <p>
-                Preencha os dados abaixo para cadastrar seu evento.
-              </p>
+                </a>
 
             </div>
 
 
-            <!-- FORMULÁRIO -->
-            <form id="formEvento" novalidate>
+            <!-- MENU PRINCIPAL -->
+            <nav
+                class="main-nav"
+                id="mainNav"
+                aria-label="Navegação principal"
+            >
 
-              <!-- NOME -->
-              <div class="form-group">
+                <a href="home.html">
+                    Home
+                </a>
 
-                <label for="nomeEvento">
-                  Nome do evento
-                </label>
+                <a href="cursos.html">
+                    Cursos
+                </a>
 
-                <input type="text" id="nomeEvento" name="nomeEvento" placeholder="Digite o nome do evento"
-                  autocomplete="off" required>
+                <a href="conduta.html">
+                    Conduta
+                </a>
 
-              </div>
+                <a
+                    href="eventos.html"
+                    class="active"
+                    aria-current="page"
+                >
+                    Eventos
+                </a>
 
+                <a href="mural.html">
+                    MURAL DOCENTE
+                </a>
 
-              <!-- DATA -->
-              <div class="form-group">
-
-                <label for="dataEvento">
-                  Data do evento
-                </label>
-
-                <input type="date" id="dataEvento" name="dataEvento" required>
-
-              </div>
-
-
-              <!-- TIPO -->
-              <fieldset class="form-fieldset">
-
-                <legend>
-                  Tipo do evento
-                </legend>
-
-                <div class="grupo-opcoes">
-
-                  <label class="opcao">
-
-                    <input type="radio" name="tipo" value="presencial">
-
-                    <span>
-                      Presencial
-                    </span>
-
-                  </label>
+            </nav>
 
 
-                  <label class="opcao">
+            <!-- ÁREA DO USUÁRIO -->
+            <div class="action-area">
 
-                    <input type="radio" name="tipo" value="online">
+                <div
+                    class="user-profile"
+                    id="userProfile"
+                >
 
-                    <span>
-                      Online
-                    </span>
+                    <!-- BOTÃO DO PERFIL -->
+                    <button
+                        type="button"
+                        class="user-profile-button"
+                        id="userProfileButton"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                    >
 
-                  </label>
+                        <span class="user-profile-icon">
+                            <i
+                                class="fas fa-user"
+                                aria-hidden="true"
+                            ></i>
+                        </span>
+
+                        <span
+                            class="user-profile-name"
+                            id="userProfileName"
+                        >
+                            Usuário
+                        </span>
+
+                        <i
+                            class="fas fa-chevron-down user-profile-arrow"
+                            aria-hidden="true"
+                        ></i>
+
+                    </button>
 
 
-                  <label class="opcao">
+                    <!-- MENU -->
+                    <div
+                        class="user-profile-menu"
+                        id="userProfileMenu"
+                    >
 
-                    <input type="radio" name="tipo" value="hibrido">
+                        <button
+                            type="button"
+                            id="profileButton"
+                        >
 
-                    <span>
-                      Híbrido
-                    </span>
+                            <i
+                                class="fas fa-user-circle"
+                                aria-hidden="true"
+                            ></i>
 
-                  </label>
+                            <span>
+                                Meu perfil
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="logoutButton"
+                        >
+
+                            <i
+                                class="fas fa-right-from-bracket"
+                                aria-hidden="true"
+                            ></i>
+
+                            <span>
+                                Sair
+                            </span>
+
+                        </button>
+
+                    </div>
 
                 </div>
 
-              </fieldset>
-
-
-              <!-- LOCAL -->
-              <div class="form-group">
-
-                <label for="localEvento">
-                  Local
-                </label>
-
-                <input type="text" id="localEvento" name="localEvento" placeholder="Local do evento">
-
-              </div>
-
-
-              <!-- PÚBLICO -->
-              <fieldset class="form-fieldset">
-
-                <legend>
-                  Público-alvo
-                </legend>
-
-                <div class="grupo-opcoes">
-
-                  <label class="opcao">
-
-                    <input type="checkbox" name="publico" value="alunos">
-
-                    <span>
-                      Alunos
-                    </span>
-
-                  </label>
-
-
-                  <label class="opcao">
-
-                    <input type="checkbox" name="publico" value="docentes">
-
-                    <span>
-                      Docentes
-                    </span>
-
-                  </label>
-
-
-                  <label class="opcao">
-
-                    <input type="checkbox" name="publico" value="comunidade">
-
-                    <span>
-                      Comunidade
-                    </span>
-
-                  </label>
-
-                </div>
-
-              </fieldset>
-
-
-              <!-- DESCRIÇÃO -->
-              <div class="form-group">
-
-                <label for="descricaoEvento">
-                  Descrição
-                </label>
-
-                <textarea id="descricaoEvento" name="descricaoEvento" rows="5" placeholder="Descreva o evento">
-                </textarea>
-
-              </div>
-
-
-              <!-- UPLOAD -->
-              <div class="form-group">
-
-                <label for="anexos">
-                  Anexar arquivos
-                </label>
-
-                <label class="upload-box" for="anexos">
-
-                  <input type="file" id="anexos" name="anexos" multiple accept=".jpg,.jpeg,.png,.pdf">
-
-                  <span class="upload-icon">
-
-                    <i class="fas fa-cloud-arrow-up" aria-hidden="true">
-                    </i>
-
-                  </span>
-
-                  <span class="upload-texto">
-
-                    <strong>
-                      Arraste arquivos ou clique para anexar
-                    </strong>
-
-                    <small>
-                      Formatos aceitos: JPG, PNG e PDF — Máx. 10MB
-                    </small>
-
-                  </span>
-
-                </label>
-
-                <!-- ARQUIVOS SELECIONADOS -->
-                <div id="listaArquivos" class="lista-arquivos">
-                </div>
-
-              </div>
-
-
-              <!-- BOTÃO -->
-              <div class="form-actions">
-
-                <button type="submit" class="btn-submit">
-
-                  <i class="fas fa-plus" aria-hidden="true">
-                  </i>
-
-                  Adicionar evento
-
-                </button>
-
-              </div>
-
-            </form>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- ==========================================================================
-     EVENTOS CADASTRADOS
-     ========================================================================== -->
-
-    <section class="eventos-cadastrados" id="eventos-cadastrados" aria-labelledby="titulo-eventos">
-
-      <div class="container">
-
-        <!-- CABEÇALHO -->
-        <div class="eventos-lista-header">
-
-          <div>
-            <span class="section-label">EVENTOS CADASTRADOS</span>
-
-            <h2 id="titulo-eventos">
-              Eventos cadastrados
-            </h2>
-
-            <p>
-              Consulte os eventos adicionados ao portal.
-            </p>
-          </div>
-
-          <!-- CONTADOR -->
-          <div class="contador-eventos">
-            <span id="contadorEventos">0</span>
-            <small>Eventos cadastrados</small>
-          </div>
-
-      </div>
-
-
-      <!-- LISTA DE EVENTOS -->
-      <div class="lista-eventos" id="listaEventos">
-
-
-        <!-- ================================================================
-           CARD DO EVENTO
-           ================================================================ -->
-
-        <article class="evento-card">
-
-          <!-- CABEÇALHO DO EVENTO -->
-          <div class="evento-card-header">
-
-            <div>
-              <h3 class="evento-card-titulo">
-                Conexão Aprendiz
-              </h3>
-            </div>
-
-            <span class="evento-tipo">
-              Presencial
-            </span>
-
-          </div>
-
-
-          <!-- INFORMAÇÕES DO EVENTO -->
-          <div class="evento-info">
-
-
-            <!-- DATA -->
-            <div class="evento-info-item">
-
-              <div class="evento-info-icon">
-                <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-              </div>
-
-              <div class="evento-info-label">
-                Data
-              </div>
-
-              <div class="evento-info-valor">
-                26/08/2026
-              </div>
-
             </div>
 
 
-            <!-- LOCAL -->
-            <div class="evento-info-item">
+            <!-- MENU MOBILE -->
+            <button
+                type="button"
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="mainNav"
+            >
 
-              <div class="evento-info-icon">
-                <i class="fas fa-location-dot" aria-hidden="true"></i>
-              </div>
-
-              <div class="evento-info-label">
-                Local
-              </div>
-
-              <div class="evento-info-valor">
-                Auditório Andar 22 - Faculdade Senac
-              </div>
-
-            </div>
-
-
-            <!-- TIPO -->
-            <div class="evento-info-item">
-
-              <div class="evento-info-icon">
-                <i class="fas fa-calendar-check" aria-hidden="true"></i>
-              </div>
-
-              <div class="evento-info-label">
-                Tipo
-              </div>
-
-              <div class="evento-info-valor">
-                Presencial
-              </div>
-
-            </div>
-
-
-            <!-- PÚBLICO -->
-            <div class="evento-info-item">
-
-              <div class="evento-info-icon">
-                <i class="fas fa-users" aria-hidden="true"></i>
-              </div>
-
-              <div class="evento-info-label">
-                Público
-              </div>
-
-              <div class="evento-info-valor">
-                Alunos, Docentes
-              </div>
-
-            </div>
-
-          </div>
-
-          <!-- DESCRIÇÃO -->
-          <div class="evento-descricao">
-
-          </div>
-
-
-          <!-- RODAPÉ -->
-          <div class="evento-card-footer">
-
-            <div class="evento-data-cadastro">
-
-              <i class="fas fa-clock" aria-hidden="true"></i>
-
-              <span>
-                Evento cadastrado no portal
-              </span>
-
-            </div>
-
-            <button type="button" class="btn-excluir-evento" aria-label="Excluir evento Conexão Aprendiz">
-
-              <i class="fas fa-trash" aria-hidden="true"></i>
-
-              Excluir
+                <i
+                    class="fas fa-bars"
+                    aria-hidden="true"
+                ></i>
 
             </button>
 
-          </div>
+        </div>
 
-        </article>
-
-  </main>
+    </header>
 
 
-  <!-- ==========================================================
-       FOOTER
-       ========================================================== -->
+    <!-- =========================================================
+         CONTEÚDO PRINCIPAL
+    ========================================================== -->
 
-  <footer>
+    <main>
 
-    <div class="linha-topo"></div>
+        <!-- =====================================================
+             HERO / INTRODUÇÃO
+        ====================================================== -->
 
-    <div class="container footer-container">
+        <section class="eventos-hero">
 
-      <!-- SOBRE -->
-      <div class="footer-sobre" id="sobrenos">
+            <div class="container">
 
-        <img src="imagens/logo-branco.png" alt="Logo SENAC" class="footer-logo">
+                <div class="eventos-hero-content">
 
-        <p>
-          Instituição de educação profissional aberta a toda a sociedade,
-          com a missão de desenvolver pessoas e organizações para o mundo
-          do trabalho. O Serviço Nacional de Aprendizagem Comercial –
-          Senac, pessoa jurídica de direito privado, sem fins lucrativos,
-          foi criado pelo Decreto-lei nº 8.621 de 10 de janeiro de 1946.
-          Neste mesmo ano, foi fundado também seu Departamento Regional
-          de Pernambuco, instalado em 14 de outubro.
-        </p>
+                    <span class="section-tag">
+                        <i
+                            class="fas fa-calendar-days"
+                            aria-hidden="true"
+                        ></i>
 
-        <div class="footer-badges">
+                        EVENTOS STARTÊ
+                    </span>
 
-          <img src="imagens/prevencao.png" alt="Programa prevenção">
+                    <h1>
+                        Eventos que
+                        <strong>
+                            conectam
+                        </strong>
+                        pessoas.
+                    </h1>
 
-          <img src="imagens/logo.png" alt="Startê" class="starte-logo">
+                    <p>
+                        Cadastre eventos, encontros, palestras,
+                        workshops e outras atividades da comunidade
+                        SENAC.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             COMO FUNCIONA
+        ====================================================== -->
+
+        <section class="como-funciona">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-tag">
+                        COMO FUNCIONA
+                    </span>
+
+                    <h2>
+                        Organize e compartilhe seus eventos
+                    </h2>
+
+                    <p>
+                        Cadastre as informações do evento e ele
+                        ficará disponível para consulta na plataforma.
+                    </p>
+
+                </div>
+
+
+                <div class="funcionamento-grid">
+
+                    <article class="funcionamento-card">
+
+                        <div class="funcionamento-icon">
+
+                            <i
+                                class="fas fa-calendar-plus"
+                                aria-hidden="true"
+                            ></i>
+
+                        </div>
+
+                        <h3>
+                            01. Cadastre
+                        </h3>
+
+                        <p>
+                            Informe nome, data, tipo, local,
+                            público e descrição do evento.
+                        </p>
+
+                    </article>
+
+
+                    <article class="funcionamento-card">
+
+                        <div class="funcionamento-icon">
+
+                            <i
+                                class="fas fa-cloud-arrow-up"
+                                aria-hidden="true"
+                            ></i>
+
+                        </div>
+
+                        <h3>
+                            02. Publique
+                        </h3>
+
+                        <p>
+                            Depois do cadastro, o evento é
+                            armazenado no banco de dados.
+                        </p>
+
+                    </article>
+
+
+                    <article class="funcionamento-card">
+
+                        <div class="funcionamento-icon">
+
+                            <i
+                                class="fas fa-users"
+                                aria-hidden="true"
+                            ></i>
+
+                        </div>
+
+                        <h3>
+                            03. Compartilhe
+                        </h3>
+
+                        <p>
+                            Os eventos cadastrados ficam disponíveis
+                            para os usuários da plataforma.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CADASTRO DE EVENTO
+        ====================================================== -->
+
+        <section
+            class="cadastro-evento-section"
+            id="cadastro-evento"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-tag">
+                        NOVO EVENTO
+                    </span>
+
+                    <h2>
+                        Cadastre um evento
+                    </h2>
+
+                    <p>
+                        Preencha os dados abaixo para adicionar
+                        um novo evento à plataforma.
+                    </p>
+
+                </div>
+
+
+                <div class="form-evento-wrapper">
+
+                    <form
+                        id="formEvento"
+                        novalidate
+                    >
+
+                        <!-- NOME -->
+                        <div class="form-group">
+
+                            <label for="nomeEvento">
+                                Nome do evento
+                                <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nomeEvento"
+                                name="nomeEvento"
+                                placeholder="Ex.: Conexão Aprendiz"
+                                maxlength="150"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- DATA -->
+                        <div class="form-group">
+
+                            <label for="dataEvento">
+                                Data do evento
+                                <span>*</span>
+                            </label>
+
+                            <input
+                                type="date"
+                                id="dataEvento"
+                                name="dataEvento"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- TIPO -->
+                        <div class="form-group">
+
+                            <label>
+                                Tipo do evento
+                                <span>*</span>
+                            </label>
+
+                            <div class="radio-group">
+
+                                <label class="radio-option">
+
+                                    <input
+                                        type="radio"
+                                        name="tipo"
+                                        value="presencial"
+                                    >
+
+                                    <span>
+                                        Presencial
+                                    </span>
+
+                                </label>
+
+
+                                <label class="radio-option">
+
+                                    <input
+                                        type="radio"
+                                        name="tipo"
+                                        value="online"
+                                    >
+
+                                    <span>
+                                        Online
+                                    </span>
+
+                                </label>
+
+
+                                <label class="radio-option">
+
+                                    <input
+                                        type="radio"
+                                        name="tipo"
+                                        value="hibrido"
+                                    >
+
+                                    <span>
+                                        Híbrido
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- LOCAL -->
+                        <div class="form-group">
+
+                            <label for="localEvento">
+                                Local / link do evento
+                            </label>
+
+                            <input
+                                type="text"
+                                id="localEvento"
+                                name="localEvento"
+                                placeholder="Ex.: Sala 05 ou link da reunião"
+                                maxlength="255"
+                            >
+
+                        </div>
+
+
+                        <!-- PÚBLICO -->
+                        <div class="form-group">
+
+                            <label>
+                                Público
+                            </label>
+
+                            <div class="checkbox-group">
+
+                                <label class="checkbox-option">
+
+                                    <input
+                                        type="checkbox"
+                                        name="publico"
+                                        value="alunos"
+                                    >
+
+                                    <span>
+                                        Alunos
+                                    </span>
+
+                                </label>
+
+
+                                <label class="checkbox-option">
+
+                                    <input
+                                        type="checkbox"
+                                        name="publico"
+                                        value="docentes"
+                                    >
+
+                                    <span>
+                                        Docentes
+                                    </span>
+
+                                </label>
+
+
+                                <label class="checkbox-option">
+
+                                    <input
+                                        type="checkbox"
+                                        name="publico"
+                                        value="comunidade"
+                                    >
+
+                                    <span>
+                                        Comunidade
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DESCRIÇÃO -->
+                        <div class="form-group">
+
+                            <label for="descricaoEvento">
+                                Descrição
+                            </label>
+
+                            <textarea
+                                id="descricaoEvento"
+                                name="descricaoEvento"
+                                rows="6"
+                                maxlength="1000"
+                                placeholder="Descreva o evento..."
+                            ></textarea>
+
+                        </div>
+
+
+                        <!-- ANEXOS -->
+                        <div class="form-group">
+
+                            <label>
+                                Anexos
+                            </label>
+
+                            <div class="upload-box">
+
+                                <i
+                                    class="fas fa-cloud-arrow-up"
+                                    aria-hidden="true"
+                                ></i>
+
+                                <div class="upload-texto">
+
+                                    <strong>
+                                        Selecione seus arquivos
+                                    </strong>
+
+                                    <small>
+                                        PDF, imagens ou documentos
+                                    </small>
+
+                                </div>
+
+                                <input
+                                    type="file"
+                                    id="anexos"
+                                    name="anexos"
+                                    multiple
+                                    accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx"
+                                >
+
+                            </div>
+
+
+                            <div
+                                id="listaArquivos"
+                                class="lista-arquivos"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- BOTÃO -->
+                        <div class="form-actions">
+
+                            <button
+                                type="submit"
+                                class="btn-submit"
+                            >
+
+                                <i
+                                    class="fas fa-calendar-plus"
+                                    aria-hidden="true"
+                                ></i>
+
+                                <span>
+                                    Cadastrar evento
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             EVENTOS CADASTRADOS
+        ====================================================== -->
+
+        <section
+            class="eventos-cadastrados-section"
+            id="eventos-cadastrados"
+        >
+
+            <div class="container">
+
+                <div class="eventos-lista-header">
+
+                    <div>
+
+                        <span class="section-tag">
+                            EVENTOS
+                        </span>
+
+                        <h2>
+                            Eventos cadastrados
+                        </h2>
+
+                    </div>
+
+
+                    <div class="contador-eventos">
+
+                        <span
+                            id="contadorEventos"
+                            aria-label="0 eventos cadastrados"
+                        >
+                            0
+                        </span>
+
+                        <small>
+                            eventos
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ESTADO VAZIO
+                ================================================== -->
+
+                <div
+                    class="eventos-vazio"
+                    id="eventosVazio"
+                    hidden
+                >
+
+                    <div class="eventos-vazio-icon">
+
+                        <i
+                            class="fas fa-calendar-xmark"
+                            aria-hidden="true"
+                        ></i>
+
+                    </div>
+
+                    <h3>
+                        Nenhum evento cadastrado
+                    </h3>
+
+                    <p>
+                        Ainda não existem eventos cadastrados.
+                        Seja o primeiro a adicionar um!
+                    </p>
+
+                    <a
+                        href="#cadastro-evento"
+                        class="btn-cadastrar-primeiro"
+                    >
+                        Cadastrar evento
+                    </a>
+
+                </div>
+
+
+                <!-- =================================================
+                     LISTA DINÂMICA
+                ================================================== -->
+
+                <div
+                    class="lista-eventos"
+                    id="listaEventos"
+                ></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer>
+
+        <div class="linha-topo"></div>
+
+        <div class="footer-container">
+
+            <div class="footer-sobre">
+
+                <img
+                    src="imagens/logo-branco.png"
+                    alt="Startê SENAC"
+                    class="logo"
+                >
+
+                <p>
+                    O Startê é uma plataforma criada para
+                    conectar alunos, docentes e comunidade
+                    através de oportunidades, cursos e eventos.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div class="titulo">
+
+                    <div class="barra"></div>
+
+                    <h2>
+                        Navegação
+                    </h2>
+
+                </div>
+
+                <a href="home.html">
+                    Home
+                </a>
+
+                <a href="cursos.html">
+                    Cursos
+                </a>
+
+                <a href="conduta.html">
+                    Conduta
+                </a>
+
+                <a href="eventos.html">
+                    Eventos
+                </a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div class="titulo">
+
+                    <div class="barra"></div>
+
+                    <h2>
+                        Contato
+                    </h2>
+
+                </div>
+
+                <p>
+                    SENAC Pernambuco
+                </p>
+
+                <p>
+                    Educação, inovação e oportunidades.
+                </p>
+
+            </div>
 
         </div>
 
-      </div>
 
+        <div class="footer-local">
 
-      <!-- REDES SOCIAIS -->
-      <div class="footer-redes" id="contatos">
-
-        <h2>
-          Conecte-se
-        </h2>
-
-        <div class="social-icons">
-
-          <a href="#" aria-label="WhatsApp">
-
-            <img src="imagens/telefoneverde.png" alt="">
-
-          </a>
-
-
-          <a href="#" aria-label="Twitter">
-
-            <img src="imagens/twitter.png" alt="">
-
-          </a>
-
-
-          <a href="#" aria-label="Instagram">
-
-            <img src="imagens/instagram.png" alt="">
-
-          </a>
-
-
-          <a href="#" aria-label="Facebook">
-
-            <img src="imagens/facebook.png" alt="">
-
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- LINKS -->
-      <div class="footer-links">
-
-        <div class="footer-title">
-
-          <span class="footer-title-bar"></span>
-
-          <h2>
-            Pesquise por Cursos e Notícias
-          </h2>
+            <a
+                href="https://www.pe.senac.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                SENAC Pernambuco
+            </a>
 
         </div>
 
 
-        <div class="footer-search">
+        <div class="footer-bottom">
 
-          <input type="search" id="footerSearch" placeholder="Pesquisar" aria-label="Pesquisar no site">
+            <span>
+                © 2026 Startê / SENAC
+            </span>
 
-          <button type="button" id="footerSearchBtn" aria-label="Pesquisar">
-
-            <i class="fas fa-search" aria-hidden="true">
-            </i>
-
-          </button>
-
-        </div>
-
-
-        <div class="footer-title">
-
-          <span class="footer-title-bar"></span>
-
-          <h2>
-            Parceiros
-          </h2>
+            <img
+                src="imagens/logo-branco.png"
+                alt="SENAC"
+            >
 
         </div>
 
-
-        <div class="parceiros">
-
-          <a href="#">
-            Fecomércio Pernambuco
-          </a>
-
-          <a href="#">
-            Sesc Pernambuco
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
+    </footer>
 
 
-    <!-- LOCALIZAÇÃO -->
-    <div class="footer-local">
+    <!-- =========================================================
+         VOLTAR AO TOPO
+    ========================================================== -->
 
-      <i class="fas fa-location-dot" aria-hidden="true">
-      </i>
+    <button
+        type="button"
+        id="backToTop"
+        aria-label="Voltar ao topo"
+    >
 
-      <a href="https://maps.app.goo.gl/6A3dxDU1zrD2bHD7A" target="_blank" rel="noopener noreferrer">
+        <i
+            class="fas fa-arrow-up"
+            aria-hidden="true"
+        ></i>
 
-        Pernambuco - Av. Visconde de Suassuna, 500 -
-        Santo Amaro - Recife
-
-      </a>
-
-    </div>
-
-
-    <!-- COPYRIGHT -->
-    <div class="container footer-bottom">
-
-      <img src="imagens/logo-branco.png" alt="SENAC">
-
-      <p>
-        © 2026 Todos os Direitos Reservados.
-      </p>
-
-      <div class="empresa">
-
-        <strong>
-          Para sua empresa
-        </strong>
-
-        <a href="#">
-          Atendimento Corporativo
-        </a>
-
-        <a href="#">
-          Programa de Aprendizagem
-        </a>
-
-      </div>
-
-    </div>
-
-  </footer>
+    </button>
 
 
-  <!-- ==========================================================
-       VOLTAR AO TOPO
-       ========================================================== -->
+    <!-- =========================================================
+         SCRIPTS
+    ========================================================== -->
 
-  <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <i class="fas fa-chevron-up" aria-hidden="true">
-    </i>
+    <!-- AUTENTICAÇÃO -->
+    <script src="js/auth.js"></script>
 
-  </button>
+    <!-- SCRIPT GERAL -->
+    <script src="js/script.js"></script>
 
-
-  <!-- JAVASCRIPT -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/script.js"></script>
-  <script src="js/eventos.js"></script>
+    <!-- EVENTOS -->
+    <script src="js/eventos.js"></script>
 
 </body>
 
