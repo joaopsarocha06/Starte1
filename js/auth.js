@@ -84,7 +84,7 @@ document.addEventListener(
 
 
         const paginaEhLogin =
-            paginaAtual === "login.html";
+            paginaAtual === "index.html";
 
 
         /* ==============================================================
@@ -447,7 +447,7 @@ document.addEventListener(
                      */
 
                     window.location.href =
-                        "./login.html";
+                        "./index.html";
                 }
             );
         }
@@ -522,7 +522,7 @@ document.addEventListener(
                 ) {
 
                     window.location.replace(
-                        "./login.html"
+                        "./index.html"
                     );
                 }
 
@@ -626,7 +626,7 @@ document.addEventListener(
                     ) {
 
                         window.location.replace(
-                            "./login.html"
+                            "./index.html"
                         );
                     }
                 }

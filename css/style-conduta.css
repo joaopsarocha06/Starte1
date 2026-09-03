@@ -127,174 +127,118 @@ ol {
 }
 
 
-/* ==========================================================================
-   03. HEADER
-   ========================================================================== */
-
+/* ========================================================================== 03. HEADER ========================================================================== */
 .main-header {
     position: absolute;
     top: 0;
     left: 0;
-
     width: 100%;
     height: var(--header-height);
-
     display: flex;
     align-items: center;
-
-    background: transparent;
-
+    background-color: transparent;
     z-index: 1000;
-
     pointer-events: none;
 }
 
-.header-container {
-    width: min(var(--container-width), var(--container-max-width));
-
-    margin: 0 auto;
-
-    display: grid;
-    grid-template-columns: 180px minmax(0, 1fr) 240px;
-
-    align-items: center;
-
-    gap: 30px;
+.main-header .logo-area,
+.main-header .nav-menu,
+.main-header .action-area {
+    pointer-events: auto;
 }
 
+/* ========================================================================== 04. CONTAINER DO HEADER ========================================================================== */
+.header-container {
+    width: min(var(--container-width), var(--container-max-width));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
 
-/* --------------------------------------------------------------------------
-   LOGO
-   -------------------------------------------------------------------------- */
-
+/* ========================================================================== 05. LOGO ========================================================================== */
 .logo-area {
     display: flex;
     align-items: center;
-
     flex-shrink: 0;
-
-    pointer-events: auto;
 }
 
 .logo-area a {
     display: flex;
     align-items: center;
-
-    pointer-events: auto;
 }
 
 .logo-img {
     width: auto;
     height: 56px;
-
     object-fit: contain;
-
-    transition:
-        transform var(--transition-normal),
-        opacity var(--transition-normal);
+    transition: transform var(--transition-fast);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
 }
 
-.logo-img:hover {
+.logo-area a:hover .logo-img {
     transform: scale(1.03);
-    opacity: 0.94;
 }
 
-
-/* ==========================================================================
-   MENU / PÍLULA FLUTUANTE
-   ========================================================================== */
-
+/* ========================================================================== 06. MENU / PÍLULA FLUTUANTE ========================================================================== */
 .nav-menu {
     position: fixed;
-
     top: 20px;
     left: 50%;
-
     transform: translateX(-50%);
-
+    z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
-
     width: max-content;
-    max-width: 94vw;
-
+    max-width: calc(100% - 500px);
     padding: 14px 40px;
-
     background-color: rgba(240, 242, 245, 0.88);
-
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-
     border: 1px solid rgba(255, 255, 255, 0.5);
-
     border-radius: 35px;
-
-    box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.08),
-        0 1px 4px rgba(0, 0, 0, 0.04);
-
-    z-index: 2000;
-
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+    white-space: nowrap;
     pointer-events: auto;
-
-    transition:
-        background-color var(--transition-normal),
-        box-shadow var(--transition-normal);
+    transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
 }
 
+/* ========================================================================== 07. LINKS DO MENU ========================================================================== */
 .nav-list {
     display: flex;
     align-items: center;
     justify-content: center;
-
     gap: 32px;
-
     margin: 0;
     padding: 0;
 }
 
 .nav-link {
     position: relative;
-
     display: inline-flex;
     align-items: center;
-
     color: #333333;
-
     font-size: 16px;
     font-weight: 800;
-
     text-transform: uppercase;
     letter-spacing: 0.5px;
-
     text-decoration: none;
-
     cursor: pointer;
     pointer-events: auto;
-
-    transition:
-        color var(--transition-fast),
-        transform var(--transition-fast);
+    transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
 .nav-link::after {
     content: "";
-
     position: absolute;
-
     left: 50%;
     bottom: -7px;
-
     width: 0;
     height: 3px;
-
     border-radius: 5px;
-
     background-color: var(--senac-orange);
-
     transform: translateX(-50%);
-
     transition: width var(--transition-fast);
 }
 
@@ -308,238 +252,199 @@ ol {
     width: 70%;
 }
 
-
-/* ==========================================================================
-   04. PERFIL DO USUÁRIO
-   ========================================================================== */
-
+/* ========================================================================== 08. ÁREA DE AÇÕES / PERFIL ========================================================================== */
 .action-area {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
-    min-width: 180px;
-
+    gap: 20px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2100;
     pointer-events: auto;
 }
 
+/* ========================================================================== 09. PERFIL DO USUÁRIO ========================================================================== */
 .user-profile {
     position: relative;
-
     display: flex;
     align-items: center;
+    flex-shrink: 0;
+    z-index: 2100;
 }
 
+/* ========================================================================== 10. BOTÃO DO PERFIL ========================================================================== */
 .user-profile-button {
+    min-height: 48px;
     display: flex;
     align-items: center;
-
     gap: 10px;
-
-    min-height: 54px;
-
-    padding: 7px 14px 7px 8px;
-
-    border: 1px solid rgba(11, 81, 149, 0.12);
-
-    border-radius: var(--radius-pill);
-
-    background-color: rgba(255, 255, 255, 0.94);
-
-    box-shadow:
-        0 5px 20px rgba(0, 0, 0, 0.07);
-
+    padding: 6px 12px 6px 7px;
+    border: none;
+    border-radius: 28px;
+    background-color: #e6e9ed;
     color: var(--text-dark);
-
-    transition:
-        transform var(--transition-fast),
-        box-shadow var(--transition-normal),
-        border-color var(--transition-normal);
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .user-profile-button:hover {
-    transform: translateY(-1px);
-
-    border-color: rgba(11, 81, 149, 0.22);
-
-    box-shadow:
-        0 8px 24px rgba(0, 0, 0, 0.10);
+    background-color: #dfe3e8;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
-.user-profile-icon {
-    width: 38px;
-    height: 38px;
+.user-profile-button:active {
+    transform: translateY(0);
+}
 
+/* ========================================================================== 11. ÍCONE DO PERFIL ========================================================================== */
+.user-profile-icon {
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    flex-shrink: 0;
-
+    flex: 0 0 36px;
     border-radius: 50%;
-
     background-color: var(--senac-blue);
-
     color: var(--white);
-
-    font-size: 15px;
 }
 
+.user-profile-icon i {
+    font-size: 16px;
+}
+
+/* ========================================================================== 12. INFORMAÇÕES DO USUÁRIO ========================================================================== */
 .user-profile-info {
     display: flex;
     flex-direction: column;
-
     align-items: flex-start;
-
-    line-height: 1.15;
+    justify-content: center;
+    min-width: 70px;
+    line-height: 1.1;
 }
 
 .user-profile-welcome {
     color: #777777;
-
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.4px;
 }
 
 .user-profile-name {
-    max-width: 110px;
-
+    max-width: 100px;
+    margin-top: 3px;
     overflow: hidden;
-
-    color: var(--text-dark);
-
+    color: #333333;
     font-size: 13px;
     font-weight: 800;
-
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
+/* ========================================================================== 13. SETA DO PERFIL ========================================================================== */
 .user-profile-arrow {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 28px;
     margin-left: 2px;
-
+    border-radius: 50%;
+    background-color: #f0f4f8;
     color: var(--senac-blue);
-
-    font-size: 11px;
-
-    transition: transform var(--transition-normal);
+    font-size: 10px;
+    transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
 }
 
-.user-profile-button[aria-expanded="true"] .user-profile-arrow {
+.user-profile.open .user-profile-arrow {
     transform: rotate(180deg);
+    background-color: #fff1dc;
+    color: var(--senac-orange);
 }
 
-
-/* --------------------------------------------------------------------------
-   MENU DO PERFIL
-   -------------------------------------------------------------------------- */
-
+/* ========================================================================== 14. MENU DO PERFIL ========================================================================== */
 .user-profile-menu {
     position: absolute;
-
-    top: calc(100% + 10px);
+    top: calc(100% + 12px);
     right: 0;
-
-    min-width: 190px;
-
+    width: 220px;
     padding: 8px;
-
     background-color: var(--white);
-
-    border: 1px solid var(--border-light);
-
-    border-radius: var(--radius-md);
-
-    box-shadow: var(--shadow-md);
-
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(0, 0, 0, 0.06);
     opacity: 0;
     visibility: hidden;
-
-    transform: translateY(-8px);
-
-    transition:
-        opacity var(--transition-normal),
-        visibility var(--transition-normal),
-        transform var(--transition-normal);
-
+    pointer-events: none;
+    transform: translateY(-8px) scale(0.98);
+    transform-origin: top right;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal), transform var(--transition-normal);
     z-index: 3000;
 }
 
-.user-profile-menu.show,
-.user-profile-menu.active {
+.user-profile.open .user-profile-menu {
     opacity: 1;
     visibility: visible;
-
-    transform: translateY(0);
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
 }
 
+/* ========================================================================== 15. ITENS DO MENU DO PERFIL ========================================================================== */
 .user-profile-menu-item {
     width: 100%;
-
+    min-height: 44px;
     display: flex;
     align-items: center;
-
-    gap: 10px;
-
-    padding: 11px 12px;
-
-    border: 0;
-
-    border-radius: var(--radius-sm);
-
-    background: transparent;
-
-    color: var(--text-dark);
-
-    font-size: 13px;
+    gap: 12px;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #333333;
+    font-family: var(--font-family);
+    font-size: 14px;
     font-weight: 700;
-
     text-align: left;
-
-    transition:
-        background-color var(--transition-fast),
-        color var(--transition-fast);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .user-profile-menu-item i {
-    width: 18px;
-
+    width: 20px;
     color: var(--senac-blue);
-
     text-align: center;
 }
 
 .user-profile-menu-item:hover {
-    background-color: rgba(11, 81, 149, 0.07);
-
+    background-color: #f2f6fa;
     color: var(--senac-blue);
 }
 
+/* ========================================================================== 16. BOTÃO SAIR ========================================================================== */
 .user-profile-menu-item.logout {
-    color: #c44343;
+    color: #d64545;
 }
 
 .user-profile-menu-item.logout i {
-    color: #c44343;
+    color: #d64545;
 }
 
 .user-profile-menu-item.logout:hover {
-    background-color: rgba(196, 67, 67, 0.07);
-
-    color: #b73434;
+    background-color: #fff2f2;
+    color: #d64545;
 }
 
+/* ========================================================================== 17. DIVISOR DO MENU ========================================================================== */
 .user-profile-divider {
     width: 100%;
     height: 1px;
-
     margin: 5px 0;
-
-    background-color: var(--border-light);
+    background-color: #eeeeee;
 }
 
 
@@ -560,8 +465,7 @@ ol {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1fr)
-        minmax(420px, 0.85fr);
+        minmax(0, 1fr) minmax(420px, 0.85fr);
 
     align-items: center;
 
@@ -1298,8 +1202,7 @@ ol {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 0.85fr)
-        minmax(0, 1.15fr);
+        minmax(0, 0.85fr) minmax(0, 1.15fr);
 
     gap: 65px;
 
@@ -1593,9 +1496,7 @@ footer {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.35fr)
-        minmax(180px, 0.55fr)
-        minmax(0, 1fr);
+        minmax(0, 1.35fr) minmax(180px, 0.55fr) minmax(0, 1fr);
 
     gap: 65px;
 }
@@ -1875,7 +1776,7 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.footer-bottom > img {
+.footer-bottom>img {
     width: auto;
     height: 30px;
 
@@ -1999,8 +1900,7 @@ footer {
 
     .container-senac {
         grid-template-columns:
-            minmax(0, 1fr)
-            minmax(340px, 0.75fr);
+            minmax(0, 1fr) minmax(340px, 0.75fr);
 
         gap: 45px;
     }

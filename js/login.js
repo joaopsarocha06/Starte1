@@ -879,7 +879,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                             emailRedirectTo:
                                 window.location.origin +
-                                "/login.html"
+                                "/index.html"
 
                         }
 
@@ -1432,7 +1432,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             {
                                 redirectTo:
                                     window.location.origin +
-                                    "/login.html"
+                                    "/index.html"
                             }
                         );
 
