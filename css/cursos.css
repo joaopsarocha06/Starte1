@@ -129,507 +129,6 @@ img {
   text-align: center;
 }
 
-
-/* ==========================================================================
-   2. HEADER
-   ========================================================================== */
-
-.main-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: var(--header-height);
-
-  display: flex;
-  align-items: center;
-
-  background-color: transparent;
-
-  z-index: 1000;
-
-  pointer-events: none;
-}
-
-.main-header .logo-area,
-.main-header .nav-menu,
-.main-header .action-area {
-  pointer-events: auto;
-}
-
-.header-container {
-  width: min(var(--container-width), var(--container-max-width));
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-}
-
-.logo-area {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.logo-area a {
-  display: flex;
-  align-items: center;
-}
-
-.logo-img {
-  width: auto;
-  height: 56px;
-
-  object-fit: contain;
-
-  transition: transform var(--transition-fast);
-}
-
-.logo-area a:hover .logo-img {
-  transform: scale(1.03);
-}
-
-
-/* ==========================================================================
-   3. MENU / PÍLULA FLUTUANTE
-   ========================================================================== */
-
-.nav-menu {
-  position: fixed;
-
-  top: 20px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  z-index: 2000;
-
-  padding: 14px 40px;
-
-  background-color: rgba(240, 242, 245, 0.88);
-
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  border: 1px solid rgba(255, 255, 255, 0.5);
-
-  border-radius: 35px;
-
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.08),
-    0 1px 4px rgba(0, 0, 0, 0.04);
-
-  transition:
-    background-color var(--transition-normal),
-    box-shadow var(--transition-normal);
-}
-
-.nav-list {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
-.nav-link {
-  position: relative;
-
-  display: inline-flex;
-  align-items: center;
-
-  font-size: 16px;
-  font-weight: 800;
-
-  color: #333333;
-
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-
-  transition:
-    color var(--transition-fast),
-    transform var(--transition-fast);
-}
-
-.nav-link::after {
-  content: "";
-
-  position: absolute;
-
-  left: 50%;
-  bottom: -7px;
-
-  width: 0;
-  height: 3px;
-
-  border-radius: 5px;
-
-  background-color: var(--senac-orange);
-
-  transform: translateX(-50%);
-
-  transition: width var(--transition-fast);
-}
-
-.nav-link:hover,
-.nav-link.active {
-  color: var(--senac-orange);
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-  width: 70%;
-}
-
-
-/* ==========================================================================
-   4. ÁREA DE AÇÕES / BUSCA
-   ========================================================================== */
-
-.action-area {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  gap: 12px;
-
-  flex-shrink: 0;
-}
-
-.search-container {
-  position: relative;
-
-  display: flex;
-  align-items: center;
-}
-
-.search-input {
-  position: absolute;
-
-  top: 50%;
-  right: 58px;
-
-  width: 0;
-  height: 44px;
-
-  padding: 12px 18px;
-
-  opacity: 0;
-
-  border: 1px solid transparent;
-  border-radius: 24px;
-
-  background-color: #e6e9ed;
-
-  font-size: 16px;
-  color: #222222;
-
-  outline: none;
-
-  transform: translateY(-50%);
-
-  transition:
-    width var(--transition-normal),
-    opacity var(--transition-normal),
-    border-color var(--transition-normal);
-}
-
-.search-input::placeholder {
-  color: #777777;
-}
-
-.search-input.active,
-.search-input:focus {
-  width: 220px;
-
-  opacity: 1;
-
-  border-color: rgba(11, 81, 149, 0.15);
-}
-
-.search-btn {
-  position: relative;
-
-  width: 48px;
-  height: 48px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0;
-
-  border-radius: 50%;
-
-  background-color: #e6e9ed;
-
-  color: #000000;
-
-  cursor: pointer;
-
-  z-index: 2;
-
-  transition:
-    background-color var(--transition-fast),
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast);
-}
-
-.search-btn:hover {
-  background-color: #dfe3e8;
-
-  transform: translateY(-2px);
-
-  box-shadow: var(--shadow-sm);
-}
-
-.search-icon {
-  font-size: 19px;
-  color: #000000;
-
-  transition: transform var(--transition-fast);
-}
-
-.search-btn:hover .search-icon {
-  transform: scale(1.08);
-}
-
-
-/* ==========================================================================
-   5. PERFIL DO USUÁRIO — PADRÃO DA HOME
-   ========================================================================== */
-
-.user-profile {
-  position: relative;
-
-  display: flex;
-  align-items: center;
-
-  flex-shrink: 0;
-}
-
-.user-profile-button {
-  min-height: 48px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-
-  padding: 6px 12px 6px 7px;
-
-  border: none;
-  border-radius: 28px;
-
-  background-color: #e6e9ed;
-
-  color: var(--text-dark);
-
-  cursor: pointer;
-
-  transition:
-    background-color var(--transition-fast),
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast);
-}
-
-.user-profile-button:hover {
-  background-color: #dfe3e8;
-
-  transform: translateY(-2px);
-
-  box-shadow: var(--shadow-sm);
-}
-
-.user-profile-icon {
-  width: 36px;
-  height: 36px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background-color: var(--senac-blue);
-
-  color: var(--white);
-}
-
-.user-profile-icon i {
-  font-size: 16px;
-}
-
-.user-profile-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-
-  min-width: 70px;
-
-  line-height: 1.1;
-}
-
-.user-profile-welcome {
-  color: #777777;
-
-  font-size: 11px;
-  font-weight: 600;
-}
-
-.user-profile-name {
-  margin-top: 3px;
-
-  color: #333333;
-
-  font-size: 13px;
-  font-weight: 800;
-
-  white-space: nowrap;
-
-  max-width: 100px;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.user-profile-arrow {
-  margin-left: 2px;
-
-  color: #555555;
-
-  font-size: 12px;
-
-  transition: transform var(--transition-fast);
-}
-
-.user-profile.open .user-profile-arrow {
-  transform: rotate(180deg);
-}
-
-
-/* ==========================================================================
-   MENU DO PERFIL
-   ========================================================================== */
-
-.user-profile-menu {
-  position: absolute;
-
-  top: calc(100% + 12px);
-  right: 0;
-
-  width: 220px;
-
-  padding: 8px;
-
-  background-color: var(--white);
-
-  border: 1px solid rgba(0, 0, 0, 0.05);
-
-  border-radius: 16px;
-
-  box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.14),
-    0 2px 8px rgba(0, 0, 0, 0.06);
-
-  opacity: 0;
-  visibility: hidden;
-
-  transform: translateY(-8px) scale(0.98);
-
-  transform-origin: top right;
-
-  transition:
-    opacity var(--transition-normal),
-    visibility var(--transition-normal),
-    transform var(--transition-normal);
-
-  z-index: 3000;
-}
-
-.user-profile.open .user-profile-menu {
-  opacity: 1;
-  visibility: visible;
-
-  transform: translateY(0) scale(1);
-}
-
-
-/* ==========================================================================
-   ITENS DO MENU DO PERFIL
-   ========================================================================== */
-
-.user-profile-menu-item {
-  width: 100%;
-  min-height: 44px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-
-  padding: 10px 12px;
-
-  border-radius: 10px;
-
-  background-color: transparent;
-
-  color: #333333;
-
-  font-size: 14px;
-  font-weight: 700;
-
-  text-align: left;
-
-  cursor: pointer;
-
-  transition:
-    background-color var(--transition-fast),
-    color var(--transition-fast);
-}
-
-.user-profile-menu-item i {
-  width: 20px;
-
-  color: var(--senac-blue);
-
-  text-align: center;
-}
-
-.user-profile-menu-item:hover {
-  background-color: #f2f6fa;
-
-  color: var(--senac-blue);
-}
-
-.user-profile-menu-item.logout {
-  color: #d64545;
-}
-
-.user-profile-menu-item.logout i {
-  color: #d64545;
-}
-
-.user-profile-menu-item.logout:hover {
-  background-color: #fff2f2;
-
-  color: #d64545;
-}
-
-.user-profile-divider {
-  width: 100%;
-  height: 1px;
-
-  margin: 5px 0;
-
-  background-color: #eeeeee;
-}
-
-
 /* ==========================================================================
    6. ACESSIBILIDADE / FOCO
    ========================================================================== */
@@ -709,7 +208,7 @@ img {
   background-color: var(--bg-light);
 }
 
-.learning-platforms-section > .container {
+.learning-platforms-section>.container {
   width: 90%;
   max-width: 1440px;
   margin: 0 auto;
@@ -1037,7 +536,7 @@ img {
     padding: 60px 0 70px;
   }
 
-  .learning-platforms-section > .container {
+  .learning-platforms-section>.container {
     width: 92%;
   }
 
@@ -1263,9 +762,9 @@ img {
   text-align: center;
 }
 
-.section-tag{
-    color: var(--senac-orange);
-    font-weight: 800;
+.section-tag {
+  color: var(--senac-orange);
+  font-weight: 800;
 }
 
 .section-header h2 {
@@ -1292,32 +791,31 @@ img {
   line-height: 1.5;
 }
 
+/* ==========================================================================
+   CARDS DE CATEGORIAS
+   ========================================================================== */
+
 .cards-grid {
   display: grid;
-
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
+
+/* ==========================================================================
+   CARD
+   ========================================================================== */
+
 .category-card {
   min-width: 0;
-
   display: flex;
   flex-direction: column;
-
   justify-content: space-between;
-
   overflow: hidden;
-
   padding: 16px 16px 24px;
-
   background-color: var(--white);
-
   border-radius: 20px;
-
   text-align: center;
-
   box-shadow: var(--shadow-md);
 
   transition:
@@ -1327,14 +825,17 @@ img {
 
 .category-card:hover {
   transform: translateY(-8px);
-
   box-shadow: var(--shadow-lg);
 }
+
+
+/* ==========================================================================
+   IMAGEM
+   ========================================================================== */
 
 .card-image-wrapper {
   width: 100%;
   height: 220px;
-
   margin-bottom: 16px;
 
   display: flex;
@@ -1345,55 +846,96 @@ img {
 .card-image-wrapper img {
   width: 100%;
   height: 100%;
-
   object-fit: contain;
+}
+
+
+/* ==========================================================================
+   CONTEÚDO
+   ========================================================================== */
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .card-content h3 {
   margin: 0 0 8px;
 
   font-size: 1.5rem;
-
   font-weight: 800;
+  line-height: 1.2;
 }
 
 .card-content p {
-  margin: 0 0 20px;
+  margin: 0;
 
   color: var(--text-paragraph);
-
   font-size: 1rem;
-
   font-weight: 700;
-
   line-height: 1.45;
-}
-
-.card-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 6px;
-
-  font-size: 1.1rem;
-
-  font-weight: 800;
-
-  transition:
-    transform var(--transition-fast),
-    opacity var(--transition-fast);
-}
-
-.card-link:hover {
-  transform: translateX(3px);
-
-  text-decoration: underline;
 }
 
 
 /* ==========================================================================
-   12. CORES DAS CATEGORIAS
+   AÇÃO ÚNICA
+   ========================================================================== */
+
+.cards-action {
+  width: 100%;
+  margin-top: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cards-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-width: 210px;
+  padding: 14px 26px;
+
+  background-color: var(--senac-blue);
+  color: var(--white);
+
+  border-radius: 999px;
+
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+
+  box-shadow: var(--shadow-md);
+
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.cards-action-button:hover {
+  background-color: var(--senac-blue-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.cards-action-button i {
+  font-size: 0.9rem;
+
+  transition: transform var(--transition-fast);
+}
+
+.cards-action-button:hover i {
+  transform: translateX(4px);
+}
+
+
+/* ==========================================================================
+   CORES DAS CATEGORIAS
    ========================================================================== */
 
 .text-orange {
