@@ -7,15 +7,18 @@
 // 01. Menu mobile
 // 02. Menu de perfil
 // 03. Cadastro de eventos
-// 04. Listagem de eventos
-// 05. Contador de eventos
-// 06. Exclusão REAL no Supabase
-// 07. Estado vazio
-// 08. Seleção de arquivos
-// 09. Drag and Drop
-// 10. Voltar ao topo
-// 11. Efeito Ripple
-// 12. Animações de Scroll
+// 04. Data + horário
+// 05. Local + link separados
+// 06. Listagem de eventos
+// 07. Filtro por data
+// 08. Contador de eventos
+// 09. Exclusão REAL no Supabase
+// 10. Estado vazio
+// 11. Seleção de arquivos
+// 12. Drag and Drop
+// 13. Voltar ao topo
+// 14. Efeito Ripple
+// 15. Animações de Scroll
 // ================================================================
 
 
@@ -25,27 +28,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // CONFIGURAÇÃO DO SUPABASE
     // ============================================================
 
-    /*
-        IMPORTANTE:
-
-        O auth.js cria o cliente do Supabase e disponibiliza
-        através de:
-
-            window.supabaseClient
-
-        Por isso NÃO usamos simplesmente:
-
-            supabaseClient
-
-        aqui.
-    */
-
     const supabase = window.supabaseClient;
 
-
-    // ============================================================
-    // VERIFICAÇÃO DO SUPABASE
-    // ============================================================
 
     if (!supabase) {
 
@@ -109,6 +93,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     // ============================================================
+    // FILTRO POR DATA
+    // ============================================================
+
+    const filtroDataEvento =
+        document.getElementById('filtroDataEvento');
+
+
+    const btnFiltrarData =
+        document.getElementById('btnFiltrarData');
+
+
+    const btnLimparFiltro =
+        document.getElementById('btnLimparFiltro');
+
+
+    const filtroResultado =
+        document.getElementById('filtroResultado');
+
+
+    // Guarda a data atualmente selecionada no filtro.
+    let dataFiltroAtual = '';
+
+
+    // ============================================================
     // MENU MOBILE
     // ============================================================
 
@@ -155,9 +163,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     'click',
                     () => {
 
-                        mainNav.classList.remove(
-                            'open'
-                        );
+                        mainNav.classList.remove('open');
 
 
                         menuToggle.setAttribute(
@@ -175,13 +181,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             'resize',
             () => {
 
-                if (
-                    window.innerWidth > 992
-                ) {
+                if (window.innerWidth > 992) {
 
-                    mainNav.classList.remove(
-                        'open'
-                    );
+                    mainNav.classList.remove('open');
 
 
                     menuToggle.setAttribute(
@@ -320,22 +322,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 try {
 
-                    if (supabase) {
+                    const {
+                        error
+                    } =
+                        await supabase.auth.signOut();
 
-                        const {
+
+                    if (error) {
+
+                        console.error(
+                            'Erro ao sair:',
                             error
-                        } =
-                            await supabase.auth.signOut();
-
-
-                        if (error) {
-
-                            console.error(
-                                'Erro ao sair:',
-                                error
-                            );
-
-                        }
+                        );
 
                     }
 
@@ -380,9 +378,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
         const elemento =
-            document.createElement(
-                'div'
-            );
+            document.createElement('div');
 
 
         elemento.textContent =
@@ -412,15 +408,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
         /*
-            Caso venha no formato:
-
+            Formato:
             2026-09-03
         */
 
         if (
-            /^\d{4}-\d{2}-\d{2}$/.test(
-                valor
-            )
+            /^\d{4}-\d{2}-\d{2}$/.test(valor)
         ) {
 
             const [
@@ -436,10 +429,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
 
-        /*
-            Caso venha como timestamp.
-        */
-
         const dataObj =
             new Date(valor);
 
@@ -453,6 +442,57 @@ document.addEventListener('DOMContentLoaded', async () => {
             return dataObj.toLocaleDateString(
                 'pt-BR'
             );
+
+        }
+
+
+        return valor;
+
+    }
+
+
+    // ============================================================
+    // FORMATAR HORÁRIO
+    // ============================================================
+
+    function formatarHorario(horario) {
+
+        if (!horario) {
+
+            return 'Horário não informado';
+
+        }
+
+
+        let valor =
+            String(horario).trim();
+
+
+        /*
+            Caso o banco retorne:
+            14:30:00
+        */
+
+        if (
+            /^\d{2}:\d{2}:\d{2}$/.test(valor)
+        ) {
+
+            valor =
+                valor.substring(0, 5);
+
+        }
+
+
+        /*
+            Caso retorne:
+            14:30
+        */
+
+        if (
+            /^\d{2}:\d{2}$/.test(valor)
+        ) {
+
+            return valor;
 
         }
 
@@ -507,26 +547,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
 
-        /*
-            Se o Supabase retornar array.
-        */
-
-        if (
-            Array.isArray(publico)
-        ) {
+        if (Array.isArray(publico)) {
 
             return publico;
 
         }
 
 
-        /*
-            Se vier como JSON em texto.
-        */
-
-        if (
-            typeof publico === 'string'
-        ) {
+        if (typeof publico === 'string') {
 
             try {
 
@@ -535,9 +563,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
                 if (
-                    Array.isArray(
-                        convertido
-                    )
+                    Array.isArray(convertido)
                 ) {
 
                     return convertido;
@@ -546,14 +572,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             } catch (error) {
 
-                // Não é JSON.
+                // Continua para tratamento por vírgula.
             }
 
-
-            /*
-                Caso seja uma string simples
-                separada por vírgulas.
-            */
 
             return publico
                 .split(',')
@@ -578,9 +599,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function formatarPublico(publico) {
 
         const lista =
-            normalizarPublico(
-                publico
-            );
+            normalizarPublico(publico);
 
 
         if (
@@ -618,6 +637,80 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     // ============================================================
+    // OBTER DATA/HORA DE ORDENAÇÃO
+    // ============================================================
+
+    function obterDataOrdenacao(evento) {
+
+        const data =
+            evento.data
+                ? String(evento.data).substring(0, 10)
+                : '';
+
+
+        const horario =
+            evento.horario
+                ? String(evento.horario)
+                : '00:00:00';
+
+
+        if (data) {
+
+            const horarioNormalizado =
+                horario.length === 5
+                    ? `${horario}:00`
+                    : horario;
+
+
+            const dataCompleta =
+                `${data}T${horarioNormalizado}`;
+
+
+            const timestamp =
+                new Date(dataCompleta).getTime();
+
+
+            if (
+                !Number.isNaN(timestamp)
+            ) {
+
+                return timestamp;
+
+            }
+
+        }
+
+
+        /*
+            Fallback para eventos antigos
+            que não possuem data válida.
+        */
+
+        if (evento.created_at) {
+
+            const timestamp =
+                new Date(
+                    evento.created_at
+                ).getTime();
+
+
+            if (
+                !Number.isNaN(timestamp)
+            ) {
+
+                return timestamp;
+
+            }
+
+        }
+
+
+        return 0;
+
+    }
+
+
+    // ============================================================
     // ORDENAR EVENTOS
     // ============================================================
 
@@ -626,23 +719,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         return [...eventos].sort(
             (a, b) => {
 
-                const dataA =
-                    new Date(
-                        a.created_at ||
-                        a.criadoEm ||
-                        0
-                    ).getTime();
-
-
-                const dataB =
-                    new Date(
-                        b.created_at ||
-                        b.criadoEm ||
-                        0
-                    ).getTime();
-
-
-                return dataB - dataA;
+                return obterDataOrdenacao(b) -
+                    obterDataOrdenacao(a);
 
             }
         );
@@ -663,9 +741,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 error
             } =
                 await supabase
-                    .from(
-                        TABELA_EVENTOS
-                    )
+                    .from(TABELA_EVENTOS)
                     .select('*');
 
 
@@ -690,9 +766,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
 
-            return ordenarEventos(
-                data
-            );
+            return ordenarEventos(data);
 
         } catch (error) {
 
@@ -727,10 +801,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         contadorEventos.setAttribute(
             'aria-label',
-            `${quantidade} ${
-                quantidade === 1
-                    ? 'evento cadastrado'
-                    : 'eventos cadastrados'
+            `${quantidade} ${quantidade === 1
+                ? 'evento cadastrado'
+                : 'eventos cadastrados'
             }`
         );
 
@@ -742,12 +815,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ============================================================
 
     function mostrarEstadoVazio(
-        mostrar
+        mostrar,
+        usandoFiltro = false
     ) {
 
         if (!eventosVazio) {
             return;
         }
+
+
+        const titulo =
+            eventosVazio.querySelector('h3');
+
+
+        const texto =
+            eventosVazio.querySelector('p');
 
 
         if (mostrar) {
@@ -758,6 +840,26 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             eventosVazio.style.display =
                 '';
+
+
+            if (titulo) {
+
+                titulo.textContent =
+                    usandoFiltro
+                        ? 'Nenhum evento encontrado para esta data'
+                        : 'Nenhum evento encontrado';
+
+            }
+
+
+            if (texto) {
+
+                texto.textContent =
+                    usandoFiltro
+                        ? 'Não existem eventos cadastrados para a data selecionada.'
+                        : 'Ainda não existem eventos cadastrados na plataforma.';
+
+            }
 
         } else {
 
@@ -774,6 +876,135 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     // ============================================================
+    // ATUALIZAR TEXTO DO FILTRO
+    // ============================================================
+
+    function atualizarTextoFiltro(
+        quantidade
+    ) {
+
+        if (!filtroResultado) {
+            return;
+        }
+
+
+        if (!dataFiltroAtual) {
+
+            filtroResultado.textContent =
+                '';
+
+            return;
+
+        }
+
+
+        const dataFormatada =
+            formatarData(
+                dataFiltroAtual
+            );
+
+
+        if (quantidade === 0) {
+
+            filtroResultado.textContent =
+                `Nenhum evento encontrado para ${dataFormatada}.`;
+
+            return;
+
+        }
+
+
+        filtroResultado.textContent =
+            `${quantidade} ${quantidade === 1
+                ? 'evento encontrado'
+                : 'eventos encontrados'
+            } para ${dataFormatada}.`;
+
+    }
+
+
+    // ============================================================
+    // CRIAR LINK SE EXISTIR
+    // ============================================================
+
+    function criarLinkEvento(link) {
+
+        if (!link) {
+
+            return '';
+
+        }
+
+
+        const valor =
+            String(link).trim();
+
+
+        if (!valor) {
+
+            return '';
+
+        }
+
+
+        let urlValida =
+            valor;
+
+
+        /*
+            Se o usuário digitar apenas:
+            www.exemplo.com
+        */
+
+        if (
+            !/^https?:\/\//i.test(
+                urlValida
+            )
+        ) {
+
+            urlValida =
+                `https://${urlValida}`;
+
+        }
+
+
+        /*
+            Validação básica.
+        */
+
+        try {
+
+            const url =
+                new URL(urlValida);
+
+
+            return `
+                <a
+                    href="${escaparHTML(
+                url.href
+            )}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    ${escaparHTML(
+                valor
+            )}
+                </a>
+            `;
+
+        } catch (error) {
+
+            return `
+                ${escaparHTML(
+                valor
+            )}
+            `;
+
+        }
+
+    }
+
+
+    // ============================================================
     // RENDERIZAR EVENTOS
     // ============================================================
 
@@ -783,11 +1014,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-
-        /*
-            Mostra um estado de carregamento
-            enquanto consulta o banco.
-        */
 
         listaEventos.innerHTML = `
 
@@ -807,11 +1033,51 @@ document.addEventListener('DOMContentLoaded', async () => {
         `;
 
 
-        const eventos =
+        let eventos =
             await obterEventos();
 
 
+        // ========================================================
+        // FILTRO POR DATA
+        // ========================================================
+
+        if (dataFiltroAtual) {
+
+            eventos =
+                eventos.filter(
+                    (evento) => {
+
+                        if (!evento.data) {
+                            return false;
+                        }
+
+
+                        const dataEvento =
+                            String(
+                                evento.data
+                            ).substring(
+                                0,
+                                10
+                            );
+
+
+                        return (
+                            dataEvento ===
+                            dataFiltroAtual
+                        );
+
+                    }
+                );
+
+        }
+
+
         atualizarContador(
+            eventos.length
+        );
+
+
+        atualizarTextoFiltro(
             eventos.length
         );
 
@@ -820,16 +1086,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             '';
 
 
-        /*
-            Nenhum evento.
-        */
+        // ========================================================
+        // NENHUM EVENTO
+        // ========================================================
 
         if (
             eventos.length === 0
         ) {
 
             mostrarEstadoVazio(
-                true
+                true,
+                Boolean(dataFiltroAtual)
             );
 
             return;
@@ -837,17 +1104,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
 
-        /*
-            Existem eventos.
-        */
-
         mostrarEstadoVazio(
             false
         );
 
 
         // ========================================================
-        // CRIA OS CARDS
+        // CRIAR CARDS
         // ========================================================
 
         eventos.forEach(
@@ -863,11 +1126,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                     'evento-card';
 
 
-                /*
-                    Guardamos o ID REAL
-                    do Supabase no card.
-                */
-
                 card.dataset.eventoId =
                     evento.id;
 
@@ -878,13 +1136,93 @@ document.addEventListener('DOMContentLoaded', async () => {
                     );
 
 
+                const horario =
+                    formatarHorario(
+                        evento.horario
+                    );
+
+
+                const local =
+                    evento.local
+                        ? String(
+                            evento.local
+                        ).trim()
+                        : '';
+
+
+                const link =
+                    evento.link
+                        ? String(
+                            evento.link
+                        ).trim()
+                        : '';
+
+
                 const descricao =
                     evento.descricao
                         ? `
                             <div class="evento-descricao">
                                 ${escaparHTML(
-                                    evento.descricao
-                                )}
+                            evento.descricao
+                        )}
+                            </div>
+                        `
+                        : '';
+
+
+                const localHTML =
+                    local
+                        ? `
+                            <div class="evento-info-item">
+
+                                <div class="evento-info-icon">
+
+                                    <i
+                                        class="fas fa-location-dot"
+                                        aria-hidden="true">
+                                    </i>
+
+                                </div>
+
+                                <span class="evento-info-label">
+                                    Local
+                                </span>
+
+                                <span class="evento-info-valor">
+                                    ${escaparHTML(
+                            local
+                        )}
+                                </span>
+
+                            </div>
+                        `
+                        : '';
+
+
+                const linkHTML =
+                    link
+                        ? `
+                            <div class="evento-info-item link">
+
+                                <div class="evento-info-icon">
+
+                                    <i
+                                        class="fas fa-link"
+                                        aria-hidden="true">
+                                    </i>
+
+                                </div>
+
+                                <span class="evento-info-label">
+                                    Link
+                                </span>
+
+                                <span class="evento-info-valor">
+                                    ${criarLinkEvento(
+                            link
+                        )}
+                                </span>
+
                             </div>
                         `
                         : '';
@@ -892,108 +1230,179 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 card.innerHTML = `
 
-                    <div class="evento-card-top">
+                    <!-- =========================================
+                         CABEÇALHO
+                    ========================================== -->
 
-                        <div class="evento-data">
+                    <div class="evento-card-header">
 
-                            <i
-                                class="fas fa-calendar-days"
-                                aria-hidden="true">
-                            </i>
+                        <h3 class="evento-nome">
 
-                            <span>
-                                ${formatarData(
-                                    evento.data
-                                )}
-                            </span>
+                            ${escaparHTML(
+                    evento.nome
+                )}
 
-                        </div>
+                        </h3>
 
 
-                        <button
-                            type="button"
-                            class="evento-excluir"
-                            data-id="${escaparHTML(
-                                evento.id
-                            )}"
-                            aria-label="Excluir evento ${escaparHTML(
-                                evento.nome
-                            )}"
-                        >
+                        <span class="evento-tipo">
 
-                            <i
-                                class="fas fa-trash"
-                                aria-hidden="true">
-                            </i>
+                            ${escaparHTML(
+                    formatarTipoEvento(
+                        evento.tipo
+                    )
+                )}
 
-                        </button>
+                        </span>
 
                     </div>
 
 
-                    <h3 class="evento-nome">
-                        ${escaparHTML(
-                            evento.nome
-                        )}
-                    </h3>
+                    <!-- =========================================
+                         INFORMAÇÕES
+                    ========================================== -->
 
+                    <div class="evento-info">
 
-                    <div class="evento-informacoes">
+                        <!-- DATA -->
 
+                        <div class="evento-info-item">
 
-                        <div class="evento-info">
+                            <div class="evento-info-icon">
 
-                            <i
-                                class="fas fa-location-dot"
-                                aria-hidden="true">
-                            </i>
+                                <i
+                                    class="fas fa-calendar-days"
+                                    aria-hidden="true">
+                                </i>
 
-                            <span>
+                            </div>
+
+                            <span class="evento-info-label">
+                                Data
+                            </span>
+
+                            <span class="evento-info-valor">
                                 ${escaparHTML(
-                                    evento.local ||
-                                    'Local não informado'
-                                )}
+                    formatarData(
+                        evento.data
+                    )
+                )}
                             </span>
 
                         </div>
 
 
-                        <div class="evento-info">
+                        <!-- HORÁRIO -->
+
+                        <div class="evento-info-item horario">
+
+                            <div class="evento-info-icon">
+
+                                <i
+                                    class="fas fa-clock"
+                                    aria-hidden="true">
+                                </i>
+
+                            </div>
+
+                            <span class="evento-info-label">
+                                Horário
+                            </span>
+
+                            <span class="evento-info-valor">
+                                ${escaparHTML(
+                    horario
+                )}
+                            </span>
+
+                        </div>
+
+
+                        <!-- LOCAL -->
+
+                        ${localHTML}
+
+
+                        <!-- LINK -->
+
+                        ${linkHTML}
+
+
+                        <!-- PÚBLICO -->
+
+                        <div class="evento-info-item">
+
+                            <div class="evento-info-icon">
+
+                                <i
+                                    class="fas fa-users"
+                                    aria-hidden="true">
+                                </i>
+
+                            </div>
+
+                            <span class="evento-info-label">
+                                Público
+                            </span>
+
+                            <span class="evento-info-valor">
+                                ${escaparHTML(
+                    publico
+                )}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         DESCRIÇÃO
+                    ========================================== -->
+
+                    ${descricao}
+
+
+                    <!-- =========================================
+                         RODAPÉ
+                    ========================================== -->
+
+                    <div class="evento-card-footer">
+
+                        <span class="evento-data-cadastro">
 
                             <i
                                 class="fas fa-calendar-check"
                                 aria-hidden="true">
                             </i>
 
-                            <span>
-                                ${formatarTipoEvento(
-                                    evento.tipo
-                                )}
-                            </span>
+                            Evento cadastrado
 
-                        </div>
+                        </span>
 
 
-                        <div class="evento-info">
+                        <button
+                            type="button"
+                            class="btn-excluir-evento evento-excluir"
+                            data-id="${escaparHTML(
+                    evento.id
+                )}"
+                            aria-label="Excluir evento ${escaparHTML(
+                    evento.nome
+                )}">
 
                             <i
-                                class="fas fa-users"
+                                class="fas fa-trash"
                                 aria-hidden="true">
                             </i>
 
                             <span>
-                                ${escaparHTML(
-                                    publico
-                                )}
+                                Excluir
                             </span>
 
-                        </div>
-
+                        </button>
 
                     </div>
-
-
-                    ${descricao}
 
                 `;
 
@@ -1040,14 +1449,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
 
-        /*
-            Evita duplo clique.
-        */
-
         if (botao) {
 
             botao.disabled =
                 true;
+
 
             botao.innerHTML = `
 
@@ -1056,6 +1462,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     aria-hidden="true">
                 </i>
 
+                <span>
+                    Excluindo...
+                </span>
+
             `;
 
         }
@@ -1063,19 +1473,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         try {
 
-            console.log(
-                'Excluindo evento do Supabase:',
-                id
-            );
-
-
             const {
                 error
             } =
                 await supabase
-                    .from(
-                        TABELA_EVENTOS
-                    )
+                    .from(TABELA_EVENTOS)
                     .delete()
                     .eq(
                         'id',
@@ -1102,12 +1504,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                     botao.disabled =
                         false;
 
+
                     botao.innerHTML = `
 
                         <i
                             class="fas fa-trash"
                             aria-hidden="true">
                         </i>
+
+                        <span>
+                            Excluir
+                        </span>
 
                     `;
 
@@ -1119,19 +1526,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
 
-            console.log(
-                'Evento excluído com sucesso.'
-            );
-
-
             alert(
                 'Evento excluído com sucesso!'
             );
 
-
-            /*
-                Busca novamente no banco.
-            */
 
             await renderizarEventos();
 
@@ -1153,12 +1551,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                 botao.disabled =
                     false;
 
+
                 botao.innerHTML = `
 
                     <i
                         class="fas fa-trash"
                         aria-hidden="true">
                     </i>
+
+                    <span>
+                        Excluir
+                    </span>
 
                 `;
 
@@ -1174,13 +1577,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ============================================================
 
     if (listaEventos) {
-
-        /*
-            Usamos apenas UM listener.
-
-            Isso funciona inclusive para cards
-            criados depois pelo JavaScript.
-        */
 
         listaEventos.addEventListener(
             'click',
@@ -1262,9 +1658,21 @@ document.addEventListener('DOMContentLoaded', async () => {
                     );
 
 
+                const horarioInput =
+                    document.getElementById(
+                        'horarioEvento'
+                    );
+
+
                 const localInput =
                     document.getElementById(
                         'localEvento'
+                    );
+
+
+                const linkInput =
+                    document.getElementById(
+                        'linkEvento'
                     );
 
 
@@ -1286,9 +1694,21 @@ document.addEventListener('DOMContentLoaded', async () => {
                         : '';
 
 
+                const horario =
+                    horarioInput
+                        ? horarioInput.value
+                        : '';
+
+
                 const local =
                     localInput
                         ? localInput.value.trim()
+                        : '';
+
+
+                const link =
+                    linkInput
+                        ? linkInput.value.trim()
                         : '';
 
 
@@ -1361,6 +1781,23 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
 
 
+                if (!horario) {
+
+                    alert(
+                        'Informe o horário do evento.'
+                    );
+
+
+                    if (horarioInput) {
+                        horarioInput.focus();
+                    }
+
+
+                    return;
+
+                }
+
+
                 if (!tipoSelecionado) {
 
                     alert(
@@ -1369,6 +1806,53 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
                     return;
+
+                }
+
+
+                /*
+                    Validação simples do link.
+                */
+
+                if (link) {
+
+                    let linkTeste =
+                        link;
+
+
+                    if (
+                        !/^https?:\/\//i.test(
+                            linkTeste
+                        )
+                    ) {
+
+                        linkTeste =
+                            `https://${linkTeste}`;
+
+                    }
+
+
+                    try {
+
+                        new URL(
+                            linkTeste
+                        );
+
+                    } catch (error) {
+
+                        alert(
+                            'Informe um link de evento válido.'
+                        );
+
+
+                        if (linkInput) {
+                            linkInput.focus();
+                        }
+
+
+                        return;
+
+                    }
 
                 }
 
@@ -1423,11 +1907,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                     data:
                         data,
 
+                    horario:
+                        horario,
+
                     tipo:
                         tipoSelecionado.value,
 
                     local:
                         local || null,
+
+                    link:
+                        link || null,
 
                     publico:
                         publicoSelecionado,
@@ -1445,7 +1935,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
                 // ==================================================
-                // INSERT NO SUPABASE
+                // INSERT
                 // ==================================================
 
                 try {
@@ -1464,10 +1954,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                             .select()
                             .single();
 
-
-                    // ==============================================
-                    // ERRO
-                    // ==============================================
 
                     if (error) {
 
@@ -1488,6 +1974,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             botaoSubmit.disabled =
                                 false;
 
+
                             botaoSubmit.innerHTML =
                                 textoOriginal;
 
@@ -1499,22 +1986,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                     }
 
 
-                    // ==============================================
-                    // SUCESSO
-                    // ==============================================
-
                     console.log(
                         'Evento cadastrado:',
                         eventoCriado
                     );
 
 
+                    // ==================================================
+                    // LIMPAR FORMULÁRIO
+                    // ==================================================
+
                     formEvento.reset();
 
-
-                    /*
-                        Atualiza texto dos arquivos.
-                    */
 
                     if (uploadTexto) {
 
@@ -1546,17 +2029,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     );
 
 
-                    /*
-                        Busca novamente todos
-                        os eventos no Supabase.
-                    */
+                    // ==================================================
+                    // ATUALIZAR LISTA
+                    // ==================================================
 
                     await renderizarEventos();
 
-
-                    /*
-                        Vai até a lista.
-                    */
 
                     const eventosCadastrados =
                         document.getElementById(
@@ -1564,9 +2042,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         );
 
 
-                    if (
-                        eventosCadastrados
-                    ) {
+                    if (eventosCadastrados) {
 
                         setTimeout(
                             () => {
@@ -1603,12 +2079,125 @@ document.addEventListener('DOMContentLoaded', async () => {
                         botaoSubmit.disabled =
                             false;
 
+
                         botaoSubmit.innerHTML =
                             textoOriginal;
 
                     }
 
                 }
+
+            }
+        );
+
+    }
+
+
+    // ============================================================
+    // FILTRAR POR DATA
+    // ============================================================
+
+    async function aplicarFiltroData() {
+
+        if (!filtroDataEvento) {
+            return;
+        }
+
+
+        const dataSelecionada =
+            filtroDataEvento.value;
+
+
+        if (!dataSelecionada) {
+
+            alert(
+                'Selecione uma data para procurar os eventos.'
+            );
+
+
+            filtroDataEvento.focus();
+
+            return;
+
+        }
+
+
+        dataFiltroAtual =
+            dataSelecionada;
+
+
+        await renderizarEventos();
+
+    }
+
+
+    if (btnFiltrarData) {
+
+        btnFiltrarData.addEventListener(
+            'click',
+            aplicarFiltroData
+        );
+
+    }
+
+
+    // ============================================================
+    // ENTER NO FILTRO
+    // ============================================================
+
+    if (filtroDataEvento) {
+
+        filtroDataEvento.addEventListener(
+            'keydown',
+            (event) => {
+
+                if (
+                    event.key === 'Enter'
+                ) {
+
+                    event.preventDefault();
+
+                    aplicarFiltroData();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // ============================================================
+    // LIMPAR FILTRO
+    // ============================================================
+
+    if (btnLimparFiltro) {
+
+        btnLimparFiltro.addEventListener(
+            'click',
+            async () => {
+
+                dataFiltroAtual =
+                    '';
+
+
+                if (filtroDataEvento) {
+
+                    filtroDataEvento.value =
+                        '';
+
+                }
+
+
+                if (filtroResultado) {
+
+                    filtroResultado.textContent =
+                        '';
+
+                }
+
+
+                await renderizarEventos();
 
             }
         );
@@ -1672,11 +2261,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             <strong>
                 ${arquivos.length}
-                ${
-                    arquivos.length === 1
-                        ? 'arquivo selecionado'
-                        : 'arquivos selecionados'
-                }
+                ${arquivos.length === 1
+                ? 'arquivo selecionado'
+                : 'arquivos selecionados'
+            }
             </strong>
 
             <small>
@@ -1714,8 +2302,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                         <span>
                             ${escaparHTML(
-                                arquivo.name
-                            )}
+                        arquivo.name
+                    )}
                         </span>
 
                     `;
@@ -1796,12 +2384,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                     event.dataTransfer.files
                 ) {
 
-                    /*
-                        DataTransfer permite
-                        atualizar os arquivos
-                        selecionados.
-                    */
-
                     try {
 
                         inputAnexos.files =
@@ -1880,6 +2462,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelectorAll(
             '.btn-submit, ' +
             '.btn-cadastrar-primeiro, ' +
+            '.btn-filtrar-data, ' +
+            '.btn-limpar-filtro, ' +
             '.search-btn'
         );
 
@@ -2033,14 +2617,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     console.log(
-        '========================================'
+        'Novos campos:',
+        'horario, link'
     );
 
 
-    /*
-        Carrega os eventos diretamente
-        do Supabase.
-    */
+    console.log(
+        'Filtro por data:',
+        'ativo'
+    );
+
+
+    console.log(
+        '========================================'
+    );
+
 
     await renderizarEventos();
 

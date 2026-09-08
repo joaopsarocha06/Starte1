@@ -7,7 +7,8 @@
 
     <title>Eventos | Startê - SENAC</title>
 
-    <meta name="description" content="Cadastre, consulte e gerencie eventos da plataforma Startê SENAC.">
+    <meta name="description"
+        content="Cadastre, consulte e gerencie eventos da plataforma Startê SENAC.">
 
     <!-- =========================================================
          FONTES
@@ -15,13 +16,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <!-- =========================================================
          FONT AWESOME
     ========================================================== -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- =========================================================
          CSS
@@ -36,39 +40,161 @@
     ========================================================== -->
 
     <header class="main-header">
-        <div class="container header-container"> <!-- LOGO -->
-            <div class="logo-area"> <a href="home.html" aria-label="Página inicial do Startê"> <img
-                        src="imagens/Senac_logo.svg.webp" alt="Logo Senac" class="logo-img"> </a> </div>
+
+        <div class="container header-container">
+
+            <!-- LOGO -->
+            <div class="logo-area">
+
+                <a href="home.html" aria-label="Página inicial do Startê">
+
+                    <img
+                        src="imagens/Senac_logo.svg.webp"
+                        alt="Logo Senac"
+                        class="logo-img">
+
+                </a>
+
+            </div>
+
+
             <!-- MENU PRINCIPAL -->
             <nav class="nav-menu" id="mainNav" aria-label="Menu principal">
+
                 <ul class="nav-list">
-                    <li> <a href="home.html" class="nav-link"> HOME </a> </li>
-                    <li> <a href="cursos.html" class="nav-link"> CURSOS </a> </li>
-                    <li> <a href="conduta.html" class="nav-link"> CONDUTA </a> </li>
-                    <li> <a href="eventos.html" class="nav-link active" aria-current="page"> EVENTOS </a> </li>
-                    <li> <a href="mural.html" class="nav-link"> MURAL DOCENTE </a> </li>
+
+                    <li>
+                        <a href="home.html" class="nav-link">
+                            HOME
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="cursos.html" class="nav-link">
+                            CURSOS
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="conduta.html" class="nav-link">
+                            CONDUTA
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="eventos.html"
+                            class="nav-link active"
+                            aria-current="page">
+                            EVENTOS
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mural.html" class="nav-link">
+                            MURAL DOCENTE
+                        </a>
+                    </li>
+
                 </ul>
-            </nav> <!-- ÁREA DE AÇÕES -->
-            <div class="action-area"> <!-- PERFIL DO USUÁRIO -->
-                <div class="user-profile" id="userProfile"> <button type="button" class="user-profile-button"
-                        id="userProfileButton" aria-expanded="false" aria-haspopup="true"
-                        aria-controls="userProfileMenu"> <span class="user-profile-icon"> <i class="fas fa-user"
-                                aria-hidden="true"></i> </span> <span class="user-profile-info"> <span
-                                class="user-profile-welcome"> Bem-vindo </span> <span class="user-profile-name"
-                                id="userProfileName"> Usuário </span> </span> <i
-                            class="fas fa-chevron-down user-profile-arrow" aria-hidden="true"></i> </button>
+
+            </nav>
+
+
+            <!-- ÁREA DE AÇÕES -->
+            <div class="action-area">
+
+                <!-- PERFIL -->
+                <div class="user-profile" id="userProfile">
+
+                    <button
+                        type="button"
+                        class="user-profile-button"
+                        id="userProfileButton"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                        aria-controls="userProfileMenu">
+
+                        <span class="user-profile-icon">
+                            <i class="fas fa-user" aria-hidden="true"></i>
+                        </span>
+
+                        <span class="user-profile-info">
+
+                            <span class="user-profile-welcome">
+                                Bem-vindo
+                            </span>
+
+                            <span
+                                class="user-profile-name"
+                                id="userProfileName">
+                                Usuário
+                            </span>
+
+                        </span>
+
+                        <i
+                            class="fas fa-chevron-down user-profile-arrow"
+                            aria-hidden="true">
+                        </i>
+
+                    </button>
+
+
                     <!-- MENU DO PERFIL -->
-                    <div class="user-profile-menu" id="userProfileMenu" role="menu"> <button type="button"
-                            class="user-profile-menu-item" id="profileButton" role="menuitem"> <i class="fas fa-user"
-                                aria-hidden="true"></i> <span> Meu perfil </span> </button>
-                        <div class="user-profile-divider"></div> <button type="button"
-                            class="user-profile-menu-item logout" id="logoutButton" role="menuitem"> <i
-                                class="fas fa-right-from-bracket" aria-hidden="true"></i> <span> Sair </span> </button>
+                    <div
+                        class="user-profile-menu"
+                        id="userProfileMenu"
+                        role="menu">
+
+                        <button
+                            type="button"
+                            class="user-profile-menu-item"
+                            id="profileButton"
+                            role="menuitem">
+
+                            <i
+                                class="fas fa-user"
+                                aria-hidden="true">
+                            </i>
+
+                            <span>
+                                Meu perfil
+                            </span>
+
+                        </button>
+
+
+                        <div class="user-profile-divider"></div>
+
+
+                        <button
+                            type="button"
+                            class="user-profile-menu-item logout"
+                            id="logoutButton"
+                            role="menuitem">
+
+                            <i
+                                class="fas fa-right-from-bracket"
+                                aria-hidden="true">
+                            </i>
+
+                            <span>
+                                Sair
+                            </span>
+
+                        </button>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </header>
+
 
     <!-- =========================================================
          CONTEÚDO PRINCIPAL
@@ -77,7 +203,7 @@
     <main>
 
         <!-- =====================================================
-             HERO / INTRODUÇÃO
+             HERO
         ====================================================== -->
 
         <section class="eventos-hero">
@@ -87,18 +213,29 @@
                 <div class="eventos-hero-content">
 
                     <span class="section-tag">
-                        <i class="fas fa-calendar-days" aria-hidden="true"></i>
+
+                        <i
+                            class="fas fa-calendar-days"
+                            aria-hidden="true">
+                        </i>
 
                         EVENTOS STARTÊ
+
                     </span>
 
+
                     <h1>
+
                         Eventos que
+
                         <strong>
                             conectam
                         </strong>
+
                         pessoas.
+
                     </h1>
+
 
                     <p>
                         Cadastre eventos, encontros, palestras,
@@ -145,7 +282,10 @@
 
                         <div class="funcionamento-icon">
 
-                            <i class="fas fa-calendar-plus" aria-hidden="true"></i>
+                            <i
+                                class="fas fa-calendar-plus"
+                                aria-hidden="true">
+                            </i>
 
                         </div>
 
@@ -154,8 +294,8 @@
                         </h3>
 
                         <p>
-                            Informe nome, data, tipo, local,
-                            público e descrição do evento.
+                            Informe nome, data, horário, tipo,
+                            local, público e descrição do evento.
                         </p>
 
                     </article>
@@ -165,7 +305,10 @@
 
                         <div class="funcionamento-icon">
 
-                            <i class="fas fa-cloud-arrow-up" aria-hidden="true"></i>
+                            <i
+                                class="fas fa-cloud-arrow-up"
+                                aria-hidden="true">
+                            </i>
 
                         </div>
 
@@ -185,7 +328,10 @@
 
                         <div class="funcionamento-icon">
 
-                            <i class="fas fa-users" aria-hidden="true"></i>
+                            <i
+                                class="fas fa-users"
+                                aria-hidden="true">
+                            </i>
 
                         </div>
 
@@ -211,7 +357,9 @@
              CADASTRO DE EVENTO
         ====================================================== -->
 
-        <section class="cadastro-evento-section" id="cadastro-evento">
+        <section
+            class="cadastro-evento-section"
+            id="cadastro-evento">
 
             <div class="container">
 
@@ -237,46 +385,105 @@
 
                     <form id="formEvento" novalidate>
 
-                        <!-- NOME -->
+                        <!-- =================================================
+                             NOME
+                        ================================================== -->
+
                         <div class="form-group">
 
                             <label for="nomeEvento">
+
                                 Nome do evento
+
                                 <span>*</span>
+
                             </label>
 
-                            <input type="text" id="nomeEvento" name="nomeEvento" placeholder="Ex.: Conexão Aprendiz"
-                                maxlength="150" required>
+                            <input
+                                type="text"
+                                id="nomeEvento"
+                                name="nomeEvento"
+                                placeholder="Ex.: Conexão Aprendiz"
+                                maxlength="150"
+                                required>
 
                         </div>
 
 
-                        <!-- DATA -->
-                        <div class="form-group">
+                        <!-- =================================================
+                             DATA + HORÁRIO
+                        ================================================== -->
 
-                            <label for="dataEvento">
-                                Data do evento
-                                <span>*</span>
-                            </label>
+                        <div class="form-row">
 
-                            <input type="date" id="dataEvento" name="dataEvento" required>
+                            <!-- DATA -->
+
+                            <div class="form-group">
+
+                                <label for="dataEvento">
+
+                                    Data do evento
+
+                                    <span>*</span>
+
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="dataEvento"
+                                    name="dataEvento"
+                                    required>
+
+                            </div>
+
+
+                            <!-- HORÁRIO -->
+
+                            <div class="form-group">
+
+                                <label for="horarioEvento">
+
+                                    Horário do evento
+
+                                    <span>*</span>
+
+                                </label>
+
+                                <input
+                                    type="time"
+                                    id="horarioEvento"
+                                    name="horarioEvento"
+                                    required>
+
+                            </div>
 
                         </div>
 
 
-                        <!-- TIPO -->
+                        <!-- =================================================
+                             TIPO
+                        ================================================== -->
+
                         <div class="form-group">
 
                             <label>
+
                                 Tipo do evento
+
                                 <span>*</span>
+
                             </label>
+
 
                             <div class="radio-group">
 
                                 <label class="radio-option">
 
-                                    <input type="radio" name="tipo" value="presencial">
+                                    <input
+                                        type="radio"
+                                        name="tipo"
+                                        value="presencial"
+                                        required>
 
                                     <span>
                                         Presencial
@@ -287,7 +494,10 @@
 
                                 <label class="radio-option">
 
-                                    <input type="radio" name="tipo" value="online">
+                                    <input
+                                        type="radio"
+                                        name="tipo"
+                                        value="online">
 
                                     <span>
                                         Online
@@ -298,7 +508,10 @@
 
                                 <label class="radio-option">
 
-                                    <input type="radio" name="tipo" value="hibrido">
+                                    <input
+                                        type="radio"
+                                        name="tipo"
+                                        value="hibrido">
 
                                     <span>
                                         Híbrido
@@ -311,31 +524,73 @@
                         </div>
 
 
-                        <!-- LOCAL -->
-                        <div class="form-group">
+                        <!-- =================================================
+                             LOCAL + LINK SEPARADOS
+                        ================================================== -->
 
-                            <label for="localEvento">
-                                Local / link do evento
-                            </label>
+                        <div class="form-row">
 
-                            <input type="text" id="localEvento" name="localEvento"
-                                placeholder="Ex.: Sala 05 ou link da reunião" maxlength="255">
+                            <!-- LOCAL -->
+
+                            <div class="form-group">
+
+                                <label for="localEvento">
+
+                                    Local do evento
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="localEvento"
+                                    name="localEvento"
+                                    placeholder="Ex.: Sala 05, Unidade Recife"
+                                    maxlength="255">
+
+                            </div>
+
+
+                            <!-- LINK -->
+
+                            <div class="form-group">
+
+                                <label for="linkEvento">
+
+                                    Link do evento
+
+                                </label>
+
+                                <input
+                                    type="url"
+                                    id="linkEvento"
+                                    name="linkEvento"
+                                    placeholder="https://exemplo.com/reuniao"
+                                    maxlength="500">
+
+                            </div>
 
                         </div>
 
 
-                        <!-- PÚBLICO -->
+                        <!-- =================================================
+                             PÚBLICO
+                        ================================================== -->
+
                         <div class="form-group">
 
                             <label>
                                 Público
                             </label>
 
+
                             <div class="checkbox-group">
 
                                 <label class="checkbox-option">
 
-                                    <input type="checkbox" name="publico" value="alunos">
+                                    <input
+                                        type="checkbox"
+                                        name="publico"
+                                        value="alunos">
 
                                     <span>
                                         Alunos
@@ -346,7 +601,10 @@
 
                                 <label class="checkbox-option">
 
-                                    <input type="checkbox" name="publico" value="docentes">
+                                    <input
+                                        type="checkbox"
+                                        name="publico"
+                                        value="docentes">
 
                                     <span>
                                         Docentes
@@ -357,7 +615,10 @@
 
                                 <label class="checkbox-option">
 
-                                    <input type="checkbox" name="publico" value="comunidade">
+                                    <input
+                                        type="checkbox"
+                                        name="publico"
+                                        value="comunidade">
 
                                     <span>
                                         Ambiente Externo
@@ -370,29 +631,46 @@
                         </div>
 
 
-                        <!-- DESCRIÇÃO -->
+                        <!-- =================================================
+                             DESCRIÇÃO
+                        ================================================== -->
+
                         <div class="form-group">
 
                             <label for="descricaoEvento">
+
                                 Descrição
+
                             </label>
 
-                            <textarea id="descricaoEvento" name="descricaoEvento" rows="6" maxlength="1000"
+                            <textarea
+                                id="descricaoEvento"
+                                name="descricaoEvento"
+                                rows="6"
+                                maxlength="1000"
                                 placeholder="Descreva o evento..."></textarea>
 
                         </div>
 
 
-                        <!-- ANEXOS -->
+                        <!-- =================================================
+                             ANEXOS
+                        ================================================== -->
+
                         <div class="form-group">
 
                             <label>
                                 Anexos
                             </label>
 
+
                             <div class="upload-box">
 
-                                <i class="fas fa-cloud-arrow-up" aria-hidden="true"></i>
+                                <i
+                                    class="fas fa-cloud-arrow-up"
+                                    aria-hidden="true">
+                                </i>
+
 
                                 <div class="upload-texto">
 
@@ -406,23 +684,39 @@
 
                                 </div>
 
-                                <input type="file" id="anexos" name="anexos" multiple
+
+                                <input
+                                    type="file"
+                                    id="anexos"
+                                    name="anexos"
+                                    multiple
                                     accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx">
 
                             </div>
 
 
-                            <div id="listaArquivos" class="lista-arquivos"></div>
+                            <div
+                                id="listaArquivos"
+                                class="lista-arquivos">
+                            </div>
 
                         </div>
 
 
-                        <!-- BOTÃO -->
+                        <!-- =================================================
+                             BOTÃO
+                        ================================================== -->
+
                         <div class="form-actions">
 
-                            <button type="submit" class="btn-submit">
+                            <button
+                                type="submit"
+                                class="btn-submit">
 
-                                <i class="fas fa-calendar-plus" aria-hidden="true"></i>
+                                <i
+                                    class="fas fa-calendar-plus"
+                                    aria-hidden="true">
+                                </i>
 
                                 <span>
                                     Cadastrar evento
@@ -445,7 +739,9 @@
              EVENTOS CADASTRADOS
         ====================================================== -->
 
-        <section class="eventos-cadastrados-section" id="eventos-cadastrados">
+        <section
+            class="eventos-cadastrados-section"
+            id="eventos-cadastrados">
 
             <div class="container">
 
@@ -466,7 +762,9 @@
 
                     <div class="contador-eventos">
 
-                        <span id="contadorEventos" aria-label="0 eventos cadastrados">
+                        <span
+                            id="contadorEventos"
+                            aria-label="0 eventos cadastrados">
                             0
                         </span>
 
@@ -480,28 +778,136 @@
 
 
                 <!-- =================================================
+                     FILTRO POR DATA
+                ================================================== -->
+
+                <div class="filtro-eventos">
+
+                    <div class="filtro-eventos-header">
+
+                        <div class="filtro-eventos-titulo">
+
+                            <div class="filtro-eventos-icon">
+
+                                <i
+                                    class="fas fa-filter"
+                                    aria-hidden="true">
+                                </i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Procurar evento por data
+                                </strong>
+
+                                <span>
+                                    Selecione uma data para encontrar
+                                    os eventos cadastrados.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="filtro-eventos-controles">
+
+                        <div class="filtro-data-group">
+
+                            <label for="filtroDataEvento">
+                                Data
+                            </label>
+
+                            <input
+                                type="date"
+                                id="filtroDataEvento"
+                                name="filtroDataEvento">
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="btnFiltrarData"
+                            class="btn-filtrar-data">
+
+                            <i
+                                class="fas fa-magnifying-glass"
+                                aria-hidden="true">
+                            </i>
+
+                            <span>
+                                Procurar
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="btnLimparFiltro"
+                            class="btn-limpar-filtro">
+
+                            <i
+                                class="fas fa-xmark"
+                                aria-hidden="true">
+                            </i>
+
+                            <span>
+                                Limpar
+                            </span>
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="filtroResultado"
+                        class="filtro-resultado"
+                        aria-live="polite">
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
                      ESTADO VAZIO
                 ================================================== -->
 
-                <div class="eventos-vazio" id="eventosVazio" hidden>
+                <div
+                    class="eventos-vazio"
+                    id="eventosVazio"
+                    hidden>
 
                     <div class="eventos-vazio-icon">
 
-                        <i class="fas fa-calendar-xmark" aria-hidden="true"></i>
+                        <i
+                            class="fas fa-calendar-xmark"
+                            aria-hidden="true">
+                        </i>
 
                     </div>
 
                     <h3>
-                        Nenhum evento cadastrado
+                        Nenhum evento encontrado
                     </h3>
 
                     <p>
-                        Ainda não existem eventos cadastrados.
-                        Seja o primeiro a adicionar um!
+                        Não existem eventos cadastrados para
+                        a data selecionada.
                     </p>
 
-                    <a href="#cadastro-evento" class="btn-cadastrar-primeiro">
+                    <a
+                        href="#cadastro-evento"
+                        class="btn-cadastrar-primeiro">
+
                         Cadastrar evento
+
                     </a>
 
                 </div>
@@ -511,7 +917,10 @@
                      LISTA DINÂMICA
                 ================================================== -->
 
-                <div class="lista-eventos" id="listaEventos"></div>
+                <div
+                    class="lista-eventos"
+                    id="listaEventos">
+                </div>
 
             </div>
 
@@ -528,11 +937,15 @@
 
         <div class="linha-topo"></div>
 
+
         <div class="footer-container">
 
             <div class="footer-sobre">
 
-                <img src="imagens/logo-branco.png" alt="Startê SENAC" class="logo">
+                <img
+                    src="imagens/logo-branco.png"
+                    alt="Startê SENAC"
+                    class="logo">
 
                 <p>
                     O Startê é uma plataforma criada para
@@ -554,6 +967,7 @@
                     </h2>
 
                 </div>
+
 
                 <a href="home.html">
                     Home
@@ -601,8 +1015,13 @@
 
         <div class="footer-local">
 
-            <a href="https://www.pe.senac.br/" target="_blank" rel="noopener noreferrer">
+            <a
+                href="https://www.pe.senac.br/"
+                target="_blank"
+                rel="noopener noreferrer">
+
                 SENAC Pernambuco
+
             </a>
 
         </div>
@@ -614,7 +1033,9 @@
                 © 2026 Startê / SENAC
             </span>
 
-            <img src="imagens/logo-branco.png" alt="SENAC">
+            <img
+                src="imagens/logo-branco.png"
+                alt="SENAC">
 
         </div>
 
@@ -625,9 +1046,15 @@
          VOLTAR AO TOPO
     ========================================================== -->
 
-    <button type="button" id="backToTop" aria-label="Voltar ao topo">
+    <button
+        type="button"
+        id="backToTop"
+        aria-label="Voltar ao topo">
 
-        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+        <i
+            class="fas fa-arrow-up"
+            aria-hidden="true">
+        </i>
 
     </button>
 
@@ -636,16 +1063,12 @@
          SCRIPTS
     ========================================================== -->
 
-    <!-- SUPABASE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- AUTENTICAÇÃO -->
     <script src="js/auth.js"></script>
 
-    <!-- SCRIPT GERAL -->
     <script src="js/script.js"></script>
 
-    <!-- EVENTOS -->
     <script src="js/eventos.js"></script>
 
 </body>
