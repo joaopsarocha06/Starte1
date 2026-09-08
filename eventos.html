@@ -7,10 +7,7 @@
 
     <title>Eventos | Startê - SENAC</title>
 
-    <meta
-        name="description"
-        content="Cadastre, consulte e gerencie eventos da plataforma Startê SENAC."
-    >
+    <meta name="description" content="Cadastre, consulte e gerencie eventos da plataforma Startê SENAC.">
 
     <!-- =========================================================
          FONTES
@@ -18,18 +15,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- =========================================================
          FONT AWESOME
     ========================================================== -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- =========================================================
          CSS
@@ -44,168 +36,39 @@
     ========================================================== -->
 
     <header class="main-header">
-
-        <div class="container header-container">
-
-            <!-- LOGO -->
-            <div class="logo-area">
-
-                <a
-                    href="home.html"
-                    aria-label="Página inicial do Startê"
-                >
-
-                    <img
-                        src="imagens/Senac_logo.svg.webp"
-                        alt="Logo SENAC"
-                        class="logo-img"
-                    >
-
-                </a>
-
-            </div>
-
-
+        <div class="container header-container"> <!-- LOGO -->
+            <div class="logo-area"> <a href="home.html" aria-label="Página inicial do Startê"> <img
+                        src="imagens/Senac_logo.svg.webp" alt="Logo Senac" class="logo-img"> </a> </div>
             <!-- MENU PRINCIPAL -->
-            <nav
-                class="main-nav"
-                id="mainNav"
-                aria-label="Navegação principal"
-            >
-
-                <a href="home.html">
-                    Home
-                </a>
-
-                <a href="cursos.html">
-                    Cursos
-                </a>
-
-                <a href="conduta.html">
-                    Conduta
-                </a>
-
-                <a
-                    href="eventos.html"
-                    class="active"
-                    aria-current="page"
-                >
-                    Eventos
-                </a>
-
-                <a href="mural.html">
-                    MURAL DOCENTE
-                </a>
-
-            </nav>
-
-
-            <!-- ÁREA DO USUÁRIO -->
-            <div class="action-area">
-
-                <div
-                    class="user-profile"
-                    id="userProfile"
-                >
-
-                    <!-- BOTÃO DO PERFIL -->
-                    <button
-                        type="button"
-                        class="user-profile-button"
-                        id="userProfileButton"
-                        aria-expanded="false"
-                        aria-haspopup="true"
-                    >
-
-                        <span class="user-profile-icon">
-                            <i
-                                class="fas fa-user"
-                                aria-hidden="true"
-                            ></i>
-                        </span>
-
-                        <span
-                            class="user-profile-name"
-                            id="userProfileName"
-                        >
-                            Usuário
-                        </span>
-
-                        <i
-                            class="fas fa-chevron-down user-profile-arrow"
-                            aria-hidden="true"
-                        ></i>
-
-                    </button>
-
-
-                    <!-- MENU -->
-                    <div
-                        class="user-profile-menu"
-                        id="userProfileMenu"
-                    >
-
-                        <button
-                            type="button"
-                            id="profileButton"
-                        >
-
-                            <i
-                                class="fas fa-user-circle"
-                                aria-hidden="true"
-                            ></i>
-
-                            <span>
-                                Meu perfil
-                            </span>
-
-                        </button>
-
-
-                        <button
-                            type="button"
-                            id="logoutButton"
-                        >
-
-                            <i
-                                class="fas fa-right-from-bracket"
-                                aria-hidden="true"
-                            ></i>
-
-                            <span>
-                                Sair
-                            </span>
-
-                        </button>
-
+            <nav class="nav-menu" id="mainNav" aria-label="Menu principal">
+                <ul class="nav-list">
+                    <li> <a href="home.html" class="nav-link"> HOME </a> </li>
+                    <li> <a href="cursos.html" class="nav-link"> CURSOS </a> </li>
+                    <li> <a href="conduta.html" class="nav-link"> CONDUTA </a> </li>
+                    <li> <a href="eventos.html" class="nav-link active" aria-current="page"> EVENTOS </a> </li>
+                    <li> <a href="mural.html" class="nav-link"> MURAL DOCENTE </a> </li>
+                </ul>
+            </nav> <!-- ÁREA DE AÇÕES -->
+            <div class="action-area"> <!-- PERFIL DO USUÁRIO -->
+                <div class="user-profile" id="userProfile"> <button type="button" class="user-profile-button"
+                        id="userProfileButton" aria-expanded="false" aria-haspopup="true"
+                        aria-controls="userProfileMenu"> <span class="user-profile-icon"> <i class="fas fa-user"
+                                aria-hidden="true"></i> </span> <span class="user-profile-info"> <span
+                                class="user-profile-welcome"> Bem-vindo </span> <span class="user-profile-name"
+                                id="userProfileName"> Usuário </span> </span> <i
+                            class="fas fa-chevron-down user-profile-arrow" aria-hidden="true"></i> </button>
+                    <!-- MENU DO PERFIL -->
+                    <div class="user-profile-menu" id="userProfileMenu" role="menu"> <button type="button"
+                            class="user-profile-menu-item" id="profileButton" role="menuitem"> <i class="fas fa-user"
+                                aria-hidden="true"></i> <span> Meu perfil </span> </button>
+                        <div class="user-profile-divider"></div> <button type="button"
+                            class="user-profile-menu-item logout" id="logoutButton" role="menuitem"> <i
+                                class="fas fa-right-from-bracket" aria-hidden="true"></i> <span> Sair </span> </button>
                     </div>
-
                 </div>
-
             </div>
-
-
-            <!-- MENU MOBILE -->
-            <button
-                type="button"
-                class="menu-toggle"
-                id="menuToggle"
-                aria-label="Abrir menu"
-                aria-expanded="false"
-                aria-controls="mainNav"
-            >
-
-                <i
-                    class="fas fa-bars"
-                    aria-hidden="true"
-                ></i>
-
-            </button>
-
         </div>
-
     </header>
-
 
     <!-- =========================================================
          CONTEÚDO PRINCIPAL
@@ -224,10 +87,7 @@
                 <div class="eventos-hero-content">
 
                     <span class="section-tag">
-                        <i
-                            class="fas fa-calendar-days"
-                            aria-hidden="true"
-                        ></i>
+                        <i class="fas fa-calendar-days" aria-hidden="true"></i>
 
                         EVENTOS STARTÊ
                     </span>
@@ -285,10 +145,7 @@
 
                         <div class="funcionamento-icon">
 
-                            <i
-                                class="fas fa-calendar-plus"
-                                aria-hidden="true"
-                            ></i>
+                            <i class="fas fa-calendar-plus" aria-hidden="true"></i>
 
                         </div>
 
@@ -308,10 +165,7 @@
 
                         <div class="funcionamento-icon">
 
-                            <i
-                                class="fas fa-cloud-arrow-up"
-                                aria-hidden="true"
-                            ></i>
+                            <i class="fas fa-cloud-arrow-up" aria-hidden="true"></i>
 
                         </div>
 
@@ -331,10 +185,7 @@
 
                         <div class="funcionamento-icon">
 
-                            <i
-                                class="fas fa-users"
-                                aria-hidden="true"
-                            ></i>
+                            <i class="fas fa-users" aria-hidden="true"></i>
 
                         </div>
 
@@ -360,10 +211,7 @@
              CADASTRO DE EVENTO
         ====================================================== -->
 
-        <section
-            class="cadastro-evento-section"
-            id="cadastro-evento"
-        >
+        <section class="cadastro-evento-section" id="cadastro-evento">
 
             <div class="container">
 
@@ -387,10 +235,7 @@
 
                 <div class="form-evento-wrapper">
 
-                    <form
-                        id="formEvento"
-                        novalidate
-                    >
+                    <form id="formEvento" novalidate>
 
                         <!-- NOME -->
                         <div class="form-group">
@@ -400,14 +245,8 @@
                                 <span>*</span>
                             </label>
 
-                            <input
-                                type="text"
-                                id="nomeEvento"
-                                name="nomeEvento"
-                                placeholder="Ex.: Conexão Aprendiz"
-                                maxlength="150"
-                                required
-                            >
+                            <input type="text" id="nomeEvento" name="nomeEvento" placeholder="Ex.: Conexão Aprendiz"
+                                maxlength="150" required>
 
                         </div>
 
@@ -420,12 +259,7 @@
                                 <span>*</span>
                             </label>
 
-                            <input
-                                type="date"
-                                id="dataEvento"
-                                name="dataEvento"
-                                required
-                            >
+                            <input type="date" id="dataEvento" name="dataEvento" required>
 
                         </div>
 
@@ -442,11 +276,7 @@
 
                                 <label class="radio-option">
 
-                                    <input
-                                        type="radio"
-                                        name="tipo"
-                                        value="presencial"
-                                    >
+                                    <input type="radio" name="tipo" value="presencial">
 
                                     <span>
                                         Presencial
@@ -457,11 +287,7 @@
 
                                 <label class="radio-option">
 
-                                    <input
-                                        type="radio"
-                                        name="tipo"
-                                        value="online"
-                                    >
+                                    <input type="radio" name="tipo" value="online">
 
                                     <span>
                                         Online
@@ -472,11 +298,7 @@
 
                                 <label class="radio-option">
 
-                                    <input
-                                        type="radio"
-                                        name="tipo"
-                                        value="hibrido"
-                                    >
+                                    <input type="radio" name="tipo" value="hibrido">
 
                                     <span>
                                         Híbrido
@@ -496,13 +318,8 @@
                                 Local / link do evento
                             </label>
 
-                            <input
-                                type="text"
-                                id="localEvento"
-                                name="localEvento"
-                                placeholder="Ex.: Sala 05 ou link da reunião"
-                                maxlength="255"
-                            >
+                            <input type="text" id="localEvento" name="localEvento"
+                                placeholder="Ex.: Sala 05 ou link da reunião" maxlength="255">
 
                         </div>
 
@@ -518,11 +335,7 @@
 
                                 <label class="checkbox-option">
 
-                                    <input
-                                        type="checkbox"
-                                        name="publico"
-                                        value="alunos"
-                                    >
+                                    <input type="checkbox" name="publico" value="alunos">
 
                                     <span>
                                         Alunos
@@ -533,11 +346,7 @@
 
                                 <label class="checkbox-option">
 
-                                    <input
-                                        type="checkbox"
-                                        name="publico"
-                                        value="docentes"
-                                    >
+                                    <input type="checkbox" name="publico" value="docentes">
 
                                     <span>
                                         Docentes
@@ -548,11 +357,7 @@
 
                                 <label class="checkbox-option">
 
-                                    <input
-                                        type="checkbox"
-                                        name="publico"
-                                        value="comunidade"
-                                    >
+                                    <input type="checkbox" name="publico" value="comunidade">
 
                                     <span>
                                         Ambiente Externo
@@ -572,13 +377,8 @@
                                 Descrição
                             </label>
 
-                            <textarea
-                                id="descricaoEvento"
-                                name="descricaoEvento"
-                                rows="6"
-                                maxlength="1000"
-                                placeholder="Descreva o evento..."
-                            ></textarea>
+                            <textarea id="descricaoEvento" name="descricaoEvento" rows="6" maxlength="1000"
+                                placeholder="Descreva o evento..."></textarea>
 
                         </div>
 
@@ -592,10 +392,7 @@
 
                             <div class="upload-box">
 
-                                <i
-                                    class="fas fa-cloud-arrow-up"
-                                    aria-hidden="true"
-                                ></i>
+                                <i class="fas fa-cloud-arrow-up" aria-hidden="true"></i>
 
                                 <div class="upload-texto">
 
@@ -609,21 +406,13 @@
 
                                 </div>
 
-                                <input
-                                    type="file"
-                                    id="anexos"
-                                    name="anexos"
-                                    multiple
-                                    accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx"
-                                >
+                                <input type="file" id="anexos" name="anexos" multiple
+                                    accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx">
 
                             </div>
 
 
-                            <div
-                                id="listaArquivos"
-                                class="lista-arquivos"
-                            ></div>
+                            <div id="listaArquivos" class="lista-arquivos"></div>
 
                         </div>
 
@@ -631,15 +420,9 @@
                         <!-- BOTÃO -->
                         <div class="form-actions">
 
-                            <button
-                                type="submit"
-                                class="btn-submit"
-                            >
+                            <button type="submit" class="btn-submit">
 
-                                <i
-                                    class="fas fa-calendar-plus"
-                                    aria-hidden="true"
-                                ></i>
+                                <i class="fas fa-calendar-plus" aria-hidden="true"></i>
 
                                 <span>
                                     Cadastrar evento
@@ -662,10 +445,7 @@
              EVENTOS CADASTRADOS
         ====================================================== -->
 
-        <section
-            class="eventos-cadastrados-section"
-            id="eventos-cadastrados"
-        >
+        <section class="eventos-cadastrados-section" id="eventos-cadastrados">
 
             <div class="container">
 
@@ -686,10 +466,7 @@
 
                     <div class="contador-eventos">
 
-                        <span
-                            id="contadorEventos"
-                            aria-label="0 eventos cadastrados"
-                        >
+                        <span id="contadorEventos" aria-label="0 eventos cadastrados">
                             0
                         </span>
 
@@ -706,18 +483,11 @@
                      ESTADO VAZIO
                 ================================================== -->
 
-                <div
-                    class="eventos-vazio"
-                    id="eventosVazio"
-                    hidden
-                >
+                <div class="eventos-vazio" id="eventosVazio" hidden>
 
                     <div class="eventos-vazio-icon">
 
-                        <i
-                            class="fas fa-calendar-xmark"
-                            aria-hidden="true"
-                        ></i>
+                        <i class="fas fa-calendar-xmark" aria-hidden="true"></i>
 
                     </div>
 
@@ -730,10 +500,7 @@
                         Seja o primeiro a adicionar um!
                     </p>
 
-                    <a
-                        href="#cadastro-evento"
-                        class="btn-cadastrar-primeiro"
-                    >
+                    <a href="#cadastro-evento" class="btn-cadastrar-primeiro">
                         Cadastrar evento
                     </a>
 
@@ -744,10 +511,7 @@
                      LISTA DINÂMICA
                 ================================================== -->
 
-                <div
-                    class="lista-eventos"
-                    id="listaEventos"
-                ></div>
+                <div class="lista-eventos" id="listaEventos"></div>
 
             </div>
 
@@ -768,11 +532,7 @@
 
             <div class="footer-sobre">
 
-                <img
-                    src="imagens/logo-branco.png"
-                    alt="Startê SENAC"
-                    class="logo"
-                >
+                <img src="imagens/logo-branco.png" alt="Startê SENAC" class="logo">
 
                 <p>
                     O Startê é uma plataforma criada para
@@ -841,11 +601,7 @@
 
         <div class="footer-local">
 
-            <a
-                href="https://www.pe.senac.br/"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
+            <a href="https://www.pe.senac.br/" target="_blank" rel="noopener noreferrer">
                 SENAC Pernambuco
             </a>
 
@@ -858,10 +614,7 @@
                 © 2026 Startê / SENAC
             </span>
 
-            <img
-                src="imagens/logo-branco.png"
-                alt="SENAC"
-            >
+            <img src="imagens/logo-branco.png" alt="SENAC">
 
         </div>
 
@@ -872,16 +625,9 @@
          VOLTAR AO TOPO
     ========================================================== -->
 
-    <button
-        type="button"
-        id="backToTop"
-        aria-label="Voltar ao topo"
-    >
+    <button type="button" id="backToTop" aria-label="Voltar ao topo">
 
-        <i
-            class="fas fa-arrow-up"
-            aria-hidden="true"
-        ></i>
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
 
     </button>
 

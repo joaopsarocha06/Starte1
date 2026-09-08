@@ -5,7 +5,7 @@
    1. RESET E VARIÁVEIS
    2. HEADER
    3. MENU / PÍLULA FLUTUANTE
-   4. ÁREA DE AÇÕES / BUSCA
+   4. ÁREA DE AÇÕES
    5. PERFIL DO USUÁRIO
    6. ACESSIBILIDADE
    7. BOTÃO HAMBÚRGUER
@@ -17,16 +17,16 @@
    13. BANNER QUIZ
    14. BANNER INVISTA
    15. BENEFÍCIOS
-   16. FOOTER
-   17. REDES SOCIAIS
-   18. LINKS DO FOOTER
-   19. PARCEIROS
-   20. LOCALIZAÇÃO
-   21. FOOTER BOTTOM
-   22. BOTÃO VOLTAR AO TOPO
-   23. TABLET / NOTEBOOK
-   24. TABLET
-   25. TABLET PEQUENO
+   16. PLATAFORMAS DE APRENDIZAGEM
+   17. FOOTER
+   18. REDES SOCIAIS
+   19. LINKS DO FOOTER
+   20. PARCEIROS
+   21. LOCALIZAÇÃO
+   22. FOOTER BOTTOM
+   23. BOTÃO VOLTAR AO TOPO
+   24. TABLET / NOTEBOOK
+   25. TABLET
    26. CELULAR
    27. CELULARES MUITO PEQUENOS
    28. REDUÇÃO DE MOVIMENTO
@@ -40,10 +40,14 @@
 :root {
   --senac-blue: #0b5195;
   --senac-blue-dark: #004a94;
+  --senac-blue-deep: #003f7d;
+
   --senac-orange: #ea941f;
   --senac-orange-dark: #d68211;
+  --senac-orange-light: #f7b84b;
 
   --text-dark: #002f6c;
+  --text-title: #002f6c;
   --text-paragraph: #707070;
 
   --bg-light: #f7f9fb;
@@ -53,6 +57,7 @@
 
   --container-width: 90vw;
   --container-max-width: 1440px;
+
   --header-height: 90px;
 
   --cat-orange: #e06d12;
@@ -69,64 +74,718 @@
   --transition-normal: 0.3s ease;
 }
 
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+
 html {
   scroll-behavior: smooth;
 }
 
+
 body {
   margin: 0;
   padding: 0;
+
   font-family: var(--font-family);
+
   background-color: var(--bg-light);
+
   color: var(--text-dark);
+
   overflow-x: hidden;
+
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
 
 body.no-scroll {
   overflow: hidden;
 }
 
+
 ul {
   list-style: none;
+
   margin: 0;
   padding: 0;
 }
 
+
 a {
-  text-decoration: none;
   color: inherit;
+
+  text-decoration: none;
 }
+
 
 button,
 input {
   font-family: inherit;
 }
 
+
 button {
   border: 0;
 }
 
+
 img {
   display: block;
+
   max-width: 100%;
   height: auto;
 }
 
+
 .container {
   width: min(var(--container-width), var(--container-max-width));
+
   margin: 0 auto;
 }
 
+
 .text-center {
   text-align: center;
+}
+
+
+/* ==========================================================================
+   03. HEADER
+   ========================================================================== */
+
+.main-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.main-header .logo-area,
+.main-header .nav-menu,
+.main-header .action-area {
+  pointer-events: auto;
+}
+
+
+/* ==========================================================================
+   04. CONTAINER DO HEADER
+   ========================================================================== */
+
+.header-container {
+  width: min(var(--container-width), var(--container-max-width));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+
+/* ==========================================================================
+   05. LOGO
+   ========================================================================== */
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo-area a {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: auto;
+  height: 56px;
+  object-fit: contain;
+  transition: transform var(--transition-fast);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+}
+
+.logo-area a:hover .logo-img {
+  transform: scale(1.03);
+}
+
+
+/* ==========================================================================
+   06. MENU / PÍLULA FLUTUANTE
+   ========================================================================== */
+
+.nav-menu {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: max-content;
+  max-width: calc(100% - 500px);
+
+  padding: 14px 40px;
+
+  background-color: rgba(240, 242, 245, 0.88);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 35px;
+
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.04);
+
+  white-space: nowrap;
+
+  transition:
+    background-color var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+
+/* ==========================================================================
+   07. LINKS DO MENU
+   ========================================================================== */
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  font-size: 16px;
+  font-weight: 800;
+
+  color: #333333;
+
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.nav-link::after {
+  content: "";
+
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+
+  width: 0;
+  height: 3px;
+
+  border-radius: 5px;
+
+  background-color: var(--senac-orange);
+
+  transform: translateX(-50%);
+
+  transition: width var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--senac-orange);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 70%;
+}
+
+
+/* ==========================================================================
+   08. ÁREA DE AÇÕES / PERFIL
+   ========================================================================== */
+
+.action-area {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 20px;
+
+  flex-shrink: 0;
+
+  position: relative;
+  z-index: 2100;
+}
+
+
+/* ==========================================================================
+   09. PERFIL DO USUÁRIO
+   ========================================================================== */
+
+.user-profile {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  z-index: 2100;
+}
+
+
+/* ==========================================================================
+   10. BOTÃO DO PERFIL
+   ========================================================================== */
+
+.user-profile-button {
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 6px 12px 6px 7px;
+
+  border: none;
+  border-radius: 28px;
+
+  background-color: #e6e9ed;
+
+  color: var(--text-dark);
+
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.user-profile-button:hover {
+  background-color: #dfe3e8;
+
+  transform: translateY(-2px);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.user-profile-button:active {
+  transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   11. ÍCONE DO PERFIL
+   ========================================================================== */
+
+.user-profile-icon {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 36px;
+
+  border-radius: 50%;
+
+  background-color: var(--senac-blue);
+  color: var(--white);
+}
+
+.user-profile-icon i {
+  font-size: 16px;
+}
+
+
+/* ==========================================================================
+   12. INFORMAÇÕES DO USUÁRIO
+   ========================================================================== */
+
+.user-profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  min-width: 70px;
+
+  line-height: 1.1;
+}
+
+.user-profile-welcome {
+  color: #777777;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.user-profile-name {
+  max-width: 100px;
+
+  margin-top: 3px;
+
+  overflow: hidden;
+
+  color: #333333;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* ==========================================================================
+   13. SETA DO PERFIL
+   ========================================================================== */
+
+.user-profile-arrow {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 28px;
+
+  margin-left: 2px;
+
+  border-radius: 50%;
+
+  background-color: #f0f4f8;
+
+  color: var(--senac-blue);
+
+  font-size: 10px;
+
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.user-profile.open .user-profile-arrow {
+  transform: rotate(180deg);
+
+  background-color: #fff1dc;
+
+  color: var(--senac-orange);
+}
+
+
+/* ==========================================================================
+   14. MENU DO PERFIL
+   ========================================================================== */
+
+.user-profile-menu {
+  position: absolute;
+
+  top: calc(100% + 12px);
+  right: 0;
+
+  width: 255px;
+
+  padding: 10px;
+
+  background: rgba(255, 255, 255, 0.98);
+
+  border: 1px solid rgba(0, 47, 108, 0.08);
+  border-radius: 18px;
+
+  box-shadow:
+    0 20px 50px rgba(0, 47, 108, 0.17),
+    0 5px 15px rgba(0, 47, 108, 0.07);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(-8px) scale(0.98);
+  transform-origin: top right;
+
+  transition:
+    opacity 0.22s ease,
+    visibility 0.22s ease,
+    transform 0.22s ease;
+
+  z-index: 10001;
+}
+
+.user-profile-menu::before {
+  content: "";
+
+  position: absolute;
+
+  top: -6px;
+  right: 25px;
+
+  width: 12px;
+  height: 12px;
+
+  background: var(--white);
+
+  border-left: 1px solid rgba(0, 47, 108, 0.08);
+  border-top: 1px solid rgba(0, 47, 108, 0.08);
+
+  transform: rotate(45deg);
+}
+
+.user-profile-menu.show,
+.user-profile.open .user-profile-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateY(0) scale(1);
+}
+
+
+/* ==========================================================================
+   15. CABEÇALHO DO MENU DO PERFIL
+   ========================================================================== */
+
+.profile-menu-header {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 8px 8px 12px;
+}
+
+.profile-menu-icon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 11px;
+
+  background-color: #eef5fb;
+  color: var(--senac-blue);
+
+  font-size: 15px;
+}
+
+.profile-menu-header > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.profile-menu-label {
+  color: #8793a0;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.profile-menu-header strong {
+  overflow: hidden;
+
+  color: var(--text-dark);
+
+  font-size: 13px;
+  font-weight: 800;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   16. DIVISOR DO MENU
+   ========================================================================== */
+
+.user-profile-divider {
+  width: 100%;
+  height: 1px;
+
+  margin: 2px 0 7px;
+
+  background-color: rgba(0, 47, 108, 0.07);
+}
+
+
+/* ==========================================================================
+   17. ITENS DO MENU DO PERFIL
+   ========================================================================== */
+
+.user-profile-menu-item {
+  width: 100%;
+  min-height: 46px;
+
+  padding: 0 10px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  border: none;
+  border-radius: 11px;
+
+  background-color: transparent;
+
+  color: var(--text-dark);
+
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 700;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.user-profile-menu-item:hover {
+  background: linear-gradient(
+    90deg,
+    #f2f7fb,
+    #fafbfd
+  );
+
+  color: var(--senac-blue);
+
+  transform: translateX(2px);
+}
+
+.user-profile-menu-item > i {
+  width: 20px;
+
+  flex-shrink: 0;
+
+  color: var(--senac-blue);
+
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   18. ÍCONES DOS ITENS
+   ========================================================================== */
+
+.profile-menu-item-icon {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background-color: #f3f6f9;
+
+  color: var(--senac-blue);
+
+  font-size: 13px;
+
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.user-profile-menu-item:hover .profile-menu-item-icon {
+  background-color: #e8f1f9;
+  color: var(--senac-blue);
+}
+
+.profile-item-arrow {
+  margin-left: auto;
+
+  color: #a1abb5;
+
+  font-size: 9px;
+
+  transition:
+    transform var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.user-profile-menu-item:hover .profile-item-arrow {
+  transform: translateX(2px);
+  color: var(--senac-blue);
+}
+
+
+/* ==========================================================================
+   19. BOTÃO SAIR
+   ========================================================================== */
+
+.user-profile-menu-item.logout {
+  margin-top: 3px;
+
+  color: #b54b42;
+}
+
+.user-profile-menu-item.logout i {
+  color: #c45a50;
+}
+
+.user-profile-menu-item.logout .profile-menu-item-icon {
+  background-color: #fff1ef;
+  color: #c45a50;
+}
+
+.user-profile-menu-item.logout:hover {
+  background-color: #fff5f3;
+  color: #c44f45;
+}
+
+.user-profile-menu-item.logout:hover i,
+.user-profile-menu-item.logout:hover .profile-menu-item-icon {
+  color: #c44f45;
+}
+
+.user-profile-menu-item.logout:hover .profile-menu-item-icon {
+  background-color: #ffe8e5;
 }
 
 /* ==========================================================================
@@ -135,11 +794,12 @@ img {
 
 .nav-link:focus-visible,
 .btn:focus-visible,
-.search-btn:focus-visible,
 .user-profile-button:focus-visible,
 .user-profile-menu-item:focus-visible,
-.footer-search button:focus-visible,
-.menu-toggle:focus-visible {
+.menu-toggle:focus-visible,
+.cards-action-button:focus-visible,
+.platform-link:focus-visible,
+.back-to-top:focus-visible {
   outline: 2px solid var(--senac-orange);
 
   outline-offset: 3px;
@@ -171,10 +831,13 @@ img {
 
   font-size: 20px;
 
+  pointer-events: auto;
+
   transition:
     background-color var(--transition-fast),
     transform var(--transition-fast);
 }
+
 
 .menu-toggle:hover {
   background-color: #dfe3e8;
@@ -193,109 +856,826 @@ img {
   margin: calc(var(--header-height) + 40px) auto 60px;
 
   display: flex;
+
   flex-direction: column;
 
   gap: 70px;
 }
 
-/* =========================================================
-   PLATAFORMAS DE APRENDIZAGEM
-========================================================= */
 
-.learning-platforms-section {
-  width: 100%;
-  padding: 90px 0 100px;
-  background-color: var(--bg-light);
+/* ==========================================================================
+   9. BOTÕES
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 28px;
+
+  border-radius: 30px;
+
+  font-size: 0.95rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
-.learning-platforms-section>.container {
-  width: 90%;
-  max-width: 1440px;
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+
+.btn-primary {
+  background-color: var(--senac-blue);
+
+  color: var(--white);
+
+  box-shadow:
+    0 6px 18px rgba(11, 81, 149, 0.18);
+}
+
+
+.btn-primary:hover {
+  background-color: var(--senac-blue-dark);
+
+  box-shadow:
+    0 9px 22px rgba(11, 81, 149, 0.25);
+}
+
+
+/* ==========================================================================
+   10. HERO
+   ========================================================================== */
+
+.hero-section {
+  width: 100%;
+
+  max-width: 1280px;
+
   margin: 0 auto;
+
+  padding: 40px 20px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 60px;
 }
 
 
-/* =========================================================
-   CABEÇALHO
-========================================================= */
+.hero-content {
+  flex: 1;
 
-.learning-platforms-header {
+  max-width: 520px;
+}
+
+
+.hero-tag {
+  color: var(--senac-orange);
+
+  font-size: 0.9rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+  text-transform: uppercase;
+}
+
+
+.hero-title {
+  margin: 12px 0 16px;
+
+  color: var(--senac-blue);
+
+  font-size: clamp(2.6rem, 4vw, 3.5rem);
+
+  font-weight: 800;
+
+  line-height: 1.08;
+}
+
+
+.highlight-orange {
+  color: var(--senac-orange);
+}
+
+
+.hero-description {
+  margin: 0 0 32px;
+
+  color: var(--text-paragraph);
+
+  font-size: 1.3rem;
+
+  font-weight: 700;
+
+  line-height: 1.5;
+}
+
+
+.hero-buttons {
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+}
+
+
+.hero-media {
+  flex: 1.2;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+.hero-img {
   width: 100%;
-  max-width: 850px;
-  margin: 0 auto 50px;
+
+  max-width: 680px;
+
+  height: auto;
+
+  object-fit: contain;
+}
+
+
+/* ==========================================================================
+   11. ÁREAS DE CONHECIMENTO
+   ========================================================================== */
+
+.categories-section {
+  width: 100%;
+}
+
+
+.section-header {
+  margin-bottom: 36px;
+
   text-align: center;
 }
 
-.learning-platforms-header .section-tag {
-  display: inline-block;
-  margin-bottom: 12px;
+
+.section-tag {
   color: var(--senac-orange);
-  font-size: 16px;
+
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
-.learning-platforms-header h2 {
-  max-width: 850px;
-  margin: 0 auto;
-  color: var(--text-title);
-  font-size: clamp(32px, 4vw, 45px);
+
+.section-header h2 {
+  margin: 0 0 8px;
+
+  color: var(--senac-blue);
+
+  font-size: clamp(2rem, 4vw, 3rem);
+
   font-weight: 800;
+
   line-height: 1.15;
 }
 
+
+.section-header p {
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  color: var(--text-paragraph);
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  line-height: 1.5;
+}
+
+
+/* ==========================================================================
+   CARDS DE CATEGORIAS
+   ========================================================================== */
+
+.cards-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+
+.category-card {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  padding: 16px 16px 24px;
+
+  background-color: var(--white);
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  box-shadow: var(--shadow-md);
+
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+
+.category-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow: var(--shadow-lg);
+}
+
+
+.card-image-wrapper {
+  width: 100%;
+
+  height: 220px;
+
+  margin-bottom: 16px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+.card-image-wrapper img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+}
+
+
+.card-content {
+  display: flex;
+
+  flex-direction: column;
+
+  flex: 1;
+}
+
+
+.card-content h3 {
+  margin: 0 0 8px;
+
+  font-size: 1.5rem;
+
+  font-weight: 800;
+
+  line-height: 1.2;
+}
+
+
+.card-content p {
+  margin: 0;
+
+  color: var(--text-paragraph);
+
+  font-size: 1rem;
+
+  font-weight: 700;
+
+  line-height: 1.45;
+}
+
+
+/* ==========================================================================
+   AÇÃO ÚNICA DOS CARDS
+   ========================================================================== */
+
+.cards-action {
+  width: 100%;
+
+  margin-top: 35px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+.cards-action-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  min-width: 210px;
+
+  padding: 14px 26px;
+
+  background-color: var(--senac-blue);
+
+  color: var(--white);
+
+  border-radius: 999px;
+
+  font-size: 1rem;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  box-shadow: var(--shadow-md);
+
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+
+.cards-action-button:hover {
+  background-color: var(--senac-blue-dark);
+
+  transform: translateY(-3px);
+
+  box-shadow: var(--shadow-lg);
+}
+
+
+.cards-action-button i {
+  font-size: 0.9rem;
+
+  transition:
+    transform var(--transition-fast);
+}
+
+
+.cards-action-button:hover i {
+  transform: translateX(4px);
+}
+
+
+/* ==========================================================================
+   12. CORES DAS CATEGORIAS
+   ========================================================================== */
+
+.text-orange {
+  color: var(--cat-orange);
+}
+
+
+.text-green {
+  color: var(--cat-green);
+}
+
+
+.text-blue {
+  color: var(--cat-blue);
+}
+
+
+.text-red {
+  color: var(--cat-red);
+}
+
+
+.text-purple {
+  color: var(--cat-purple);
+}
+
+
+/* ==========================================================================
+   13. BANNER QUIZ
+   ========================================================================== */
+
+.cta-quiz-banner {
+  display: flex;
+
+  align-items: center;
+
+  gap: 32px;
+
+  overflow: hidden;
+
+  padding: 30px 40px;
+
+  background-color: #fef3c7;
+
+  border-radius: 20px;
+}
+
+
+.cta-quiz-person {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+
+.cta-quiz-person img {
+  width: 200px;
+
+  max-width: 100%;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 8px 16px rgba(0, 0, 0, 0.06));
+}
+
+
+.cta-quiz-body {
+  flex: 1;
+}
+
+
+.cta-quiz-body h3 {
+  margin: 0 0 8px;
+
+  color: var(--senac-blue);
+
+  font-size: 1.5rem;
+
+  font-weight: 800;
+}
+
+
+.cta-quiz-body p {
+  margin: 0 0 18px;
+
+  color: #4b5563;
+}
+
+
+.cta-quiz-pills {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+
+.pill-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 18px;
+
+  background-color: var(--white);
+
+  border-radius: 30px;
+
+  color: var(--senac-blue);
+
+  font-size: 0.85rem;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+.pill-item i {
+  color: var(--senac-orange);
+}
+
+
+/* ==========================================================================
+   14. BANNER INVISTA
+   ========================================================================== */
+
+.cta-invest-banner {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding: 40px 50px;
+
+  background-color: var(--senac-blue);
+
+  color: var(--white);
+
+  border-radius: 20px;
+}
+
+
+.cta-invest-content h2 {
+  margin: 0 0 10px;
+
+  font-size: 1.9rem;
+
+  font-weight: 800;
+}
+
+
+.cta-invest-content p {
+  margin: 0 0 24px;
+
+  color: #dbeafe;
+}
+
+
+.cta-invest-illustration {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+
+.cta-invest-illustration img {
+  width: 280px;
+
+  max-width: 100%;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+}
+
+
+/* ==========================================================================
+   15. BENEFÍCIOS
+   ========================================================================== */
+
+.benefits-section {
+  width: 100%;
+}
+
+
+.benefits-title {
+  margin: 0 0 30px;
+
+  color: var(--senac-blue);
+
+  font-size: 2rem;
+
+  font-weight: 800;
+}
+
+
+.benefits-grid {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 40px;
+}
+
+
+.benefits-list {
+  flex: 1;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 24px;
+}
+
+
+.benefit-item {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 14px;
+}
+
+
+.benefit-icon {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  background-color: #e0f2fe;
+
+  color: var(--senac-blue);
+
+  font-size: 1.2rem;
+}
+
+
+.benefit-item h4 {
+  margin: 0 0 4px;
+
+  color: var(--senac-blue);
+
+  font-size: 1.35rem;
+
+  font-weight: 800;
+}
+
+
+.benefit-item p {
+  margin: 0;
+
+  color: var(--text-paragraph);
+
+  font-size: 1rem;
+
+  font-weight: 700;
+
+  line-height: 1.4;
+}
+
+
+.benefits-image {
+  flex: 1;
+
+  display: flex;
+
+  justify-content: flex-end;
+}
+
+
+.benefits-image img {
+  width: 100%;
+
+  max-width: 420px;
+
+  height: auto;
+
+  object-fit: cover;
+
+  border-radius: 16px;
+
+  box-shadow: var(--shadow-md);
+}
+
+
+/* ==========================================================================
+   16. PLATAFORMAS DE APRENDIZAGEM
+   ========================================================================== */
+
+.learning-platforms-section {
+  width: 100%;
+
+  padding: 90px 0 100px;
+
+  background-color: var(--bg-light);
+}
+
+
+.learning-platforms-section > .container {
+  width: 90%;
+
+  max-width: 1440px;
+
+  margin: 0 auto;
+}
+
+
+.learning-platforms-header {
+  width: 100%;
+
+  max-width: 850px;
+
+  margin: 0 auto 50px;
+
+  text-align: center;
+}
+
+
+.learning-platforms-header .section-tag {
+  display: inline-block;
+
+  margin-bottom: 12px;
+
+  color: var(--senac-orange);
+
+  font-size: 16px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+
+.learning-platforms-header h2 {
+  max-width: 850px;
+
+  margin: 0 auto;
+
+  color: var(--text-title);
+
+  font-size: clamp(32px, 4vw, 45px);
+
+  font-weight: 800;
+
+  line-height: 1.15;
+}
+
+
 .learning-platforms-header p {
   max-width: 700px;
+
   margin: 18px auto 0;
+
   color: var(--text-paragraph);
+
   font-size: 16px;
+
   font-weight: 500;
+
   line-height: 1.6;
 }
 
 
-/* =========================================================
-   CONTEÚDO
-========================================================= */
-
 .learning-platforms-content {
   width: 100%;
+
   display: flex;
+
   justify-content: center;
+
   align-items: center;
 }
 
 
-/* =========================================================
-   GRID DAS PLATAFORMAS
-========================================================= */
-
 .learning-platforms-links {
   width: 100%;
+
   max-width: 1100px;
+
   display: grid;
+
   grid-template-columns: repeat(3, minmax(0, 1fr));
+
   gap: 24px;
+
   margin: 0 auto;
 }
 
 
-/* =========================================================
-   ITEM DA PLATAFORMA
-========================================================= */
-
 .platform-link {
   position: relative;
+
   width: 100%;
+
   min-height: 105px;
 
   display: flex;
+
   align-items: center;
 
   padding: 18px 20px;
-
-  box-sizing: border-box;
 
   text-decoration: none;
 
@@ -315,10 +1695,6 @@ img {
 }
 
 
-/* =========================================================
-   HOVER
-========================================================= */
-
 .platform-link:hover {
   transform: translateY(-5px);
 
@@ -330,10 +1706,6 @@ img {
 }
 
 
-/* =========================================================
-   ÍCONE / LOGO
-========================================================= */
-
 .platform-icon {
   width: 68px;
   height: 68px;
@@ -341,6 +1713,7 @@ img {
   flex: 0 0 68px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -355,10 +1728,6 @@ img {
   background-color: #f5f7fa;
 }
 
-
-/* =========================================================
-   IMAGENS DAS PLATAFORMAS
-========================================================= */
 
 .platform-icon img {
   width: 100%;
@@ -375,51 +1744,22 @@ img {
 }
 
 
-/* AUMENTA LEVEMENTE A LOGO AO PASSAR O MOUSE */
-
 .platform-link:hover .platform-icon img {
   transform: scale(1.06);
 }
 
 
-/* =========================================================
-   AJUSTES INDIVIDUAIS DAS LOGOS
-========================================================= */
-
-.platform-sabersenac .platform-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.platform-microsoft .platform-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.platform-cachola .platform-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.platform-orango .platform-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
+.platform-sabersenac .platform-icon img,
+.platform-microsoft .platform-icon img,
+.platform-cachola .platform-icon img,
+.platform-orango .platform-icon img,
 .platform-cisco .platform-icon img {
   width: 100%;
   height: 100%;
+
   object-fit: contain;
 }
 
-
-/* =========================================================
-   INFORMAÇÕES
-========================================================= */
 
 .platform-info {
   flex: 1;
@@ -427,6 +1767,7 @@ img {
   min-width: 0;
 
   display: flex;
+
   flex-direction: column;
 
   gap: 5px;
@@ -434,33 +1775,34 @@ img {
   text-align: left;
 }
 
+
 .platform-info strong {
   overflow: hidden;
 
   color: var(--text-dark);
 
   font-size: 17px;
+
   font-weight: 800;
 
   line-height: 1.25;
 
   white-space: nowrap;
+
   text-overflow: ellipsis;
 }
+
 
 .platform-info small {
   color: var(--text-paragraph);
 
   font-size: 12px;
+
   font-weight: 600;
 
   line-height: 1.3;
 }
 
-
-/* =========================================================
-   SETA
-========================================================= */
 
 .platform-arrow {
   flex-shrink: 0;
@@ -476,6 +1818,7 @@ img {
     color 0.25s ease;
 }
 
+
 .platform-link:hover .platform-arrow {
   transform: translate(3px, -3px);
 
@@ -483,730 +1826,33 @@ img {
 }
 
 
-/* =========================================================
-   CORES DAS PLATAFORMAS
-========================================================= */
-
 .platform-sabersenac .platform-icon {
   background-color: rgba(11, 81, 149, 0.10);
 }
+
 
 .platform-microsoft .platform-icon {
   background-color: rgba(37, 99, 235, 0.10);
 }
 
+
 .platform-cachola .platform-icon {
   background-color: rgba(234, 148, 31, 0.12);
 }
 
+
 .platform-orango .platform-icon {
   background-color: rgba(34, 197, 94, 0.10);
 }
+
 
 .platform-cisco .platform-icon {
   background-color: rgba(11, 81, 149, 0.10);
 }
 
 
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 900px) {
-
-  .learning-platforms-section {
-    padding: 75px 0 85px;
-  }
-
-  .learning-platforms-links {
-    grid-template-columns: repeat(2, minmax(240px, 1fr));
-    max-width: 750px;
-  }
-
-}
-
-
-/* =========================================================
-   CELULAR
-========================================================= */
-
-@media (max-width: 600px) {
-
-  .learning-platforms-section {
-    padding: 60px 0 70px;
-  }
-
-  .learning-platforms-section>.container {
-    width: 92%;
-  }
-
-  .learning-platforms-header {
-    margin-bottom: 35px;
-  }
-
-  .learning-platforms-header .section-tag {
-    font-size: 12px;
-  }
-
-  .learning-platforms-header h2 {
-    font-size: 32px;
-  }
-
-  .learning-platforms-header p {
-    margin-top: 14px;
-    font-size: 14px;
-  }
-
-  .learning-platforms-links {
-    grid-template-columns: 1fr;
-    width: 100%;
-    max-width: 500px;
-    gap: 16px;
-  }
-
-  .platform-link {
-    min-height: 92px;
-    padding: 14px 16px;
-  }
-
-  .platform-icon {
-    width: 60px;
-    height: 60px;
-    flex-basis: 60px;
-    margin-right: 14px;
-    padding: 6px;
-  }
-
-  .platform-info strong {
-    font-size: 15px;
-  }
-
-  .platform-info small {
-    font-size: 11px;
-  }
-
-  .platform-arrow {
-    margin-left: 8px;
-    font-size: 13px;
-  }
-
-}
-
-
-/* =========================================================
-   CELULARES MUITO PEQUENOS
-========================================================= */
-
-@media (max-width: 400px) {
-
-  .platform-link {
-    min-height: 86px;
-    padding: 13px;
-  }
-
-  .platform-icon {
-    width: 54px;
-    height: 54px;
-    flex-basis: 54px;
-    margin-right: 12px;
-  }
-
-  .platform-info strong {
-    font-size: 14px;
-  }
-
-}
-
 /* ==========================================================================
-   9. BOTÕES
-   ========================================================================== */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 12px 28px;
-
-  border-radius: 30px;
-
-  font-size: 0.95rem;
-  font-weight: 700;
-
-  cursor: pointer;
-
-  transition:
-    transform var(--transition-fast),
-    background-color var(--transition-fast),
-    box-shadow var(--transition-fast);
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  background-color: var(--senac-blue);
-
-  color: var(--white);
-
-  box-shadow: 0 6px 18px rgba(11, 81, 149, 0.18);
-}
-
-.btn-primary:hover {
-  background-color: var(--senac-blue-dark);
-
-  box-shadow: 0 9px 22px rgba(11, 81, 149, 0.25);
-}
-
-
-/* ==========================================================================
-   10. HERO
-   ========================================================================== */
-
-.hero-section {
-  width: 100%;
-  max-width: 1280px;
-
-  margin: 0 auto;
-
-  padding: 40px 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 60px;
-}
-
-.hero-content {
-  flex: 1;
-
-  max-width: 520px;
-}
-
-.hero-tag {
-  color: var(--senac-orange);
-
-  font-size: 0.9rem;
-  font-weight: 800;
-
-  letter-spacing: 0.5px;
-
-  text-transform: uppercase;
-}
-
-.hero-title {
-  margin: 12px 0 16px;
-
-  color: var(--senac-blue);
-
-  font-size: clamp(2.6rem, 4vw, 3.5rem);
-
-  font-weight: 800;
-
-  line-height: 1.08;
-}
-
-.highlight-orange {
-  color: var(--senac-orange);
-}
-
-.hero-description {
-  margin: 0 0 32px;
-
-  color: var(--text-paragraph);
-
-  font-size: 1.3rem;
-  font-weight: 700;
-
-  line-height: 1.5;
-}
-
-.hero-buttons {
-  display: flex;
-  align-items: center;
-
-  gap: 16px;
-}
-
-.hero-media {
-  flex: 1.2;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-img {
-  width: 100%;
-  max-width: 680px;
-
-  height: auto;
-
-  object-fit: contain;
-}
-
-
-/* ==========================================================================
-   11. ÁREAS DE CONHECIMENTO
-   ========================================================================== */
-
-.categories-section {
-  width: 100%;
-}
-
-.section-header {
-  margin-bottom: 36px;
-
-  text-align: center;
-}
-
-.section-tag {
-  color: var(--senac-orange);
-  font-weight: 800;
-}
-
-.section-header h2 {
-  margin: 0 0 8px;
-
-  color: var(--senac-blue);
-
-  font-size: clamp(2rem, 4vw, 3rem);
-
-  font-weight: 800;
-}
-
-.section-header p {
-  max-width: 900px;
-
-  margin: 0 auto;
-
-  color: var(--text-paragraph);
-
-  font-size: 20px;
-
-  font-weight: 700;
-
-  line-height: 1.5;
-}
-
-/* ==========================================================================
-   CARDS DE CATEGORIAS
-   ========================================================================== */
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-
-
-/* ==========================================================================
-   CARD
-   ========================================================================== */
-
-.category-card {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-  padding: 16px 16px 24px;
-  background-color: var(--white);
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: var(--shadow-md);
-
-  transition:
-    transform var(--transition-normal),
-    box-shadow var(--transition-normal);
-}
-
-.category-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-}
-
-
-/* ==========================================================================
-   IMAGEM
-   ========================================================================== */
-
-.card-image-wrapper {
-  width: 100%;
-  height: 220px;
-  margin-bottom: 16px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-
-/* ==========================================================================
-   CONTEÚDO
-   ========================================================================== */
-
-.card-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.card-content h3 {
-  margin: 0 0 8px;
-
-  font-size: 1.5rem;
-  font-weight: 800;
-  line-height: 1.2;
-}
-
-.card-content p {
-  margin: 0;
-
-  color: var(--text-paragraph);
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1.45;
-}
-
-
-/* ==========================================================================
-   AÇÃO ÚNICA
-   ========================================================================== */
-
-.cards-action {
-  width: 100%;
-  margin-top: 35px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cards-action-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  min-width: 210px;
-  padding: 14px 26px;
-
-  background-color: var(--senac-blue);
-  color: var(--white);
-
-  border-radius: 999px;
-
-  font-size: 1rem;
-  font-weight: 800;
-  text-decoration: none;
-
-  box-shadow: var(--shadow-md);
-
-  transition:
-    transform var(--transition-fast),
-    background-color var(--transition-fast),
-    box-shadow var(--transition-fast);
-}
-
-.cards-action-button:hover {
-  background-color: var(--senac-blue-dark);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
-}
-
-.cards-action-button i {
-  font-size: 0.9rem;
-
-  transition: transform var(--transition-fast);
-}
-
-.cards-action-button:hover i {
-  transform: translateX(4px);
-}
-
-
-/* ==========================================================================
-   CORES DAS CATEGORIAS
-   ========================================================================== */
-
-.text-orange {
-  color: var(--cat-orange);
-}
-
-.text-green {
-  color: var(--cat-green);
-}
-
-.text-blue {
-  color: var(--cat-blue);
-}
-
-.text-red {
-  color: var(--cat-red);
-}
-
-.text-purple {
-  color: var(--cat-purple);
-}
-
-
-/* ==========================================================================
-   13. BANNER QUIZ
-   ========================================================================== */
-
-.cta-quiz-banner {
-  display: flex;
-  align-items: center;
-
-  gap: 32px;
-
-  overflow: hidden;
-
-  padding: 30px 40px;
-
-  background-color: #fef3c7;
-
-  border-radius: 20px;
-}
-
-.cta-quiz-person {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-}
-
-.cta-quiz-person img {
-  width: 200px;
-  max-width: 100%;
-
-  object-fit: contain;
-
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.06));
-}
-
-.cta-quiz-body {
-  flex: 1;
-}
-
-.cta-quiz-body h3 {
-  margin: 0 0 8px;
-
-  color: var(--senac-blue);
-
-  font-size: 1.5rem;
-
-  font-weight: 800;
-}
-
-.cta-quiz-body p {
-  margin: 0 0 18px;
-
-  color: #4b5563;
-}
-
-.cta-quiz-pills {
-  display: flex;
-  flex-direction: column;
-
-  gap: 12px;
-}
-
-.pill-item {
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-
-  padding: 10px 18px;
-
-  background-color: var(--white);
-
-  border-radius: 30px;
-
-  color: var(--senac-blue);
-
-  font-size: 0.85rem;
-  font-weight: 700;
-
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.pill-item i {
-  color: var(--senac-orange);
-}
-
-
-/* ==========================================================================
-   14. BANNER INVISTA
-   ========================================================================== */
-
-.cta-invest-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 30px;
-
-  padding: 40px 50px;
-
-  background-color: var(--senac-blue);
-
-  color: var(--white);
-
-  border-radius: 20px;
-}
-
-.cta-invest-content h2 {
-  margin: 0 0 10px;
-
-  font-size: 1.9rem;
-
-  font-weight: 800;
-}
-
-.cta-invest-content p {
-  margin: 0 0 24px;
-
-  color: #dbeafe;
-}
-
-.cta-invest-illustration {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-}
-
-.cta-invest-illustration img {
-  width: 280px;
-  max-width: 100%;
-
-  object-fit: contain;
-
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
-}
-
-
-/* ==========================================================================
-   15. BENEFÍCIOS
-   ========================================================================== */
-
-.benefits-section {
-  width: 100%;
-}
-
-.benefits-title {
-  margin: 0 0 30px;
-
-  color: var(--senac-blue);
-
-  font-size: 2rem;
-
-  font-weight: 800;
-}
-
-.benefits-grid {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 40px;
-}
-
-.benefits-list {
-  flex: 1;
-
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 24px;
-}
-
-.benefit-item {
-  display: flex;
-  align-items: flex-start;
-
-  gap: 14px;
-}
-
-.benefit-icon {
-  width: 44px;
-  height: 44px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  border-radius: 12px;
-
-  background-color: #e0f2fe;
-
-  color: var(--senac-blue);
-
-  font-size: 1.2rem;
-}
-
-.benefit-item h4 {
-  margin: 0 0 4px;
-
-  color: var(--senac-blue);
-
-  font-size: 1.35rem;
-
-  font-weight: 800;
-}
-
-.benefit-item p {
-  margin: 0;
-
-  color: var(--text-paragraph);
-
-  font-size: 1rem;
-
-  font-weight: 700;
-
-  line-height: 1.4;
-}
-
-.benefits-image {
-  flex: 1;
-
-  display: flex;
-
-  justify-content: flex-end;
-}
-
-.benefits-image img {
-  width: 100%;
-  max-width: 420px;
-
-  height: auto;
-
-  object-fit: cover;
-
-  border-radius: 16px;
-
-  box-shadow: var(--shadow-md);
-}
-
-
-/* ==========================================================================
-   16. FOOTER
+   17. FOOTER
    ========================================================================== */
 
 footer {
@@ -1215,11 +1861,13 @@ footer {
   color: var(--white);
 }
 
+
 .linha-topo {
   height: 6px;
 
   background-color: #eba219;
 }
+
 
 .footer-container {
   width: min(var(--container-width), var(--container-max-width));
@@ -1235,15 +1883,18 @@ footer {
   gap: 60px;
 }
 
+
 .footer-sobre {
   max-width: 560px;
 }
+
 
 .footer-sobre .logo {
   width: 150px;
 
   margin-bottom: 20px;
 }
+
 
 .footer-sobre p {
   margin: 0 0 25px;
@@ -1257,12 +1908,15 @@ footer {
   opacity: 0.95;
 }
 
+
 .footer-badges {
   display: flex;
+
   align-items: center;
 
   gap: 20px;
 }
+
 
 .footer-badges img {
   width: 80px;
@@ -1272,28 +1926,33 @@ footer {
   object-fit: contain;
 }
 
+
 .footer-badges .starte-logo {
   width: 110px;
 }
 
 
 /* ==========================================================================
-   17. REDES SOCIAIS
+   18. REDES SOCIAIS
    ========================================================================== */
 
 .footer-redes {
   display: flex;
+
   flex-direction: column;
+
   align-items: flex-start;
 
   gap: 20px;
 }
+
 
 .footer-redes h3 {
   margin: 0;
 
   font-size: 22px;
 }
+
 
 .social-icons {
   display: grid;
@@ -1303,11 +1962,13 @@ footer {
   gap: 15px;
 }
 
+
 .social-icons a {
   width: 55px;
   height: 55px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -1320,11 +1981,13 @@ footer {
     background-color var(--transition-normal);
 }
 
+
 .social-icons a:hover {
   transform: translateY(-4px);
 
   background-color: rgba(255, 255, 255, 0.2);
 }
+
 
 .footer-redes img {
   width: 40px;
@@ -1335,22 +1998,26 @@ footer {
 
 
 /* ==========================================================================
-   18. LINKS DO FOOTER
+   19. LINKS DO FOOTER
    ========================================================================== */
 
 .footer-links {
   display: flex;
+
   flex-direction: column;
 
   gap: 15px;
 }
 
+
 .titulo {
   display: flex;
+
   align-items: center;
 
   gap: 12px;
 }
+
 
 .barra {
   width: 4px;
@@ -1363,11 +2030,13 @@ footer {
   border-radius: 10px;
 }
 
+
 .footer-links h2 {
   margin: 0;
 
   font-size: 21px;
 }
+
 
 .footer-search {
   width: 100%;
@@ -1376,6 +2045,7 @@ footer {
 
   margin-bottom: 20px;
 }
+
 
 .footer-search input {
   flex: 1;
@@ -1397,13 +2067,17 @@ footer {
   outline: none;
 }
 
+
 .footer-search input::placeholder {
   color: rgba(255, 255, 255, 0.75);
 }
 
+
 .footer-search input:focus {
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.25);
 }
+
 
 .footer-search button {
   width: 50px;
@@ -1425,33 +2099,39 @@ footer {
     transform var(--transition-fast);
 }
 
+
 .footer-search button:hover {
   background-color: var(--senac-orange-dark);
 }
 
 
 /* ==========================================================================
-   19. PARCEIROS
+   20. PARCEIROS
    ========================================================================== */
 
 .parceiros {
   display: flex;
+
   flex-direction: column;
 
   gap: 8px;
 }
+
 
 .parceiros a {
   color: var(--white);
 
   font-size: 14px;
 
-  transition: color var(--transition-fast);
+  transition:
+    color var(--transition-fast);
 }
+
 
 .parceiros a:hover {
   color: var(--senac-orange);
 }
+
 
 .parceiros span {
   display: none;
@@ -1459,7 +2139,7 @@ footer {
 
 
 /* ==========================================================================
-   20. LOCALIZAÇÃO
+   21. LOCALIZAÇÃO
    ========================================================================== */
 
 .footer-local {
@@ -1468,6 +2148,7 @@ footer {
   padding: 15px 20px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -1482,13 +2163,16 @@ footer {
   font-weight: 600;
 }
 
+
 .footer-local i {
   color: var(--senac-orange);
 }
 
+
 .footer-local a {
   color: var(--white);
 }
+
 
 .footer-local a:hover {
   text-decoration: underline;
@@ -1496,7 +2180,7 @@ footer {
 
 
 /* ==========================================================================
-   21. FOOTER BOTTOM
+   22. FOOTER BOTTOM
    ========================================================================== */
 
 .footer-bottom {
@@ -1507,11 +2191,14 @@ footer {
   padding: 25px 0;
 
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
   gap: 30px;
 }
+
 
 .footer-bottom img {
   width: 110px;
@@ -1519,14 +2206,17 @@ footer {
   height: auto;
 }
 
+
 .footer-bottom p {
   margin: 0;
 
   font-size: 13px;
 }
 
+
 .empresa {
   display: flex;
+
   flex-direction: column;
 
   gap: 7px;
@@ -1534,15 +2224,18 @@ footer {
   font-size: 13px;
 }
 
+
 .empresa strong {
   margin-bottom: 3px;
 
   font-size: 15px;
 }
 
+
 .empresa a {
   color: var(--white);
 }
+
 
 .empresa a:hover {
   color: var(--senac-orange);
@@ -1550,7 +2243,7 @@ footer {
 
 
 /* ==========================================================================
-   22. BOTÃO VOLTAR AO TOPO
+   23. BOTÃO VOLTAR AO TOPO
    ========================================================================== */
 
 .back-to-top {
@@ -1563,10 +2256,12 @@ footer {
   height: 48px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   border: none;
+
   border-radius: 50%;
 
   background-color: var(--senac-orange);
@@ -1578,13 +2273,15 @@ footer {
   cursor: pointer;
 
   opacity: 0;
+
   visibility: hidden;
 
   transform: translateY(15px);
 
   z-index: 9998;
 
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.18);
 
   transition:
     opacity var(--transition-normal),
@@ -1593,11 +2290,13 @@ footer {
     background-color var(--transition-fast);
 }
 
+
 .back-to-top:hover {
   background-color: var(--senac-orange-dark);
 
   transform: translateY(-3px);
 }
+
 
 .back-to-top.show {
   opacity: 1;
@@ -1609,27 +2308,43 @@ footer {
 
 
 /* ==========================================================================
-   23. TABLET / NOTEBOOK
+   24. TABLET / NOTEBOOK
    ========================================================================== */
 
 @media (max-width: 1200px) {
 
+  .header-container {
+    grid-template-columns: 150px minmax(0, 1fr) 220px;
+
+    gap: 12px;
+  }
+
+
   .nav-list {
     gap: 22px;
   }
+
 
   .nav-menu {
     padding-left: 28px;
     padding-right: 28px;
   }
 
-  .cards-grid {
-    grid-template-columns: repeat(3, 1fr);
+
+  .nav-link {
+    font-size: 14px;
   }
+
+
+  .cards-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
 
   .hero-section {
     gap: 40px;
   }
+
 
   .footer-container {
     gap: 35px;
@@ -1639,7 +2354,7 @@ footer {
 
 
 /* ==========================================================================
-   24. TABLET
+   25. TABLET
    ========================================================================== */
 
 @media (max-width: 992px) {
@@ -1648,13 +2363,40 @@ footer {
     --header-height: 76px;
   }
 
+
   .main-header {
     height: var(--header-height);
   }
 
+
   .header-container {
     width: calc(100% - 32px);
+
+    grid-template-columns: 1fr auto;
+
+    gap: 12px;
   }
+
+
+  .logo-img {
+    height: 48px;
+  }
+
+
+  .nav-menu {
+    display: none;
+  }
+
+
+  .action-area {
+    gap: 8px;
+  }
+
+
+  .menu-toggle {
+    display: flex;
+  }
+
 
   .main-content {
     width: calc(100% - 32px);
@@ -1662,57 +2404,6 @@ footer {
     margin-top: calc(var(--header-height) + 30px);
   }
 
-  .logo-img {
-    height: 48px;
-  }
-
-  .nav-menu {
-    display: none;
-  }
-
-  .nav-menu.open {
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 30px;
-
-    background-color: rgba(255, 255, 255, 0.98);
-
-    border-radius: 0;
-
-    transform: none;
-
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    z-index: 9999;
-  }
-
-  .nav-menu.open .nav-list {
-    display: flex;
-    flex-direction: column;
-
-    gap: 30px;
-
-    text-align: center;
-  }
-
-  .nav-menu.open .nav-link {
-    font-size: 22px;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
 
   .hero-section {
     flex-direction: column;
@@ -1720,21 +2411,26 @@ footer {
     text-align: center;
   }
 
+
   .hero-content {
     max-width: 700px;
   }
+
 
   .hero-buttons {
     justify-content: center;
   }
 
+
   .hero-media {
     width: 100%;
   }
 
+
   .hero-img {
     max-width: 680px;
   }
+
 
   .benefits-grid {
     flex-direction: column;
@@ -1742,13 +2438,23 @@ footer {
     align-items: stretch;
   }
 
+
   .benefits-image {
     justify-content: center;
   }
 
+
   .benefits-image img {
     max-width: 600px;
   }
+
+
+  .learning-platforms-links {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+
+    max-width: 750px;
+  }
+
 
   .footer-container {
     grid-template-columns: 1fr 1fr;
@@ -1757,6 +2463,7 @@ footer {
 
     padding: 45px 0;
   }
+
 
   .footer-sobre {
     grid-column: 1 / -1;
@@ -1768,27 +2475,77 @@ footer {
 
 
 /* ==========================================================================
-   25. TABLET PEQUENO
+   MENU MOBILE ABERTO
+   ========================================================================== */
+
+@media (max-width: 992px) {
+
+  .nav-menu.open {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background-color: rgba(255, 255, 255, 0.98);
+
+    border: none;
+
+    border-radius: 0;
+
+    transform: none;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    z-index: 9999;
+  }
+
+
+  .nav-menu.open .nav-list {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 30px;
+
+    text-align: center;
+  }
+
+
+  .nav-menu.open .nav-link {
+    font-size: 22px;
+  }
+
+}
+
+
+/* ==========================================================================
+   TABLET PEQUENO
    ========================================================================== */
 
 @media (max-width: 768px) {
 
-  .action-area {
-    gap: 8px;
-  }
-
-  .search-input.active,
-  .search-input:focus {
-    width: 190px;
-  }
-
   .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
 
   .benefits-list {
     grid-template-columns: 1fr;
   }
+
 
   .cta-quiz-banner,
   .cta-invest-banner {
@@ -1799,10 +2556,12 @@ footer {
     padding: 30px;
   }
 
+
   .cta-quiz-person,
   .cta-invest-illustration {
     width: 100%;
   }
+
 
   .footer-bottom {
     flex-direction: column;
@@ -1823,15 +2582,20 @@ footer {
     --header-height: 70px;
   }
 
+
   .header-container {
     width: calc(100% - 24px);
+
+    grid-template-columns: 1fr auto;
 
     gap: 8px;
   }
 
+
   .logo-img {
     height: 42px;
   }
+
 
   .main-content {
     width: calc(100% - 24px);
@@ -1841,14 +2605,6 @@ footer {
     gap: 50px;
   }
 
-  .action-area {
-    gap: 6px;
-  }
-
-  .search-btn {
-    width: 44px;
-    height: 44px;
-  }
 
   .user-profile-button {
     min-height: 44px;
@@ -1856,32 +2612,28 @@ footer {
     padding: 5px 6px;
   }
 
+
   .user-profile-icon {
     width: 34px;
     height: 34px;
   }
 
+
   .user-profile-info {
     display: none;
   }
 
+
   .user-profile-arrow {
     display: none;
   }
+
 
   .menu-toggle {
     width: 44px;
     height: 44px;
   }
 
-  .search-input {
-    right: 52px;
-  }
-
-  .search-input.active,
-  .search-input:focus {
-    width: 170px;
-  }
 
   .user-profile-menu {
     position: fixed;
@@ -1892,21 +2644,26 @@ footer {
     width: min(230px, calc(100vw - 24px));
   }
 
+
   .hero-section {
     padding: 20px 0;
   }
+
 
   .hero-title {
     font-size: 2.45rem;
   }
 
+
   .hero-description {
     font-size: 1.05rem;
   }
 
+
   .hero-tag {
     font-size: 0.78rem;
   }
+
 
   .cards-grid {
     grid-template-columns: 1fr;
@@ -1916,17 +2673,112 @@ footer {
     margin: 0 auto;
   }
 
+
   .card-image-wrapper {
     height: 230px;
   }
+
 
   .section-header h2 {
     font-size: 2rem;
   }
 
+
   .section-header p {
     font-size: 16px;
   }
+
+
+  .cards-action {
+    margin-top: 30px;
+  }
+
+
+  .cards-action-button {
+    width: 100%;
+
+    max-width: 280px;
+  }
+
+
+  .learning-platforms-section {
+    padding: 60px 0 70px;
+  }
+
+
+  .learning-platforms-section > .container {
+    width: 92%;
+  }
+
+
+  .learning-platforms-header {
+    margin-bottom: 35px;
+  }
+
+
+  .learning-platforms-header .section-tag {
+    font-size: 12px;
+  }
+
+
+  .learning-platforms-header h2 {
+    font-size: 32px;
+  }
+
+
+  .learning-platforms-header p {
+    margin-top: 14px;
+
+    font-size: 14px;
+  }
+
+
+  .learning-platforms-links {
+    grid-template-columns: 1fr;
+
+    width: 100%;
+
+    max-width: 500px;
+
+    gap: 16px;
+  }
+
+
+  .platform-link {
+    min-height: 92px;
+
+    padding: 14px 16px;
+  }
+
+
+  .platform-icon {
+    width: 60px;
+    height: 60px;
+
+    flex-basis: 60px;
+
+    margin-right: 14px;
+
+    padding: 6px;
+  }
+
+
+  .platform-info strong {
+    font-size: 15px;
+  }
+
+
+  .platform-info small {
+    font-size: 11px;
+  }
+
+
+  .platform-arrow {
+    margin-left: 8px;
+
+    font-size: 13px;
+  }
+
 
   .benefits-title {
     font-size: 1.8rem;
@@ -1934,13 +2786,16 @@ footer {
     text-align: center;
   }
 
+
   .benefit-item h4 {
     font-size: 1.2rem;
   }
 
+
   .benefit-item p {
     font-size: 0.95rem;
   }
+
 
   .footer-container {
     width: calc(100% - 28px);
@@ -1952,6 +2807,7 @@ footer {
     padding: 45px 0;
   }
 
+
   .footer-sobre {
     grid-column: auto;
 
@@ -1960,26 +2816,32 @@ footer {
     text-align: center;
   }
 
+
   .footer-sobre .logo {
     margin-left: auto;
     margin-right: auto;
   }
 
+
   .footer-badges {
     justify-content: center;
   }
+
 
   .footer-redes {
     align-items: center;
   }
 
+
   .footer-redes h3 {
     text-align: center;
   }
 
+
   .footer-links {
     width: 100%;
   }
+
 
   .footer-bottom {
     width: calc(100% - 28px);
@@ -1993,9 +2855,11 @@ footer {
     text-align: center;
   }
 
+
   .empresa {
     align-items: center;
   }
+
 
   .footer-local {
     flex-direction: column;
@@ -2005,8 +2869,10 @@ footer {
     padding: 18px;
   }
 
+
   .back-to-top {
     right: 18px;
+
     bottom: 18px;
   }
 
@@ -2023,14 +2889,11 @@ footer {
     height: 36px;
   }
 
+
   .action-area {
     gap: 5px;
   }
 
-  .search-btn {
-    width: 40px;
-    height: 40px;
-  }
 
   .user-profile-button {
     min-height: 40px;
@@ -2038,30 +2901,79 @@ footer {
     padding: 4px;
   }
 
+
   .user-profile-icon {
     width: 32px;
     height: 32px;
   }
 
-  .search-input.active,
-  .search-input:focus {
-    width: 150px;
-  }
 
   .hero-title {
     font-size: 2.15rem;
   }
 
+
   .hero-description {
     font-size: 1rem;
   }
+
 
   .btn {
     width: 100%;
   }
 
+
   .hero-buttons {
     width: 100%;
+  }
+
+
+  .cards-grid {
+    max-width: 100%;
+  }
+
+
+  .card-image-wrapper {
+    height: 200px;
+  }
+
+
+  .card-content h3 {
+    font-size: 1.3rem;
+  }
+
+
+  .card-content p {
+    font-size: 0.95rem;
+  }
+
+
+  .cards-action-button {
+    max-width: 100%;
+
+    font-size: 0.95rem;
+  }
+
+
+  .platform-link {
+    min-height: 86px;
+
+    padding: 13px;
+  }
+
+
+  .platform-icon {
+    width: 54px;
+    height: 54px;
+
+    flex-basis: 54px;
+
+    margin-right: 12px;
+  }
+
+
+  .platform-info strong {
+    font-size: 14px;
   }
 
 }
@@ -2076,6 +2988,7 @@ footer {
   html {
     scroll-behavior: auto;
   }
+
 
   *,
   *::before,
