@@ -9,12 +9,13 @@
    04. PERFIL DO USUÁRIO
    05. HERO / CONTEÚDO PRINCIPAL
    06. COMPROMISSOS
-   07. PLANO PEDAGÓGICO
-   08. PDF DO PLANO
-   09. DIRETRIZES E TEMAS
-   10. FOOTER
-   11. BOTÃO VOLTAR AO TOPO
-   12. RESPONSIVIDADE
+   07. MISSÃO, VISÃO E VALORES
+   08. PLANO PEDAGÓGICO
+   09. PDF DO PLANO
+   10. DIRETRIZES E TEMAS
+   11. FOOTER
+   12. BOTÃO VOLTAR AO TOPO
+   13. RESPONSIVIDADE
    ========================================================================== */
 
 
@@ -33,7 +34,7 @@
 
     --text-dark: #002f6c;
     --text-title: #19376d;
-    --text-paragraph: #707070;
+    --text-paragraph: #626262;
 
     --bg-light: #f7f9fb;
     --white: #ffffff;
@@ -42,9 +43,9 @@
     --border-light: rgba(0, 47, 108, 0.08);
     --border-medium: rgba(11, 81, 149, 0.14);
 
-    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.12);
+    --shadow-sm: 0 5px 18px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.09);
+    --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.12);
 
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
@@ -55,10 +56,11 @@
 
     --header-height: 90px;
 
-    --radius-sm: 8px;
-    --radius-md: 14px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
+    /* Bordas mais arredondadas */
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 24px;
+    --radius-xl: 30px;
     --radius-pill: 999px;
 
     --font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
@@ -83,7 +85,7 @@ body {
     font-family: var(--font-family);
     background-color: var(--white);
     color: var(--text-dark);
-    line-height: 1.6;
+    line-height: 1.7;
     overflow-x: hidden;
 }
 
@@ -127,17 +129,25 @@ ol {
 }
 
 
-/* ========================================================================== 03. HEADER ========================================================================== */
+/* ==========================================================================
+   03. HEADER
+   ========================================================================== */
+
 .main-header {
     position: absolute;
     top: 0;
     left: 0;
+
     width: 100%;
     height: var(--header-height);
+
     display: flex;
     align-items: center;
+
     background-color: transparent;
+
     z-index: 1000;
+
     pointer-events: none;
 }
 
@@ -147,16 +157,26 @@ ol {
     pointer-events: auto;
 }
 
-/* ========================================================================== 04. CONTAINER DO HEADER ========================================================================== */
+
+/* ==========================================================================
+   CONTAINER DO HEADER
+   ========================================================================== */
+
 .header-container {
     width: min(var(--container-width), var(--container-max-width));
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     gap: 20px;
 }
 
-/* ========================================================================== 05. LOGO ========================================================================== */
+
+/* ==========================================================================
+   LOGO
+   ========================================================================== */
+
 .logo-area {
     display: flex;
     align-items: center;
@@ -171,8 +191,11 @@ ol {
 .logo-img {
     width: auto;
     height: 56px;
+
     object-fit: contain;
+
     transition: transform var(--transition-fast);
+
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
 }
 
@@ -180,65 +203,109 @@ ol {
     transform: scale(1.03);
 }
 
-/* ========================================================================== 06. MENU / PÍLULA FLUTUANTE ========================================================================== */
+
+/* ==========================================================================
+   MENU / PÍLULA FLUTUANTE
+   ========================================================================== */
+
 .nav-menu {
     position: fixed;
+
     top: 20px;
     left: 50%;
+
     transform: translateX(-50%);
+
     z-index: 2000;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     width: max-content;
     max-width: calc(100% - 500px);
+
     padding: 14px 40px;
+
     background-color: rgba(240, 242, 245, 0.88);
+
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+
     border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 35px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+
+    border-radius: var(--radius-pill);
+
+    box-shadow:
+        0 5px 22px rgba(0, 0, 0, 0.08),
+        0 1px 4px rgba(0, 0, 0, 0.04);
+
     white-space: nowrap;
+
     pointer-events: auto;
-    transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
+
+    transition:
+        background-color var(--transition-normal),
+        box-shadow var(--transition-normal);
 }
 
-/* ========================================================================== 07. LINKS DO MENU ========================================================================== */
+
+/* ==========================================================================
+   LINKS DO MENU
+   ========================================================================== */
+
 .nav-list {
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 32px;
+
     margin: 0;
     padding: 0;
 }
 
 .nav-link {
     position: relative;
+
     display: inline-flex;
     align-items: center;
+
     color: #333333;
+
     font-size: 16px;
     font-weight: 800;
+
     text-transform: uppercase;
     letter-spacing: 0.5px;
+
     text-decoration: none;
+
     cursor: pointer;
     pointer-events: auto;
-    transition: color var(--transition-fast), transform var(--transition-fast);
+
+    transition:
+        color var(--transition-fast),
+        transform var(--transition-fast);
 }
 
 .nav-link::after {
     content: "";
+
     position: absolute;
+
     left: 50%;
     bottom: -7px;
+
     width: 0;
     height: 3px;
-    border-radius: 5px;
+
+    border-radius: var(--radius-pill);
+
     background-color: var(--senac-orange);
+
     transform: translateX(-50%);
+
     transition: width var(--transition-fast);
 }
 
@@ -252,48 +319,82 @@ ol {
     width: 70%;
 }
 
-/* ========================================================================== 08. ÁREA DE AÇÕES / PERFIL ========================================================================== */
+
+/* ==========================================================================
+   ÁREA DE AÇÕES / PERFIL
+   ========================================================================== */
+
 .action-area {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
     gap: 20px;
+
     flex-shrink: 0;
+
     position: relative;
     z-index: 2100;
+
     pointer-events: auto;
 }
 
-/* ========================================================================== 09. PERFIL DO USUÁRIO ========================================================================== */
+
+/* ==========================================================================
+   PERFIL DO USUÁRIO
+   ========================================================================== */
+
 .user-profile {
     position: relative;
+
     display: flex;
     align-items: center;
+
     flex-shrink: 0;
+
     z-index: 2100;
 }
 
-/* ========================================================================== 10. BOTÃO DO PERFIL ========================================================================== */
+
+/* ==========================================================================
+   BOTÃO DO PERFIL
+   ========================================================================== */
+
 .user-profile-button {
-    min-height: 48px;
+    min-height: 50px;
+
     display: flex;
     align-items: center;
+
     gap: 10px;
+
     padding: 6px 12px 6px 7px;
+
     border: none;
-    border-radius: 28px;
+    border-radius: var(--radius-pill);
+
     background-color: #e6e9ed;
+
     color: var(--text-dark);
+
     font-family: var(--font-family);
+
     font-size: 14px;
     font-weight: 800;
+
     cursor: pointer;
-    transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+
+    transition:
+        background-color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
 }
 
 .user-profile-button:hover {
     background-color: #dfe3e8;
+
     transform: translateY(-2px);
+
     box-shadow: var(--shadow-sm);
 }
 
@@ -301,16 +402,25 @@ ol {
     transform: translateY(0);
 }
 
-/* ========================================================================== 11. ÍCONE DO PERFIL ========================================================================== */
+
+/* ==========================================================================
+   ÍCONE DO PERFIL
+   ========================================================================== */
+
 .user-profile-icon {
-    width: 36px;
-    height: 36px;
+    width: 37px;
+    height: 37px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 36px;
+
+    flex: 0 0 37px;
+
     border-radius: 50%;
+
     background-color: var(--senac-blue);
+
     color: var(--white);
 }
 
@@ -318,72 +428,123 @@ ol {
     font-size: 16px;
 }
 
-/* ========================================================================== 12. INFORMAÇÕES DO USUÁRIO ========================================================================== */
+
+/* ==========================================================================
+   INFORMAÇÕES DO USUÁRIO
+   ========================================================================== */
+
 .user-profile-info {
     display: flex;
     flex-direction: column;
+
     align-items: flex-start;
     justify-content: center;
+
     min-width: 70px;
+
     line-height: 1.1;
 }
 
 .user-profile-welcome {
     color: #777777;
+
     font-size: 11px;
     font-weight: 600;
 }
 
 .user-profile-name {
-    max-width: 100px;
+    max-width: 110px;
+
     margin-top: 3px;
+
     overflow: hidden;
+
     color: #333333;
+
     font-size: 13px;
     font-weight: 800;
+
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-/* ========================================================================== 13. SETA DO PERFIL ========================================================================== */
+
+/* ==========================================================================
+   SETA DO PERFIL
+   ========================================================================== */
+
 .user-profile-arrow {
-    width: 28px;
-    height: 28px;
+    width: 29px;
+    height: 29px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 28px;
+
+    flex: 0 0 29px;
+
     margin-left: 2px;
+
     border-radius: 50%;
+
     background-color: #f0f4f8;
+
     color: var(--senac-blue);
+
     font-size: 10px;
-    transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+
+    transition:
+        transform var(--transition-fast),
+        background-color var(--transition-fast),
+        color var(--transition-fast);
 }
 
 .user-profile.open .user-profile-arrow {
     transform: rotate(180deg);
+
     background-color: #fff1dc;
+
     color: var(--senac-orange);
 }
 
-/* ========================================================================== 14. MENU DO PERFIL ========================================================================== */
+
+/* ==========================================================================
+   MENU DO PERFIL
+   ========================================================================== */
+
 .user-profile-menu {
     position: absolute;
+
     top: calc(100% + 12px);
     right: 0;
-    width: 220px;
-    padding: 8px;
+
+    width: 235px;
+
+    padding: 9px;
+
     background-color: var(--white);
+
     border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 16px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(0, 0, 0, 0.06);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 16px 42px rgba(0, 0, 0, 0.14),
+        0 2px 8px rgba(0, 0, 0, 0.06);
+
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+
     transform: translateY(-8px) scale(0.98);
+
     transform-origin: top right;
-    transition: opacity var(--transition-normal), visibility var(--transition-normal), transform var(--transition-normal);
+
+    transition:
+        opacity var(--transition-normal),
+        visibility var(--transition-normal),
+        transform var(--transition-normal);
+
     z-index: 3000;
 }
 
@@ -391,41 +552,66 @@ ol {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+
     transform: translateY(0) scale(1);
 }
 
-/* ========================================================================== 15. ITENS DO MENU DO PERFIL ========================================================================== */
+
+/* ==========================================================================
+   ITENS DO MENU DO PERFIL
+   ========================================================================== */
+
 .user-profile-menu-item {
     width: 100%;
-    min-height: 44px;
+    min-height: 47px;
+
     display: flex;
     align-items: center;
+
     gap: 12px;
-    padding: 10px 12px;
+
+    padding: 10px 13px;
+
     border: none;
-    border-radius: 10px;
+    border-radius: 13px;
+
     background-color: transparent;
+
     color: #333333;
+
     font-family: var(--font-family);
+
     font-size: 14px;
     font-weight: 700;
+
     text-align: left;
+
     cursor: pointer;
-    transition: background-color var(--transition-fast), color var(--transition-fast);
+
+    transition:
+        background-color var(--transition-fast),
+        color var(--transition-fast);
 }
 
 .user-profile-menu-item i {
     width: 20px;
+
     color: var(--senac-blue);
+
     text-align: center;
 }
 
 .user-profile-menu-item:hover {
     background-color: #f2f6fa;
+
     color: var(--senac-blue);
 }
 
-/* ========================================================================== 16. BOTÃO SAIR ========================================================================== */
+
+/* ==========================================================================
+   BOTÃO SAIR
+   ========================================================================== */
+
 .user-profile-menu-item.logout {
     color: #d64545;
 }
@@ -436,14 +622,21 @@ ol {
 
 .user-profile-menu-item.logout:hover {
     background-color: #fff2f2;
+
     color: #d64545;
 }
 
-/* ========================================================================== 17. DIVISOR DO MENU ========================================================================== */
+
+/* ==========================================================================
+   DIVISOR DO MENU
+   ========================================================================== */
+
 .user-profile-divider {
     width: 100%;
     height: 1px;
+
     margin: 5px 0;
+
     background-color: #eeeeee;
 }
 
@@ -473,9 +666,9 @@ ol {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    CONTEÚDO ESQUERDO
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .conteudo-esquerda {
     max-width: 690px;
@@ -491,7 +684,7 @@ ol {
 
     color: var(--senac-blue);
 
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
 
     transition:
@@ -514,17 +707,17 @@ ol {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    BADGE
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .badge-tag {
     display: inline-flex;
     align-items: center;
 
-    min-height: 32px;
+    min-height: 34px;
 
-    padding: 6px 15px;
+    padding: 7px 16px;
 
     margin-bottom: 22px;
 
@@ -534,7 +727,7 @@ ol {
 
     color: var(--senac-orange-dark);
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 800;
 
     letter-spacing: 1px;
@@ -543,20 +736,20 @@ ol {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    TÍTULO PRINCIPAL
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .titulo-principal {
     margin-bottom: 24px;
 
     color: var(--text-dark);
 
-    font-size: clamp(36px, 3.5vw, 50px);
+    font-size: clamp(38px, 3.5vw, 52px);
 
     font-weight: 800;
 
-    line-height: 1.1;
+    line-height: 1.12;
 
     letter-spacing: -1.2px;
 }
@@ -566,26 +759,26 @@ ol {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    DESCRIÇÃO PRINCIPAL
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .descricao-texto {
-    max-width: 620px;
+    max-width: 650px;
 
     margin-bottom: 32px;
 
     color: var(--text-paragraph);
 
-    font-size: 15px;
+    font-size: 17px;
 
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    BOTÃO PRINCIPAL
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .btn-acao {
     display: inline-flex;
@@ -594,21 +787,21 @@ ol {
 
     gap: 12px;
 
-    min-height: 52px;
+    min-height: 54px;
 
-    padding: 13px 23px;
+    padding: 14px 25px;
 
-    border-radius: 10px;
+    border-radius: 16px;
 
     background-color: var(--senac-blue);
 
     color: var(--white);
 
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 800;
 
     box-shadow:
-        0 8px 20px rgba(11, 81, 149, 0.20);
+        0 8px 22px rgba(11, 81, 149, 0.20);
 
     transition:
         background-color var(--transition-normal),
@@ -622,7 +815,7 @@ ol {
     transform: translateY(-2px);
 
     box-shadow:
-        0 12px 26px rgba(11, 81, 149, 0.25);
+        0 12px 28px rgba(11, 81, 149, 0.25);
 }
 
 .seta-acao {
@@ -634,9 +827,9 @@ ol {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    IMAGEM DO HERO
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .conteudo-direita {
     display: flex;
@@ -672,7 +865,7 @@ ol {
 .container-compromissos {
     width: 100%;
 
-    padding: 90px 0 100px;
+    padding: 95px 0 105px;
 
     background-color: var(--bg-light);
 
@@ -689,26 +882,26 @@ ol {
 
     grid-template-columns: repeat(4, minmax(0, 1fr));
 
-    gap: 20px;
+    gap: 22px;
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    CARD DESTAQUE
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .card-compromisso-destaque {
     grid-column: span 2;
 
-    min-height: 250px;
+    min-height: 270px;
 
-    padding: 34px;
+    padding: 38px;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
 
     background-color: var(--senac-blue);
 
@@ -726,8 +919,8 @@ ol {
 
     position: absolute;
 
-    width: 190px;
-    height: 190px;
+    width: 200px;
+    height: 200px;
 
     right: -70px;
     bottom: -85px;
@@ -740,34 +933,34 @@ ol {
 .card-compromisso-destaque h2 {
     max-width: 530px;
 
-    margin-bottom: 15px;
+    margin-bottom: 17px;
 
-    font-size: clamp(21px, 2vw, 28px);
+    font-size: clamp(23px, 2vw, 30px);
 
     font-weight: 800;
 
-    line-height: 1.25;
+    line-height: 1.3;
 }
 
 .card-compromisso-destaque p {
     max-width: 570px;
 
-    color: rgba(255, 255, 255, 0.88);
+    color: rgba(255, 255, 255, 0.90);
 
-    font-size: 13px;
+    font-size: 15px;
 
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    CARDS INDIVIDUAIS
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .card-compromisso-item {
-    min-height: 250px;
+    min-height: 270px;
 
-    padding: 30px 26px;
+    padding: 32px 28px;
 
     display: flex;
     flex-direction: column;
@@ -777,7 +970,7 @@ ol {
 
     border: 1px solid var(--border-light);
 
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
 
     box-shadow: var(--shadow-sm);
 
@@ -796,11 +989,12 @@ ol {
 }
 
 .card-compromisso-item h3 {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 
     color: var(--text-title);
 
-    font-size: 16px;
+    font-size: 19px;
+
     font-weight: 800;
 
     line-height: 1.4;
@@ -809,14 +1003,255 @@ ol {
 .card-compromisso-item p {
     color: var(--text-paragraph);
 
-    font-size: 12.5px;
+    font-size: 15px;
 
-    line-height: 1.65;
+    line-height: 1.75;
 }
 
 
 /* ==========================================================================
-   07. PLANO PEDAGÓGICO
+   07. MISSÃO, VISÃO E VALORES
+   ========================================================================== */
+
+.missao-visao-valores {
+    width: 100%;
+
+    padding: 105px 0 110px;
+
+    background-color: var(--white);
+
+    border-top: 1px solid rgba(0, 47, 108, 0.04);
+    border-bottom: 1px solid rgba(0, 47, 108, 0.04);
+}
+
+.container-mvv {
+    width: min(var(--container-width), var(--container-max-width));
+
+    margin: 0 auto;
+}
+
+
+/* ==========================================================================
+   CABEÇALHO MVV
+   ========================================================================== */
+
+.mvv-header {
+    max-width: 850px;
+
+    margin: 0 auto 52px;
+
+    text-align: center;
+}
+
+.mvv-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 34px;
+
+    padding: 7px 16px;
+
+    margin-bottom: 17px;
+
+    border: 1px solid rgba(234, 148, 31, 0.16);
+
+    border-radius: var(--radius-pill);
+
+    background-color: rgba(234, 148, 31, 0.10);
+
+    color: var(--senac-orange-dark);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.mvv-header h2 {
+    margin-bottom: 16px;
+
+    color: var(--text-dark);
+
+    font-size: clamp(31px, 3vw, 43px);
+
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.7px;
+}
+
+.mvv-header h2 span {
+    color: var(--senac-orange);
+}
+
+.mvv-header p {
+    max-width: 750px;
+
+    margin: 0 auto;
+
+    color: var(--text-paragraph);
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+
+/* ==========================================================================
+   GRID MVV
+   ========================================================================== */
+
+.mvv-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+/* ==========================================================================
+   CARDS MVV
+   ========================================================================== */
+
+.mvv-card {
+    min-height: 330px;
+
+    padding: 36px 32px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+
+    background-color: var(--white);
+
+    border: 1px solid var(--border-light);
+
+    border-radius: var(--radius-xl);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal),
+        border-color var(--transition-normal);
+}
+
+.mvv-card:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(11, 81, 149, 0.16);
+
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ==========================================================================
+   ÍCONES MVV
+   ========================================================================== */
+
+.mvv-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 19px;
+
+    background-color: rgba(11, 81, 149, 0.09);
+
+    color: var(--senac-blue);
+
+    font-size: 24px;
+}
+
+.mvv-card-visao .mvv-icon,
+.mvv-card-valores .mvv-icon {
+    background-color: rgba(234, 148, 31, 0.11);
+
+    color: var(--senac-orange-dark);
+}
+
+
+/* ==========================================================================
+   TEXTO MVV
+   ========================================================================== */
+
+.mvv-kicker {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--senac-orange-dark);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.mvv-card h3 {
+    margin-bottom: 13px;
+
+    color: var(--text-title);
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    line-height: 1.3;
+}
+
+.mvv-card p {
+    color: var(--text-paragraph);
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* ==========================================================================
+   LISTA DE VALORES
+   ========================================================================== */
+
+.mvv-valores-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.mvv-valores-list span {
+    padding: 9px 13px;
+
+    border: 1px solid rgba(11, 81, 149, 0.11);
+
+    border-radius: var(--radius-pill);
+
+    background-color: #f7f9fb;
+
+    color: var(--text-title);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+
+/* ==========================================================================
+   08. PLANO PEDAGÓGICO
    ========================================================================== */
 
 .container-plano-pedagogico {
@@ -824,16 +1259,16 @@ ol {
 
     margin: 0 auto;
 
-    padding: 105px 0 110px;
+    padding: 110px 0 115px;
 }
 
 
-/* --------------------------------------------------------------------------
-   CABEÇALHO
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   CABEÇALHO DO PLANO
+   ========================================================================== */
 
 .plano-pedagogico-header {
-    max-width: 760px;
+    max-width: 800px;
 
     margin: 0 auto 55px;
 
@@ -850,7 +1285,8 @@ ol {
 
     color: var(--senac-orange-dark);
 
-    font-size: 11px;
+    font-size: 12px;
+
     font-weight: 800;
 
     letter-spacing: 1px;
@@ -859,19 +1295,19 @@ ol {
 .plano-pedagogico-badge i {
     color: var(--senac-orange);
 
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .plano-pedagogico-header h2 {
-    margin-bottom: 14px;
+    margin-bottom: 15px;
 
     color: var(--text-dark);
 
-    font-size: clamp(28px, 2.8vw, 38px);
+    font-size: clamp(30px, 2.8vw, 40px);
 
     font-weight: 800;
 
-    line-height: 1.18;
+    line-height: 1.2;
 
     letter-spacing: -0.6px;
 }
@@ -883,15 +1319,15 @@ ol {
 .plano-pedagogico-header p {
     color: var(--text-paragraph);
 
-    font-size: 14px;
+    font-size: 16px;
 
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    CONTEÚDO INTRODUTÓRIO
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .plano-pedagogico-conteudo {
     width: 100%;
@@ -904,7 +1340,7 @@ ol {
 
     gap: 30px;
 
-    padding: 35px;
+    padding: 38px;
 
     margin-bottom: 30px;
 
@@ -912,24 +1348,24 @@ ol {
 
     border: 1px solid var(--border-light);
 
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
 }
 
 .plano-icone-principal {
-    width: 76px;
-    height: 76px;
+    width: 78px;
+    height: 78px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 18px;
+    border-radius: 20px;
 
     background-color: var(--senac-blue);
 
     color: var(--white);
 
-    font-size: 28px;
+    font-size: 29px;
 
     box-shadow:
         0 10px 22px rgba(11, 81, 149, 0.16);
@@ -942,18 +1378,19 @@ ol {
 
     color: var(--senac-orange-dark);
 
-    font-size: 10px;
+    font-size: 11px;
+
     font-weight: 800;
 
     letter-spacing: 1px;
 }
 
 .plano-pedagogico-introducao h3 {
-    margin-bottom: 11px;
+    margin-bottom: 12px;
 
     color: var(--text-title);
 
-    font-size: 22px;
+    font-size: 24px;
 
     font-weight: 800;
 
@@ -963,13 +1400,13 @@ ol {
 .plano-pedagogico-introducao p {
     max-width: 950px;
 
-    margin-bottom: 9px;
+    margin-bottom: 10px;
 
     color: var(--text-paragraph);
 
-    font-size: 13px;
+    font-size: 15px;
 
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .plano-pedagogico-introducao p:last-child {
@@ -977,33 +1414,33 @@ ol {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    CARDS PEDAGÓGICOS
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .plano-pedagogico-cards {
     display: grid;
 
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    gap: 20px;
+    gap: 22px;
 }
 
 .plano-card {
-    min-height: 185px;
+    min-height: 195px;
 
-    padding: 27px;
+    padding: 29px;
 
     display: flex;
     align-items: flex-start;
 
-    gap: 17px;
+    gap: 18px;
 
     background-color: var(--white);
 
     border: 1px solid var(--border-light);
 
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
 
     box-shadow: var(--shadow-sm);
 
@@ -1022,8 +1459,8 @@ ol {
 }
 
 .plano-card-icone {
-    width: 45px;
-    height: 45px;
+    width: 47px;
+    height: 47px;
 
     display: flex;
     align-items: center;
@@ -1031,9 +1468,9 @@ ol {
 
     flex-shrink: 0;
 
-    border-radius: 12px;
+    border-radius: 15px;
 
-    font-size: 17px;
+    font-size: 18px;
 }
 
 .plano-card-icone.azul {
@@ -1049,34 +1486,34 @@ ol {
 }
 
 .plano-card h4 {
-    margin-bottom: 7px;
+    margin-bottom: 8px;
 
     color: var(--text-title);
 
-    font-size: 14px;
+    font-size: 17px;
 
     font-weight: 800;
 
-    line-height: 1.35;
+    line-height: 1.4;
 }
 
 .plano-card p {
     color: var(--text-paragraph);
 
-    font-size: 12px;
+    font-size: 14px;
 
-    line-height: 1.6;
+    line-height: 1.75;
 }
 
 
 /* ==========================================================================
-   08. PDF DO PLANO
+   09. PDF DO PLANO
    ========================================================================== */
 
 .plano-pdf-box {
     margin-top: 35px;
 
-    padding: 25px 28px;
+    padding: 28px 30px;
 
     display: flex;
     align-items: center;
@@ -1085,15 +1522,15 @@ ol {
 
     background-color: var(--senac-blue);
 
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
 
     box-shadow:
         0 12px 30px rgba(11, 81, 149, 0.16);
 }
 
 .plano-pdf-icone {
-    width: 52px;
-    height: 52px;
+    width: 54px;
+    height: 54px;
 
     display: flex;
     align-items: center;
@@ -1101,13 +1538,13 @@ ol {
 
     flex-shrink: 0;
 
-    border-radius: 13px;
+    border-radius: 17px;
 
     background-color: rgba(255, 255, 255, 0.12);
 
     color: var(--white);
 
-    font-size: 22px;
+    font-size: 23px;
 }
 
 .plano-pdf-texto {
@@ -1117,31 +1554,33 @@ ol {
 .plano-pdf-texto span {
     display: block;
 
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.70);
 
-    font-size: 9px;
+    font-size: 10px;
+
     font-weight: 800;
 
     letter-spacing: 1px;
 }
 
 .plano-pdf-texto h3 {
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 
     color: var(--white);
 
-    font-size: 17px;
+    font-size: 19px;
+
     font-weight: 800;
 }
 
 .plano-pdf-texto p {
-    color: rgba(255, 255, 255, 0.78);
+    color: rgba(255, 255, 255, 0.80);
 
-    font-size: 12px;
+    font-size: 13px;
 
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .btn-plano-pdf {
@@ -1151,19 +1590,20 @@ ol {
 
     gap: 8px;
 
-    min-height: 45px;
+    min-height: 47px;
 
-    padding: 11px 19px;
+    padding: 12px 21px;
 
     flex-shrink: 0;
 
-    border-radius: 9px;
+    border-radius: 15px;
 
     background-color: var(--senac-orange);
 
     color: var(--white);
 
-    font-size: 12px;
+    font-size: 13px;
+
     font-weight: 800;
 
     transition:
@@ -1183,13 +1623,13 @@ ol {
 
 
 /* ==========================================================================
-   09. DIRETRIZES E TEMAS
+   10. DIRETRIZES E TEMAS
    ========================================================================== */
 
 .container-temas-ouvidoria {
     width: 100%;
 
-    padding: 100px 0;
+    padding: 105px 0;
 
     background-color: var(--bg-light);
 }
@@ -1210,16 +1650,16 @@ ol {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    CARD LARANJA / DIRETRIZES
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .card-ouvidoria-laranja {
     position: relative;
 
-    min-height: 390px;
+    min-height: 410px;
 
-    padding: 40px;
+    padding: 42px;
 
     display: flex;
     flex-direction: column;
@@ -1270,6 +1710,7 @@ ol {
 
 .avatar-personagem {
     max-height: 190px;
+
     width: auto;
 
     object-fit: contain;
@@ -1289,26 +1730,27 @@ ol {
 .conteudo-ouvidoria h2 {
     max-width: 390px;
 
-    margin-bottom: 14px;
+    margin-bottom: 15px;
 
     color: var(--white);
 
-    font-size: 24px;
+    font-size: 27px;
+
     font-weight: 800;
 
-    line-height: 1.25;
+    line-height: 1.3;
 }
 
 .conteudo-ouvidoria p {
     max-width: 530px;
 
-    margin-bottom: 22px;
+    margin-bottom: 23px;
 
-    color: rgba(255, 255, 255, 0.90);
+    color: rgba(255, 255, 255, 0.92);
 
-    font-size: 12.5px;
+    font-size: 15px;
 
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .btn-ouvidoria {
@@ -1316,17 +1758,18 @@ ol {
     align-items: center;
     justify-content: center;
 
-    min-height: 43px;
+    min-height: 46px;
 
-    padding: 10px 19px;
+    padding: 11px 21px;
 
-    border-radius: 9px;
+    border-radius: 15px;
 
     background-color: var(--white);
 
     color: var(--senac-orange-dark);
 
-    font-size: 12px;
+    font-size: 13px;
+
     font-weight: 800;
 
     transition:
@@ -1342,24 +1785,24 @@ ol {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    PRINCIPAIS TEMAS
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .conteudo-temas {
     min-width: 0;
 }
 
 .titulo-secao-temas {
-    margin-bottom: 11px;
+    margin-bottom: 13px;
 
     color: var(--text-dark);
 
-    font-size: clamp(27px, 2.7vw, 36px);
+    font-size: clamp(29px, 2.7vw, 38px);
 
     font-weight: 800;
 
-    line-height: 1.18;
+    line-height: 1.2;
 
     letter-spacing: -0.5px;
 }
@@ -1371,9 +1814,9 @@ ol {
 
     color: var(--text-paragraph);
 
-    font-size: 14px;
+    font-size: 16px;
 
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .grid-topicos-temas {
@@ -1381,13 +1824,13 @@ ol {
 
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    gap: 15px;
+    gap: 17px;
 }
 
 .topico-item {
-    min-height: 112px;
+    min-height: 125px;
 
-    padding: 19px;
+    padding: 21px;
 
     display: flex;
     align-items: flex-start;
@@ -1398,7 +1841,7 @@ ol {
 
     border: 1px solid var(--border-light);
 
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
 
     box-shadow: var(--shadow-sm);
 
@@ -1417,8 +1860,8 @@ ol {
 }
 
 .topico-icone {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
 
     display: flex;
     align-items: center;
@@ -1426,9 +1869,9 @@ ol {
 
     flex-shrink: 0;
 
-    border-radius: 11px;
+    border-radius: 14px;
 
-    font-size: 16px;
+    font-size: 17px;
 }
 
 .icone-azul {
@@ -1444,27 +1887,28 @@ ol {
 }
 
 .topico-texto h4 {
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 
     color: var(--text-title);
 
-    font-size: 14px;
+    font-size: 16px;
+
     font-weight: 800;
 
-    line-height: 1.35;
+    line-height: 1.4;
 }
 
 .topico-texto p {
     color: var(--text-paragraph);
 
-    font-size: 11.5px;
+    font-size: 14px;
 
-    line-height: 1.55;
+    line-height: 1.7;
 }
 
 
 /* ==========================================================================
-   10. FOOTER
+   11. FOOTER
    ========================================================================== */
 
 footer {
@@ -1491,20 +1935,22 @@ footer {
 
     margin: 0 auto;
 
-    padding: 70px 0 55px;
+    padding: 72px 0 58px;
 
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.35fr) minmax(180px, 0.55fr) minmax(0, 1fr);
+        minmax(0, 1.35fr)
+        minmax(180px, 0.55fr)
+        minmax(0, 1fr);
 
     gap: 65px;
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    SOBRE
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .footer-sobre .logo {
     width: auto;
@@ -1518,11 +1964,11 @@ footer {
 .footer-sobre p {
     max-width: 600px;
 
-    color: rgba(255, 255, 255, 0.70);
+    color: rgba(255, 255, 255, 0.72);
 
-    font-size: 11px;
+    font-size: 13px;
 
-    line-height: 1.75;
+    line-height: 1.8;
 }
 
 .footer-badges {
@@ -1546,16 +1992,17 @@ footer {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    REDES
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .footer-redes h3 {
     margin-bottom: 18px;
 
     color: var(--white);
 
-    font-size: 16px;
+    font-size: 17px;
+
     font-weight: 800;
 }
 
@@ -1569,8 +2016,8 @@ footer {
 }
 
 .social-icons a {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
 
     display: flex;
     align-items: center;
@@ -1599,9 +2046,9 @@ footer {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    LINKS / PESQUISA
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .footer-links {
     min-width: 0;
@@ -1618,7 +2065,7 @@ footer {
 
 .titulo .barra {
     width: 4px;
-    height: 22px;
+    height: 23px;
 
     flex-shrink: 0;
 
@@ -1630,7 +2077,8 @@ footer {
 .titulo h2 {
     color: var(--white);
 
-    font-size: 14px;
+    font-size: 16px;
+
     font-weight: 800;
 }
 
@@ -1644,14 +2092,14 @@ footer {
 
     background-color: var(--white);
 
-    border-radius: 8px;
+    border-radius: 15px;
 
     overflow: hidden;
 }
 
 .footer-search input {
     width: 100%;
-    height: 43px;
+    height: 45px;
 
     padding: 0 14px;
 
@@ -1661,7 +2109,7 @@ footer {
 
     color: var(--text-dark);
 
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .footer-search input::placeholder {
@@ -1669,8 +2117,8 @@ footer {
 }
 
 .footer-search button {
-    width: 45px;
-    height: 43px;
+    width: 47px;
+    height: 45px;
 
     display: flex;
     align-items: center;
@@ -1696,13 +2144,13 @@ footer {
 
     align-items: flex-start;
 
-    gap: 7px;
+    gap: 8px;
 }
 
 .parceiros a {
-    color: rgba(255, 255, 255, 0.70);
+    color: rgba(255, 255, 255, 0.72);
 
-    font-size: 11px;
+    font-size: 12px;
 
     transition:
         color var(--transition-fast);
@@ -1717,16 +2165,16 @@ footer {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    LOCALIZAÇÃO
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .footer-local {
     width: min(var(--container-width), var(--container-max-width));
 
     margin: 0 auto;
 
-    padding: 18px 0;
+    padding: 19px 0;
 
     display: flex;
     align-items: center;
@@ -1741,13 +2189,15 @@ footer {
 
     color: var(--senac-orange);
 
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .footer-local a {
-    color: rgba(255, 255, 255, 0.68);
+    color: rgba(255, 255, 255, 0.70);
 
-    font-size: 11px;
+    font-size: 12px;
+
+    line-height: 1.6;
 
     transition: color var(--transition-fast);
 }
@@ -1757,14 +2207,14 @@ footer {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    FOOTER BOTTOM
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 .footer-bottom {
     width: 100%;
 
-    padding: 20px max(5vw, calc((100% - var(--container-max-width)) / 2));
+    padding: 21px max(5vw, calc((100% - var(--container-max-width)) / 2));
 
     display: flex;
     align-items: center;
@@ -1776,7 +2226,7 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.footer-bottom>img {
+.footer-bottom > img {
     width: auto;
     height: 30px;
 
@@ -1784,9 +2234,11 @@ footer {
 }
 
 .footer-bottom p {
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.58);
 
-    font-size: 10px;
+    font-size: 11px;
+
+    line-height: 1.6;
 }
 
 .empresa {
@@ -1801,14 +2253,15 @@ footer {
 .empresa strong {
     color: var(--white);
 
-    font-size: 10px;
+    font-size: 11px;
+
     font-weight: 800;
 }
 
 .empresa a {
-    color: rgba(255, 255, 255, 0.60);
+    color: rgba(255, 255, 255, 0.62);
 
-    font-size: 10px;
+    font-size: 11px;
 
     transition: color var(--transition-fast);
 }
@@ -1819,7 +2272,7 @@ footer {
 
 
 /* ==========================================================================
-   11. BOTÃO VOLTAR AO TOPO
+   12. BOTÃO VOLTAR AO TOPO
    ========================================================================== */
 
 .back-to-top {
@@ -1828,8 +2281,8 @@ footer {
     right: 28px;
     bottom: 28px;
 
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
 
     display: flex;
     align-items: center;
@@ -1875,13 +2328,13 @@ footer {
 
 
 /* ==========================================================================
-   12. RESPONSIVIDADE
+   13. RESPONSIVIDADE
    ========================================================================== */
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    ATÉ 1200PX
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 @media (max-width: 1200px) {
 
@@ -1900,13 +2353,14 @@ footer {
 
     .container-senac {
         grid-template-columns:
-            minmax(0, 1fr) minmax(340px, 0.75fr);
+            minmax(0, 1fr)
+            minmax(340px, 0.75fr);
 
         gap: 45px;
     }
 
     .titulo-principal {
-        font-size: clamp(34px, 3.5vw, 46px);
+        font-size: clamp(36px, 3.5vw, 48px);
     }
 
     .cards-compromissos-grid {
@@ -1927,9 +2381,9 @@ footer {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    ATÉ 992PX
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 @media (max-width: 992px) {
 
@@ -1978,10 +2432,10 @@ footer {
     }
 
     .user-profile-button {
-        width: 48px;
-        height: 48px;
+        width: 50px;
+        height: 50px;
 
-        padding: 5px;
+        padding: 6px;
 
         justify-content: center;
     }
@@ -2026,6 +2480,14 @@ footer {
         max-height: 480px;
     }
 
+    .mvv-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mvv-card {
+        min-height: auto;
+    }
+
     .grid-temas-ouvidoria {
         grid-template-columns: 1fr;
 
@@ -2033,7 +2495,7 @@ footer {
     }
 
     .card-ouvidoria-laranja {
-        min-height: 360px;
+        min-height: 370px;
     }
 
     .footer-container {
@@ -2066,9 +2528,9 @@ footer {
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    ATÉ 768PX
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 @media (max-width: 768px) {
 
@@ -2115,7 +2577,7 @@ footer {
 
         overflow-x: auto;
 
-        border-radius: 35px;
+        border-radius: var(--radius-pill);
 
         pointer-events: auto;
     }
@@ -2153,24 +2615,24 @@ footer {
 
     .btn-voltar {
         margin-bottom: 24px;
+
+        font-size: 14px;
     }
 
     .titulo-principal {
-        font-size: clamp(32px, 8vw, 42px);
+        font-size: clamp(33px, 8vw, 43px);
 
         letter-spacing: -0.8px;
     }
 
-    .titulo-principal br {
-        display: none;
-    }
-
     .descricao-texto {
-        font-size: 14px;
+        font-size: 16px;
+
+        line-height: 1.8;
     }
 
     .container-compromissos {
-        padding: 70px 0;
+        padding: 75px 0;
     }
 
     .cards-compromissos-grid {
@@ -2189,26 +2651,75 @@ footer {
         min-height: auto;
     }
 
+    .card-compromisso-destaque p,
+    .card-compromisso-item p {
+        font-size: 15px;
+    }
+
+    .missao-visao-valores {
+        padding: 80px 0;
+    }
+
+    .container-mvv {
+        width: 90vw;
+    }
+
+    .mvv-header {
+        margin-bottom: 40px;
+    }
+
+    .mvv-header h2 {
+        font-size: 32px;
+    }
+
+    .mvv-header p {
+        font-size: 15px;
+    }
+
+    .mvv-card {
+        padding: 30px 26px;
+
+        border-radius: 26px;
+    }
+
+    .mvv-card h3 {
+        font-size: 23px;
+    }
+
+    .mvv-card p {
+        font-size: 15px;
+    }
+
     .container-plano-pedagogico {
         width: 90vw;
 
-        padding: 75px 0;
+        padding: 80px 0;
     }
 
     .plano-pedagogico-header {
         margin-bottom: 40px;
     }
 
+    .plano-pedagogico-header p {
+        font-size: 15px;
+    }
+
     .plano-pedagogico-introducao {
         grid-template-columns: 1fr;
 
-        padding: 28px;
+        padding: 30px;
 
         text-align: center;
+
+        border-radius: 26px;
     }
 
     .plano-icone-principal {
         margin: 0 auto;
+    }
+
+    .plano-pedagogico-introducao p {
+        font-size: 15px;
     }
 
     .plano-pedagogico-cards {
@@ -2217,16 +2728,34 @@ footer {
 
     .plano-card {
         min-height: auto;
+
+        padding: 27px;
+
+        border-radius: 26px;
+    }
+
+    .plano-card h4 {
+        font-size: 17px;
+    }
+
+    .plano-card p {
+        font-size: 14px;
     }
 
     .plano-pdf-box {
-        padding: 25px;
+        padding: 27px;
 
         flex-wrap: wrap;
+
+        border-radius: 26px;
     }
 
     .plano-pdf-texto {
         min-width: calc(100% - 72px);
+    }
+
+    .plano-pdf-texto p {
+        font-size: 13px;
     }
 
     .btn-plano-pdf {
@@ -2234,7 +2763,7 @@ footer {
     }
 
     .container-temas-ouvidoria {
-        padding: 75px 0;
+        padding: 80px 0;
     }
 
     .grid-temas-ouvidoria {
@@ -2242,9 +2771,11 @@ footer {
     }
 
     .card-ouvidoria-laranja {
-        min-height: 430px;
+        min-height: 440px;
 
-        padding: 30px;
+        padding: 32px;
+
+        border-radius: 28px;
     }
 
     .avatar-container {
@@ -2261,11 +2792,31 @@ footer {
     .conteudo-ouvidoria h2 {
         max-width: 300px;
 
-        font-size: 23px;
+        font-size: 24px;
+    }
+
+    .conteudo-ouvidoria p {
+        font-size: 15px;
     }
 
     .grid-topicos-temas {
         grid-template-columns: 1fr;
+    }
+
+    .topico-item {
+        min-height: auto;
+
+        padding: 21px;
+
+        border-radius: 22px;
+    }
+
+    .topico-texto h4 {
+        font-size: 16px;
+    }
+
+    .topico-texto p {
+        font-size: 14px;
     }
 
     .footer-container {
@@ -2273,15 +2824,19 @@ footer {
 
         grid-template-columns: 1fr;
 
-        gap: 38px;
+        gap: 40px;
 
-        padding: 55px 0 40px;
+        padding: 58px 0 42px;
     }
 
     .footer-sobre,
     .footer-redes,
     .footer-links {
         grid-column: auto;
+    }
+
+    .footer-sobre p {
+        font-size: 13px;
     }
 
     .footer-local {
@@ -2311,15 +2866,15 @@ footer {
         right: 18px;
         bottom: 18px;
 
-        width: 44px;
-        height: 44px;
+        width: 46px;
+        height: 46px;
     }
 }
 
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
    ATÉ 480PX
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 @media (max-width: 480px) {
 
@@ -2351,7 +2906,7 @@ footer {
     }
 
     .badge-tag {
-        font-size: 9px;
+        font-size: 10px;
 
         letter-spacing: 0.7px;
     }
@@ -2361,11 +2916,15 @@ footer {
     }
 
     .descricao-texto {
-        font-size: 13px;
+        font-size: 15px;
+
+        line-height: 1.8;
     }
 
     .btn-acao {
         width: 100%;
+
+        border-radius: 15px;
     }
 
     .imagem-diagrama {
@@ -2373,73 +2932,151 @@ footer {
     }
 
     .container-compromissos {
-        padding: 55px 0;
+        padding: 60px 0;
     }
 
     .card-compromisso-destaque,
     .card-compromisso-item {
-        padding: 25px;
+        padding: 27px;
+
+        border-radius: 25px;
     }
 
     .card-compromisso-destaque h2 {
+        font-size: 23px;
+    }
+
+    .card-compromisso-destaque p,
+    .card-compromisso-item p {
+        font-size: 15px;
+
+        line-height: 1.8;
+    }
+
+    .card-compromisso-item h3 {
+        font-size: 18px;
+    }
+
+    .missao-visao-valores {
+        padding: 65px 0;
+    }
+
+    .mvv-header h2 {
+        font-size: 28px;
+    }
+
+    .mvv-header p {
+        font-size: 15px;
+    }
+
+    .mvv-card {
+        padding: 27px 23px;
+
+        border-radius: 24px;
+    }
+
+    .mvv-icon {
+        width: 56px;
+        height: 56px;
+
+        border-radius: 17px;
+    }
+
+    .mvv-card h3 {
         font-size: 22px;
     }
 
+    .mvv-card p {
+        font-size: 15px;
+    }
+
+    .mvv-valores-list {
+        gap: 8px;
+    }
+
+    .mvv-valores-list span {
+        font-size: 12px;
+
+        padding: 8px 11px;
+    }
+
     .container-plano-pedagogico {
-        padding: 60px 0;
+        padding: 65px 0;
     }
 
     .plano-pedagogico-header h2 {
-        font-size: 27px;
+        font-size: 28px;
     }
 
     .plano-pedagogico-header p {
-        font-size: 13px;
-    }
-
-    .plano-pedagogico-introducao {
-        padding: 23px;
-    }
-
-    .plano-pedagogico-introducao h3 {
-        font-size: 20px;
-    }
-
-    .plano-pedagogico-introducao p {
-        font-size: 12.5px;
-    }
-
-    .plano-card {
-        padding: 22px;
-    }
-
-    .plano-card h4 {
         font-size: 14px;
     }
 
+    .plano-pedagogico-introducao {
+        padding: 25px;
+
+        border-radius: 24px;
+    }
+
+    .plano-pedagogico-introducao h3 {
+        font-size: 21px;
+    }
+
+    .plano-pedagogico-introducao p {
+        font-size: 14px;
+
+        line-height: 1.8;
+    }
+
+    .plano-card {
+        padding: 24px;
+
+        border-radius: 24px;
+    }
+
+    .plano-card h4 {
+        font-size: 16px;
+    }
+
     .plano-card p {
-        font-size: 11.5px;
+        font-size: 14px;
+
+        line-height: 1.75;
     }
 
     .plano-pdf-box {
-        padding: 22px;
+        padding: 23px;
 
         gap: 14px;
+
+        border-radius: 24px;
     }
 
     .plano-pdf-icone {
-        width: 46px;
-        height: 46px;
+        width: 48px;
+        height: 48px;
+
+        border-radius: 15px;
     }
 
     .plano-pdf-texto {
-        min-width: calc(100% - 60px);
+        min-width: calc(100% - 62px);
+    }
+
+    .plano-pdf-texto h3 {
+        font-size: 17px;
+    }
+
+    .plano-pdf-texto p {
+        font-size: 13px;
     }
 
     .card-ouvidoria-laranja {
-        min-height: 470px;
+        min-height: 480px;
 
-        padding: 25px;
+        padding: 27px;
+
+        border-radius: 26px;
     }
 
     .avatar-container {
@@ -2452,23 +3089,41 @@ footer {
     }
 
     .conteudo-ouvidoria h2 {
-        font-size: 21px;
+        font-size: 22px;
     }
 
     .conteudo-ouvidoria p {
-        font-size: 12px;
+        font-size: 14px;
+
+        line-height: 1.8;
     }
 
     .titulo-secao-temas {
-        font-size: 27px;
+        font-size: 28px;
     }
 
     .descricao-secao-temas {
-        font-size: 13px;
+        font-size: 14px;
+    }
+
+    .topico-item {
+        padding: 20px;
+
+        border-radius: 22px;
+    }
+
+    .topico-texto h4 {
+        font-size: 16px;
+    }
+
+    .topico-texto p {
+        font-size: 14px;
     }
 
     .footer-sobre p {
-        font-size: 10px;
+        font-size: 12px;
+
+        line-height: 1.8;
     }
 
     .footer-badges {
@@ -2480,12 +3135,14 @@ footer {
     }
 
     .footer-local a {
-        font-size: 10px;
-        line-height: 1.5;
+        font-size: 11px;
+
+        line-height: 1.6;
+    }
+
+    .footer-bottom p,
+    .empresa strong,
+    .empresa a {
+        font-size: 11px;
     }
 }
-
-
-/* ==========================================================================
-   FIM DO STYLE-CONDUTA.CSS
-   ========================================================================== */

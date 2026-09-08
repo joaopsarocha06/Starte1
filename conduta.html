@@ -29,7 +29,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
 
 
     <!-- ================================================================
@@ -38,8 +39,8 @@
 
     <link rel="stylesheet" href="./css/style-conduta.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
 
@@ -47,43 +48,183 @@
 <body>
 
 
-    <!-- ========================================================= HEADER ========================================================== -->
+    <!-- ================================================================
+         HEADER
+         ================================================================ -->
+
     <header class="main-header">
-        <div class="container header-container"> <!-- LOGO -->
-            <div class="logo-area"> <a href="home.html" aria-label="Página inicial do Startê"> <img
-                        src="imagens/Senac_logo.svg.webp" alt="Logo Senac" class="logo-img"> </a> </div>
-            <!-- MENU PRINCIPAL -->
-             
-            <nav class="nav-menu" id="mainNav" aria-label="Menu principal">
+
+        <div class="container header-container">
+
+
+            <!-- ========================================================
+                 LOGO
+                 ======================================================== -->
+
+            <div class="logo-area">
+
+                <a href="home.html" aria-label="Página inicial do Startê">
+
+                    <img src="imagens/Senac_logo.svg.webp"
+                        alt="Logo Senac"
+                        class="logo-img">
+
+                </a>
+
+            </div>
+
+
+            <!-- ========================================================
+                 MENU PRINCIPAL
+                 ======================================================== -->
+
+            <nav class="nav-menu"
+                id="mainNav"
+                aria-label="Menu principal">
+
                 <ul class="nav-list">
-                    <li> <a href="home.html" class="nav-link"> HOME </a> </li>
-                    <li> <a href="cursos.html" class="nav-link"> CURSOS </a> </li>
-                    <li> <a href="conduta.html" class="nav-link active" aria-current="page"> CONDUTA </a> </li>
-                    <li> <a href="eventos.html" class="nav-link"> EVENTOS </a> </li>
-                    <li> <a href="mural.html" class="nav-link"> MURAL DOCENTE </a> </li>
+
+                    <li>
+                        <a href="home.html"
+                            class="nav-link">
+                            HOME
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="cursos.html"
+                            class="nav-link">
+                            CURSOS
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="conduta.html"
+                            class="nav-link active"
+                            aria-current="page">
+                            CONDUTA
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="eventos.html"
+                            class="nav-link">
+                            EVENTOS
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mural.html"
+                            class="nav-link">
+                            MURAL DOCENTE
+                        </a>
+                    </li>
+
                 </ul>
 
-            </nav> <!-- ÁREA DE AÇÕES -->
-            <div class="action-area"> <!-- PERFIL DO USUÁRIO -->
-                <div class="user-profile" id="userProfile"> <!-- BOTÃO DO PERFIL --> <button type="button"
-                        class="user-profile-button" id="userProfileButton" aria-expanded="false" aria-haspopup="true"
-                        aria-controls="userProfileMenu"> <span class="user-profile-icon"> <i class="fas fa-user"
-                                aria-hidden="true"></i> </span> <span class="user-profile-info"> <span
-                                class="user-profile-welcome"> Bem-vindo </span> <span class="user-profile-name"
-                                id="userProfileName"> Usuário </span> </span> <i
-                            class="fas fa-chevron-down user-profile-arrow" aria-hidden="true"></i> </button>
-                    <!-- MENU DO PERFIL -->
-                    <div class="user-profile-menu" id="userProfileMenu" role="menu"> <button type="button"
-                            class="user-profile-menu-item" id="profileButton" role="menuitem"> <i class="fas fa-user"
-                                aria-hidden="true"></i> <span> Meu perfil </span> </button>
-                        <div class="user-profile-divider"></div> <button type="button"
-                            class="user-profile-menu-item logout" id="logoutButton" role="menuitem"> <i
-                                class="fas fa-right-from-bracket" aria-hidden="true"></i> <span> Sair </span> </button>
+            </nav>
+
+
+            <!-- ========================================================
+                 ÁREA DE AÇÕES / PERFIL
+                 ======================================================== -->
+
+            <div class="action-area">
+
+                <div class="user-profile"
+                    id="userProfile">
+
+
+                    <!-- ==================================================
+                         BOTÃO DO PERFIL
+                         ================================================== -->
+
+                    <button type="button"
+                        class="user-profile-button"
+                        id="userProfileButton"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                        aria-controls="userProfileMenu">
+
+                        <span class="user-profile-icon">
+
+                            <i class="fas fa-user"
+                                aria-hidden="true"></i>
+
+                        </span>
+
+
+                        <span class="user-profile-info">
+
+                            <span class="user-profile-welcome">
+                                Bem-vindo
+                            </span>
+
+                            <span class="user-profile-name"
+                                id="userProfileName">
+                                Usuário
+                            </span>
+
+                        </span>
+
+
+                        <i class="fas fa-chevron-down user-profile-arrow"
+                            aria-hidden="true"></i>
+
+                    </button>
+
+
+                    <!-- ==================================================
+                         MENU DO PERFIL
+                         ================================================== -->
+
+                    <div class="user-profile-menu"
+                        id="userProfileMenu"
+                        role="menu">
+
+
+                        <button type="button"
+                            class="user-profile-menu-item"
+                            id="profileButton"
+                            role="menuitem">
+
+                            <i class="fas fa-user"
+                                aria-hidden="true"></i>
+
+                            <span>
+                                Meu perfil
+                            </span>
+
+                        </button>
+
+
+                        <div class="user-profile-divider"></div>
+
+
+                        <button type="button"
+                            class="user-profile-menu-item logout"
+                            id="logoutButton"
+                            role="menuitem">
+
+                            <i class="fas fa-right-from-bracket"
+                                aria-hidden="true"></i>
+
+                            <span>
+                                Sair
+                            </span>
+
+                        </button>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </header>
+
 
 
     <!-- ================================================================
@@ -102,18 +243,22 @@
 
             <!-- BOTÃO VOLTAR -->
 
-            <a href="./home.html" class="btn-voltar">
+            <a href="./home.html"
+                class="btn-voltar">
 
-                <svg class="seta-voltar" viewBox="0 0 24 24" width="16" height="16">
+                <svg class="seta-voltar"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16">
 
-                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="#0b5195" />
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+                        fill="#0b5195" />
 
                 </svg>
 
                 Voltar
 
             </a>
-
 
 
             <!-- IDENTIFICAÇÃO -->
@@ -125,12 +270,12 @@
             </span>
 
 
-
             <!-- TÍTULO -->
 
             <h1 class="titulo-principal">
 
                 Ética e conduta que constroem um
+
                 <br>
 
                 <span class="destaque-senac">
@@ -140,7 +285,6 @@
                 melhor.
 
             </h1>
-
 
 
             <!-- DESCRIÇÃO -->
@@ -155,21 +299,24 @@
             </p>
 
 
-
             <!-- BOTÃO DO CÓDIGO -->
 
-            <a href="#temas" class="btn-acao">
+            <a href="#temas"
+                class="btn-acao">
 
                 Acessar o código completo
 
-                <svg class="seta-acao" viewBox="0 0 24 24" width="18" height="18">
+                <svg class="seta-acao"
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18">
 
-                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="#ffffff" />
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"
+                        fill="#ffffff" />
 
                 </svg>
 
             </a>
-
 
         </section>
 
@@ -181,7 +328,8 @@
 
         <aside class="conteudo-direita">
 
-            <img src="imagens/conduta1.png" alt="Diagrama de ética e conduta com ícones circulares"
+            <img src="imagens/conduta1.png"
+                alt="Diagrama de ética e conduta com ícones circulares"
                 class="imagem-diagrama">
 
         </aside>
@@ -197,7 +345,6 @@
 
     <section class="container-compromissos">
 
-
         <div class="cards-compromissos-grid">
 
 
@@ -212,7 +359,6 @@
 
                 </h2>
 
-
                 <p>
 
                     Nosso Código de Ética e Conduta apresenta os princípios,
@@ -225,17 +371,13 @@
             </div>
 
 
-
             <!-- CARD 1 -->
 
             <div class="card-compromisso-item">
 
                 <h3>
-
                     Compromisso com as pessoas
-
                 </h3>
-
 
                 <p>
 
@@ -247,17 +389,13 @@
             </div>
 
 
-
             <!-- CARD 2 -->
 
             <div class="card-compromisso-item">
 
                 <h3>
-
                     Integridade em Primeiro Lugar
-
                 </h3>
-
 
                 <p>
 
@@ -269,17 +407,13 @@
             </div>
 
 
-
             <!-- CARD 3 -->
 
             <div class="card-compromisso-item">
 
                 <h3>
-
                     Conformidade e Transparência
-
                 </h3>
-
 
                 <p>
 
@@ -291,17 +425,13 @@
             </div>
 
 
-
             <!-- CARD 4 -->
 
             <div class="card-compromisso-item">
 
                 <h3>
-
                     Excelência no serviço Público
-
                 </h3>
-
 
                 <p>
 
@@ -319,13 +449,229 @@
 
 
 
-    <!-- =================================================================
-         ================================================================
-         SEÇÃO PLANO PEDAGÓGICO
-         ================================================================
-         ================================================================= -->
+    <!-- ================================================================
+         MISSÃO, VISÃO E VALORES DO SENAC
+         ================================================================ -->
 
-    <section class="container-plano-pedagogico" id="plano-pedagogico">
+    <section class="missao-visao-valores"
+        id="missao-visao-valores">
+
+
+        <div class="container-mvv">
+
+
+            <!-- ========================================================
+                 CABEÇALHO DA SEÇÃO
+                 ======================================================== -->
+
+            <div class="mvv-header">
+
+
+                <span class="mvv-badge">
+
+                    IDENTIDADE INSTITUCIONAL
+
+                </span>
+
+
+                <h2>
+
+                    Missão, <span>Visão</span> e Valores
+
+                </h2>
+
+
+                <p>
+
+                    Conheça os princípios que orientam a atuação do SENAC
+                    e seu compromisso com a educação profissional,
+                    a transformação social e o mundo do trabalho.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- ========================================================
+                 CARDS DE MISSÃO, VISÃO E VALORES
+                 ======================================================== -->
+
+            <div class="mvv-grid">
+
+
+                <!-- ====================================================
+                     MISSÃO
+                     ==================================================== -->
+
+                <article class="mvv-card mvv-card-missao">
+
+
+                    <div class="mvv-icon">
+
+                        <i class="fas fa-bullseye"
+                            aria-hidden="true"></i>
+
+                    </div>
+
+
+                    <div class="mvv-card-content">
+
+
+                        <span class="mvv-kicker">
+
+                            NOSSO PROPÓSITO
+
+                        </span>
+
+
+                        <h3>
+                            Missão
+                        </h3>
+
+
+                        <p>
+
+                            Educar para o trabalho, de forma inovadora e
+                            inclusiva, em atividades do comércio de bens,
+                            serviços e turismo.
+
+                        </p>
+
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ====================================================
+                     VISÃO
+                     ==================================================== -->
+
+                <article class="mvv-card mvv-card-visao">
+
+
+                    <div class="mvv-icon">
+
+                        <i class="fas fa-eye"
+                            aria-hidden="true"></i>
+
+                    </div>
+
+
+                    <div class="mvv-card-content">
+
+
+                        <span class="mvv-kicker">
+
+                            ONDE QUEREMOS CHEGAR
+
+                        </span>
+
+
+                        <h3>
+                            Visão
+                        </h3>
+
+
+                        <p>
+
+                            Transformar vidas e fortalecer o setor de
+                            comércio de bens, serviços e turismo.
+
+                        </p>
+
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ====================================================
+                     VALORES
+                     ==================================================== -->
+
+                <article class="mvv-card mvv-card-valores">
+
+
+                    <div class="mvv-icon">
+
+                        <i class="fas fa-gem"
+                            aria-hidden="true"></i>
+
+                    </div>
+
+
+                    <div class="mvv-card-content">
+
+
+                        <span class="mvv-kicker">
+
+                            O QUE NOS GUIA
+
+                        </span>
+
+
+                        <h3>
+                            Valores
+                        </h3>
+
+
+                        <div class="mvv-valores-list">
+
+
+                            <span>
+                                Ética e transparência
+                            </span>
+
+
+                            <span>
+                                Diversidade
+                            </span>
+
+
+                            <span>
+                                Inovação
+                            </span>
+
+
+                            <span>
+                                Sustentabilidade
+                            </span>
+
+
+                            <span>
+                                Transformação social
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================================================================
+         PLANO PEDAGÓGICO
+         ================================================================ -->
+
+    <section class="container-plano-pedagogico"
+        id="plano-pedagogico">
 
 
         <!-- =============================================================
@@ -339,13 +685,13 @@
 
             <div class="plano-pedagogico-badge">
 
-                <i class="fas fa-graduation-cap" aria-hidden="true">
+                <i class="fas fa-graduation-cap"
+                    aria-hidden="true">
                 </i>
 
                 PLANO PEDAGÓGICO
 
             </div>
-
 
 
             <!-- TÍTULO -->
@@ -356,7 +702,6 @@
                 <span>SENAC</span>
 
             </h2>
-
 
 
             <!-- DESCRIÇÃO -->
@@ -388,11 +733,11 @@
 
                 <div class="plano-icone-principal">
 
-                    <i class="fas fa-book-open" aria-hidden="true">
+                    <i class="fas fa-book-open"
+                        aria-hidden="true">
                     </i>
 
                 </div>
-
 
 
                 <!-- TEXTO -->
@@ -407,14 +752,12 @@
                     </span>
 
 
-
                     <h3>
 
                         Uma formação conectada
                         com o mundo do trabalho
 
                     </h3>
-
 
 
                     <p>
@@ -426,7 +769,6 @@
                         aplicáveis à realidade.
 
                     </p>
-
 
 
                     <p>
@@ -453,16 +795,15 @@
             <div class="plano-pedagogico-cards">
 
 
-                <!-- =====================================================
-                     CARD 1
-                     ===================================================== -->
+                <!-- CARD 1 -->
 
                 <article class="plano-card">
 
 
                     <div class="plano-card-icone azul">
 
-                        <i class="fas fa-bullseye" aria-hidden="true">
+                        <i class="fas fa-bullseye"
+                            aria-hidden="true">
                         </i>
 
                     </div>
@@ -471,9 +812,7 @@
                     <div>
 
                         <h4>
-
                             Objetivos educacionais
-
                         </h4>
 
 
@@ -492,16 +831,15 @@
 
 
 
-                <!-- =====================================================
-                     CARD 2
-                     ===================================================== -->
+                <!-- CARD 2 -->
 
                 <article class="plano-card">
 
 
                     <div class="plano-card-icone laranja">
 
-                        <i class="fas fa-lightbulb" aria-hidden="true">
+                        <i class="fas fa-lightbulb"
+                            aria-hidden="true">
                         </i>
 
                     </div>
@@ -510,9 +848,7 @@
                     <div>
 
                         <h4>
-
                             Princípios pedagógicos
-
                         </h4>
 
 
@@ -531,16 +867,15 @@
 
 
 
-                <!-- =====================================================
-                     CARD 3
-                     ===================================================== -->
+                <!-- CARD 3 -->
 
                 <article class="plano-card">
 
 
                     <div class="plano-card-icone azul">
 
-                        <i class="fas fa-chalkboard-teacher" aria-hidden="true">
+                        <i class="fas fa-chalkboard-teacher"
+                            aria-hidden="true">
                         </i>
 
                     </div>
@@ -549,9 +884,7 @@
                     <div>
 
                         <h4>
-
                             Metodologia de ensino
-
                         </h4>
 
 
@@ -570,16 +903,15 @@
 
 
 
-                <!-- =====================================================
-                     CARD 4
-                     ===================================================== -->
+                <!-- CARD 4 -->
 
                 <article class="plano-card">
 
 
                     <div class="plano-card-icone laranja">
 
-                        <i class="fas fa-chart-line" aria-hidden="true">
+                        <i class="fas fa-chart-line"
+                            aria-hidden="true">
                         </i>
 
                     </div>
@@ -588,9 +920,7 @@
                     <div>
 
                         <h4>
-
                             Avaliação da aprendizagem
-
                         </h4>
 
 
@@ -609,16 +939,15 @@
 
 
 
-                <!-- =====================================================
-                     CARD 5
-                     ===================================================== -->
+                <!-- CARD 5 -->
 
                 <article class="plano-card">
 
 
                     <div class="plano-card-icone azul">
 
-                        <i class="fas fa-user-graduate" aria-hidden="true">
+                        <i class="fas fa-user-graduate"
+                            aria-hidden="true">
                         </i>
 
                     </div>
@@ -627,9 +956,7 @@
                     <div>
 
                         <h4>
-
                             Acompanhamento do aluno
-
                         </h4>
 
 
@@ -648,16 +975,15 @@
 
 
 
-                <!-- =====================================================
-                     CARD 6
-                     ===================================================== -->
+                <!-- CARD 6 -->
 
                 <article class="plano-card">
 
 
                     <div class="plano-card-icone laranja">
 
-                        <i class="fas fa-briefcase" aria-hidden="true">
+                        <i class="fas fa-briefcase"
+                            aria-hidden="true">
                         </i>
 
                     </div>
@@ -666,9 +992,7 @@
                     <div>
 
                         <h4>
-
                             Preparação profissional
-
                         </h4>
 
 
@@ -704,11 +1028,11 @@
 
             <div class="plano-pdf-icone">
 
-                <i class="fas fa-file-pdf" aria-hidden="true">
+                <i class="fas fa-file-pdf"
+                    aria-hidden="true">
                 </i>
 
             </div>
-
 
 
             <!-- TEXTO -->
@@ -721,9 +1045,7 @@
 
 
                 <h3>
-
                     Plano Pedagógico completo
-
                 </h3>
 
 
@@ -736,9 +1058,14 @@
 
             </div>
 
-            <a href="pdf/diretrizes_MPS  2024.pdf" class="btn-plano-pdf" target="_blank" rel="noopener">
 
-                <i class="fas fa-file-arrow-down" aria-hidden="true">
+            <a href="pdf/diretrizes_MPS  2024.pdf"
+                class="btn-plano-pdf"
+                target="_blank"
+                rel="noopener">
+
+                <i class="fas fa-file-arrow-down"
+                    aria-hidden="true">
                 </i>
 
                 Acessar PDF
@@ -757,7 +1084,8 @@
          DIRETRIZES E TEMAS
          ================================================================ -->
 
-    <section class="container-temas-ouvidoria" id="temas">
+    <section class="container-temas-ouvidoria"
+        id="temas">
 
 
         <div class="grid-temas-ouvidoria">
@@ -774,10 +1102,11 @@
 
                 <div class="avatar-container">
 
-                    <img src="imagens/boneca1.png" alt="Assistente Virtual Senac" class="avatar-personagem">
+                    <img src="imagens/boneca1.png"
+                        alt="Assistente Virtual Senac"
+                        class="avatar-personagem">
 
                 </div>
-
 
 
                 <!-- CONTEÚDO -->
@@ -793,7 +1122,6 @@
                     </h2>
 
 
-
                     <p>
 
                         Cabe ao Departamento Nacional do Senac produzir
@@ -805,9 +1133,10 @@
                     </p>
 
 
-
                     <a href="https://dn.senac.br/educacao-profissional/organizacao-da-oferta/diretrizes-educacionais/"
-                        class="btn-ouvidoria" target="_blank" rel="noopener">
+                        class="btn-ouvidoria"
+                        target="_blank"
+                        rel="noopener">
 
                         Diretrizes
 
@@ -835,7 +1164,6 @@
                 </h2>
 
 
-
                 <p class="descricao-secao-temas">
 
                     Nosso Código de Ética e Conduta apresenta os princípios,
@@ -860,7 +1188,8 @@
 
                         <div class="topico-icone icone-azul">
 
-                            <i class="fas fa-file-alt" aria-hidden="true">
+                            <i class="fas fa-file-alt"
+                                aria-hidden="true">
                             </i>
 
                         </div>
@@ -869,9 +1198,7 @@
                         <div class="topico-texto">
 
                             <h4>
-
                                 Princípios e Normas
-
                             </h4>
 
 
@@ -896,7 +1223,8 @@
 
                         <div class="topico-icone icone-laranja">
 
-                            <i class="fas fa-users" aria-hidden="true">
+                            <i class="fas fa-users"
+                                aria-hidden="true">
                             </i>
 
                         </div>
@@ -905,9 +1233,7 @@
                         <div class="topico-texto">
 
                             <h4>
-
                                 Objetivos e Cultura
-
                             </h4>
 
 
@@ -931,7 +1257,8 @@
 
                         <div class="topico-icone icone-azul">
 
-                            <i class="fas fa-balance-scale" aria-hidden="true">
+                            <i class="fas fa-balance-scale"
+                                aria-hidden="true">
                             </i>
 
                         </div>
@@ -940,9 +1267,7 @@
                         <div class="topico-texto">
 
                             <h4>
-
                                 Infrações e Sanções
-
                             </h4>
 
 
@@ -967,7 +1292,8 @@
 
                         <div class="topico-icone icone-laranja">
 
-                            <i class="fas fa-gavel" aria-hidden="true">
+                            <i class="fas fa-gavel"
+                                aria-hidden="true">
                             </i>
 
                         </div>
@@ -976,9 +1302,7 @@
                         <div class="topico-texto">
 
                             <h4>
-
                                 Processos Judiciais
-
                             </h4>
 
 
@@ -1020,7 +1344,6 @@
         <div class="linha-topo"></div>
 
 
-
         <div class="footer-container">
 
 
@@ -1028,10 +1351,13 @@
                  SOBRE
                  ======================================================== -->
 
-            <div class="footer-sobre" id="sobrenos">
+            <div class="footer-sobre"
+                id="sobrenos">
 
 
-                <img src="./imagens/logo-branco.png" alt="Logo Senac" class="logo">
+                <img src="./imagens/logo-branco.png"
+                    alt="Logo Senac"
+                    class="logo">
 
 
                 <p>
@@ -1054,10 +1380,15 @@
 
                 <div class="footer-badges">
 
-                    <img src="./imagens/prevencao.png" alt="Programa prevenção">
+
+                    <img src="./imagens/prevencao.png"
+                        alt="Programa prevenção">
 
 
-                    <img src="./imagens/logo.png" alt="Startê" class="starte-logo">
+                    <img src="./imagens/logo.png"
+                        alt="Startê"
+                        class="starte-logo">
+
 
                 </div>
 
@@ -1070,47 +1401,50 @@
                  REDES SOCIAIS
                  ======================================================== -->
 
-            <div class="footer-redes" id="contatos">
+            <div class="footer-redes"
+                id="contatos">
 
 
                 <h3>
-
                     Conecte-se
-
                 </h3>
-
 
 
                 <div class="social-icons">
 
 
-                    <a href="#" aria-label="WhatsApp">
+                    <a href="#"
+                        aria-label="WhatsApp">
 
-                        <img src="./imagens/telefoneverde.png" alt="">
-
-                    </a>
-
-
-
-                    <a href="#" aria-label="Twitter">
-
-                        <img src="./imagens/twitter.png" alt="">
+                        <img src="./imagens/telefoneverde.png"
+                            alt="">
 
                     </a>
 
 
+                    <a href="#"
+                        aria-label="Twitter">
 
-                    <a href="#" aria-label="Instagram">
-
-                        <img src="./imagens/instagram.png" alt="">
+                        <img src="./imagens/twitter.png"
+                            alt="">
 
                     </a>
 
 
+                    <a href="#"
+                        aria-label="Instagram">
 
-                    <a href="#" aria-label="Facebook">
+                        <img src="./imagens/instagram.png"
+                            alt="">
 
-                        <img src="./imagens/facebook.png" alt="">
+                    </a>
+
+
+                    <a href="#"
+                        aria-label="Facebook">
+
+                        <img src="./imagens/facebook.png"
+                            alt="">
 
                     </a>
 
@@ -1134,9 +1468,7 @@
                     <div class="barra"></div>
 
                     <h2>
-
                         Pesquise por Cursos e Notícias
-
                     </h2>
 
                 </div>
@@ -1146,12 +1478,17 @@
                 <div class="footer-search">
 
 
-                    <input type="text" id="footerSearch" placeholder="Pesquisar" aria-label="Pesquisar no site">
+                    <input type="text"
+                        id="footerSearch"
+                        placeholder="Pesquisar"
+                        aria-label="Pesquisar no site">
 
 
-                    <button id="footerSearchBtn" aria-label="Pesquisar">
+                    <button id="footerSearchBtn"
+                        aria-label="Pesquisar">
 
-                        <i class="fas fa-search" aria-hidden="true">
+                        <i class="fas fa-search"
+                            aria-hidden="true">
                         </i>
 
                     </button>
@@ -1168,9 +1505,7 @@
                     <div class="barra"></div>
 
                     <h2>
-
                         Parceiros
-
                     </h2>
 
                 </div>
@@ -1181,9 +1516,7 @@
 
 
                     <a href="#">
-
                         Fecomércio Pernambuco
-
                     </a>
 
 
@@ -1191,9 +1524,7 @@
 
 
                     <a href="#">
-
                         Sesc Pernambuco
-
                     </a>
 
 
@@ -1214,11 +1545,14 @@
         <div class="footer-local">
 
 
-            <i class="fas fa-location-dot" aria-hidden="true">
+            <i class="fas fa-location-dot"
+                aria-hidden="true">
             </i>
 
 
-            <a href="https://maps.app.goo.gl/6A3dxDU1zrD2bHD7A" target="_blank" rel="noopener">
+            <a href="https://maps.app.goo.gl/6A3dxDU1zrD2bHD7A"
+                target="_blank"
+                rel="noopener">
 
                 Pernambuco - Av. Visconde de Suassuna, 500 -
                 Santo Amaro - Recife
@@ -1237,39 +1571,30 @@
         <div class="footer-bottom">
 
 
-            <img src="./imagens/logo-branco.png" alt="Senac">
-
+            <img src="./imagens/logo-branco.png"
+                alt="Senac">
 
 
             <p>
-
                 © 2026 Todos os Direitos Reservados.
-
             </p>
-
 
 
             <div class="empresa">
 
 
                 <strong>
-
                     Para sua empresa
-
                 </strong>
 
 
                 <a href="#">
-
                     Atendimento Corporativo
-
                 </a>
 
 
                 <a href="#">
-
                     Programa de Aprendizagem
-
                 </a>
 
 
@@ -1281,16 +1606,24 @@
 
     </footer>
 
+
+
     <!-- ================================================================
          BOTÃO VOLTAR AO TOPO
          ================================================================ -->
 
-    <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+    <button class="back-to-top"
+        id="backToTop"
+        aria-label="Voltar ao topo">
 
-        <i class="fas fa-chevron-up" aria-hidden="true">
+        <i class="fas fa-chevron-up"
+            aria-hidden="true">
         </i>
 
     </button>
+
+
+
     <!-- ================================================================
          SCRIPTS
          ================================================================ -->
