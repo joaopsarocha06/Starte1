@@ -1,21 +1,6 @@
 /* ==========================================================================
-   STYLE-CONDUTA.CSS — STARTÊ / SENAC
-   IDENTIDADE VISUAL PADRONIZADA COM HOME / CURSOS / EVENTOS
-
-   ORDEM:
-   01. VARIÁVEIS
-   02. RESET E BASE
-   03. HEADER
-   04. PERFIL DO USUÁRIO
-   05. HERO / CONTEÚDO PRINCIPAL
-   06. COMPROMISSOS
-   07. MISSÃO, VISÃO E VALORES
-   08. PLANO PEDAGÓGICO
-   09. PDF DO PLANO
-   10. DIRETRIZES E TEMAS
-   11. FOOTER
-   12. BOTÃO VOLTAR AO TOPO
-   13. RESPONSIVIDADE
+   CONDUTA.CSS — STARTÊ / SENAC
+   IDENTIDADE VISUAL PADRONIZADA COM A HOME
    ========================================================================== */
 
 
@@ -24,6 +9,7 @@
    ========================================================================== */
 
 :root {
+
     --senac-blue: #0b5195;
     --senac-blue-dark: #004a94;
     --senac-blue-deep: #003f7d;
@@ -34,18 +20,24 @@
 
     --text-dark: #002f6c;
     --text-title: #19376d;
-    --text-paragraph: #626262;
+    --text-paragraph: #707070;
 
     --bg-light: #f7f9fb;
+
     --white: #ffffff;
     --black: #222222;
 
     --border-light: rgba(0, 47, 108, 0.08);
     --border-medium: rgba(11, 81, 149, 0.14);
 
-    --shadow-sm: 0 5px 18px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.09);
-    --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.12);
+    --shadow-sm:
+        0 5px 18px rgba(0, 0, 0, 0.06);
+
+    --shadow-md:
+        0 12px 32px rgba(0, 0, 0, 0.09);
+
+    --shadow-lg:
+        0 20px 48px rgba(0, 0, 0, 0.12);
 
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
@@ -56,14 +48,17 @@
 
     --header-height: 90px;
 
-    /* Bordas mais arredondadas */
     --radius-sm: 12px;
     --radius-md: 18px;
     --radius-lg: 24px;
     --radius-xl: 30px;
     --radius-pill: 999px;
 
-    --font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-family:
+        "Open Sans",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
 }
 
 
@@ -124,7 +119,9 @@ ol {
 }
 
 .container {
-    width: min(var(--container-width), var(--container-max-width));
+    width: min(var(--container-width),
+            var(--container-max-width));
+
     margin: 0 auto;
 }
 
@@ -163,7 +160,8 @@ ol {
    ========================================================================== */
 
 .header-container {
-    width: min(var(--container-width), var(--container-max-width));
+    width: min(var(--container-width),
+            var(--container-max-width));
 
     display: flex;
     align-items: center;
@@ -180,6 +178,7 @@ ol {
 .logo-area {
     display: flex;
     align-items: center;
+
     flex-shrink: 0;
 }
 
@@ -205,7 +204,7 @@ ol {
 
 
 /* ==========================================================================
-   MENU / PÍLULA FLUTUANTE
+   MENU FLUTUANTE — IGUAL À HOME
    ========================================================================== */
 
 .nav-menu {
@@ -234,15 +233,13 @@ ol {
 
     border: 1px solid rgba(255, 255, 255, 0.5);
 
-    border-radius: var(--radius-pill);
+    border-radius: 35px;
 
     box-shadow:
-        0 5px 22px rgba(0, 0, 0, 0.08),
+        0 4px 20px rgba(0, 0, 0, 0.08),
         0 1px 4px rgba(0, 0, 0, 0.04);
 
     white-space: nowrap;
-
-    pointer-events: auto;
 
     transition:
         background-color var(--transition-normal),
@@ -251,19 +248,20 @@ ol {
 
 
 /* ==========================================================================
-   LINKS DO MENU
+   LISTA DO MENU
    ========================================================================== */
 
 .nav-list {
     display: flex;
     align-items: center;
-    justify-content: center;
 
     gap: 32px;
-
-    margin: 0;
-    padding: 0;
 }
+
+
+/* ==========================================================================
+   LINKS
+   ========================================================================== */
 
 .nav-link {
     position: relative;
@@ -271,23 +269,22 @@ ol {
     display: inline-flex;
     align-items: center;
 
-    color: #333333;
-
     font-size: 16px;
     font-weight: 800;
 
+    color: #333;
+
     text-transform: uppercase;
+
     letter-spacing: 0.5px;
-
-    text-decoration: none;
-
-    cursor: pointer;
-    pointer-events: auto;
 
     transition:
         color var(--transition-fast),
         transform var(--transition-fast);
 }
+
+
+/* Linha laranja */
 
 .nav-link::after {
     content: "";
@@ -300,14 +297,18 @@ ol {
     width: 0;
     height: 3px;
 
-    border-radius: var(--radius-pill);
+    border-radius: 5px;
 
     background-color: var(--senac-orange);
 
     transform: translateX(-50%);
 
-    transition: width var(--transition-fast);
+    transition:
+        width var(--transition-fast);
 }
+
+
+/* Página atual / hover */
 
 .nav-link:hover,
 .nav-link.active {
@@ -320,81 +321,47 @@ ol {
 }
 
 
-/* ==========================================================================
-   ÁREA DE AÇÕES / PERFIL
-   ========================================================================== */
-
+/* ========================================================================== 08. ÁREA DE AÇÕES / PERFIL ========================================================================== */
 .action-area {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
     gap: 20px;
-
     flex-shrink: 0;
-
     position: relative;
     z-index: 2100;
-
-    pointer-events: auto;
 }
 
-
-/* ==========================================================================
-   PERFIL DO USUÁRIO
-   ========================================================================== */
-
+/* ========================================================================== 09. PERFIL DO USUÁRIO ========================================================================== */
 .user-profile {
     position: relative;
-
     display: flex;
     align-items: center;
-
     flex-shrink: 0;
-
     z-index: 2100;
 }
 
-
-/* ==========================================================================
-   BOTÃO DO PERFIL
-   ========================================================================== */
-
+/* ========================================================================== 10. BOTÃO DO PERFIL ========================================================================== */
 .user-profile-button {
-    min-height: 50px;
-
+    min-height: 48px;
     display: flex;
     align-items: center;
-
     gap: 10px;
-
     padding: 6px 12px 6px 7px;
-
     border: none;
-    border-radius: var(--radius-pill);
-
+    border-radius: 28px;
     background-color: #e6e9ed;
-
     color: var(--text-dark);
-
     font-family: var(--font-family);
-
     font-size: 14px;
     font-weight: 800;
-
     cursor: pointer;
-
-    transition:
-        background-color var(--transition-fast),
-        transform var(--transition-fast),
-        box-shadow var(--transition-fast);
+    transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .user-profile-button:hover {
     background-color: #dfe3e8;
-
     transform: translateY(-2px);
-
     box-shadow: var(--shadow-sm);
 }
 
@@ -402,25 +369,16 @@ ol {
     transform: translateY(0);
 }
 
-
-/* ==========================================================================
-   ÍCONE DO PERFIL
-   ========================================================================== */
-
+/* ========================================================================== 11. ÍCONE DO PERFIL ========================================================================== */
 .user-profile-icon {
-    width: 37px;
-    height: 37px;
-
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    flex: 0 0 37px;
-
+    flex: 0 0 36px;
     border-radius: 50%;
-
     background-color: var(--senac-blue);
-
     color: var(--white);
 }
 
@@ -428,123 +386,72 @@ ol {
     font-size: 16px;
 }
 
-
-/* ==========================================================================
-   INFORMAÇÕES DO USUÁRIO
-   ========================================================================== */
-
+/* ========================================================================== 12. INFORMAÇÕES DO USUÁRIO ========================================================================== */
 .user-profile-info {
     display: flex;
     flex-direction: column;
-
     align-items: flex-start;
     justify-content: center;
-
     min-width: 70px;
-
     line-height: 1.1;
 }
 
 .user-profile-welcome {
     color: #777777;
-
     font-size: 11px;
     font-weight: 600;
 }
 
 .user-profile-name {
-    max-width: 110px;
-
+    max-width: 100px;
     margin-top: 3px;
-
     overflow: hidden;
-
     color: #333333;
-
     font-size: 13px;
     font-weight: 800;
-
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-
-/* ==========================================================================
-   SETA DO PERFIL
-   ========================================================================== */
-
+/* ========================================================================== 13. SETA DO PERFIL ========================================================================== */
 .user-profile-arrow {
-    width: 29px;
-    height: 29px;
-
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    flex: 0 0 29px;
-
+    flex: 0 0 28px;
     margin-left: 2px;
-
     border-radius: 50%;
-
     background-color: #f0f4f8;
-
     color: var(--senac-blue);
-
     font-size: 10px;
-
-    transition:
-        transform var(--transition-fast),
-        background-color var(--transition-fast),
-        color var(--transition-fast);
+    transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .user-profile.open .user-profile-arrow {
     transform: rotate(180deg);
-
     background-color: #fff1dc;
-
     color: var(--senac-orange);
 }
 
-
-/* ==========================================================================
-   MENU DO PERFIL
-   ========================================================================== */
-
+/* ========================================================================== 14. MENU DO PERFIL ========================================================================== */
 .user-profile-menu {
     position: absolute;
-
     top: calc(100% + 12px);
     right: 0;
-
-    width: 235px;
-
-    padding: 9px;
-
+    width: 220px;
+    padding: 8px;
     background-color: var(--white);
-
     border: 1px solid rgba(0, 0, 0, 0.05);
-
-    border-radius: 20px;
-
-    box-shadow:
-        0 16px 42px rgba(0, 0, 0, 0.14),
-        0 2px 8px rgba(0, 0, 0, 0.06);
-
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(0, 0, 0, 0.06);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
     transform: translateY(-8px) scale(0.98);
-
     transform-origin: top right;
-
-    transition:
-        opacity var(--transition-normal),
-        visibility var(--transition-normal),
-        transform var(--transition-normal);
-
+    transition: opacity var(--transition-normal), visibility var(--transition-normal), transform var(--transition-normal);
     z-index: 3000;
 }
 
@@ -552,66 +459,41 @@ ol {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-
     transform: translateY(0) scale(1);
 }
 
-
-/* ==========================================================================
-   ITENS DO MENU DO PERFIL
-   ========================================================================== */
-
+/* ========================================================================== 15. ITENS DO MENU DO PERFIL ========================================================================== */
 .user-profile-menu-item {
     width: 100%;
-    min-height: 47px;
-
+    min-height: 44px;
     display: flex;
     align-items: center;
-
     gap: 12px;
-
-    padding: 10px 13px;
-
+    padding: 10px 12px;
     border: none;
-    border-radius: 13px;
-
+    border-radius: 10px;
     background-color: transparent;
-
     color: #333333;
-
     font-family: var(--font-family);
-
     font-size: 14px;
     font-weight: 700;
-
     text-align: left;
-
     cursor: pointer;
-
-    transition:
-        background-color var(--transition-fast),
-        color var(--transition-fast);
+    transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .user-profile-menu-item i {
     width: 20px;
-
     color: var(--senac-blue);
-
     text-align: center;
 }
 
 .user-profile-menu-item:hover {
     background-color: #f2f6fa;
-
     color: var(--senac-blue);
 }
 
-
-/* ==========================================================================
-   BOTÃO SAIR
-   ========================================================================== */
-
+/* ========================================================================== 16. BOTÃO SAIR ========================================================================== */
 .user-profile-menu-item.logout {
     color: #d64545;
 }
@@ -622,31 +504,570 @@ ol {
 
 .user-profile-menu-item.logout:hover {
     background-color: #fff2f2;
-
     color: #d64545;
 }
 
+/* ========================================================================== 17. DIVISOR ========================================================================== */
+.user-profile-divider {
+    width: 100%;
+    height: 1px;
+    margin: 5px 0;
+    background-color: #eeeeee;
+}
 
-/* ==========================================================================
-   DIVISOR DO MENU
-   ========================================================================== */
+/* --------------------------------------------------------------------------
+   MENU DO PERFIL
+   -------------------------------------------------------------------------- */
+
+.user-profile-menu {
+    position: absolute;
+
+    top: calc(100% + 12px);
+    right: 0;
+
+    width: 255px;
+
+    padding: 10px;
+
+    background: rgba(255, 255, 255, 0.98);
+
+    border: 1px solid rgba(0, 47, 108, 0.08);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 47, 108, 0.17),
+        0 5px 15px rgba(0, 47, 108, 0.07);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-8px) scale(0.98);
+
+    transform-origin: top right;
+
+    transition:
+        opacity 0.22s ease,
+        visibility 0.22s ease,
+        transform 0.22s ease;
+
+    z-index: 10001;
+}
+
+.user-profile-menu::before {
+    content: "";
+
+    position: absolute;
+
+    top: -6px;
+    right: 25px;
+
+    width: 12px;
+    height: 12px;
+
+    background: var(--white);
+
+    border-left: 1px solid rgba(0, 47, 108, 0.08);
+    border-top: 1px solid rgba(0, 47, 108, 0.08);
+
+    transform: rotate(45deg);
+}
+
+.user-profile-menu.show,
+.user-profile.open .user-profile-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translateY(0) scale(1);
+}
+
+
+/* --------------------------------------------------------------------------
+   CABEÇALHO DO MENU
+   -------------------------------------------------------------------------- */
+
+.profile-menu-header {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 8px 8px 12px;
+}
+
+.profile-menu-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background-color: #eef5fb;
+
+    color: var(--senac-blue);
+
+    font-size: 15px;
+}
+
+.profile-menu-header>div {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.profile-menu-label {
+    color: #8793a0;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+.profile-menu-header strong {
+    overflow: hidden;
+
+    color: var(--text-dark);
+
+    font-size: 13px;
+    font-weight: 800;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* --------------------------------------------------------------------------
+   DIVISOR
+   -------------------------------------------------------------------------- */
 
 .user-profile-divider {
     width: 100%;
     height: 1px;
 
-    margin: 5px 0;
+    margin: 2px 0 7px;
 
-    background-color: #eeeeee;
+    background-color: rgba(0, 47, 108, 0.07);
+}
+
+
+/* --------------------------------------------------------------------------
+   ITENS DO MENU
+   -------------------------------------------------------------------------- */
+
+.user-profile-menu-item {
+    width: 100%;
+    min-height: 46px;
+
+    padding: 0 10px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    border-radius: 11px;
+
+    background-color: transparent;
+
+    color: var(--text-dark);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.user-profile-menu-item:hover {
+    background: linear-gradient(90deg,
+            #f2f7fb,
+            #fafbfd);
+
+    color: var(--senac-blue);
+
+    transform: translateX(2px);
+}
+
+.user-profile-menu-item>i {
+    width: 20px;
+
+    flex-shrink: 0;
+
+    color: var(--senac-blue);
+
+    text-align: center;
+}
+
+.profile-menu-item-icon {
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background-color: #f3f6f9;
+
+    color: var(--senac-blue);
+
+    font-size: 13px;
+
+    transition:
+        background-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.user-profile-menu-item:hover .profile-menu-item-icon {
+    background-color: #e8f1f9;
+
+    color: var(--senac-blue);
+}
+
+.profile-item-arrow {
+    margin-left: auto;
+
+    color: #a1abb5;
+
+    font-size: 9px;
+
+    transition:
+        transform var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.user-profile-menu-item:hover .profile-item-arrow {
+    transform: translateX(2px);
+
+    color: var(--senac-blue);
+}
+
+
+/* --------------------------------------------------------------------------
+   BOTÃO SAIR
+   -------------------------------------------------------------------------- */
+
+.user-profile-menu-item.logout {
+    margin-top: 3px;
+
+    color: #b54b42;
+}
+
+.user-profile-menu-item.logout i {
+    color: #c45a50;
+}
+
+.user-profile-menu-item.logout .profile-menu-item-icon {
+    background-color: #fff1ef;
+
+    color: #c45a50;
+}
+
+.user-profile-menu-item.logout:hover {
+    background-color: #fff5f3;
+
+    color: #c44f45;
+}
+
+.user-profile-menu-item.logout:hover i,
+.user-profile-menu-item.logout:hover .profile-menu-item-icon {
+    color: #c44f45;
+}
+
+.user-profile-menu-item.logout:hover .profile-menu-item-icon {
+    background-color: #ffe8e5;
 }
 
 
 /* ==========================================================================
-   05. HERO / CONTEÚDO PRINCIPAL
+   RESPONSIVIDADE DA HEADER — IGUAL À HOME
+   ========================================================================== */
+
+@media screen and (max-width: 1200px) {
+
+    .nav-menu {
+        padding: 12px 24px;
+    }
+
+    .nav-list {
+        gap: 21px;
+    }
+
+    .nav-link {
+        font-size: 13px;
+    }
+
+    .user-profile-name {
+        max-width: 90px;
+    }
+}
+
+
+@media screen and (max-width: 1024px) {
+
+    :root {
+        --header-height: 80px;
+    }
+
+    .nav-menu {
+        max-width:
+            calc(100vw - 330px);
+
+        padding:
+            11px 20px;
+    }
+
+    .nav-list {
+        gap: 17px;
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    .user-profile-info {
+        max-width: 80px;
+    }
+
+    .user-profile-welcome {
+        font-size: 8px;
+    }
+
+    .user-profile-name {
+        font-size: 12px;
+    }
+}
+
+
+@media screen and (max-width: 900px) {
+
+    :root {
+        --header-height: 76px;
+    }
+
+    .main-header {
+        height: var(--header-height);
+    }
+
+    .header-container {
+        width:
+            calc(100% - 40px);
+
+        display: flex;
+
+        justify-content: space-between;
+
+        gap: 15px;
+    }
+
+    .logo-img {
+        height: 50px;
+    }
+
+    .nav-menu {
+        max-width:
+            calc(100vw - 150px);
+
+        padding:
+            12px 22px;
+    }
+
+    .nav-list {
+        gap: 18px;
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    .action-area {
+        width: auto;
+
+        gap: 10px;
+    }
+
+    .user-profile-info,
+    .user-profile-arrow {
+        display: none;
+    }
+
+    .user-profile-button {
+        width: 48px;
+        height: 48px;
+
+        padding: 6px;
+
+        justify-content: center;
+    }
+
+    .user-profile-icon {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+
+    .header-container {
+        width:
+            calc(100% - 28px);
+    }
+
+    .logo-img {
+        height: 42px;
+    }
+
+    .nav-menu {
+        max-width:
+            calc(100vw - 115px);
+
+        padding:
+            10px 15px;
+    }
+
+    .nav-list {
+        gap: 13px;
+    }
+
+    .nav-link {
+        font-size: 10px;
+
+        letter-spacing: 0.2px;
+    }
+
+    .user-profile-button {
+        width: 44px;
+        height: 44px;
+
+        min-height: 44px;
+    }
+
+    .user-profile-icon {
+        width: 34px;
+        height: 34px;
+
+        flex-basis: 34px;
+    }
+
+    .user-profile-menu {
+        top:
+            calc(100% + 10px);
+
+        right: 0;
+
+        width: 235px;
+    }
+}
+
+
+@media screen and (max-width: 520px) {
+
+    .nav-menu {
+        max-width:
+            calc(100vw - 100px);
+
+        padding:
+            9px 12px;
+    }
+
+    .nav-list {
+        gap: 10px;
+    }
+
+    .nav-link {
+        font-size: 9px;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+
+    .logo-img {
+        height: 38px;
+    }
+
+    .nav-menu {
+        max-width:
+            calc(100vw - 88px);
+
+        padding:
+            8px 10px;
+    }
+
+    .nav-list {
+        gap: 8px;
+    }
+
+    .nav-link {
+        font-size: 8px;
+    }
+
+    .user-profile-menu {
+        right: -5px;
+
+        width: 225px;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+
+    .logo-img {
+        height: 36px;
+    }
+
+    .nav-menu {
+        max-width:
+            calc(100vw - 82px);
+
+        padding:
+            7px 8px;
+    }
+
+    .nav-list {
+        gap: 7px;
+    }
+
+    .nav-link {
+        font-size: 7.5px;
+
+        letter-spacing: 0;
+    }
+
+    .user-profile-menu {
+        width: 215px;
+    }
+}
+
+/* ==========================================================================
+   05. HERO
    ========================================================================== */
 
 .container-senac {
-    width: min(var(--container-width), var(--container-max-width));
+    width: min(var(--container-width),
+            var(--container-max-width));
 
     min-height: 760px;
 
@@ -664,11 +1085,6 @@ ol {
 
     gap: 70px;
 }
-
-
-/* ==========================================================================
-   CONTEÚDO ESQUERDO
-   ========================================================================== */
 
 .conteudo-esquerda {
     max-width: 690px;
@@ -699,17 +1115,13 @@ ol {
 }
 
 .seta-voltar {
-    transition: transform var(--transition-fast);
+    transition:
+        transform var(--transition-fast);
 }
 
 .btn-voltar:hover .seta-voltar {
     transform: translateX(-3px);
 }
-
-
-/* ==========================================================================
-   BADGE
-   ========================================================================== */
 
 .badge-tag {
     display: inline-flex;
@@ -721,9 +1133,13 @@ ol {
 
     margin-bottom: 22px;
 
+    border:
+        1px solid rgba(234, 148, 31, 0.16);
+
     border-radius: var(--radius-pill);
 
-    background-color: rgba(234, 148, 31, 0.10);
+    background-color:
+        rgba(234, 148, 31, 0.10);
 
     color: var(--senac-orange-dark);
 
@@ -731,21 +1147,15 @@ ol {
     font-weight: 800;
 
     letter-spacing: 1px;
-
-    border: 1px solid rgba(234, 148, 31, 0.16);
 }
-
-
-/* ==========================================================================
-   TÍTULO PRINCIPAL
-   ========================================================================== */
 
 .titulo-principal {
     margin-bottom: 24px;
 
     color: var(--text-dark);
 
-    font-size: clamp(38px, 3.5vw, 52px);
+    font-size:
+        clamp(38px, 3.5vw, 52px);
 
     font-weight: 800;
 
@@ -758,11 +1168,6 @@ ol {
     color: var(--senac-blue);
 }
 
-
-/* ==========================================================================
-   DESCRIÇÃO PRINCIPAL
-   ========================================================================== */
-
 .descricao-texto {
     max-width: 650px;
 
@@ -774,11 +1179,6 @@ ol {
 
     line-height: 1.8;
 }
-
-
-/* ==========================================================================
-   BOTÃO PRINCIPAL
-   ========================================================================== */
 
 .btn-acao {
     display: inline-flex;
@@ -819,17 +1219,13 @@ ol {
 }
 
 .seta-acao {
-    transition: transform var(--transition-normal);
+    transition:
+        transform var(--transition-normal);
 }
 
 .btn-acao:hover .seta-acao {
     transform: translateX(4px);
 }
-
-
-/* ==========================================================================
-   IMAGEM DO HERO
-   ========================================================================== */
 
 .conteudo-direita {
     display: flex;
@@ -869,26 +1265,26 @@ ol {
 
     background-color: var(--bg-light);
 
-    border-top: 1px solid rgba(0, 47, 108, 0.03);
-    border-bottom: 1px solid rgba(0, 47, 108, 0.03);
+    border-top:
+        1px solid rgba(0, 47, 108, 0.03);
+
+    border-bottom:
+        1px solid rgba(0, 47, 108, 0.03);
 }
 
 .cards-compromissos-grid {
-    width: min(var(--container-width), var(--container-max-width));
+    width: min(var(--container-width),
+            var(--container-max-width));
 
     margin: 0 auto;
 
     display: grid;
 
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
 
     gap: 22px;
 }
-
-
-/* ==========================================================================
-   CARD DESTAQUE
-   ========================================================================== */
 
 .card-compromisso-destaque {
     grid-column: span 2;
@@ -901,6 +1297,10 @@ ol {
     flex-direction: column;
     justify-content: center;
 
+    position: relative;
+
+    overflow: hidden;
+
     border-radius: var(--radius-xl);
 
     background-color: var(--senac-blue);
@@ -908,10 +1308,6 @@ ol {
     color: var(--white);
 
     box-shadow: var(--shadow-md);
-
-    position: relative;
-
-    overflow: hidden;
 }
 
 .card-compromisso-destaque::after {
@@ -927,7 +1323,8 @@ ol {
 
     border-radius: 50%;
 
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color:
+        rgba(255, 255, 255, 0.08);
 }
 
 .card-compromisso-destaque h2 {
@@ -935,7 +1332,8 @@ ol {
 
     margin-bottom: 17px;
 
-    font-size: clamp(23px, 2vw, 30px);
+    font-size:
+        clamp(23px, 2vw, 30px);
 
     font-weight: 800;
 
@@ -945,17 +1343,13 @@ ol {
 .card-compromisso-destaque p {
     max-width: 570px;
 
-    color: rgba(255, 255, 255, 0.90);
+    color:
+        rgba(255, 255, 255, 0.90);
 
     font-size: 15px;
 
     line-height: 1.8;
 }
-
-
-/* ==========================================================================
-   CARDS INDIVIDUAIS
-   ========================================================================== */
 
 .card-compromisso-item {
     min-height: 270px;
@@ -968,7 +1362,8 @@ ol {
 
     background-color: var(--white);
 
-    border: 1px solid var(--border-light);
+    border:
+        1px solid var(--border-light);
 
     border-radius: var(--radius-xl);
 
@@ -983,7 +1378,8 @@ ol {
 .card-compromisso-item:hover {
     transform: translateY(-5px);
 
-    border-color: rgba(11, 81, 149, 0.14);
+    border-color:
+        rgba(11, 81, 149, 0.14);
 
     box-shadow: var(--shadow-md);
 }
@@ -994,7 +1390,6 @@ ol {
     color: var(--text-title);
 
     font-size: 19px;
-
     font-weight: 800;
 
     line-height: 1.4;
@@ -1020,20 +1415,19 @@ ol {
 
     background-color: var(--white);
 
-    border-top: 1px solid rgba(0, 47, 108, 0.04);
-    border-bottom: 1px solid rgba(0, 47, 108, 0.04);
+    border-top:
+        1px solid rgba(0, 47, 108, 0.04);
+
+    border-bottom:
+        1px solid rgba(0, 47, 108, 0.04);
 }
 
 .container-mvv {
-    width: min(var(--container-width), var(--container-max-width));
+    width: min(var(--container-width),
+            var(--container-max-width));
 
     margin: 0 auto;
 }
-
-
-/* ==========================================================================
-   CABEÇALHO MVV
-   ========================================================================== */
 
 .mvv-header {
     max-width: 850px;
@@ -1043,7 +1437,8 @@ ol {
     text-align: center;
 }
 
-.mvv-badge {
+.mvv-badge,
+.documentos-etica-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1054,11 +1449,13 @@ ol {
 
     margin-bottom: 17px;
 
-    border: 1px solid rgba(234, 148, 31, 0.16);
+    border:
+        1px solid rgba(234, 148, 31, 0.16);
 
     border-radius: var(--radius-pill);
 
-    background-color: rgba(234, 148, 31, 0.10);
+    background-color:
+        rgba(234, 148, 31, 0.10);
 
     color: var(--senac-orange-dark);
 
@@ -1073,7 +1470,8 @@ ol {
 
     color: var(--text-dark);
 
-    font-size: clamp(31px, 3vw, 43px);
+    font-size:
+        clamp(31px, 3vw, 43px);
 
     font-weight: 800;
 
@@ -1098,23 +1496,14 @@ ol {
     line-height: 1.8;
 }
 
-
-/* ==========================================================================
-   GRID MVV
-   ========================================================================== */
-
 .mvv-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
     gap: 24px;
 }
-
-
-/* ==========================================================================
-   CARDS MVV
-   ========================================================================== */
 
 .mvv-card {
     min-height: 330px;
@@ -1128,7 +1517,8 @@ ol {
 
     background-color: var(--white);
 
-    border: 1px solid var(--border-light);
+    border:
+        1px solid var(--border-light);
 
     border-radius: var(--radius-xl);
 
@@ -1143,15 +1533,11 @@ ol {
 .mvv-card:hover {
     transform: translateY(-6px);
 
-    border-color: rgba(11, 81, 149, 0.16);
+    border-color:
+        rgba(11, 81, 149, 0.16);
 
     box-shadow: var(--shadow-md);
 }
-
-
-/* ==========================================================================
-   ÍCONES MVV
-   ========================================================================== */
 
 .mvv-icon {
     width: 60px;
@@ -1161,11 +1547,10 @@ ol {
     align-items: center;
     justify-content: center;
 
-    flex-shrink: 0;
-
     border-radius: 19px;
 
-    background-color: rgba(11, 81, 149, 0.09);
+    background-color:
+        rgba(11, 81, 149, 0.09);
 
     color: var(--senac-blue);
 
@@ -1174,15 +1559,11 @@ ol {
 
 .mvv-card-visao .mvv-icon,
 .mvv-card-valores .mvv-icon {
-    background-color: rgba(234, 148, 31, 0.11);
+    background-color:
+        rgba(234, 148, 31, 0.11);
 
     color: var(--senac-orange-dark);
 }
-
-
-/* ==========================================================================
-   TEXTO MVV
-   ========================================================================== */
 
 .mvv-kicker {
     display: block;
@@ -1192,7 +1573,6 @@ ol {
     color: var(--senac-orange-dark);
 
     font-size: 11px;
-
     font-weight: 800;
 
     letter-spacing: 1px;
@@ -1204,7 +1584,6 @@ ol {
     color: var(--text-title);
 
     font-size: 24px;
-
     font-weight: 800;
 
     line-height: 1.3;
@@ -1218,11 +1597,6 @@ ol {
     line-height: 1.8;
 }
 
-
-/* ==========================================================================
-   LISTA DE VALORES
-   ========================================================================== */
-
 .mvv-valores-list {
     display: flex;
 
@@ -1234,7 +1608,8 @@ ol {
 .mvv-valores-list span {
     padding: 9px 13px;
 
-    border: 1px solid rgba(11, 81, 149, 0.11);
+    border:
+        1px solid rgba(11, 81, 149, 0.11);
 
     border-radius: var(--radius-pill);
 
@@ -1243,10 +1618,7 @@ ol {
     color: var(--text-title);
 
     font-size: 13px;
-
     font-weight: 700;
-
-    line-height: 1.4;
 }
 
 
@@ -1255,17 +1627,13 @@ ol {
    ========================================================================== */
 
 .container-plano-pedagogico {
-    width: min(var(--container-width), var(--container-max-width));
+    width: min(var(--container-width),
+            var(--container-max-width));
 
     margin: 0 auto;
 
     padding: 110px 0 115px;
 }
-
-
-/* ==========================================================================
-   CABEÇALHO DO PLANO
-   ========================================================================== */
 
 .plano-pedagogico-header {
     max-width: 800px;
@@ -1286,7 +1654,6 @@ ol {
     color: var(--senac-orange-dark);
 
     font-size: 12px;
-
     font-weight: 800;
 
     letter-spacing: 1px;
@@ -1303,13 +1670,12 @@ ol {
 
     color: var(--text-dark);
 
-    font-size: clamp(30px, 2.8vw, 40px);
+    font-size:
+        clamp(30px, 2.8vw, 40px);
 
     font-weight: 800;
 
     line-height: 1.2;
-
-    letter-spacing: -0.6px;
 }
 
 .plano-pedagogico-header h2 span {
@@ -1324,19 +1690,11 @@ ol {
     line-height: 1.8;
 }
 
-
-/* ==========================================================================
-   CONTEÚDO INTRODUTÓRIO
-   ========================================================================== */
-
-.plano-pedagogico-conteudo {
-    width: 100%;
-}
-
 .plano-pedagogico-introducao {
     display: grid;
 
-    grid-template-columns: 92px minmax(0, 1fr);
+    grid-template-columns:
+        92px minmax(0, 1fr);
 
     gap: 30px;
 
@@ -1346,7 +1704,8 @@ ol {
 
     background-color: var(--bg-light);
 
-    border: 1px solid var(--border-light);
+    border:
+        1px solid var(--border-light);
 
     border-radius: var(--radius-xl);
 }
@@ -1379,7 +1738,6 @@ ol {
     color: var(--senac-orange-dark);
 
     font-size: 11px;
-
     font-weight: 800;
 
     letter-spacing: 1px;
@@ -1391,7 +1749,6 @@ ol {
     color: var(--text-title);
 
     font-size: 24px;
-
     font-weight: 800;
 
     line-height: 1.3;
@@ -1413,15 +1770,11 @@ ol {
     margin-bottom: 0;
 }
 
-
-/* ==========================================================================
-   CARDS PEDAGÓGICOS
-   ========================================================================== */
-
 .plano-pedagogico-cards {
     display: grid;
 
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
     gap: 22px;
 }
@@ -1438,7 +1791,8 @@ ol {
 
     background-color: var(--white);
 
-    border: 1px solid var(--border-light);
+    border:
+        1px solid var(--border-light);
 
     border-radius: var(--radius-xl);
 
@@ -1453,7 +1807,8 @@ ol {
 .plano-card:hover {
     transform: translateY(-5px);
 
-    border-color: rgba(11, 81, 149, 0.14);
+    border-color:
+        rgba(11, 81, 149, 0.14);
 
     box-shadow: var(--shadow-md);
 }
@@ -1474,13 +1829,15 @@ ol {
 }
 
 .plano-card-icone.azul {
-    background-color: rgba(11, 81, 149, 0.09);
+    background-color:
+        rgba(11, 81, 149, 0.09);
 
     color: var(--senac-blue);
 }
 
 .plano-card-icone.laranja {
-    background-color: rgba(234, 148, 31, 0.11);
+    background-color:
+        rgba(234, 148, 31, 0.11);
 
     color: var(--senac-orange-dark);
 }
@@ -1491,7 +1848,6 @@ ol {
     color: var(--text-title);
 
     font-size: 17px;
-
     font-weight: 800;
 
     line-height: 1.4;
@@ -1540,7 +1896,8 @@ ol {
 
     border-radius: 17px;
 
-    background-color: rgba(255, 255, 255, 0.12);
+    background-color:
+        rgba(255, 255, 255, 0.12);
 
     color: var(--white);
 
@@ -1556,10 +1913,10 @@ ol {
 
     margin-bottom: 4px;
 
-    color: rgba(255, 255, 255, 0.70);
+    color:
+        rgba(255, 255, 255, 0.70);
 
     font-size: 10px;
-
     font-weight: 800;
 
     letter-spacing: 1px;
@@ -1571,12 +1928,12 @@ ol {
     color: var(--white);
 
     font-size: 19px;
-
     font-weight: 800;
 }
 
 .plano-pdf-texto p {
-    color: rgba(255, 255, 255, 0.80);
+    color:
+        rgba(255, 255, 255, 0.80);
 
     font-size: 13px;
 
@@ -1603,7 +1960,212 @@ ol {
     color: var(--white);
 
     font-size: 13px;
+    font-weight: 800;
 
+    transition:
+        background-color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.btn-plano-pdf:hover {
+    background-color: var(--senac-orange-dark);
+
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================================================
+   10. DOCUMENTOS DE ÉTICA
+   ========================================================================== */
+
+.documentos-etica {
+    width: 100%;
+
+    padding: 105px 0 110px;
+
+    background-color: var(--bg-light);
+
+    border-top:
+        1px solid rgba(0, 47, 108, 0.04);
+
+    border-bottom:
+        1px solid rgba(0, 47, 108, 0.04);
+}
+
+.container-documentos-etica {
+    width: min(var(--container-width),
+            var(--container-max-width));
+
+    margin: 0 auto;
+}
+
+.documentos-etica-header {
+    max-width: 820px;
+
+    margin: 0 auto 52px;
+
+    text-align: center;
+}
+
+.documentos-etica-header h2 {
+    margin-bottom: 15px;
+
+    color: var(--text-dark);
+
+    font-size:
+        clamp(31px, 3vw, 43px);
+
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.7px;
+}
+
+.documentos-etica-header h2 span {
+    color: var(--senac-blue);
+}
+
+.documentos-etica-header p {
+    max-width: 720px;
+
+    margin: 0 auto;
+
+    color: var(--text-paragraph);
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+.documentos-etica-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+.documento-etica-card {
+    min-height: 360px;
+
+    padding: 32px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--white);
+
+    border:
+        1px solid var(--border-light);
+
+    border-radius: var(--radius-xl);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal),
+        border-color var(--transition-normal);
+}
+
+.documento-etica-card:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(11, 81, 149, 0.16);
+
+    box-shadow: var(--shadow-md);
+}
+
+.documento-etica-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 25px;
+
+    border-radius: 19px;
+
+    font-size: 23px;
+}
+
+.documento-etica-icon.azul {
+    background-color:
+        rgba(11, 81, 149, 0.09);
+
+    color: var(--senac-blue);
+}
+
+.documento-etica-icon.laranja {
+    background-color:
+        rgba(234, 148, 31, 0.11);
+
+    color: var(--senac-orange-dark);
+}
+
+.documento-etica-conteudo {
+    flex: 1;
+}
+
+.documento-etica-tipo {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--senac-orange-dark);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+}
+
+.documento-etica-card h3 {
+    margin-bottom: 13px;
+
+    color: var(--text-title);
+
+    font-size: 21px;
+    font-weight: 800;
+
+    line-height: 1.35;
+}
+
+.documento-etica-card p {
+    color: var(--text-paragraph);
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+.btn-documento {
+    width: 100%;
+
+    min-height: 48px;
+
+    margin-top: 28px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 12px 18px;
+
+    border-radius: 15px;
+
+    background-color: var(--senac-blue);
+
+    color: var(--white);
+
+    font-size: 13px;
     font-weight: 800;
 
     transition:
@@ -1612,18 +2174,18 @@ ol {
         box-shadow var(--transition-fast);
 }
 
-.btn-plano-pdf:hover {
-    background-color: var(--senac-orange-dark);
+.btn-documento:hover {
+    background-color: var(--senac-blue-dark);
 
     transform: translateY(-2px);
 
     box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.15);
+        0 8px 18px rgba(11, 81, 149, 0.18);
 }
 
 
 /* ==========================================================================
-   10. DIRETRIZES E TEMAS
+   11. DIRETRIZES E TEMAS
    ========================================================================== */
 
 .container-temas-ouvidoria {
@@ -1631,11 +2193,12 @@ ol {
 
     padding: 105px 0;
 
-    background-color: var(--bg-light);
+    background-color: var(--white);
 }
 
 .grid-temas-ouvidoria {
-    width: min(var(--container-width), var(--container-max-width));
+    width: min(var(--container-width),
+            var(--container-max-width));
 
     margin: 0 auto;
 
@@ -1648,11 +2211,6 @@ ol {
 
     align-items: center;
 }
-
-
-/* ==========================================================================
-   CARD LARANJA / DIRETRIZES
-   ========================================================================== */
 
 .card-ouvidoria-laranja {
     position: relative;
@@ -1689,7 +2247,8 @@ ol {
 
     border-radius: 50%;
 
-    background-color: rgba(255, 255, 255, 0.10);
+    background-color:
+        rgba(255, 255, 255, 0.10);
 }
 
 .avatar-container {
@@ -1735,7 +2294,6 @@ ol {
     color: var(--white);
 
     font-size: 27px;
-
     font-weight: 800;
 
     line-height: 1.3;
@@ -1746,7 +2304,8 @@ ol {
 
     margin-bottom: 23px;
 
-    color: rgba(255, 255, 255, 0.92);
+    color:
+        rgba(255, 255, 255, 0.92);
 
     font-size: 15px;
 
@@ -1769,7 +2328,6 @@ ol {
     color: var(--senac-orange-dark);
 
     font-size: 13px;
-
     font-weight: 800;
 
     transition:
@@ -1784,11 +2342,6 @@ ol {
         0 8px 18px rgba(0, 0, 0, 0.14);
 }
 
-
-/* ==========================================================================
-   PRINCIPAIS TEMAS
-   ========================================================================== */
-
 .conteudo-temas {
     min-width: 0;
 }
@@ -1798,13 +2351,12 @@ ol {
 
     color: var(--text-dark);
 
-    font-size: clamp(29px, 2.7vw, 38px);
+    font-size:
+        clamp(29px, 2.7vw, 38px);
 
     font-weight: 800;
 
     line-height: 1.2;
-
-    letter-spacing: -0.5px;
 }
 
 .descricao-secao-temas {
@@ -1822,7 +2374,8 @@ ol {
 .grid-topicos-temas {
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     gap: 17px;
 }
@@ -1839,7 +2392,8 @@ ol {
 
     background-color: var(--white);
 
-    border: 1px solid var(--border-light);
+    border:
+        1px solid var(--border-light);
 
     border-radius: var(--radius-lg);
 
@@ -1854,7 +2408,8 @@ ol {
 .topico-item:hover {
     transform: translateY(-3px);
 
-    border-color: rgba(11, 81, 149, 0.14);
+    border-color:
+        rgba(11, 81, 149, 0.14);
 
     box-shadow: var(--shadow-md);
 }
@@ -1875,13 +2430,15 @@ ol {
 }
 
 .icone-azul {
-    background-color: rgba(11, 81, 149, 0.09);
+    background-color:
+        rgba(11, 81, 149, 0.09);
 
     color: var(--senac-blue);
 }
 
 .icone-laranja {
-    background-color: rgba(234, 148, 31, 0.11);
+    background-color:
+        rgba(234, 148, 31, 0.11);
 
     color: var(--senac-orange-dark);
 }
@@ -1892,7 +2449,6 @@ ol {
     color: var(--text-title);
 
     font-size: 16px;
-
     font-weight: 800;
 
     line-height: 1.4;
@@ -1908,7 +2464,7 @@ ol {
 
 
 /* ==========================================================================
-   11. FOOTER
+   12. FOOTER
    ========================================================================== */
 
 footer {
@@ -1931,7 +2487,8 @@ footer {
 }
 
 .footer-container {
-    width: min(var(--container-width), var(--container-max-width));
+    width: min(var(--container-width),
+            var(--container-max-width));
 
     margin: 0 auto;
 
@@ -1940,31 +2497,23 @@ footer {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.35fr)
-        minmax(180px, 0.55fr)
-        minmax(0, 1fr);
+        minmax(0, 1.35fr) minmax(180px, 0.55fr) minmax(0, 1fr);
 
     gap: 65px;
 }
-
-
-/* ==========================================================================
-   SOBRE
-   ========================================================================== */
 
 .footer-sobre .logo {
     width: auto;
     height: 47px;
 
     margin-bottom: 22px;
-
-    object-fit: contain;
 }
 
 .footer-sobre p {
     max-width: 600px;
 
-    color: rgba(255, 255, 255, 0.72);
+    color:
+        rgba(255, 255, 255, 0.72);
 
     font-size: 13px;
 
@@ -1991,18 +2540,12 @@ footer {
     max-width: 85px;
 }
 
-
-/* ==========================================================================
-   REDES
-   ========================================================================== */
-
 .footer-redes h3 {
     margin-bottom: 18px;
 
     color: var(--white);
 
     font-size: 17px;
-
     font-weight: 800;
 }
 
@@ -2025,7 +2568,8 @@ footer {
 
     border-radius: 50%;
 
-    background-color: rgba(255, 255, 255, 0.10);
+    background-color:
+        rgba(255, 255, 255, 0.10);
 
     transition:
         background-color var(--transition-fast),
@@ -2043,15 +2587,6 @@ footer {
     height: 18px;
 
     object-fit: contain;
-}
-
-
-/* ==========================================================================
-   LINKS / PESQUISA
-   ========================================================================== */
-
-.footer-links {
-    min-width: 0;
 }
 
 .titulo {
@@ -2078,7 +2613,6 @@ footer {
     color: var(--white);
 
     font-size: 16px;
-
     font-weight: 800;
 }
 
@@ -2129,13 +2663,6 @@ footer {
     background-color: var(--senac-orange);
 
     color: var(--white);
-
-    transition:
-        background-color var(--transition-fast);
-}
-
-.footer-search button:hover {
-    background-color: var(--senac-orange-dark);
 }
 
 .parceiros {
@@ -2148,12 +2675,10 @@ footer {
 }
 
 .parceiros a {
-    color: rgba(255, 255, 255, 0.72);
+    color:
+        rgba(255, 255, 255, 0.72);
 
     font-size: 12px;
-
-    transition:
-        color var(--transition-fast);
 }
 
 .parceiros a:hover {
@@ -2164,13 +2689,9 @@ footer {
     display: none;
 }
 
-
-/* ==========================================================================
-   LOCALIZAÇÃO
-   ========================================================================== */
-
 .footer-local {
-    width: min(var(--container-width), var(--container-max-width));
+    width: min(var(--container-width),
+            var(--container-max-width));
 
     margin: 0 auto;
 
@@ -2181,7 +2702,8 @@ footer {
 
     gap: 10px;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    border-top:
+        1px solid rgba(255, 255, 255, 0.10);
 }
 
 .footer-local i {
@@ -2193,40 +2715,38 @@ footer {
 }
 
 .footer-local a {
-    color: rgba(255, 255, 255, 0.70);
+    color:
+        rgba(255, 255, 255, 0.70);
 
     font-size: 12px;
 
     line-height: 1.6;
-
-    transition: color var(--transition-fast);
 }
 
 .footer-local a:hover {
     color: var(--white);
 }
 
-
-/* ==========================================================================
-   FOOTER BOTTOM
-   ========================================================================== */
-
 .footer-bottom {
     width: 100%;
 
-    padding: 21px max(5vw, calc((100% - var(--container-max-width)) / 2));
+    padding:
+        21px max(5vw,
+            calc((100% - var(--container-max-width)) / 2));
 
     display: flex;
     align-items: center;
 
     gap: 25px;
 
-    background-color: rgba(0, 0, 0, 0.10);
+    background-color:
+        rgba(0, 0, 0, 0.10);
 
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top:
+        1px solid rgba(255, 255, 255, 0.06);
 }
 
-.footer-bottom > img {
+.footer-bottom>img {
     width: auto;
     height: 30px;
 
@@ -2234,11 +2754,10 @@ footer {
 }
 
 .footer-bottom p {
-    color: rgba(255, 255, 255, 0.58);
+    color:
+        rgba(255, 255, 255, 0.58);
 
     font-size: 11px;
-
-    line-height: 1.6;
 }
 
 .empresa {
@@ -2254,16 +2773,13 @@ footer {
     color: var(--white);
 
     font-size: 11px;
-
-    font-weight: 800;
 }
 
 .empresa a {
-    color: rgba(255, 255, 255, 0.62);
+    color:
+        rgba(255, 255, 255, 0.62);
 
     font-size: 11px;
-
-    transition: color var(--transition-fast);
 }
 
 .empresa a:hover {
@@ -2272,7 +2788,7 @@ footer {
 
 
 /* ==========================================================================
-   12. BOTÃO VOLTAR AO TOPO
+   13. VOLTAR AO TOPO
    ========================================================================== */
 
 .back-to-top {
@@ -2328,12 +2844,7 @@ footer {
 
 
 /* ==========================================================================
-   13. RESPONSIVIDADE
-   ========================================================================== */
-
-
-/* ==========================================================================
-   ATÉ 1200PX
+   14. RESPONSIVIDADE
    ========================================================================== */
 
 @media (max-width: 1200px) {
@@ -2353,26 +2864,24 @@ footer {
 
     .container-senac {
         grid-template-columns:
-            minmax(0, 1fr)
-            minmax(340px, 0.75fr);
+            minmax(0, 1fr) minmax(340px, 0.75fr);
 
         gap: 45px;
     }
 
-    .titulo-principal {
-        font-size: clamp(36px, 3.5vw, 48px);
-    }
-
     .cards-compromissos-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 
     .card-compromisso-destaque {
         grid-column: span 2;
     }
 
-    .plano-pedagogico-cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .plano-pedagogico-cards,
+    .documentos-etica-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 
     .footer-container {
@@ -2380,10 +2889,6 @@ footer {
     }
 }
 
-
-/* ==========================================================================
-   ATÉ 992PX
-   ========================================================================== */
 
 @media (max-width: 992px) {
 
@@ -2400,17 +2905,9 @@ footer {
     }
 
     .nav-menu {
-        position: fixed;
-
         top: 18px;
-        left: 50%;
 
-        transform: translateX(-50%);
-
-        width: max-content;
         max-width: 94vw;
-
-        pointer-events: auto;
     }
 
     .nav-list {
@@ -2419,12 +2916,6 @@ footer {
 
     .nav-link {
         font-size: 13px;
-
-        pointer-events: auto;
-    }
-
-    .action-area {
-        min-width: auto;
     }
 
     .user-profile-info {
@@ -2442,10 +2933,6 @@ footer {
 
     .user-profile-arrow {
         display: none;
-    }
-
-    .user-profile-menu {
-        right: 0;
     }
 
     .container-senac {
@@ -2500,20 +2987,10 @@ footer {
 
     .footer-container {
         grid-template-columns: 1fr 1fr;
-
-        gap: 45px;
     }
 
     .footer-sobre {
         grid-column: span 2;
-    }
-
-    .footer-redes {
-        grid-column: span 1;
-    }
-
-    .footer-links {
-        grid-column: span 1;
     }
 
     .footer-bottom {
@@ -2527,10 +3004,6 @@ footer {
     }
 }
 
-
-/* ==========================================================================
-   ATÉ 768PX
-   ========================================================================== */
 
 @media (max-width: 768px) {
 
@@ -2546,16 +3019,6 @@ footer {
         display: grid;
 
         grid-template-columns: 1fr auto;
-
-        align-items: center;
-
-        gap: 14px;
-    }
-
-    .logo-area {
-        width: auto;
-
-        justify-content: flex-start;
     }
 
     .logo-img {
@@ -2563,31 +3026,16 @@ footer {
     }
 
     .nav-menu {
-        position: fixed;
-
         top: 18px;
-        left: 50%;
 
-        transform: translateX(-50%);
-
-        width: max-content;
         max-width: 94vw;
 
         padding: 11px 16px;
 
         overflow-x: auto;
-
-        border-radius: var(--radius-pill);
-
-        pointer-events: auto;
     }
 
     .nav-list {
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
         gap: 22px;
 
         min-width: max-content;
@@ -2595,8 +3043,6 @@ footer {
 
     .nav-link {
         font-size: 12px;
-
-        pointer-events: auto;
     }
 
     .action-area {
@@ -2613,26 +3059,13 @@ footer {
         padding-bottom: 65px;
     }
 
-    .btn-voltar {
-        margin-bottom: 24px;
-
-        font-size: 14px;
-    }
-
     .titulo-principal {
-        font-size: clamp(33px, 8vw, 43px);
-
-        letter-spacing: -0.8px;
+        font-size:
+            clamp(33px, 8vw, 43px);
     }
 
     .descricao-texto {
         font-size: 16px;
-
-        line-height: 1.8;
-    }
-
-    .container-compromissos {
-        padding: 75px 0;
     }
 
     .cards-compromissos-grid {
@@ -2643,17 +3076,10 @@ footer {
 
     .card-compromisso-destaque {
         grid-column: auto;
-
-        min-height: auto;
     }
 
-    .card-compromisso-item {
-        min-height: auto;
-    }
-
-    .card-compromisso-destaque p,
-    .card-compromisso-item p {
-        font-size: 15px;
+    .container-compromissos {
+        padding: 75px 0;
     }
 
     .missao-visao-valores {
@@ -2664,44 +3090,10 @@ footer {
         width: 90vw;
     }
 
-    .mvv-header {
-        margin-bottom: 40px;
-    }
-
-    .mvv-header h2 {
-        font-size: 32px;
-    }
-
-    .mvv-header p {
-        font-size: 15px;
-    }
-
-    .mvv-card {
-        padding: 30px 26px;
-
-        border-radius: 26px;
-    }
-
-    .mvv-card h3 {
-        font-size: 23px;
-    }
-
-    .mvv-card p {
-        font-size: 15px;
-    }
-
     .container-plano-pedagogico {
         width: 90vw;
 
         padding: 80px 0;
-    }
-
-    .plano-pedagogico-header {
-        margin-bottom: 40px;
-    }
-
-    .plano-pedagogico-header p {
-        font-size: 15px;
     }
 
     .plano-pedagogico-introducao {
@@ -2710,57 +3102,67 @@ footer {
         padding: 30px;
 
         text-align: center;
-
-        border-radius: 26px;
     }
 
     .plano-icone-principal {
         margin: 0 auto;
     }
 
-    .plano-pedagogico-introducao p {
-        font-size: 15px;
-    }
-
     .plano-pedagogico-cards {
         grid-template-columns: 1fr;
-    }
-
-    .plano-card {
-        min-height: auto;
-
-        padding: 27px;
-
-        border-radius: 26px;
-    }
-
-    .plano-card h4 {
-        font-size: 17px;
-    }
-
-    .plano-card p {
-        font-size: 14px;
     }
 
     .plano-pdf-box {
         padding: 27px;
 
         flex-wrap: wrap;
-
-        border-radius: 26px;
     }
 
     .plano-pdf-texto {
         min-width: calc(100% - 72px);
     }
 
-    .plano-pdf-texto p {
-        font-size: 13px;
-    }
-
     .btn-plano-pdf {
         width: 100%;
     }
+
+
+    /* DOCUMENTOS */
+
+    .documentos-etica {
+        padding: 80px 0;
+    }
+
+    .container-documentos-etica {
+        width: 90vw;
+    }
+
+    .documentos-etica-header {
+        margin-bottom: 40px;
+    }
+
+    .documentos-etica-header h2 {
+        font-size: 32px;
+    }
+
+    .documentos-etica-header p {
+        font-size: 15px;
+    }
+
+    .documentos-etica-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .documento-etica-card {
+        min-height: auto;
+
+        padding: 30px;
+
+        border-radius: 26px;
+    }
+
+
+    /* DIRETRIZES */
 
     .container-temas-ouvidoria {
         padding: 80px 0;
@@ -2774,8 +3176,6 @@ footer {
         min-height: 440px;
 
         padding: 32px;
-
-        border-radius: 28px;
     }
 
     .avatar-container {
@@ -2789,34 +3189,8 @@ footer {
         max-height: 155px;
     }
 
-    .conteudo-ouvidoria h2 {
-        max-width: 300px;
-
-        font-size: 24px;
-    }
-
-    .conteudo-ouvidoria p {
-        font-size: 15px;
-    }
-
     .grid-topicos-temas {
         grid-template-columns: 1fr;
-    }
-
-    .topico-item {
-        min-height: auto;
-
-        padding: 21px;
-
-        border-radius: 22px;
-    }
-
-    .topico-texto h4 {
-        font-size: 16px;
-    }
-
-    .topico-texto p {
-        font-size: 14px;
     }
 
     .footer-container {
@@ -2829,14 +3203,8 @@ footer {
         padding: 58px 0 42px;
     }
 
-    .footer-sobre,
-    .footer-redes,
-    .footer-links {
+    .footer-sobre {
         grid-column: auto;
-    }
-
-    .footer-sobre p {
-        font-size: 13px;
     }
 
     .footer-local {
@@ -2847,11 +3215,9 @@ footer {
         padding-left: 5vw;
         padding-right: 5vw;
 
-        align-items: flex-start;
-
         flex-direction: column;
 
-        gap: 14px;
+        align-items: flex-start;
     }
 
     .empresa {
@@ -2872,10 +3238,6 @@ footer {
 }
 
 
-/* ==========================================================================
-   ATÉ 480PX
-   ========================================================================== */
-
 @media (max-width: 480px) {
 
     .header-container {
@@ -2885,10 +3247,10 @@ footer {
     .nav-menu {
         top: 16px;
 
+        max-width: 92vw;
+
         padding-left: 13px;
         padding-right: 13px;
-
-        max-width: 92vw;
     }
 
     .nav-list {
@@ -2905,34 +3267,20 @@ footer {
         padding-top: 205px;
     }
 
-    .badge-tag {
-        font-size: 10px;
-
-        letter-spacing: 0.7px;
-    }
-
     .titulo-principal {
         font-size: 30px;
     }
 
     .descricao-texto {
         font-size: 15px;
-
-        line-height: 1.8;
     }
 
     .btn-acao {
         width: 100%;
-
-        border-radius: 15px;
     }
 
     .imagem-diagrama {
         max-height: 340px;
-    }
-
-    .container-compromissos {
-        padding: 60px 0;
     }
 
     .card-compromisso-destaque,
@@ -2942,62 +3290,15 @@ footer {
         border-radius: 25px;
     }
 
-    .card-compromisso-destaque h2 {
-        font-size: 23px;
-    }
-
-    .card-compromisso-destaque p,
-    .card-compromisso-item p {
-        font-size: 15px;
-
-        line-height: 1.8;
-    }
-
-    .card-compromisso-item h3 {
-        font-size: 18px;
-    }
-
-    .missao-visao-valores {
-        padding: 65px 0;
-    }
-
-    .mvv-header h2 {
+    .mvv-header h2,
+    .documentos-etica-header h2 {
         font-size: 28px;
-    }
-
-    .mvv-header p {
-        font-size: 15px;
     }
 
     .mvv-card {
         padding: 27px 23px;
 
         border-radius: 24px;
-    }
-
-    .mvv-icon {
-        width: 56px;
-        height: 56px;
-
-        border-radius: 17px;
-    }
-
-    .mvv-card h3 {
-        font-size: 22px;
-    }
-
-    .mvv-card p {
-        font-size: 15px;
-    }
-
-    .mvv-valores-list {
-        gap: 8px;
-    }
-
-    .mvv-valores-list span {
-        font-size: 12px;
-
-        padding: 8px 11px;
     }
 
     .container-plano-pedagogico {
@@ -3008,24 +3309,10 @@ footer {
         font-size: 28px;
     }
 
-    .plano-pedagogico-header p {
-        font-size: 14px;
-    }
-
     .plano-pedagogico-introducao {
         padding: 25px;
 
         border-radius: 24px;
-    }
-
-    .plano-pedagogico-introducao h3 {
-        font-size: 21px;
-    }
-
-    .plano-pedagogico-introducao p {
-        font-size: 14px;
-
-        line-height: 1.8;
     }
 
     .plano-card {
@@ -3034,42 +3321,40 @@ footer {
         border-radius: 24px;
     }
 
-    .plano-card h4 {
-        font-size: 16px;
-    }
-
-    .plano-card p {
-        font-size: 14px;
-
-        line-height: 1.75;
-    }
-
     .plano-pdf-box {
         padding: 23px;
-
-        gap: 14px;
 
         border-radius: 24px;
     }
 
-    .plano-pdf-icone {
-        width: 48px;
-        height: 48px;
 
-        border-radius: 15px;
+    /* DOCUMENTOS */
+
+    .documentos-etica {
+        padding: 65px 0;
     }
 
-    .plano-pdf-texto {
-        min-width: calc(100% - 62px);
+    .documento-etica-card {
+        padding: 24px;
+
+        border-radius: 24px;
     }
 
-    .plano-pdf-texto h3 {
-        font-size: 17px;
+    .documento-etica-card h3 {
+        font-size: 19px;
     }
 
-    .plano-pdf-texto p {
-        font-size: 13px;
+    .documento-etica-card p {
+        font-size: 14px;
     }
+
+    .documento-etica-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+
+    /* DIRETRIZES */
 
     .card-ouvidoria-laranja {
         min-height: 480px;
@@ -3094,16 +3379,10 @@ footer {
 
     .conteudo-ouvidoria p {
         font-size: 14px;
-
-        line-height: 1.8;
     }
 
     .titulo-secao-temas {
         font-size: 28px;
-    }
-
-    .descricao-secao-temas {
-        font-size: 14px;
     }
 
     .topico-item {
@@ -3112,18 +3391,8 @@ footer {
         border-radius: 22px;
     }
 
-    .topico-texto h4 {
-        font-size: 16px;
-    }
-
-    .topico-texto p {
-        font-size: 14px;
-    }
-
     .footer-sobre p {
         font-size: 12px;
-
-        line-height: 1.8;
     }
 
     .footer-badges {
@@ -3132,17 +3401,5 @@ footer {
 
     .footer-local {
         align-items: flex-start;
-    }
-
-    .footer-local a {
-        font-size: 11px;
-
-        line-height: 1.6;
-    }
-
-    .footer-bottom p,
-    .empresa strong,
-    .empresa a {
-        font-size: 11px;
     }
 }
