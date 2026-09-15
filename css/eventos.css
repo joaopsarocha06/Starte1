@@ -2385,285 +2385,451 @@ select:focus-visible {
    30. FOOTER
    ========================================================================== */
 
-footer {
+/* ==========================================================================
+   12. FOOTER
+   ========================================================================== */
 
-    position: relative;
+.site-footer {
+  background-color: #004b8d;
 
-    background-color: #004b8d;
-
-    color: var(--white);
+  color: var(--white);
 }
-
 
 .linha-topo {
+  width: 100%;
+  height: 6px;
 
-    width: 100%;
-
-    height: 6px;
-
-    background-color: var(--senac-orange);
+  background-color: #eba219;
 }
-
 
 .footer-container {
+  width: min(var(--container-width), var(--container-max-width));
 
-    width: var(--container-width);
+  margin: 0 auto;
 
-    max-width: var(--container-max-width);
+  padding: 60px 0;
 
-    margin: 0 auto;
+  display: grid;
 
-    padding:
-        60px 0;
+  grid-template-columns:
+    1.5fr 0.6fr 1fr;
 
-    display: grid;
-
-    grid-template-columns:
-        1.5fr 0.7fr 1fr;
-
-    gap: 60px;
+  gap: 60px;
 }
 
+
+/* --------------------------------------------------------------------------
+   SOBRE
+   -------------------------------------------------------------------------- */
 
 .footer-sobre {
-
-    max-width: 540px;
+  max-width: 560px;
 }
-
 
 .footer-sobre .logo {
+  width: 150px;
 
-    width: 150px;
-
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
-
 
 .footer-sobre p {
+  margin: 0 0 25px;
 
-    color: var(--white);
+  color: var(--white);
 
-    font-size: 14px;
+  font-size: 14px;
+  font-weight: 700;
 
-    line-height: 1.75;
+  line-height: 1.7;
+
+  opacity: 0.95;
 }
 
+.footer-badges {
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.footer-badges img {
+  width: 80px;
+
+  height: auto;
+
+  object-fit: contain;
+}
+
+.footer-badges .starte-logo {
+  width: 110px;
+}
+
+
+/* --------------------------------------------------------------------------
+   REDES SOCIAIS
+   -------------------------------------------------------------------------- */
+
+.footer-redes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 20px;
+}
+
+.footer-redes h3 {
+  margin: 0;
+
+  color: var(--white);
+
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.social-icons {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 55px);
+
+  gap: 15px;
+}
+
+.social-icons a {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background-color: rgba(255, 255, 255, 0.1);
+
+  transition:
+    transform var(--transition-normal),
+    background-color var(--transition-normal);
+}
+
+.social-icons a:hover {
+  transform: translateY(-4px);
+
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.footer-redes img {
+  width: 40px;
+  height: 40px;
+
+  object-fit: contain;
+}
+
+
+/* --------------------------------------------------------------------------
+   LINKS E PESQUISA
+   -------------------------------------------------------------------------- */
 
 .footer-links {
+  display: flex;
+  flex-direction: column;
 
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 12px;
+  gap: 15px;
 }
-
 
 .titulo {
+  display: flex;
+  align-items: center;
 
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    margin-bottom: 8px;
+  gap: 12px;
 }
-
 
 .barra {
+  width: 4px;
+  height: 28px;
 
-    width: 4px;
-    height: 28px;
+  flex-shrink: 0;
 
-    border-radius: var(--radius-pill);
+  border-radius: 10px;
 
-    background-color: var(--senac-orange);
+  background-color: var(--senac-orange);
+}
+
+.footer-links h2 {
+  margin: 0;
+
+  color: var(--white);
+
+  font-size: 20px;
+  font-weight: 800;
 }
 
 
-.titulo h2 {
+/* --------------------------------------------------------------------------
+   BUSCA
+   -------------------------------------------------------------------------- */
 
-    color: var(--white);
+.footer-search {
+  width: 100%;
 
-    font-size: 19px;
+  margin-bottom: 20px;
+
+  display: flex;
+}
+
+.footer-search input {
+  width: 100%;
+  height: 45px;
+
+  padding: 0 15px;
+
+  border: none;
+  border-radius: 8px 0 0 8px;
+
+  background-color: #2f5f98;
+
+  color: var(--white);
+
+  font-size: 14px;
+  font-weight: 700;
+
+  outline: none;
+}
+
+.footer-search input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.footer-search button {
+  width: 50px;
+  height: 45px;
+
+  flex-shrink: 0;
+
+  border-radius: 0 8px 8px 0;
+
+  background-color: var(--senac-orange);
+
+  color: var(--white);
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition-fast);
+}
+
+.footer-search button:hover {
+  background-color: var(--senac-orange-dark);
 }
 
 
-.footer-links a {
+/* --------------------------------------------------------------------------
+   PARCEIROS
+   -------------------------------------------------------------------------- */
 
-    color:
-        rgba(255, 255, 255, 0.9);
+.parceiros-title {
+  margin-top: 15px;
+}
 
-    font-size: 14px;
+.parceiros {
+  display: flex;
+  flex-direction: column;
 
-    font-weight: 700;
+  gap: 8px;
+}
 
-    transition:
-        color var(--transition-fast),
-        transform var(--transition-fast);
+.parceiros a {
+  color: var(--white);
+
+  font-size: 14px;
+  font-weight: 700;
+
+  transition:
+    color var(--transition-fast);
+}
+
+.parceiros a:hover {
+  color: var(--senac-orange);
 }
 
 
-.footer-links a:hover {
-
-    color: var(--senac-orange);
-
-    transform: translateX(3px);
-}
-
-
-.footer-links p {
-
-    color:
-        rgba(255, 255, 255, 0.9);
-
-    font-size: 14px;
-
-    line-height: 1.6;
-}
-
+/* --------------------------------------------------------------------------
+   LOCALIZAÇÃO
+   -------------------------------------------------------------------------- */
 
 .footer-local {
+  min-height: 60px;
 
-    min-height: 60px;
+  padding: 15px 20px;
 
-    display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    align-items: center;
-    justify-content: center;
+  gap: 10px;
 
-    padding:
-        15px 20px;
+  background-color: #3b6ea6;
 
-    background-color: #3b6ea6;
+  color: var(--white);
 
-    color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
 
-    text-align: center;
+  text-align: center;
 }
 
+.footer-local i {
+  flex-shrink: 0;
 
-.footer-local a {
-
-    color: var(--white);
-
-    font-size: 14px;
-
-    font-weight: 800;
+  color: var(--senac-orange);
 }
-
 
 .footer-local a:hover {
-
-    color: var(--senac-orange);
-
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
+
+/* --------------------------------------------------------------------------
+   RODAPÉ INFERIOR
+   -------------------------------------------------------------------------- */
 
 .footer-bottom {
+  width: min(var(--container-width), var(--container-max-width));
 
-    width: var(--container-width);
+  margin: 0 auto;
 
-    max-width: var(--container-max-width);
+  padding: 25px 0;
 
-    margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    padding:
-        25px 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 25px;
+  gap: 30px;
 }
 
+.footer-bottom>img {
+  width: 110px;
 
-.footer-bottom span {
-
-    font-size: 13px;
-
-    font-weight: 700;
+  flex-shrink: 0;
 }
 
+.footer-bottom p {
+  margin: 0;
 
-.footer-bottom img {
+  color: var(--white);
 
-    width: 110px;
+  font-size: 14px;
+  font-weight: 700;
+}
 
-    object-fit: contain;
+.empresa {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.empresa strong {
+  margin-bottom: 3px;
+
+  color: var(--white);
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.empresa a:hover {
+  color: var(--senac-orange);
 }
 
 
 /* ==========================================================================
-   31. VOLTAR AO TOPO
+   13. BOTÃO VOLTAR AO TOPO
    ========================================================================== */
 
-#backToTop {
+.back-to-top {
+  position: fixed;
 
-    position: fixed;
+  right: 25px;
+  bottom: 25px;
 
-    right: 25px;
-    bottom: 25px;
+  width: 48px;
+  height: 48px;
 
-    width: 48px;
-    height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    z-index: 9998;
+  border-radius: 50%;
 
-    display: flex;
+  background-color: var(--senac-orange);
 
-    align-items: center;
-    justify-content: center;
+  color: var(--white);
 
-    border-radius: 50%;
+  font-size: 16px;
 
-    background-color: var(--senac-orange);
+  cursor: pointer;
 
-    color: var(--white);
+  opacity: 0;
+  visibility: hidden;
 
-    font-size: 16px;
+  transform: translateY(15px);
+
+  z-index: 9998;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.18);
+
+  transition:
+    opacity var(--transition-normal),
+    visibility var(--transition-normal),
+    transform var(--transition-normal),
+    background-color var(--transition-fast);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background-color: var(--senac-orange-dark);
+
+  transform: translateY(-3px);
+}
+
+
+/* ==========================================================================
+   14. EFEITO RIPPLE
+   ========================================================================== */
+
+.ripple-effect {
+  position: absolute;
+
+  border-radius: 50%;
+
+  background-color: rgba(255, 255, 255, 0.5);
+
+  transform: scale(0);
+
+  animation:
+    ripple-animation 0.6s linear;
+
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
 
     opacity: 0;
-
-    visibility: hidden;
-
-    transform: translateY(15px);
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.18);
-
-    transition:
-        opacity var(--transition-normal),
-        visibility var(--transition-normal),
-        transform var(--transition-normal),
-        background-color var(--transition-fast);
+  }
 }
-
-
-#backToTop.show {
-
-    opacity: 1;
-
-    visibility: visible;
-
-    transform: translateY(0);
-}
-
-
-#backToTop:hover {
-
-    background-color: var(--senac-orange-dark);
-
-    transform: translateY(-3px);
-}
-
 
 /* ==========================================================================
    32. ANIMAÇÃO
