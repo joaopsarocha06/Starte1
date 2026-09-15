@@ -798,6 +798,7 @@ button,
 
 .nav-link:focus-visible,
 .btn-cursos:focus-visible,
+.hero-shortcut:focus-visible,
 .user-profile-button:focus-visible,
 .user-profile-menu-item:focus-visible,
 .footer-search button:focus-visible,
@@ -916,29 +917,128 @@ button,
 
 
 /* --------------------------------------------------------------------------
-   IMAGEM DO PERSONAGEM
+   PERSONAGEM + ACESSOS RÁPIDOS
    -------------------------------------------------------------------------- */
-
-.hero-image-character {
+.hero-character-area {
   position: absolute;
-
   right: -25px;
   bottom: 0;
 
   display: flex;
   align-items: flex-end;
+  gap: 28px;
 
   z-index: 5;
+}
 
+.hero-image-character {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
   pointer-events: none;
 }
 
 .character-img {
   height: 680px;
-
   max-width: none;
-
   object-fit: contain;
+}
+
+.hero-shortcuts {
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 82px;
+}
+
+.hero-shortcut {
+  min-height: 56px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.hero-shortcut > i:first-child {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.hero-shortcut span {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.hero-shortcut-arrow {
+  font-size: 10px;
+  text-align: center;
+  opacity: 0.75;
+}
+
+.hero-shortcut-caderneta {
+  background-color: var(--senac-blue);
+  border-color: var(--senac-blue);
+  color: var(--white);
+}
+
+.hero-shortcut-caderneta > i:first-child {
+  background-color: var(--senac-blue-dark);
+}
+
+.hero-shortcut-teams {
+  background-color: var(--white);
+  border-color: var(--senac-blue);
+  color: var(--senac-blue);
+}
+
+.hero-shortcut-teams > i:first-child {
+  background-color: var(--bg-light);
+}
+
+.hero-shortcut-saber {
+  background-color: var(--senac-orange);
+  border-color: var(--senac-orange);
+  color: var(--white);
+}
+
+.hero-shortcut-saber > i:first-child {
+  background-color: var(--senac-orange-dark);
+}
+
+.hero-shortcut:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.hero-shortcut-caderneta:hover {
+  background-color: var(--senac-blue-deep);
+  border-color: var(--senac-blue-deep);
+}
+
+.hero-shortcut-teams:hover {
+  background-color: var(--bg-light);
+  border-color: var(--senac-blue-dark);
+}
+
+.hero-shortcut-saber:hover {
+  background-color: var(--senac-orange-dark);
+  border-color: var(--senac-orange-dark);
 }
 
 
@@ -2061,21 +2161,54 @@ button,
     margin-right: auto;
   }
 
-  .hero-image-character {
+  .hero-character-area {
     position: relative;
-
     right: auto;
     bottom: auto;
-
+    width: 100%;
     margin: 40px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 28px;
+  }
 
+  .hero-image-character {
+    position: relative;
+    right: auto;
+    bottom: auto;
     justify-content: center;
   }
 
   .character-img {
     height: auto;
-
     max-width: min(480px, 80vw);
+  }
+
+  .hero-shortcuts {
+    width: min(100%, 480px);
+    padding-bottom: 0;
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .hero-shortcut {
+    flex: 1 1 0;
+    min-width: 0;
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 8px;
+    padding: 9px 10px;
+    font-size: 12px;
+  }
+
+  .hero-shortcut > i:first-child {
+    width: 30px;
+    height: 30px;
+  }
+
+  .hero-shortcut-arrow {
+    display: none;
   }
 
   .metrics-display-grid {
@@ -2167,6 +2300,30 @@ button,
 
   .character-img {
     max-width: 90vw;
+  }
+
+  .hero-shortcuts {
+    width: min(100%, 430px);
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-shortcut {
+    width: 100%;
+    flex: none;
+    grid-template-columns: 34px minmax(0, 1fr) 16px;
+    min-height: 52px;
+    padding: 9px 12px;
+    font-size: 13px;
+  }
+
+  .hero-shortcut > i:first-child {
+    width: 32px;
+    height: 32px;
+  }
+
+  .hero-shortcut-arrow {
+    display: block;
   }
 
   .features {
