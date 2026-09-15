@@ -905,6 +905,109 @@
 
 
     <!-- ================================================================
+         MODAL — NOVA OBSERVAÇÃO
+         ================================================================ -->
+
+    <div class="modal-overlay" id="modal">
+
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloModal">
+
+
+            <button type="button" class="fechar" id="btnFecharModal" aria-label="Fechar">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+            <span class="section-label">
+                NOVA OBSERVAÇÃO
+            </span>
+
+
+            <h2 id="tituloModal">
+                Registrar feedback
+            </h2>
+
+
+            <p class="modal-subtitulo">
+                Adicione uma observação sobre o desenvolvimento
+                do aluno.
+            </p>
+
+
+            <label for="alunoSelecionado">
+                Aluno
+            </label>
+
+            <input type="text" id="alunoSelecionado" readonly>
+
+
+            <label for="tipoObservacao">
+                Tipo de observação
+            </label>
+
+            <select id="tipoObservacao">
+
+                <option value="Desempenho acadêmico">
+                    Desempenho acadêmico
+                </option>
+
+                <option value="Comportamento">
+                    Comportamento
+                </option>
+
+                <option value="Participação">
+                    Participação
+                </option>
+
+                <option value="Frequência">
+                    Frequência
+                </option>
+
+                <option value="Desenvolvimento">
+                    Desenvolvimento
+                </option>
+
+                <option value="Outro">
+                    Outro
+                </option>
+
+            </select>
+
+
+            <label for="textoObservacao">
+                Observação
+            </label>
+
+            <textarea id="textoObservacao" placeholder="Digite aqui sua observação sobre o aluno..."></textarea>
+
+
+            <div class="modal-acoes">
+
+                <button type="button" class="btn-cancelar" id="btnCancelarModal">
+
+                    Cancelar
+
+                </button>
+
+
+                <button type="button" class="btn-salvar" onclick="salvarObservacao()">
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Salvar observação
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================================
          FOOTER
          ================================================================ -->
 
@@ -1114,122 +1217,18 @@
 
         </div>
 
-    </footer>
-
-
-    <!-- ================================================================
+        <!-- ================================================================
          BOTÃO VOLTAR AO TOPO
          ================================================================ -->
 
-    <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+        <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
 
-        <i class="fas fa-chevron-up" aria-hidden="true">
-        </i>
+            <i class="fas fa-chevron-up" aria-hidden="true">
+            </i>
 
-    </button>
+        </button>
 
-
-    <!-- ================================================================
-         MODAL — NOVA OBSERVAÇÃO
-         ================================================================ -->
-
-    <div class="modal-overlay" id="modal">
-
-        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloModal">
-
-
-            <button type="button" class="fechar" id="btnFecharModal" aria-label="Fechar">
-
-                <i class="fa-solid fa-xmark"></i>
-
-            </button>
-
-
-            <span class="section-label">
-                NOVA OBSERVAÇÃO
-            </span>
-
-
-            <h2 id="tituloModal">
-                Registrar feedback
-            </h2>
-
-
-            <p class="modal-subtitulo">
-                Adicione uma observação sobre o desenvolvimento
-                do aluno.
-            </p>
-
-
-            <label for="alunoSelecionado">
-                Aluno
-            </label>
-
-            <input type="text" id="alunoSelecionado" readonly>
-
-
-            <label for="tipoObservacao">
-                Tipo de observação
-            </label>
-
-            <select id="tipoObservacao">
-
-                <option value="Desempenho acadêmico">
-                    Desempenho acadêmico
-                </option>
-
-                <option value="Comportamento">
-                    Comportamento
-                </option>
-
-                <option value="Participação">
-                    Participação
-                </option>
-
-                <option value="Frequência">
-                    Frequência
-                </option>
-
-                <option value="Desenvolvimento">
-                    Desenvolvimento
-                </option>
-
-                <option value="Outro">
-                    Outro
-                </option>
-
-            </select>
-
-
-            <label for="textoObservacao">
-                Observação
-            </label>
-
-            <textarea id="textoObservacao" placeholder="Digite aqui sua observação sobre o aluno..."></textarea>
-
-
-            <div class="modal-acoes">
-
-                <button type="button" class="btn-cancelar" id="btnCancelarModal">
-
-                    Cancelar
-
-                </button>
-
-
-                <button type="button" class="btn-salvar" onclick="salvarObservacao()">
-
-                    <i class="fa-solid fa-check"></i>
-
-                    Salvar observação
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
+    </footer>
 
 
     <!-- ================================================================
