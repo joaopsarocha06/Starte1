@@ -1,40 +1,43 @@
-// ================================================================
-// EVENTOS.JS — STARTÊ / SENAC
-// ================================================================
-// Sistema de eventos integrado ao Supabase.
-//
-// FUNCIONALIDADES:
-// 01. Menu mobile
-// 02. Menu de perfil
-// 03. Cadastro de eventos
-// 04. Data + horário
-// 05. Local + link separados
-// 06. Listagem de eventos
-// 07. Filtro por data
-// 08. Contador de eventos
-// 09. Exclusão REAL no Supabase
-// 10. Estado vazio
-// 11. Seleção de arquivos
-// 12. Drag and Drop
-// 13. Voltar ao topo
-// 14. Efeito Ripple
-// 15. Animações de Scroll
-// ================================================================
+/* ==========================================================================
+   EVENTOS.JS — STARTÊ / SENAC
+   Versão limpa e compatível com Supabase
+   ==========================================================================
+
+   Banco esperado: public.eventos
+
+   Colunas:
+   - id          uuid
+   - nome        text
+   - data        date
+   - horario     time
+   - tipo        text
+   - local       text
+   - link        text
+   - publico     text[]
+   - descricao   text
+   - created_at  timestamptz
+   - updated_at  timestamptz
+
+   Observação:
+   Os anexos continuam sendo tratados no navegador. Para salvar arquivos
+   permanentemente, é necessário configurar um bucket no Supabase Storage.
+   ========================================================================== */
 
 
 document.addEventListener('DOMContentLoaded', async () => {
+    'use strict';
 
-    // ============================================================
-    // CONFIGURAÇÃO DO SUPABASE
-    // ============================================================
+
+    /* ======================================================================
+       01. CONFIGURAÇÃO
+       ====================================================================== */
 
     const supabase = window.supabaseClient;
-
+    const TABELA_EVENTOS = 'eventos';
 
     if (!supabase) {
-
         console.error(
-            'Supabase não foi inicializado.'
+            '[EVENTOS] window.supabaseClient não foi inicializado.'
         );
 
         alert(
@@ -45,104 +48,537 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
 
-    // ============================================================
-    // CONFIGURAÇÃO DA TABELA
-    // ============================================================
-
-    const TABELA_EVENTOS = 'eventos';
-
-
-    // ============================================================
-    // ELEMENTOS DO HTML
-    // ============================================================
+    /* ======================================================================
+       02. ELEMENTOS
+       ====================================================================== */
 
     const formEvento =
         document.getElementById('formEvento');
 
-
     const listaEventos =
         document.getElementById('listaEventos');
-
 
     const eventosVazio =
         document.getElementById('eventosVazio');
 
-
     const contadorEventos =
         document.getElementById('contadorEventos');
-
-
-    const inputAnexos =
-        document.getElementById('anexos');
-
-
-    const uploadBox =
-        document.querySelector('.upload-box');
-
-
-    const uploadTexto =
-        document.querySelector('.upload-texto');
-
-
-    const listaArquivos =
-        document.getElementById('listaArquivos');
-
-
-    const backToTop =
-        document.getElementById('backToTop');
-
-
-    // ============================================================
-    // FILTRO POR DATA
-    // ============================================================
 
     const filtroDataEvento =
         document.getElementById('filtroDataEvento');
 
-
     const btnFiltrarData =
         document.getElementById('btnFiltrarData');
-
 
     const btnLimparFiltro =
         document.getElementById('btnLimparFiltro');
 
-
     const filtroResultado =
         document.getElementById('filtroResultado');
 
+    const inputAnexos =
+        document.getElementById('anexos');
 
-    // Guarda a data atualmente selecionada no filtro.
-    let dataFiltroAtual = '';
+    const uploadBox =
+        document.querySelector('.upload-box');
 
+    const uploadTexto =
+        document.querySelector('.upload-texto');
 
-    // ============================================================
-    // MENU MOBILE
-    // ============================================================
+    const listaArquivos =
+        document.getElementById('listaArquivos');
+
+    const backToTop =
+        document.getElementById('backToTop');
 
     const menuToggle =
         document.getElementById('menuToggle');
 
-
     const mainNav =
         document.getElementById('mainNav');
 
+    const userProfile =
+        document.getElementById('userProfile');
 
-    if (menuToggle && mainNav) {
+    const userProfileButton =
+        document.getElementById('userProfileButton');
 
+    const profileButton =
+        document.getElementById('profileButton');
+
+    const logoutButton =
+        document.getElementById('logoutButton');
+
+    const userProfileName =
+        document.getElementById('userProfileName') ||
+        document.querySelector('.user-profile-name');
+
+    let dataFiltroAtual = '';
+
+
+    /* ======================================================================
+       03. UTILITÁRIOS
+       ====================================================================== */
+
+    function escaparHTML(valor) {
+        if (
+            valor === null ||
+            valor === undefined
+        ) {
+            return '';
+        }
+
+        const elemento =
+            document.createElement('div');
+
+        elemento.textContent =
+            String(valor);
+
+        return elemento.innerHTML;
+    }
+
+
+    function normalizarTipo(tipo) {
+        const valor =
+            String(tipo || '')
+                .trim()
+                .toLowerCase();
+
+        if (valor === 'híbrido') {
+            return 'hibrido';
+        }
+
+        if (
+            valor === 'presencial' ||
+            valor === 'online' ||
+            valor === 'hibrido'
+        ) {
+            return valor;
+        }
+
+        return '';
+    }
+
+
+    function normalizarPublico(publico) {
+        if (Array.isArray(publico)) {
+            return publico
+                .map(item =>
+                    String(item)
+                        .trim()
+                        .toLowerCase()
+                )
+                .filter(Boolean);
+        }
+
+        if (typeof publico === 'string') {
+            const valor =
+                publico.trim();
+
+            if (!valor) {
+                return [];
+            }
+
+            try {
+                const convertido =
+                    JSON.parse(valor);
+
+                if (Array.isArray(convertido)) {
+                    return normalizarPublico(
+                        convertido
+                    );
+                }
+            } catch {
+                // Não é JSON.
+            }
+
+            return valor
+                .split(',')
+                .map(item =>
+                    item
+                        .trim()
+                        .toLowerCase()
+                )
+                .filter(Boolean);
+        }
+
+        return [];
+    }
+
+
+    function formatarData(data) {
+        if (!data) {
+            return 'Data não informada';
+        }
+
+        const valor =
+            String(data).substring(0, 10);
+
+        if (
+            /^\d{4}-\d{2}-\d{2}$/.test(valor)
+        ) {
+            const [
+                ano,
+                mes,
+                dia
+            ] = valor.split('-');
+
+            return `${dia}/${mes}/${ano}`;
+        }
+
+        const dataObj =
+            new Date(data);
+
+        if (!Number.isNaN(dataObj.getTime())) {
+            return dataObj.toLocaleDateString(
+                'pt-BR'
+            );
+        }
+
+        return String(data);
+    }
+
+
+    function formatarHorario(horario) {
+        if (!horario) {
+            return 'Horário não informado';
+        }
+
+        const valor =
+            String(horario).trim();
+
+        if (
+            /^\d{2}:\d{2}:\d{2}$/.test(valor)
+        ) {
+            return valor.substring(0, 5);
+        }
+
+        return valor;
+    }
+
+
+    function formatarTipoEvento(tipo) {
+        const tipos = {
+            presencial: 'Presencial',
+            online: 'Online',
+            hibrido: 'Híbrido',
+            'híbrido': 'Híbrido'
+        };
+
+        return (
+            tipos[
+                String(tipo || '')
+                    .toLowerCase()
+            ] ||
+            'Tipo não informado'
+        );
+    }
+
+
+    function formatarPublico(publico) {
+        const lista =
+            normalizarPublico(publico);
+
+        if (!lista.length) {
+            return 'Público não informado';
+        }
+
+        const nomes = {
+            alunos: 'Alunos',
+            docentes: 'Docentes',
+            comunidade: 'Comunidade'
+        };
+
+        return lista
+            .map(item =>
+                nomes[item] || item
+            )
+            .join(', ');
+    }
+
+
+    function obterDataOrdenacao(evento) {
+        const data =
+            evento?.data
+                ? String(evento.data)
+                    .substring(0, 10)
+                : '';
+
+        const horario =
+            evento?.horario
+                ? String(evento.horario)
+                : '00:00:00';
+
+        if (data) {
+            const horarioNormalizado =
+                horario.length === 5
+                    ? `${horario}:00`
+                    : horario;
+
+            const timestamp =
+                new Date(
+                    `${data}T${horarioNormalizado}`
+                ).getTime();
+
+            if (
+                !Number.isNaN(timestamp)
+            ) {
+                return timestamp;
+            }
+        }
+
+        if (evento?.created_at) {
+            const timestamp =
+                new Date(
+                    evento.created_at
+                ).getTime();
+
+            if (
+                !Number.isNaN(timestamp)
+            ) {
+                return timestamp;
+            }
+        }
+
+        return 0;
+    }
+
+
+    function ordenarEventos(eventos) {
+        return [...eventos].sort(
+            (a, b) =>
+                obterDataOrdenacao(b) -
+                obterDataOrdenacao(a)
+        );
+    }
+
+
+    function criarLinkEvento(link) {
+        if (!link) {
+            return '';
+        }
+
+        const valor =
+            String(link).trim();
+
+        if (!valor) {
+            return '';
+        }
+
+        let urlTexto = valor;
+
+        if (
+            !/^https?:\/\//i.test(urlTexto)
+        ) {
+            urlTexto =
+                `https://${urlTexto}`;
+        }
+
+        try {
+            const url =
+                new URL(urlTexto);
+
+            if (
+                ![
+                    'http:',
+                    'https:'
+                ].includes(url.protocol)
+            ) {
+                return escaparHTML(valor);
+            }
+
+            return `
+                <a
+                    href="${escaparHTML(url.href)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    ${escaparHTML(valor)}
+                </a>
+            `;
+        } catch {
+            return escaparHTML(valor);
+        }
+    }
+
+
+    /* ======================================================================
+       04. PERFIL / AUTENTICAÇÃO
+       ====================================================================== */
+
+    async function atualizarNomeUsuario() {
+        if (!userProfileName) {
+            return;
+        }
+
+        try {
+            const {
+                data: {
+                    user
+                },
+                error
+            } = await supabase.auth.getUser();
+
+            if (
+                error ||
+                !user
+            ) {
+                return;
+            }
+
+            const metadata =
+                user.user_metadata || {};
+
+            const nome =
+                metadata.nome ||
+                metadata.name ||
+                metadata.full_name ||
+                metadata.fullName ||
+                user.email?.split('@')[0] ||
+                'Usuário';
+
+            userProfileName.textContent =
+                nome;
+
+        } catch (error) {
+            console.warn(
+                '[EVENTOS] Não foi possível obter o nome do usuário:',
+                error
+            );
+        }
+    }
+
+
+    if (
+        userProfile &&
+        userProfileButton
+    ) {
+        userProfileButton.addEventListener(
+            'click',
+            event => {
+                event.stopPropagation();
+
+                const aberto =
+                    userProfile.classList.toggle(
+                        'open'
+                    );
+
+                userProfileButton.setAttribute(
+                    'aria-expanded',
+                    String(aberto)
+                );
+            }
+        );
+
+
+        document.addEventListener(
+            'click',
+            event => {
+                if (
+                    !event.target.closest(
+                        '#userProfile'
+                    )
+                ) {
+                    userProfile.classList.remove(
+                        'open'
+                    );
+
+                    userProfileButton.setAttribute(
+                        'aria-expanded',
+                        'false'
+                    );
+                }
+            }
+        );
+    }
+
+
+    if (profileButton) {
+        profileButton.addEventListener(
+            'click',
+            () => {
+                window.location.href =
+                    'perfil.html';
+            }
+        );
+    }
+
+
+    if (logoutButton) {
+        logoutButton.addEventListener(
+            'click',
+            async () => {
+                const confirmar =
+                    confirm(
+                        'Deseja realmente sair do seu perfil?'
+                    );
+
+                if (!confirmar) {
+                    return;
+                }
+
+                try {
+                    const {
+                        error
+                    } =
+                        await supabase.auth.signOut();
+
+                    if (error) {
+                        console.error(
+                            '[EVENTOS] Erro ao sair:',
+                            error
+                        );
+
+                        alert(
+                            'Não foi possível sair da conta.\n\n' +
+                            error.message
+                        );
+
+                        return;
+                    }
+
+                    localStorage.removeItem(
+                        'usuarioLogado'
+                    );
+
+                    window.location.href =
+                        'index.html';
+
+                } catch (error) {
+                    console.error(
+                        '[EVENTOS] Erro inesperado no logout:',
+                        error
+                    );
+
+                    alert(
+                        'Ocorreu um erro ao sair da conta.'
+                    );
+                }
+            }
+        );
+    }
+
+
+    /* ======================================================================
+       05. MENU MOBILE
+       ====================================================================== */
+
+    if (
+        menuToggle &&
+        mainNav
+    ) {
         menuToggle.addEventListener(
             'click',
             () => {
-
                 const aberto =
-                    mainNav.classList.toggle('open');
-
+                    mainNav.classList.toggle(
+                        'open'
+                    );
 
                 menuToggle.setAttribute(
                     'aria-expanded',
                     String(aberto)
                 );
-
 
                 menuToggle.setAttribute(
                     'aria-label',
@@ -150,886 +586,455 @@ document.addEventListener('DOMContentLoaded', async () => {
                         ? 'Fechar menu'
                         : 'Abrir menu'
                 );
-
             }
         );
 
 
         mainNav
             .querySelectorAll('a')
-            .forEach((link) => {
-
+            .forEach(link => {
                 link.addEventListener(
                     'click',
                     () => {
-
-                        mainNav.classList.remove('open');
-
+                        mainNav.classList.remove(
+                            'open'
+                        );
 
                         menuToggle.setAttribute(
                             'aria-expanded',
                             'false'
                         );
-
                     }
                 );
-
             });
 
 
         window.addEventListener(
             'resize',
             () => {
-
-                if (window.innerWidth > 992) {
-
-                    mainNav.classList.remove('open');
-
+                if (
+                    window.innerWidth > 992
+                ) {
+                    mainNav.classList.remove(
+                        'open'
+                    );
 
                     menuToggle.setAttribute(
                         'aria-expanded',
                         'false'
                     );
-
                 }
-
             }
         );
-
     }
 
 
-    // ============================================================
-    // MENU DO PERFIL
-    // ============================================================
-
-    const userProfile =
-        document.getElementById('userProfile');
-
-
-    const userProfileButton =
-        document.getElementById(
-            'userProfileButton'
-        );
-
-
-    const profileButton =
-        document.getElementById(
-            'profileButton'
-        );
-
-
-    const logoutButton =
-        document.getElementById(
-            'logoutButton'
-        );
-
-
-    if (
-        userProfile &&
-        userProfileButton
-    ) {
-
-        userProfileButton.addEventListener(
-            'click',
-            (event) => {
-
-                event.stopPropagation();
-
-
-                const aberto =
-                    userProfile.classList.toggle(
-                        'open'
-                    );
-
-
-                userProfileButton.setAttribute(
-                    'aria-expanded',
-                    String(aberto)
-                );
-
-            }
-        );
-
-
-        document.addEventListener(
-            'click',
-            (event) => {
-
-                if (
-                    !event.target.closest(
-                        '#userProfile'
-                    )
-                ) {
-
-                    userProfile.classList.remove(
-                        'open'
-                    );
-
-
-                    userProfileButton.setAttribute(
-                        'aria-expanded',
-                        'false'
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-
-    // ============================================================
-    // MEU PERFIL
-    // ============================================================
-
-    if (profileButton) {
-
-        profileButton.addEventListener(
-            'click',
-            () => {
-
-                window.location.href =
-                    'perfil.html';
-
-            }
-        );
-
-    }
-
-
-    // ============================================================
-    // LOGOUT
-    // ============================================================
-
-    if (logoutButton) {
-
-        logoutButton.addEventListener(
-            'click',
-            async () => {
-
-                const confirmar =
-                    confirm(
-                        'Deseja realmente sair do seu perfil?'
-                    );
-
-
-                if (!confirmar) {
-                    return;
-                }
-
-
-                try {
-
-                    const {
-                        error
-                    } =
-                        await supabase.auth.signOut();
-
-
-                    if (error) {
-
-                        console.error(
-                            'Erro ao sair:',
-                            error
-                        );
-
-                    }
-
-                } catch (error) {
-
-                    console.error(
-                        'Erro no logout:',
-                        error
-                    );
-
-                }
-
-
-                localStorage.removeItem(
-                    'usuarioLogado'
-                );
-
-
-                window.location.href =
-                    'index.html';
-
-            }
-        );
-
-    }
-
-
-    // ============================================================
-    // ESCAPAR HTML
-    // ============================================================
-
-    function escaparHTML(valor) {
-
-        if (
-            valor === null ||
-            valor === undefined
-        ) {
-
-            return '';
-
-        }
-
-
-        const elemento =
-            document.createElement('div');
-
-
-        elemento.textContent =
-            String(valor);
-
-
-        return elemento.innerHTML;
-
-    }
-
-
-    // ============================================================
-    // FORMATAR DATA
-    // ============================================================
-
-    function formatarData(data) {
-
-        if (!data) {
-
-            return 'Data não informada';
-
-        }
-
-
-        const valor =
-            String(data);
-
-
-        /*
-            Formato:
-            2026-09-03
-        */
-
-        if (
-            /^\d{4}-\d{2}-\d{2}$/.test(valor)
-        ) {
-
-            const [
-                ano,
-                mes,
-                dia
-            ] =
-                valor.split('-');
-
-
-            return `${dia}/${mes}/${ano}`;
-
-        }
-
-
-        const dataObj =
-            new Date(valor);
-
-
-        if (
-            !Number.isNaN(
-                dataObj.getTime()
-            )
-        ) {
-
-            return dataObj.toLocaleDateString(
-                'pt-BR'
-            );
-
-        }
-
-
-        return valor;
-
-    }
-
-
-    // ============================================================
-    // FORMATAR HORÁRIO
-    // ============================================================
-
-    function formatarHorario(horario) {
-
-        if (!horario) {
-
-            return 'Horário não informado';
-
-        }
-
-
-        let valor =
-            String(horario).trim();
-
-
-        /*
-            Caso o banco retorne:
-            14:30:00
-        */
-
-        if (
-            /^\d{2}:\d{2}:\d{2}$/.test(valor)
-        ) {
-
-            valor =
-                valor.substring(0, 5);
-
-        }
-
-
-        /*
-            Caso retorne:
-            14:30
-        */
-
-        if (
-            /^\d{2}:\d{2}$/.test(valor)
-        ) {
-
-            return valor;
-
-        }
-
-
-        return valor;
-
-    }
-
-
-    // ============================================================
-    // FORMATAR TIPO
-    // ============================================================
-
-    function formatarTipoEvento(tipo) {
-
-        const tipos = {
-
-            presencial:
-                'Presencial',
-
-            online:
-                'Online',
-
-            hibrido:
-                'Híbrido',
-
-            híbrido:
-                'Híbrido'
-
-        };
-
-
-        return tipos[tipo] ||
-            'Tipo não informado';
-
-    }
-
-
-    // ============================================================
-    // NORMALIZAR PÚBLICO
-    // ============================================================
-
-    function normalizarPublico(publico) {
-
-        if (
-            publico === null ||
-            publico === undefined
-        ) {
-
-            return [];
-
-        }
-
-
-        if (Array.isArray(publico)) {
-
-            return publico;
-
-        }
-
-
-        if (typeof publico === 'string') {
-
-            try {
-
-                const convertido =
-                    JSON.parse(publico);
-
-
-                if (
-                    Array.isArray(convertido)
-                ) {
-
-                    return convertido;
-
-                }
-
-            } catch (error) {
-
-                // Continua para tratamento por vírgula.
-            }
-
-
-            return publico
-                .split(',')
-                .map(
-                    item =>
-                        item.trim()
-                )
-                .filter(Boolean);
-
-        }
-
-
-        return [];
-
-    }
-
-
-    // ============================================================
-    // FORMATAR PÚBLICO
-    // ============================================================
-
-    function formatarPublico(publico) {
-
-        const lista =
-            normalizarPublico(publico);
-
-
-        if (
-            lista.length === 0
-        ) {
-
-            return 'Público não informado';
-
-        }
-
-
-        const nomes = {
-
-            alunos:
-                'Alunos',
-
-            docentes:
-                'Docentes',
-
-            comunidade:
-                'Comunidade'
-
-        };
-
-
-        return lista
-            .map(
-                item =>
-                    nomes[item] ||
-                    item
-            )
-            .join(', ');
-
-    }
-
-
-    // ============================================================
-    // OBTER DATA/HORA DE ORDENAÇÃO
-    // ============================================================
-
-    function obterDataOrdenacao(evento) {
-
-        const data =
-            evento.data
-                ? String(evento.data).substring(0, 10)
-                : '';
-
-
-        const horario =
-            evento.horario
-                ? String(evento.horario)
-                : '00:00:00';
-
-
-        if (data) {
-
-            const horarioNormalizado =
-                horario.length === 5
-                    ? `${horario}:00`
-                    : horario;
-
-
-            const dataCompleta =
-                `${data}T${horarioNormalizado}`;
-
-
-            const timestamp =
-                new Date(dataCompleta).getTime();
-
-
-            if (
-                !Number.isNaN(timestamp)
-            ) {
-
-                return timestamp;
-
-            }
-
-        }
-
-
-        /*
-            Fallback para eventos antigos
-            que não possuem data válida.
-        */
-
-        if (evento.created_at) {
-
-            const timestamp =
-                new Date(
-                    evento.created_at
-                ).getTime();
-
-
-            if (
-                !Number.isNaN(timestamp)
-            ) {
-
-                return timestamp;
-
-            }
-
-        }
-
-
-        return 0;
-
-    }
-
-
-    // ============================================================
-    // ORDENAR EVENTOS
-    // ============================================================
-
-    function ordenarEventos(eventos) {
-
-        return [...eventos].sort(
-            (a, b) => {
-
-                return obterDataOrdenacao(b) -
-                    obterDataOrdenacao(a);
-
-            }
-        );
-
-    }
-
-
-    // ============================================================
-    // OBTER EVENTOS DO SUPABASE
-    // ============================================================
+    /* ======================================================================
+       06. SUPABASE — BUSCAR EVENTOS
+       ====================================================================== */
 
     async function obterEventos() {
-
         try {
-
             const {
                 data,
                 error
-            } =
-                await supabase
-                    .from(TABELA_EVENTOS)
-                    .select('*');
-
+            } = await supabase
+                .from(TABELA_EVENTOS)
+                .select(
+                    'id,nome,data,horario,tipo,local,link,publico,descricao,created_at,updated_at'
+                )
+                .order(
+                    'data',
+                    {
+                        ascending: false
+                    }
+                )
+                .order(
+                    'horario',
+                    {
+                        ascending: false
+                    }
+                );
 
             if (error) {
-
                 console.error(
-                    'Erro ao buscar eventos no Supabase:',
+                    '[EVENTOS] Erro ao buscar eventos:',
                     error
                 );
 
                 return [];
-
             }
 
-
-            if (
-                !Array.isArray(data)
-            ) {
-
-                return [];
-
-            }
-
-
-            return ordenarEventos(data);
+            return ordenarEventos(
+                Array.isArray(data)
+                    ? data
+                    : []
+            );
 
         } catch (error) {
-
             console.error(
-                'Erro inesperado ao buscar eventos:',
+                '[EVENTOS] Erro inesperado ao buscar eventos:',
                 error
             );
 
             return [];
-
         }
-
     }
 
 
-    // ============================================================
-    // ATUALIZAR CONTADOR
-    // ============================================================
+    /* ======================================================================
+       07. INTERFACE — CONTADOR / ESTADO VAZIO
+       ====================================================================== */
 
     function atualizarContador(
         quantidade
     ) {
-
         if (!contadorEventos) {
             return;
         }
 
-
         contadorEventos.textContent =
             quantidade;
 
-
         contadorEventos.setAttribute(
             'aria-label',
-            `${quantidade} ${quantidade === 1
-                ? 'evento cadastrado'
-                : 'eventos cadastrados'
+            `${quantidade} ${
+                quantidade === 1
+                    ? 'evento cadastrado'
+                    : 'eventos cadastrados'
             }`
         );
-
     }
 
-
-    // ============================================================
-    // MOSTRAR ESTADO VAZIO
-    // ============================================================
 
     function mostrarEstadoVazio(
         mostrar,
         usandoFiltro = false
     ) {
-
         if (!eventosVazio) {
             return;
         }
 
-
         const titulo =
             eventosVazio.querySelector('h3');
-
 
         const texto =
             eventosVazio.querySelector('p');
 
 
-        if (mostrar) {
-
-            eventosVazio.hidden =
-                false;
-
-
-            eventosVazio.style.display =
-                '';
-
-
-            if (titulo) {
-
-                titulo.textContent =
-                    usandoFiltro
-                        ? 'Nenhum evento encontrado para esta data'
-                        : 'Nenhum evento encontrado';
-
-            }
-
-
-            if (texto) {
-
-                texto.textContent =
-                    usandoFiltro
-                        ? 'Não existem eventos cadastrados para a data selecionada.'
-                        : 'Ainda não existem eventos cadastrados na plataforma.';
-
-            }
-
-        } else {
-
-            eventosVazio.hidden =
-                true;
-
+        if (!mostrar) {
+            eventosVazio.hidden = true;
 
             eventosVazio.style.display =
                 'none';
 
+            return;
         }
 
+
+        eventosVazio.hidden = false;
+
+        eventosVazio.style.display =
+            '';
+
+
+        if (titulo) {
+            titulo.textContent =
+                usandoFiltro
+                    ? 'Nenhum evento encontrado para esta data'
+                    : 'Nenhum evento encontrado';
+        }
+
+
+        if (texto) {
+            texto.textContent =
+                usandoFiltro
+                    ? 'Não existem eventos cadastrados para a data selecionada.'
+                    : 'Ainda não existem eventos cadastrados na plataforma.';
+        }
     }
 
-
-    // ============================================================
-    // ATUALIZAR TEXTO DO FILTRO
-    // ============================================================
 
     function atualizarTextoFiltro(
         quantidade
     ) {
-
         if (!filtroResultado) {
             return;
         }
 
-
         if (!dataFiltroAtual) {
-
             filtroResultado.textContent =
                 '';
 
             return;
-
         }
-
 
         const dataFormatada =
             formatarData(
                 dataFiltroAtual
             );
 
-
-        if (quantidade === 0) {
-
-            filtroResultado.textContent =
-                `Nenhum evento encontrado para ${dataFormatada}.`;
-
-            return;
-
-        }
-
-
         filtroResultado.textContent =
-            `${quantidade} ${quantidade === 1
-                ? 'evento encontrado'
-                : 'eventos encontrados'
-            } para ${dataFormatada}.`;
-
+            quantidade === 0
+                ? `Nenhum evento encontrado para ${dataFormatada}.`
+                : `${quantidade} ${
+                    quantidade === 1
+                        ? 'evento encontrado'
+                        : 'eventos encontrados'
+                } para ${dataFormatada}.`;
     }
 
 
-    // ============================================================
-    // CRIAR LINK SE EXISTIR
-    // ============================================================
+    /* ======================================================================
+       08. RENDERIZAÇÃO DOS CARDS
+       ====================================================================== */
 
-    function criarLinkEvento(link) {
+    function criarCardEvento(
+        evento
+    ) {
+        const card =
+            document.createElement(
+                'article'
+            );
 
-        if (!link) {
+        card.className =
+            'evento-card';
 
-            return '';
-
-        }
-
-
-        const valor =
-            String(link).trim();
-
-
-        if (!valor) {
-
-            return '';
-
-        }
+        card.dataset.eventoId =
+            evento.id;
 
 
-        let urlValida =
-            valor;
+        const local =
+            String(
+                evento.local || ''
+            ).trim();
+
+        const link =
+            String(
+                evento.link || ''
+            ).trim();
+
+        const descricao =
+            String(
+                evento.descricao || ''
+            ).trim();
 
 
-        /*
-            Se o usuário digitar apenas:
-            www.exemplo.com
-        */
+        const localHTML =
+            local
+                ? `
+                    <div class="evento-info-item">
+                        <div class="evento-info-icon">
+                            <i
+                                class="fas fa-location-dot"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
 
-        if (
-            !/^https?:\/\//i.test(
-                urlValida
-            )
-        ) {
+                        <span class="evento-info-label">
+                            Local
+                        </span>
 
-            urlValida =
-                `https://${urlValida}`;
-
-        }
-
-
-        /*
-            Validação básica.
-        */
-
-        try {
-
-            const url =
-                new URL(urlValida);
+                        <span class="evento-info-valor">
+                            ${escaparHTML(local)}
+                        </span>
+                    </div>
+                `
+                : '';
 
 
-            return `
-                <a
-                    href="${escaparHTML(
-                url.href
-            )}"
-                    target="_blank"
-                    rel="noopener noreferrer">
+        const linkHTML =
+            link
+                ? `
+                    <div class="evento-info-item link">
+                        <div class="evento-info-icon">
+                            <i
+                                class="fas fa-link"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
+
+                        <span class="evento-info-label">
+                            Link
+                        </span>
+
+                        <span class="evento-info-valor">
+                            ${criarLinkEvento(link)}
+                        </span>
+                    </div>
+                `
+                : '';
+
+
+        const descricaoHTML =
+            descricao
+                ? `
+                    <div class="evento-descricao">
+                        ${escaparHTML(descricao)}
+                    </div>
+                `
+                : '';
+
+
+        card.innerHTML = `
+            <div class="evento-card-header">
+
+                <h3 class="evento-nome">
+                    ${escaparHTML(evento.nome)}
+                </h3>
+
+                <span class="evento-tipo">
                     ${escaparHTML(
-                valor
-            )}
-                </a>
-            `;
+                        formatarTipoEvento(
+                            evento.tipo
+                        )
+                    )}
+                </span>
 
-        } catch (error) {
+            </div>
 
-            return `
-                ${escaparHTML(
-                valor
-            )}
-            `;
 
-        }
+            <div class="evento-info">
 
+                <div class="evento-info-item">
+
+                    <div class="evento-info-icon">
+                        <i
+                            class="fas fa-calendar-days"
+                            aria-hidden="true"
+                        ></i>
+                    </div>
+
+                    <span class="evento-info-label">
+                        Data
+                    </span>
+
+                    <span class="evento-info-valor">
+                        ${escaparHTML(
+                            formatarData(
+                                evento.data
+                            )
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div class="evento-info-item horario">
+
+                    <div class="evento-info-icon">
+                        <i
+                            class="fas fa-clock"
+                            aria-hidden="true"
+                        ></i>
+                    </div>
+
+                    <span class="evento-info-label">
+                        Horário
+                    </span>
+
+                    <span class="evento-info-valor">
+                        ${escaparHTML(
+                            formatarHorario(
+                                evento.horario
+                            )
+                        )}
+                    </span>
+
+                </div>
+
+
+                ${localHTML}
+
+                ${linkHTML}
+
+
+                <div class="evento-info-item">
+
+                    <div class="evento-info-icon">
+                        <i
+                            class="fas fa-users"
+                            aria-hidden="true"
+                        ></i>
+                    </div>
+
+                    <span class="evento-info-label">
+                        Público
+                    </span>
+
+                    <span class="evento-info-valor">
+                        ${escaparHTML(
+                            formatarPublico(
+                                evento.publico
+                            )
+                        )}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            ${descricaoHTML}
+
+
+            <div class="evento-card-footer">
+
+                <span class="evento-data-cadastro">
+                    <i
+                        class="fas fa-calendar-check"
+                        aria-hidden="true"
+                    ></i>
+
+                    Evento cadastrado
+                </span>
+
+
+                <button
+                    type="button"
+                    class="btn-excluir-evento evento-excluir"
+                    data-id="${escaparHTML(evento.id)}"
+                    aria-label="Excluir evento ${escaparHTML(evento.nome)}"
+                >
+
+                    <i
+                        class="fas fa-trash"
+                        aria-hidden="true"
+                    ></i>
+
+                    <span>
+                        Excluir
+                    </span>
+
+                </button>
+
+            </div>
+        `;
+
+
+        return card;
     }
 
-
-    // ============================================================
-    // RENDERIZAR EVENTOS
-    // ============================================================
 
     async function renderizarEventos() {
-
         if (!listaEventos) {
             return;
         }
 
 
         listaEventos.innerHTML = `
-
             <div class="eventos-loading">
 
                 <i
                     class="fas fa-spinner fa-spin"
-                    aria-hidden="true">
-                </i>
+                    aria-hidden="true"
+                ></i>
 
                 <span>
                     Carregando eventos...
                 </span>
 
             </div>
-
         `;
 
 
@@ -1037,45 +1042,30 @@ document.addEventListener('DOMContentLoaded', async () => {
             await obterEventos();
 
 
-        // ========================================================
-        // FILTRO POR DATA
-        // ========================================================
-
         if (dataFiltroAtual) {
-
             eventos =
                 eventos.filter(
-                    (evento) => {
-
-                        if (!evento.data) {
-                            return false;
-                        }
-
-
+                    evento => {
                         const dataEvento =
                             String(
-                                evento.data
+                                evento.data || ''
                             ).substring(
                                 0,
                                 10
                             );
 
-
                         return (
                             dataEvento ===
                             dataFiltroAtual
                         );
-
                     }
                 );
-
         }
 
 
         atualizarContador(
             eventos.length
         );
-
 
         atualizarTextoFiltro(
             eventos.length
@@ -1086,21 +1076,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             '';
 
 
-        // ========================================================
-        // NENHUM EVENTO
-        // ========================================================
-
-        if (
-            eventos.length === 0
-        ) {
-
+        if (!eventos.length) {
             mostrarEstadoVazio(
                 true,
-                Boolean(dataFiltroAtual)
+                Boolean(
+                    dataFiltroAtual
+                )
             );
 
             return;
-
         }
 
 
@@ -1109,332 +1093,42 @@ document.addEventListener('DOMContentLoaded', async () => {
         );
 
 
-        // ========================================================
-        // CRIAR CARDS
-        // ========================================================
+        const fragment =
+            document.createDocumentFragment();
+
 
         eventos.forEach(
-            (evento) => {
-
-                const card =
-                    document.createElement(
-                        'article'
-                    );
-
-
-                card.className =
-                    'evento-card';
-
-
-                card.dataset.eventoId =
-                    evento.id;
-
-
-                const publico =
-                    formatarPublico(
-                        evento.publico
-                    );
-
-
-                const horario =
-                    formatarHorario(
-                        evento.horario
-                    );
-
-
-                const local =
-                    evento.local
-                        ? String(
-                            evento.local
-                        ).trim()
-                        : '';
-
-
-                const link =
-                    evento.link
-                        ? String(
-                            evento.link
-                        ).trim()
-                        : '';
-
-
-                const descricao =
-                    evento.descricao
-                        ? `
-                            <div class="evento-descricao">
-                                ${escaparHTML(
-                            evento.descricao
-                        )}
-                            </div>
-                        `
-                        : '';
-
-
-                const localHTML =
-                    local
-                        ? `
-                            <div class="evento-info-item">
-
-                                <div class="evento-info-icon">
-
-                                    <i
-                                        class="fas fa-location-dot"
-                                        aria-hidden="true">
-                                    </i>
-
-                                </div>
-
-                                <span class="evento-info-label">
-                                    Local
-                                </span>
-
-                                <span class="evento-info-valor">
-                                    ${escaparHTML(
-                            local
-                        )}
-                                </span>
-
-                            </div>
-                        `
-                        : '';
-
-
-                const linkHTML =
-                    link
-                        ? `
-                            <div class="evento-info-item link">
-
-                                <div class="evento-info-icon">
-
-                                    <i
-                                        class="fas fa-link"
-                                        aria-hidden="true">
-                                    </i>
-
-                                </div>
-
-                                <span class="evento-info-label">
-                                    Link
-                                </span>
-
-                                <span class="evento-info-valor">
-                                    ${criarLinkEvento(
-                            link
-                        )}
-                                </span>
-
-                            </div>
-                        `
-                        : '';
-
-
-                card.innerHTML = `
-
-                    <!-- =========================================
-                         CABEÇALHO
-                    ========================================== -->
-
-                    <div class="evento-card-header">
-
-                        <h3 class="evento-nome">
-
-                            ${escaparHTML(
-                    evento.nome
-                )}
-
-                        </h3>
-
-
-                        <span class="evento-tipo">
-
-                            ${escaparHTML(
-                    formatarTipoEvento(
-                        evento.tipo
+            evento => {
+                fragment.appendChild(
+                    criarCardEvento(
+                        evento
                     )
-                )}
-
-                        </span>
-
-                    </div>
-
-
-                    <!-- =========================================
-                         INFORMAÇÕES
-                    ========================================== -->
-
-                    <div class="evento-info">
-
-                        <!-- DATA -->
-
-                        <div class="evento-info-item">
-
-                            <div class="evento-info-icon">
-
-                                <i
-                                    class="fas fa-calendar-days"
-                                    aria-hidden="true">
-                                </i>
-
-                            </div>
-
-                            <span class="evento-info-label">
-                                Data
-                            </span>
-
-                            <span class="evento-info-valor">
-                                ${escaparHTML(
-                    formatarData(
-                        evento.data
-                    )
-                )}
-                            </span>
-
-                        </div>
-
-
-                        <!-- HORÁRIO -->
-
-                        <div class="evento-info-item horario">
-
-                            <div class="evento-info-icon">
-
-                                <i
-                                    class="fas fa-clock"
-                                    aria-hidden="true">
-                                </i>
-
-                            </div>
-
-                            <span class="evento-info-label">
-                                Horário
-                            </span>
-
-                            <span class="evento-info-valor">
-                                ${escaparHTML(
-                    horario
-                )}
-                            </span>
-
-                        </div>
-
-
-                        <!-- LOCAL -->
-
-                        ${localHTML}
-
-
-                        <!-- LINK -->
-
-                        ${linkHTML}
-
-
-                        <!-- PÚBLICO -->
-
-                        <div class="evento-info-item">
-
-                            <div class="evento-info-icon">
-
-                                <i
-                                    class="fas fa-users"
-                                    aria-hidden="true">
-                                </i>
-
-                            </div>
-
-                            <span class="evento-info-label">
-                                Público
-                            </span>
-
-                            <span class="evento-info-valor">
-                                ${escaparHTML(
-                    publico
-                )}
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- =========================================
-                         DESCRIÇÃO
-                    ========================================== -->
-
-                    ${descricao}
-
-
-                    <!-- =========================================
-                         RODAPÉ
-                    ========================================== -->
-
-                    <div class="evento-card-footer">
-
-                        <span class="evento-data-cadastro">
-
-                            <i
-                                class="fas fa-calendar-check"
-                                aria-hidden="true">
-                            </i>
-
-                            Evento cadastrado
-
-                        </span>
-
-
-                        <button
-                            type="button"
-                            class="btn-excluir-evento evento-excluir"
-                            data-id="${escaparHTML(
-                    evento.id
-                )}"
-                            aria-label="Excluir evento ${escaparHTML(
-                    evento.nome
-                )}">
-
-                            <i
-                                class="fas fa-trash"
-                                aria-hidden="true">
-                            </i>
-
-                            <span>
-                                Excluir
-                            </span>
-
-                        </button>
-
-                    </div>
-
-                `;
-
-
-                listaEventos.appendChild(
-                    card
                 );
-
             }
         );
 
+
+        listaEventos.appendChild(
+            fragment
+        );
     }
 
 
-    // ============================================================
-    // EXCLUIR EVENTO DO SUPABASE
-    // ============================================================
+    /* ======================================================================
+       09. EXCLUSÃO
+       ====================================================================== */
 
     async function excluirEvento(
         id,
         nomeEvento,
         botao
     ) {
-
         if (!id) {
-
             console.error(
-                'ID do evento não informado.'
+                '[EVENTOS] ID do evento não informado.'
             );
 
             return;
-
         }
 
 
@@ -1450,138 +1144,99 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
         if (botao) {
-
             botao.disabled =
                 true;
 
-
             botao.innerHTML = `
-
                 <i
                     class="fas fa-spinner fa-spin"
-                    aria-hidden="true">
-                </i>
+                    aria-hidden="true"
+                ></i>
 
                 <span>
                     Excluindo...
                 </span>
-
             `;
-
         }
 
 
         try {
-
             const {
+                data,
                 error
-            } =
-                await supabase
-                    .from(TABELA_EVENTOS)
-                    .delete()
-                    .eq(
-                        'id',
-                        id
-                    );
+            } = await supabase
+                .from(TABELA_EVENTOS)
+                .delete()
+                .eq('id', id)
+                .select('id')
+                .maybeSingle();
 
 
             if (error) {
-
                 console.error(
-                    'Erro ao excluir evento:',
+                    '[EVENTOS] Erro ao excluir:',
                     error
                 );
-
 
                 alert(
                     'Não foi possível excluir o evento.\n\n' +
                     error.message
                 );
 
-
-                if (botao) {
-
-                    botao.disabled =
-                        false;
+                return;
+            }
 
 
-                    botao.innerHTML = `
-
-                        <i
-                            class="fas fa-trash"
-                            aria-hidden="true">
-                        </i>
-
-                        <span>
-                            Excluir
-                        </span>
-
-                    `;
-
-                }
-
+            if (!data) {
+                alert(
+                    'O evento não foi encontrado ou não pode ser excluído.'
+                );
 
                 return;
-
             }
+
+
+            await renderizarEventos();
 
 
             alert(
                 'Evento excluído com sucesso!'
             );
 
-
-            await renderizarEventos();
-
         } catch (error) {
-
             console.error(
-                'Erro inesperado ao excluir evento:',
+                '[EVENTOS] Erro inesperado ao excluir:',
                 error
             );
-
 
             alert(
                 'Ocorreu um erro ao excluir o evento.'
             );
 
-
+        } finally {
             if (botao) {
-
                 botao.disabled =
                     false;
 
-
                 botao.innerHTML = `
-
                     <i
                         class="fas fa-trash"
-                        aria-hidden="true">
-                    </i>
+                        aria-hidden="true"
+                    ></i>
 
                     <span>
                         Excluir
                     </span>
-
                 `;
-
             }
-
         }
-
     }
 
 
-    // ============================================================
-    // EVENTO DE EXCLUSÃO
-    // ============================================================
-
     if (listaEventos) {
-
         listaEventos.addEventListener(
             'click',
-            (event) => {
-
+            event => {
                 const botao =
                     event.target.closest(
                         '.evento-excluir'
@@ -1593,10 +1248,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
 
 
-                const id =
-                    botao.dataset.id;
-
-
                 const card =
                     botao.closest(
                         '.evento-card'
@@ -1604,123 +1255,188 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
                 const nomeElemento =
-                    card
-                        ? card.querySelector(
-                            '.evento-nome'
-                        )
-                        : null;
+                    card?.querySelector(
+                        '.evento-nome'
+                    );
 
 
                 const nomeEvento =
                     nomeElemento
-                        ? nomeElemento.textContent.trim()
-                        : 'este evento';
+                        ?.textContent
+                        .trim() ||
+                    'este evento';
 
 
                 excluirEvento(
-                    id,
+                    botao.dataset.id,
                     nomeEvento,
                     botao
                 );
-
             }
         );
-
     }
 
 
-    // ============================================================
-    // CADASTRO DE EVENTO
-    // ============================================================
+    /* ======================================================================
+       10. CADASTRO — CAMPOS
+       ====================================================================== */
+
+    function obterCamposFormulario() {
+        return {
+            nomeInput:
+                document.getElementById(
+                    'nomeEvento'
+                ),
+
+            dataInput:
+                document.getElementById(
+                    'dataEvento'
+                ),
+
+            horarioInput:
+                document.getElementById(
+                    'horarioEvento'
+                ),
+
+            localInput:
+                document.getElementById(
+                    'localEvento'
+                ),
+
+            linkInput:
+                document.getElementById(
+                    'linkEvento'
+                ),
+
+            descricaoInput:
+                document.getElementById(
+                    'descricaoEvento'
+                )
+        };
+    }
+
+
+    function validarLink(link) {
+        if (!link) {
+            return null;
+        }
+
+
+        let urlTexto =
+            link.trim();
+
+
+        if (
+            !/^https?:\/\//i.test(
+                urlTexto
+            )
+        ) {
+            urlTexto =
+                `https://${urlTexto}`;
+        }
+
+
+        try {
+            const url =
+                new URL(urlTexto);
+
+
+            if (
+                ![
+                    'http:',
+                    'https:'
+                ].includes(
+                    url.protocol
+                )
+            ) {
+                return null;
+            }
+
+
+            return url.href;
+
+        } catch {
+            return null;
+        }
+    }
+
+
+    async function verificarUsuarioAutenticado() {
+        const {
+            data,
+            error
+        } = await supabase.auth.getUser();
+
+
+        if (error) {
+            console.error(
+                '[EVENTOS] Erro ao verificar usuário:',
+                error
+            );
+
+            return null;
+        }
+
+
+        return data?.user || null;
+    }
+
+
+    /* ======================================================================
+       11. CADASTRO — INSERT NO SUPABASE
+       ====================================================================== */
 
     if (formEvento) {
-
         formEvento.addEventListener(
             'submit',
-            async (event) => {
+            async event => {
 
                 event.preventDefault();
 
 
-                // ==================================================
-                // CAMPOS
-                // ==================================================
-
-                const nomeInput =
-                    document.getElementById(
-                        'nomeEvento'
-                    );
-
-
-                const dataInput =
-                    document.getElementById(
-                        'dataEvento'
-                    );
-
-
-                const horarioInput =
-                    document.getElementById(
-                        'horarioEvento'
-                    );
-
-
-                const localInput =
-                    document.getElementById(
-                        'localEvento'
-                    );
-
-
-                const linkInput =
-                    document.getElementById(
-                        'linkEvento'
-                    );
-
-
-                const descricaoInput =
-                    document.getElementById(
-                        'descricaoEvento'
-                    );
+                const campos =
+                    obterCamposFormulario();
 
 
                 const nome =
-                    nomeInput
-                        ? nomeInput.value.trim()
-                        : '';
+                    campos.nomeInput
+                        ?.value
+                        .trim() ||
+                    '';
 
 
                 const data =
-                    dataInput
-                        ? dataInput.value
-                        : '';
+                    campos.dataInput
+                        ?.value ||
+                    '';
 
 
                 const horario =
-                    horarioInput
-                        ? horarioInput.value
-                        : '';
+                    campos.horarioInput
+                        ?.value ||
+                    '';
 
 
                 const local =
-                    localInput
-                        ? localInput.value.trim()
-                        : '';
+                    campos.localInput
+                        ?.value
+                        .trim() ||
+                    '';
 
 
-                const link =
-                    linkInput
-                        ? linkInput.value.trim()
-                        : '';
+                const linkDigitado =
+                    campos.linkInput
+                        ?.value
+                        .trim() ||
+                    '';
 
 
                 const descricao =
-                    descricaoInput
-                        ? descricaoInput.value.trim()
-                        : '';
+                    campos.descricaoInput
+                        ?.value
+                        .trim() ||
+                    '';
 
-
-                // ==================================================
-                // TIPO
-                // ==================================================
 
                 const tipoSelecionado =
                     document.querySelector(
@@ -1728,138 +1444,132 @@ document.addEventListener('DOMContentLoaded', async () => {
                     );
 
 
-                // ==================================================
-                // PÚBLICO
-                // ==================================================
-
                 const publicoSelecionado =
                     Array.from(
                         document.querySelectorAll(
                             'input[name="publico"]:checked'
                         )
-                    ).map(
+                    )
+                    .map(
                         input =>
                             input.value
-                    );
+                                .trim()
+                                .toLowerCase()
+                    )
+                    .filter(Boolean);
 
 
-                // ==================================================
-                // VALIDAÇÕES
-                // ==================================================
+                /* ----------------------------------------------------------
+                   Campos obrigatórios
+                   ---------------------------------------------------------- */
 
                 if (!nome) {
-
                     alert(
                         'Digite o nome do evento.'
                     );
 
-
-                    if (nomeInput) {
-                        nomeInput.focus();
-                    }
-
+                    campos.nomeInput?.focus();
 
                     return;
-
                 }
 
 
                 if (!data) {
-
                     alert(
                         'Informe a data do evento.'
                     );
 
-
-                    if (dataInput) {
-                        dataInput.focus();
-                    }
-
+                    campos.dataInput?.focus();
 
                     return;
-
                 }
 
 
                 if (!horario) {
-
                     alert(
                         'Informe o horário do evento.'
                     );
 
-
-                    if (horarioInput) {
-                        horarioInput.focus();
-                    }
-
+                    campos.horarioInput?.focus();
 
                     return;
-
                 }
 
 
                 if (!tipoSelecionado) {
-
                     alert(
                         'Selecione o tipo do evento.'
                     );
 
-
                     return;
-
                 }
 
 
-                /*
-                    Validação simples do link.
-                */
+                /* ----------------------------------------------------------
+                   Tipo compatível com o banco
+                   ---------------------------------------------------------- */
 
-                if (link) {
-
-                    let linkTeste =
-                        link;
-
-
-                    if (
-                        !/^https?:\/\//i.test(
-                            linkTeste
-                        )
-                    ) {
-
-                        linkTeste =
-                            `https://${linkTeste}`;
-
-                    }
+                const tipo =
+                    normalizarTipo(
+                        tipoSelecionado.value
+                    );
 
 
-                    try {
+                if (!tipo) {
+                    alert(
+                        'O tipo de evento selecionado é inválido.'
+                    );
 
-                        new URL(
-                            linkTeste
+                    return;
+                }
+
+
+                /* ----------------------------------------------------------
+                   Link
+                   ---------------------------------------------------------- */
+
+                let link = null;
+
+
+                if (linkDigitado) {
+                    link =
+                        validarLink(
+                            linkDigitado
                         );
 
-                    } catch (error) {
 
+                    if (!link) {
                         alert(
                             'Informe um link de evento válido.'
                         );
 
-
-                        if (linkInput) {
-                            linkInput.focus();
-                        }
-
+                        campos.linkInput?.focus();
 
                         return;
-
                     }
-
                 }
 
 
-                // ==================================================
-                // BOTÃO
-                // ==================================================
+                /* ----------------------------------------------------------
+                   Usuário autenticado
+                   ---------------------------------------------------------- */
+
+                const usuario =
+                    await verificarUsuarioAutenticado();
+
+
+                if (!usuario) {
+                    alert(
+                        'Você precisa estar autenticado para cadastrar um evento.'
+                    );
+
+                    return;
+                }
+
+
+                /* ----------------------------------------------------------
+                   Botão
+                   ---------------------------------------------------------- */
 
                 const botaoSubmit =
                     formEvento.querySelector(
@@ -1868,170 +1578,97 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
                 const textoOriginal =
-                    botaoSubmit
-                        ? botaoSubmit.innerHTML
-                        : '';
+                    botaoSubmit?.innerHTML ||
+                    '';
 
 
                 if (botaoSubmit) {
-
                     botaoSubmit.disabled =
                         true;
 
 
                     botaoSubmit.innerHTML = `
-
                         <i
                             class="fas fa-spinner fa-spin"
-                            aria-hidden="true">
-                        </i>
+                            aria-hidden="true"
+                        ></i>
 
                         <span>
                             Cadastrando...
                         </span>
-
                     `;
-
                 }
 
 
-                // ==================================================
-                // OBJETO PARA O SUPABASE
-                // ==================================================
+                /* ----------------------------------------------------------
+                   OBJETO ENVIADO PARA public.eventos
+                   ---------------------------------------------------------- */
 
                 const novoEvento = {
-
-                    nome:
-                        nome,
-
-                    data:
-                        data,
-
-                    horario:
-                        horario,
-
-                    tipo:
-                        tipoSelecionado.value,
-
-                    local:
-                        local || null,
-
-                    link:
-                        link || null,
-
-                    publico:
-                        publicoSelecionado,
-
+                    nome,
+                    data,
+                    horario,
+                    tipo,
+                    local: local || null,
+                    link,
+                    publico: publicoSelecionado,
                     descricao:
                         descricao || null
-
                 };
 
 
                 console.log(
-                    'Enviando evento para o Supabase:',
+                    '[EVENTOS] Enviando para Supabase:',
                     novoEvento
                 );
 
 
-                // ==================================================
-                // INSERT
-                // ==================================================
-
                 try {
-
                     const {
                         data: eventoCriado,
                         error
-                    } =
-                        await supabase
-                            .from(
-                                TABELA_EVENTOS
-                            )
-                            .insert(
-                                [novoEvento]
-                            )
-                            .select()
-                            .single();
+                    } = await supabase
+                        .from(
+                            TABELA_EVENTOS
+                        )
+                        .insert(
+                            novoEvento
+                        )
+                        .select()
+                        .single();
 
 
                     if (error) {
-
                         console.error(
-                            'Erro ao cadastrar evento:',
+                            '[EVENTOS] Erro no INSERT:',
                             error
                         );
-
 
                         alert(
                             'Não foi possível cadastrar o evento.\n\n' +
                             error.message
                         );
 
-
-                        if (botaoSubmit) {
-
-                            botaoSubmit.disabled =
-                                false;
-
-
-                            botaoSubmit.innerHTML =
-                                textoOriginal;
-
-                        }
-
-
                         return;
-
                     }
 
 
                     console.log(
-                        'Evento cadastrado:',
+                        '[EVENTOS] Evento cadastrado:',
                         eventoCriado
                     );
 
 
-                    // ==================================================
-                    // LIMPAR FORMULÁRIO
-                    // ==================================================
-
                     formEvento.reset();
 
 
-                    if (uploadTexto) {
-
-                        uploadTexto.innerHTML = `
-
-                            <strong>
-                                Selecione seus arquivos
-                            </strong>
-
-                            <small>
-                                PDF, imagens ou documentos
-                            </small>
-
-                        `;
-
-                    }
-
-
-                    if (listaArquivos) {
-
-                        listaArquivos.innerHTML =
-                            '';
-
-                    }
+                    restaurarUpload();
 
 
                     alert(
                         'Evento cadastrado com sucesso!'
                     );
 
-
-                    // ==================================================
-                    // ATUALIZAR LISTA
-                    // ==================================================
 
                     await renderizarEventos();
 
@@ -2043,62 +1680,51 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
                     if (eventosCadastrados) {
-
                         setTimeout(
                             () => {
-
                                 eventosCadastrados.scrollIntoView(
                                     {
-                                        behavior: 'smooth',
-                                        block: 'start'
+                                        behavior:
+                                            'smooth',
+
+                                        block:
+                                            'start'
                                     }
                                 );
-
                             },
                             100
                         );
-
                     }
 
                 } catch (error) {
-
                     console.error(
-                        'Erro inesperado ao cadastrar:',
+                        '[EVENTOS] Erro inesperado no cadastro:',
                         error
                     );
-
 
                     alert(
                         'Ocorreu um erro inesperado ao cadastrar o evento.'
                     );
 
                 } finally {
-
                     if (botaoSubmit) {
-
                         botaoSubmit.disabled =
                             false;
 
-
                         botaoSubmit.innerHTML =
                             textoOriginal;
-
                     }
-
                 }
-
             }
         );
-
     }
 
 
-    // ============================================================
-    // FILTRAR POR DATA
-    // ============================================================
+    /* ======================================================================
+       12. FILTRO POR DATA
+       ====================================================================== */
 
     async function aplicarFiltroData() {
-
         if (!filtroDataEvento) {
             return;
         }
@@ -2109,16 +1735,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
         if (!dataSelecionada) {
-
             alert(
                 'Selecione uma data para procurar os eventos.'
             );
 
-
             filtroDataEvento.focus();
 
             return;
-
         }
 
 
@@ -2127,52 +1750,40 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
         await renderizarEventos();
-
     }
 
 
     if (btnFiltrarData) {
-
         btnFiltrarData.addEventListener(
             'click',
             aplicarFiltroData
         );
-
     }
 
-
-    // ============================================================
-    // ENTER NO FILTRO
-    // ============================================================
 
     if (filtroDataEvento) {
-
         filtroDataEvento.addEventListener(
             'keydown',
-            (event) => {
+            event => {
 
                 if (
-                    event.key === 'Enter'
+                    event.key !==
+                    'Enter'
                 ) {
-
-                    event.preventDefault();
-
-                    aplicarFiltroData();
-
+                    return;
                 }
 
+
+                event.preventDefault();
+
+
+                aplicarFiltroData();
             }
         );
-
     }
 
 
-    // ============================================================
-    // LIMPAR FILTRO
-    // ============================================================
-
     if (btnLimparFiltro) {
-
         btnLimparFiltro.addEventListener(
             'click',
             async () => {
@@ -2182,42 +1793,60 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
                 if (filtroDataEvento) {
-
                     filtroDataEvento.value =
                         '';
-
                 }
 
 
                 if (filtroResultado) {
-
                     filtroResultado.textContent =
                         '';
-
                 }
 
 
                 await renderizarEventos();
-
             }
         );
-
     }
 
 
-    // ============================================================
-    // SELEÇÃO DE ARQUIVOS
-    // ============================================================
+    /* ======================================================================
+       13. ANEXOS — INTERFACE
+       ====================================================================== */
+
+    function restaurarUpload() {
+        if (uploadTexto) {
+            uploadTexto.innerHTML = `
+                <strong>
+                    Selecione seus arquivos
+                </strong>
+
+                <small>
+                    PDF, imagens ou documentos
+                </small>
+            `;
+        }
+
+
+        if (listaArquivos) {
+            listaArquivos.innerHTML =
+                '';
+        }
+
+
+        if (inputAnexos) {
+            inputAnexos.value =
+                '';
+        }
+    }
+
 
     function atualizarArquivosSelecionados() {
-
         if (
             !inputAnexos ||
             !uploadTexto
         ) {
-
             return;
-
         }
 
 
@@ -2227,113 +1856,89 @@ document.addEventListener('DOMContentLoaded', async () => {
             );
 
 
-        if (
-            arquivos.length === 0
-        ) {
-
-            uploadTexto.innerHTML = `
-
-                <strong>
-                    Selecione seus arquivos
-                </strong>
-
-                <small>
-                    PDF, imagens ou documentos
-                </small>
-
-            `;
-
-
-            if (listaArquivos) {
-
-                listaArquivos.innerHTML =
-                    '';
-
-            }
-
+        if (!arquivos.length) {
+            restaurarUpload();
 
             return;
-
         }
 
 
         uploadTexto.innerHTML = `
-
             <strong>
                 ${arquivos.length}
-                ${arquivos.length === 1
-                ? 'arquivo selecionado'
-                : 'arquivos selecionados'
-            }
+                ${
+                    arquivos.length === 1
+                        ? 'arquivo selecionado'
+                        : 'arquivos selecionados'
+                }
             </strong>
 
             <small>
                 Clique novamente para alterar os arquivos.
             </small>
-
         `;
 
 
-        if (listaArquivos) {
-
-            listaArquivos.innerHTML =
-                '';
-
-
-            arquivos.forEach(
-                (arquivo) => {
-
-                    const item =
-                        document.createElement(
-                            'div'
-                        );
-
-
-                    item.className =
-                        'arquivo-item';
-
-
-                    item.innerHTML = `
-
-                        <i
-                            class="fas fa-file"
-                            aria-hidden="true">
-                        </i>
-
-                        <span>
-                            ${escaparHTML(
-                        arquivo.name
-                    )}
-                        </span>
-
-                    `;
-
-
-                    listaArquivos.appendChild(
-                        item
-                    );
-
-                }
-            );
-
+        if (!listaArquivos) {
+            return;
         }
 
+
+        listaArquivos.innerHTML =
+            '';
+
+
+        const fragment =
+            document.createDocumentFragment();
+
+
+        arquivos.forEach(
+            arquivo => {
+
+                const item =
+                    document.createElement(
+                        'div'
+                    );
+
+
+                item.className =
+                    'arquivo-item';
+
+
+                item.innerHTML = `
+                    <i
+                        class="fas fa-file"
+                        aria-hidden="true"
+                    ></i>
+
+                    <span>
+                        ${escaparHTML(
+                            arquivo.name
+                        )}
+                    </span>
+                `;
+
+
+                fragment.appendChild(
+                    item
+                );
+            }
+        );
+
+
+        listaArquivos.appendChild(
+            fragment
+        );
     }
 
 
     if (inputAnexos) {
-
         inputAnexos.addEventListener(
             'change',
             atualizarArquivosSelecionados
         );
-
     }
 
-
-    // ============================================================
-    // DRAG AND DROP
-    // ============================================================
 
     if (
         uploadBox &&
@@ -2342,7 +1947,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         uploadBox.addEventListener(
             'dragover',
-            (event) => {
+            event => {
 
                 event.preventDefault();
 
@@ -2350,26 +1955,30 @@ document.addEventListener('DOMContentLoaded', async () => {
                 uploadBox.classList.add(
                     'drag-over'
                 );
-
             }
         );
 
 
         uploadBox.addEventListener(
             'dragleave',
-            () => {
+            event => {
 
-                uploadBox.classList.remove(
-                    'drag-over'
-                );
-
+                if (
+                    !uploadBox.contains(
+                        event.relatedTarget
+                    )
+                ) {
+                    uploadBox.classList.remove(
+                        'drag-over'
+                    );
+                }
             }
         );
 
 
         uploadBox.addEventListener(
             'drop',
-            (event) => {
+            event => {
 
                 event.preventDefault();
 
@@ -2379,50 +1988,64 @@ document.addEventListener('DOMContentLoaded', async () => {
                 );
 
 
+                const arquivos =
+                    event.dataTransfer?.files;
+
+
                 if (
-                    event.dataTransfer &&
-                    event.dataTransfer.files
+                    !arquivos?.length
                 ) {
-
-                    try {
-
-                        inputAnexos.files =
-                            event.dataTransfer.files;
-
-
-                        atualizarArquivosSelecionados();
-
-                    } catch (error) {
-
-                        console.warn(
-                            'Não foi possível aplicar o Drag and Drop:',
-                            error
-                        );
-
-                    }
-
+                    return;
                 }
 
+
+                try {
+                    const dataTransfer =
+                        new DataTransfer();
+
+
+                    Array.from(
+                        arquivos
+                    ).forEach(
+                        arquivo => {
+                            dataTransfer.items.add(
+                                arquivo
+                            );
+                        }
+                    );
+
+
+                    inputAnexos.files =
+                        dataTransfer.files;
+
+
+                    atualizarArquivosSelecionados();
+
+                } catch (error) {
+                    console.warn(
+                        '[EVENTOS] Não foi possível aplicar o Drag and Drop:',
+                        error
+                    );
+                }
             }
         );
-
     }
 
 
-    // ============================================================
-    // VOLTAR AO TOPO
-    // ============================================================
+    /* ======================================================================
+       14. VOLTAR AO TOPO
+       ====================================================================== */
 
     if (backToTop) {
 
-        function atualizarBackToTop() {
+        const atualizarBackToTop =
+            () => {
 
-            backToTop.classList.toggle(
-                'show',
-                window.scrollY > 300
-            );
-
-        }
+                backToTop.classList.toggle(
+                    'show',
+                    window.scrollY > 300
+                );
+            };
 
 
         window.addEventListener(
@@ -2444,19 +2067,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                         behavior: 'smooth'
                     }
                 );
-
             }
         );
 
 
         atualizarBackToTop();
-
     }
 
 
-    // ============================================================
-    // EFEITO RIPPLE
-    // ============================================================
+    /* ======================================================================
+       15. EFEITO RIPPLE
+       ====================================================================== */
 
     const rippleTargets =
         document.querySelectorAll(
@@ -2469,7 +2090,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     rippleTargets.forEach(
-        (button) => {
+        button => {
 
             button.addEventListener(
                 'click',
@@ -2477,16 +2098,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     const rect =
                         this.getBoundingClientRect();
-
-
-                    const x =
-                        event.clientX -
-                        rect.left;
-
-
-                    const y =
-                        event.clientY -
-                        rect.top;
 
 
                     const ripple =
@@ -2500,11 +2111,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
                     ripple.style.left =
-                        `${x}px`;
+                        `${
+                            event.clientX -
+                            rect.left
+                        }px`;
 
 
                     ripple.style.top =
-                        `${y}px`;
+                        `${
+                            event.clientY -
+                            rect.top
+                        }px`;
 
 
                     this.appendChild(
@@ -2514,23 +2131,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     setTimeout(
                         () => {
-
                             ripple.remove();
-
                         },
                         600
                     );
-
                 }
             );
-
         }
     );
 
 
-    // ============================================================
-    // ANIMAÇÃO DE SCROLL
-    // ============================================================
+    /* ======================================================================
+       16. ANIMAÇÃO DE SCROLL
+       ====================================================================== */
 
     const animatedElements =
         document.querySelectorAll(
@@ -2539,35 +2152,34 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     if (
-        animatedElements.length > 0 &&
+        animatedElements.length &&
         'IntersectionObserver' in window
     ) {
 
         const observer =
             new IntersectionObserver(
-                (entries) => {
+                entries => {
 
                     entries.forEach(
-                        (entry) => {
+                        entry => {
 
                             if (
-                                entry.isIntersecting
+                                !entry.isIntersecting
                             ) {
-
-                                entry.target.classList.add(
-                                    'visible'
-                                );
-
-
-                                observer.unobserve(
-                                    entry.target
-                                );
-
+                                return;
                             }
 
+
+                            entry.target.classList.add(
+                                'visible'
+                            );
+
+
+                            observer.unobserve(
+                                entry.target
+                            );
                         }
                     );
-
                 },
                 {
                     threshold: 0.1
@@ -2576,21 +2188,75 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
         animatedElements.forEach(
-            (element) => {
-
+            element => {
                 observer.observe(
                     element
                 );
-
             }
         );
 
+    } else {
+
+        animatedElements.forEach(
+            element => {
+                element.classList.add(
+                    'visible'
+                );
+            }
+        );
     }
 
 
-    // ============================================================
-    // INICIALIZAÇÃO
-    // ============================================================
+    /* ======================================================================
+       17. VERIFICAÇÃO DO SUPABASE
+       ====================================================================== */
+
+    async function verificarBanco() {
+        try {
+
+            const {
+                error
+            } = await supabase
+                .from(
+                    TABELA_EVENTOS
+                )
+                .select('id')
+                .limit(1);
+
+
+            if (error) {
+
+                console.error(
+                    '[EVENTOS] Tabela eventos não pôde ser acessada:',
+                    error
+                );
+
+                return false;
+            }
+
+
+            console.log(
+                '[EVENTOS] ✓ Tabela "eventos" acessível.'
+            );
+
+
+            return true;
+
+        } catch (error) {
+
+            console.error(
+                '[EVENTOS] Erro ao verificar banco:',
+                error
+            );
+
+            return false;
+        }
+    }
+
+
+    /* ======================================================================
+       18. INICIALIZAÇÃO
+       ====================================================================== */
 
     console.log(
         '========================================'
@@ -2598,41 +2264,36 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     console.log(
-        'EVENTOS.JS INICIADO'
+        'EVENTOS.JS — STARTÊ / SENAC'
     );
 
 
     console.log(
-        'Supabase:',
-        supabase
-            ? 'conectado'
-            : 'não conectado'
+        'Supabase: conectado'
     );
 
 
     console.log(
-        'Tabela:',
-        TABELA_EVENTOS
+        `Tabela: ${TABELA_EVENTOS}`
     );
 
 
-    console.log(
-        'Novos campos:',
-        'horario, link'
-    );
+    await atualizarNomeUsuario();
 
 
-    console.log(
-        'Filtro por data:',
-        'ativo'
-    );
-
-
-    console.log(
-        '========================================'
-    );
+    await verificarBanco();
 
 
     await renderizarEventos();
+
+
+    console.log(
+        'EVENTOS.JS inicializado com sucesso.'
+    );
+
+
+    console.log(
+        '========================================'
+    );
 
 });
