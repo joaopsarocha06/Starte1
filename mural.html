@@ -2,1244 +2,938 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mural Docente | Startê SENAC</title>
-
-    <meta name="description"
-        content="Mural Docente Startê SENAC para acompanhamento de alunos, registros e observações pedagógicas.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <link rel="stylesheet" href="./css/mural.css">
+  <title>Mural Docente | SENAC</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+  <link rel="stylesheet" href="./css/mural.css">
 </head>
 
 <body>
 
-    <!-- ================================================================
-         HEADER
-         ================================================================ -->
+  <!-- ================= NAVBAR ================= -->
 
-    <header class="main-header">
+  <header class="navbar">
 
-        <div class="container header-container">
+    <div class="logo">
+      Logo SENAC
+    </div>
 
-            <!-- LOGO -->
+    <nav>
+      <a href="#">HOME</a>
+      <a href="#">CURSOS</a>
+      <a href="#">CONDUTA</a>
+      <a href="#">EVENTOS</a>
+      <a href="#" class="active">MURAL DOCENTE</a>
+    </nav>
 
-            <div class="logo-area">
+    <div class="perfil">
+      <div class="perfil-icon">
+        <i class="fa-solid fa-user"></i>
+      </div>
 
-                <a href="home.html" aria-label="Página inicial do Startê">
+      <div>
+        <span>Olá, Professor(a)!</span>
+        <strong>Seu perfil</strong>
+      </div>
 
-                    <img src="imagens/Senac_logo.svg.webp" alt="Logo Senac" class="logo-img">
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
 
-                </a>
+  </header>
 
-            </div>
 
+  <!-- ================= HERO ================= -->
 
-            <!-- MENU -->
+  <section class="hero">
 
-            <nav class="nav-menu" id="mainNav" aria-label="Menu principal">
+    <span class="section-label">
+      MURAL DOCENTE
+    </span>
 
-                <ul class="nav-list">
+    <h1>
+      Acompanhe seus alunos e registre observações
+      sobre o desenvolvimento acadêmico.
+    </h1>
 
-                    <li>
-                        <a href="home.html" class="nav-link">
-                            HOME
-                        </a>
-                    </li>
+    <p>
+      Registre feedbacks, acompanhe a evolução e contribua
+      para o sucesso dos seus alunos.
+    </p>
 
-                    <li>
-                        <a href="cursos.html" class="nav-link">
-                            ÁREAS
-                        </a>
-                    </li>
+  </section>
 
-                    <li>
-                        <a href="conduta.html" class="nav-link">
-                            CONDUTA
-                        </a>
-                    </li>
 
-                    <li>
-                        <a href="eventos.html" class="nav-link">
-                            EVENTOS
-                        </a>
-                    </li>
+  <!-- ================= CONTEÚDO ================= -->
 
-                    <li>
-                        <a href="mural.html" class="nav-link active" aria-current="page">
-                            MURAL DOCENTE
-                        </a>
-                    </li>
+  <main class="container">
 
-                </ul>
 
-            </nav>
+    <!-- ================= FILTROS ================= -->
 
+    <section class="filtros">
 
-            <!-- PERFIL -->
+      <div class="campo busca">
 
-            <div class="action-area">
+        <i class="fa-solid fa-magnifying-glass"></i>
 
-                <div class="user-profile" id="userProfile">
+        <input
+          type="text"
+          id="buscarAluno"
+          placeholder="Buscar aluno por nome..."
+        >
 
-                    <button type="button" class="user-profile-button" id="userProfileButton" aria-expanded="false"
-                        aria-haspopup="true">
+      </div>
 
-                        <span class="user-profile-icon">
 
-                            <i class="fas fa-user" aria-hidden="true">
-                            </i>
+      <div class="campo">
 
-                        </span>
+        <label>Turma</label>
 
+        <select id="filtroTurma">
+          <option value="">Todas as turmas</option>
+          <option value="2026.1">Turma 2026.1</option>
+          <option value="2026.2">Turma 2026.2</option>
+        </select>
 
-                        <span class="user-profile-info">
+      </div>
 
-                            <span class="user-profile-welcome">
-                                Bem-vindo
-                            </span>
 
-                            <span class="user-profile-name" id="userProfileName">
-                                Usuário
-                            </span>
+      <div class="campo">
 
-                        </span>
+        <label>Curso</label>
 
+        <select id="filtroCurso">
+          <option value="">Todos os cursos</option>
+          <option value="informatica">
+            Técnico em Informática
+          </option>
 
-                        <i class="fas fa-chevron-down user-profile-arrow" aria-hidden="true">
-                        </i>
+          <option value="administracao">
+            Técnico em Administração
+          </option>
+        </select>
 
-                    </button>
+      </div>
 
 
-                    <!-- MENU DO PERFIL -->
+      <button class="btn-filtrar" onclick="filtrarAlunos()">
 
-                    <div class="user-profile-menu" id="userProfileMenu" role="menu">
+        <i class="fa-solid fa-filter"></i>
 
-                        <button type="button" class="user-profile-menu-item" id="profileButton" role="menuitem">
+        Filtrar
 
-                            <i class="fas fa-user" aria-hidden="true">
-                            </i>
-
-                            <span>
-                                Meu perfil
-                            </span>
-
-                        </button>
-
-
-                        <div class="user-profile-divider"></div>
-
-
-                        <button type="button" class="user-profile-menu-item logout" id="logoutButton" role="menuitem">
-
-                            <i class="fas fa-right-from-bracket" aria-hidden="true">
-                            </i>
-
-                            <span>
-                                Sair
-                            </span>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-    <!-- ================================================================
-         HERO
-         ================================================================ -->
-
-    <section class="mural-hero">
-
-        <div class="mural-hero-content">
-
-            <span class="section-label">
-
-                <i class="fa-solid fa-chalkboard-user" aria-hidden="true">
-                </i>
-
-                MURAL DOCENTE
-
-            </span>
-
-
-            <h1>
-                Acompanhe seus alunos e registre
-                observações sobre o desenvolvimento
-                acadêmico.
-            </h1>
-
-
-            <p>
-                Registre feedbacks, acompanhe a evolução
-                e contribua para o sucesso dos seus alunos.
-            </p>
-
-        </div>
+      </button>
 
     </section>
 
 
-    <!-- ================================================================
-         CONTEÚDO
-         ================================================================ -->
+    <!-- ================= GRID ================= -->
 
-    <main class="mural-container">
+    <section class="dashboard">
 
 
-        <!-- ============================================================
-             FILTROS
-             ============================================================ -->
+      <!-- ================= ALUNOS ================= -->
 
-        <section class="filtros">
+      <div class="card alunos-card">
 
-            <div class="campo busca">
+        <div class="card-header">
 
-                <label for="buscarAluno">
-                    Buscar aluno
-                </label>
+          <h2>Alunos</h2>
 
-                <div class="input-wrapper">
-
-                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true">
-                    </i>
-
-                    <input type="text" id="buscarAluno" placeholder="Buscar aluno por nome..." autocomplete="off">
-
-                </div>
-
-            </div>
-
-
-            <div class="campo">
-
-                <label for="filtroTurma">
-                    Turma
-                </label>
-
-                <select id="filtroTurma">
-
-                    <option value="">
-                        Todas as turmas
-                    </option>
-
-                    <option value="2026.1">
-                        Turma 2026.1
-                    </option>
-
-                    <option value="2026.2">
-                        Turma 2026.2
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="campo">
-
-                <label for="filtroCurso">
-                    Curso
-                </label>
-
-                <select id="filtroCurso">
-
-                    <option value="">
-                        Todos os cursos
-                    </option>
-
-                    <option value="informatica">
-                        Técnico em Informática
-                    </option>
-
-                    <option value="administracao">
-                        Técnico em Administração
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <button type="button" class="btn-filtrar" onclick="filtrarAlunos()">
-
-                <i class="fa-solid fa-filter" aria-hidden="true">
-                </i>
-
-                Filtrar
-
-            </button>
-
-        </section>
-
-
-        <!-- ============================================================
-             DASHBOARD
-             ============================================================ -->
-
-        <section class="dashboard">
-
-
-            <!-- ========================================================
-                 ALUNOS
-                 ======================================================== -->
-
-            <div class="card alunos-card">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <span class="card-kicker">
-                            ACOMPANHAMENTO
-                        </span>
-
-                        <h2>
-                            Alunos
-                        </h2>
-
-                    </div>
-
-
-                    <span class="contador">
-                        12 alunos
-                    </span>
-
-                </div>
-
-
-                <div id="listaAlunos">
-
-
-                    <!-- ALUNO 1 -->
-
-                    <article class="aluno" data-nome="João Pedro Silva" data-turma="2026.1" data-curso="informatica">
-
-                        <div class="avatar">
-
-                            <i class="fa-solid fa-user" aria-hidden="true">
-                            </i>
-
-                        </div>
-
-
-                        <div class="aluno-info">
-
-                            <h3>
-                                João Pedro Silva
-                            </h3>
-
-                            <span>
-                                Técnico em Informática
-                                <b>•</b>
-                                Turma 2026.1
-                            </span>
-
-                        </div>
-
-
-                        <div class="ultima-observacao">
-
-                            <span>
-                                Última observação:
-                                <strong>
-                                    25/08/2026
-                                </strong>
-                            </span>
-
-                            <p>
-                                "Apresentou boa evolução nas
-                                atividades práticas..."
-                            </p>
-
-                        </div>
-
-
-                        <div class="acoes">
-
-                            <button type="button" class="btn-perfil">
-
-                                <i class="fa-regular fa-eye" aria-hidden="true">
-                                </i>
-
-                                Ver perfil
-
-                            </button>
-
-
-                            <button type="button" class="btn-observacao" onclick="abrirModal('João Pedro Silva')">
-
-                                <i class="fa-solid fa-plus" aria-hidden="true">
-                                </i>
-
-                                Observação
-
-                            </button>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- ALUNO 2 -->
-
-                    <article class="aluno" data-nome="Maria Eduarda Santos" data-turma="2026.1"
-                        data-curso="informatica">
-
-                        <div class="avatar">
-
-                            <i class="fa-solid fa-user" aria-hidden="true">
-                            </i>
-
-                        </div>
-
-
-                        <div class="aluno-info">
-
-                            <h3>
-                                Maria Eduarda Santos
-                            </h3>
-
-                            <span>
-                                Técnico em Informática
-                                <b>•</b>
-                                Turma 2026.1
-                            </span>
-
-                        </div>
-
-
-                        <div class="ultima-observacao">
-
-                            <span>
-                                Última observação:
-                                <strong>
-                                    20/08/2026
-                                </strong>
-                            </span>
-
-                            <p>
-                                "Participa ativamente das aulas
-                                e demonstra interesse..."
-                            </p>
-
-                        </div>
-
-
-                        <div class="acoes">
-
-                            <button type="button" class="btn-perfil">
-
-                                <i class="fa-regular fa-eye" aria-hidden="true">
-                                </i>
-
-                                Ver perfil
-
-                            </button>
-
-
-                            <button type="button" class="btn-observacao" onclick="abrirModal('Maria Eduarda Santos')">
-
-                                <i class="fa-solid fa-plus" aria-hidden="true">
-                                </i>
-
-                                Observação
-
-                            </button>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- ALUNO 3 -->
-
-                    <article class="aluno" data-nome="Lucas Gabriel Oliveira" data-turma="2026.1"
-                        data-curso="informatica">
-
-                        <div class="avatar">
-
-                            <i class="fa-solid fa-user" aria-hidden="true">
-                            </i>
-
-                        </div>
-
-
-                        <div class="aluno-info">
-
-                            <h3>
-                                Lucas Gabriel Oliveira
-                            </h3>
-
-                            <span>
-                                Técnico em Informática
-                                <b>•</b>
-                                Turma 2026.1
-                            </span>
-
-                        </div>
-
-
-                        <div class="ultima-observacao">
-
-                            <span>
-                                Última observação:
-                                <strong>
-                                    18/08/2026
-                                </strong>
-                            </span>
-
-                            <p>
-                                "Dificuldade em lógica, mas com
-                                melhora significativa."
-                            </p>
-
-                        </div>
-
-
-                        <div class="acoes">
-
-                            <button type="button" class="btn-perfil">
-
-                                <i class="fa-regular fa-eye" aria-hidden="true">
-                                </i>
-
-                                Ver perfil
-
-                            </button>
-
-
-                            <button type="button" class="btn-observacao" onclick="abrirModal('Lucas Gabriel Oliveira')">
-
-                                <i class="fa-solid fa-plus" aria-hidden="true">
-                                </i>
-
-                                Observação
-
-                            </button>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- ALUNO 4 -->
-
-                    <article class="aluno" data-nome="Ana Beatriz Lima" data-turma="2026.1" data-curso="informatica">
-
-                        <div class="avatar">
-
-                            <i class="fa-solid fa-user" aria-hidden="true">
-                            </i>
-
-                        </div>
-
-
-                        <div class="aluno-info">
-
-                            <h3>
-                                Ana Beatriz Lima
-                            </h3>
-
-                            <span>
-                                Técnico em Informática
-                                <b>•</b>
-                                Turma 2026.1
-                            </span>
-
-                        </div>
-
-
-                        <div class="ultima-observacao">
-
-                            <span>
-                                Última observação:
-                                <strong>
-                                    15/08/2026
-                                </strong>
-                            </span>
-
-                            <p>
-                                "Excelente desempenho nas
-                                atividades práticas."
-                            </p>
-
-                        </div>
-
-
-                        <div class="acoes">
-
-                            <button type="button" class="btn-perfil">
-
-                                <i class="fa-regular fa-eye" aria-hidden="true">
-                                </i>
-
-                                Ver perfil
-
-                            </button>
-
-
-                            <button type="button" class="btn-observacao" onclick="abrirModal('Ana Beatriz Lima')">
-
-                                <i class="fa-solid fa-plus" aria-hidden="true">
-                                </i>
-
-                                Observação
-
-                            </button>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- ALUNO 5 -->
-
-                    <article class="aluno" data-nome="Rafael Souza Pereira" data-turma="2026.1"
-                        data-curso="informatica">
-
-                        <div class="avatar">
-
-                            <i class="fa-solid fa-user" aria-hidden="true">
-                            </i>
-
-                        </div>
-
-
-                        <div class="aluno-info">
-
-                            <h3>
-                                Rafael Souza Pereira
-                            </h3>
-
-                            <span>
-                                Técnico em Informática
-                                <b>•</b>
-                                Turma 2026.1
-                            </span>
-
-                        </div>
-
-
-                        <div class="ultima-observacao sem-observacao">
-
-                            <span>
-                                Nenhuma observação registrada
-                            </span>
-
-                            <p>
-                                Seja o primeiro a registrar
-                                uma observação.
-                            </p>
-
-                        </div>
-
-
-                        <div class="acoes">
-
-                            <button type="button" class="btn-perfil">
-
-                                <i class="fa-regular fa-eye" aria-hidden="true">
-                                </i>
-
-                                Ver perfil
-
-                            </button>
-
-
-                            <button type="button" class="btn-observacao" onclick="abrirModal('Rafael Souza Pereira')">
-
-                                <i class="fa-solid fa-plus" aria-hidden="true">
-                                </i>
-
-                                Observação
-
-                            </button>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-
-            <!-- ========================================================
-                 SIDEBAR
-                 ======================================================== -->
-
-            <aside class="sidebar">
-
-
-                <!-- RESUMO -->
-
-                <div class="card resumo">
-
-                    <div class="resumo-title">
-
-                        <div class="icone-resumo">
-
-                            <i class="fa-solid fa-chart-column" aria-hidden="true">
-                            </i>
-
-                        </div>
-
-                        <div>
-
-                            <span class="card-kicker">
-                                VISÃO GERAL
-                            </span>
-
-                            <h2>
-                                Resumo da turma
-                            </h2>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="estatisticas">
-
-                        <div class="estatistica">
-
-                            <strong>
-                                12
-                            </strong>
-
-                            <span>
-                                Total de alunos
-                            </span>
-
-                        </div>
-
-
-                        <div class="estatistica">
-
-                            <strong>
-                                8
-                            </strong>
-
-                            <span>
-                                Com observações
-                            </span>
-
-                        </div>
-
-
-                        <div class="estatistica">
-
-                            <strong>
-                                4
-                            </strong>
-
-                            <span>
-                                Sem observações
-                            </span>
-
-                        </div>
-
-
-                        <div class="estatistica">
-
-                            <strong>
-                                66%
-                            </strong>
-
-                            <span>
-                                Alunos acompanhados
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- OBSERVAÇÕES -->
-
-                <div class="card observacoes">
-
-                    <div class="card-header">
-
-                        <div>
-
-                            <span class="card-kicker">
-                                ACOMPANHAMENTO
-                            </span>
-
-                            <h2>
-                                Observações recentes
-                            </h2>
-
-                        </div>
-
-                        <a href="#">
-                            Ver todas
-                        </a>
-
-                    </div>
-
-
-                    <div class="observacao-item">
-
-                        <div class="obs-icon">
-
-                            <i class="fa-regular fa-file-lines" aria-hidden="true">
-                            </i>
-
-                        </div>
-
-
-                        <div>
-
-                            <strong>
-                                João Pedro Silva
-                            </strong>
-
-                            <small>
-                                25/08/2026 às 14:30
-                            </small>
-
-                            <p>
-                                "Apresentou boa evolução nas
-                                atividades práticas..."
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="observacao-item">
-
-                        <div class="obs-icon">
-
-                            <i class="fa-regular fa-file-lines" aria-hidden="true">
-                            </i>
-
-                        </div>
-
-
-                        <div>
-
-                            <strong>
-                                Maria Eduarda Santos
-                            </strong>
-
-                            <small>
-                                20/08/2026 às 10:15
-                            </small>
-
-                            <p>
-                                "Participa ativamente das aulas
-                                e demonstra interesse..."
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="observacao-item">
-
-                        <div class="obs-icon">
-
-                            <i class="fa-regular fa-file-lines" aria-hidden="true">
-                            </i>
-
-                        </div>
-
-
-                        <div>
-
-                            <strong>
-                                Lucas Gabriel Oliveira
-                            </strong>
-
-                            <small>
-                                18/08/2026 às 16:45
-                            </small>
-
-                            <p>
-                                "Dificuldade em lógica, mas com
-                                melhora significativa."
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <button type="button" class="btn-todas">
-
-                        Ver todas as observações
-
-                    </button>
-
-                </div>
-
-            </aside>
-
-        </section>
-
-    </main>
-
-
-    <!-- ================================================================
-         MODAL — NOVA OBSERVAÇÃO
-         ================================================================ -->
-
-    <div class="modal-overlay" id="modal">
-
-        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloModal">
-
-
-            <button type="button" class="fechar" id="btnFecharModal" aria-label="Fechar">
-
-                <i class="fa-solid fa-xmark"></i>
-
-            </button>
-
-
-            <span class="section-label">
-                NOVA OBSERVAÇÃO
-            </span>
-
-
-            <h2 id="tituloModal">
-                Registrar feedback
-            </h2>
-
-
-            <p class="modal-subtitulo">
-                Adicione uma observação sobre o desenvolvimento
-                do aluno.
-            </p>
-
-
-            <label for="alunoSelecionado">
-                Aluno
-            </label>
-
-            <input type="text" id="alunoSelecionado" readonly>
-
-
-            <label for="tipoObservacao">
-                Tipo de observação
-            </label>
-
-            <select id="tipoObservacao">
-
-                <option value="Desempenho acadêmico">
-                    Desempenho acadêmico
-                </option>
-
-                <option value="Comportamento">
-                    Comportamento
-                </option>
-
-                <option value="Participação">
-                    Participação
-                </option>
-
-                <option value="Frequência">
-                    Frequência
-                </option>
-
-                <option value="Desenvolvimento">
-                    Desenvolvimento
-                </option>
-
-                <option value="Outro">
-                    Outro
-                </option>
-
-            </select>
-
-
-            <label for="textoObservacao">
-                Observação
-            </label>
-
-            <textarea id="textoObservacao" placeholder="Digite aqui sua observação sobre o aluno..."></textarea>
-
-
-            <div class="modal-acoes">
-
-                <button type="button" class="btn-cancelar" id="btnCancelarModal">
-
-                    Cancelar
-
-                </button>
-
-
-                <button type="button" class="btn-salvar" onclick="salvarObservacao()">
-
-                    <i class="fa-solid fa-check"></i>
-
-                    Salvar observação
-
-                </button>
-
-            </div>
+          <span class="contador">
+            12 alunos
+          </span>
 
         </div>
+
+
+        <div id="listaAlunos">
+
+
+          <!-- ALUNO 1 -->
+
+          <article
+            class="aluno"
+            data-nome="João Pedro Silva"
+            data-turma="2026.1"
+            data-curso="informatica"
+          >
+
+            <div class="avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+
+            <div class="aluno-info">
+
+              <h3>
+                João Pedro Silva
+              </h3>
+
+              <span>
+                Técnico em Informática • Turma 2026.1
+              </span>
+
+            </div>
+
+
+            <div class="ultima-observacao">
+
+              <span>
+                Última observação:
+                <strong>25/08/2026</strong>
+              </span>
+
+              <p>
+                "Apresentou boa evolução nas atividades práticas..."
+              </p>
+
+            </div>
+
+
+            <div class="acoes">
+
+              <button class="btn-perfil">
+                <i class="fa-regular fa-eye"></i>
+                Ver perfil
+              </button>
+
+              <button
+                class="btn-observacao"
+                onclick="abrirModal('João Pedro Silva')"
+              >
+                <i class="fa-solid fa-plus"></i>
+                Observação
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- ALUNO 2 -->
+
+          <article
+            class="aluno"
+            data-nome="Maria Eduarda Santos"
+            data-turma="2026.1"
+            data-curso="informatica"
+          >
+
+            <div class="avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="aluno-info">
+
+              <h3>
+                Maria Eduarda Santos
+              </h3>
+
+              <span>
+                Técnico em Informática • Turma 2026.1
+              </span>
+
+            </div>
+
+            <div class="ultima-observacao">
+
+              <span>
+                Última observação:
+                <strong>20/08/2026</strong>
+              </span>
+
+              <p>
+                "Participa ativamente das aulas e demonstra interesse..."
+              </p>
+
+            </div>
+
+            <div class="acoes">
+
+              <button class="btn-perfil">
+                <i class="fa-regular fa-eye"></i>
+                Ver perfil
+              </button>
+
+              <button
+                class="btn-observacao"
+                onclick="abrirModal('Maria Eduarda Santos')"
+              >
+                <i class="fa-solid fa-plus"></i>
+                Observação
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- ALUNO 3 -->
+
+          <article
+            class="aluno"
+            data-nome="Lucas Gabriel Oliveira"
+            data-turma="2026.1"
+            data-curso="informatica"
+          >
+
+            <div class="avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="aluno-info">
+
+              <h3>
+                Lucas Gabriel Oliveira
+              </h3>
+
+              <span>
+                Técnico em Informática • Turma 2026.1
+              </span>
+
+            </div>
+
+            <div class="ultima-observacao">
+
+              <span>
+                Última observação:
+                <strong>18/08/2026</strong>
+              </span>
+
+              <p>
+                "Dificuldade em lógica, mas com melhora significativa."
+              </p>
+
+            </div>
+
+            <div class="acoes">
+
+              <button class="btn-perfil">
+                <i class="fa-regular fa-eye"></i>
+                Ver perfil
+              </button>
+
+              <button
+                class="btn-observacao"
+                onclick="abrirModal('Lucas Gabriel Oliveira')"
+              >
+                <i class="fa-solid fa-plus"></i>
+                Observação
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- ALUNO 4 -->
+
+          <article
+            class="aluno"
+            data-nome="Ana Beatriz Lima"
+            data-turma="2026.1"
+            data-curso="informatica"
+          >
+
+            <div class="avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="aluno-info">
+
+              <h3>
+                Ana Beatriz Lima
+              </h3>
+
+              <span>
+                Técnico em Informática • Turma 2026.1
+              </span>
+
+            </div>
+
+            <div class="ultima-observacao">
+
+              <span>
+                Última observação:
+                <strong>15/08/2026</strong>
+              </span>
+
+              <p>
+                "Excelente desempenho nas atividades práticas."
+              </p>
+
+            </div>
+
+            <div class="acoes">
+
+              <button class="btn-perfil">
+                <i class="fa-regular fa-eye"></i>
+                Ver perfil
+              </button>
+
+              <button
+                class="btn-observacao"
+                onclick="abrirModal('Ana Beatriz Lima')"
+              >
+                <i class="fa-solid fa-plus"></i>
+                Observação
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- ALUNO 5 -->
+
+          <article
+            class="aluno"
+            data-nome="Rafael Souza Pereira"
+            data-turma="2026.1"
+            data-curso="informatica"
+          >
+
+            <div class="avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="aluno-info">
+
+              <h3>
+                Rafael Souza Pereira
+              </h3>
+
+              <span>
+                Técnico em Informática • Turma 2026.1
+              </span>
+
+            </div>
+
+            <div class="ultima-observacao sem-observacao">
+
+              <span>
+                Nenhuma observação registrada
+              </span>
+
+              <p>
+                Seja o primeiro a registrar uma observação.
+              </p>
+
+            </div>
+
+            <div class="acoes">
+
+              <button class="btn-perfil">
+                <i class="fa-regular fa-eye"></i>
+                Ver perfil
+              </button>
+
+              <button
+                class="btn-observacao"
+                onclick="abrirModal('Rafael Souza Pereira')"
+              >
+                <i class="fa-solid fa-plus"></i>
+                Observação
+              </button>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= SIDEBAR ================= -->
+
+      <aside class="sidebar">
+
+
+        <!-- RESUMO -->
+
+        <div class="card resumo">
+
+          <div class="resumo-title">
+
+            <div class="icone-resumo">
+              <i class="fa-solid fa-chart-column"></i>
+            </div>
+
+            <h2>
+              Resumo da turma
+            </h2>
+
+          </div>
+
+
+          <div class="estatisticas">
+
+            <div class="estatistica">
+
+              <strong>12</strong>
+
+              <span>
+                Total de alunos
+              </span>
+
+            </div>
+
+
+            <div class="estatistica">
+
+              <strong>8</strong>
+
+              <span>
+                Com observações
+              </span>
+
+            </div>
+
+
+            <div class="estatistica">
+
+              <strong>4</strong>
+
+              <span>
+                Sem observações
+              </span>
+
+            </div>
+
+
+            <div class="estatistica">
+
+              <strong>66%</strong>
+
+              <span>
+                Alunos acompanhados
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- OBSERVAÇÕES -->
+
+        <div class="card observacoes">
+
+          <div class="card-header">
+
+            <h2>
+              Observações recentes
+            </h2>
+
+            <a href="#">
+              Ver todas
+            </a>
+
+          </div>
+
+
+          <div class="observacao-item">
+
+            <div class="obs-icon">
+              <i class="fa-regular fa-file-lines"></i>
+            </div>
+
+            <div>
+
+              <strong>
+                João Pedro Silva
+              </strong>
+
+              <small>
+                25/08/2026 às 14:30
+              </small>
+
+              <p>
+                "Apresentou boa evolução nas atividades práticas..."
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="observacao-item">
+
+            <div class="obs-icon">
+              <i class="fa-regular fa-file-lines"></i>
+            </div>
+
+            <div>
+
+              <strong>
+                Maria Eduarda Santos
+              </strong>
+
+              <small>
+                20/08/2026 às 10:15
+              </small>
+
+              <p>
+                "Participa ativamente das aulas e demonstra interesse..."
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="observacao-item">
+
+            <div class="obs-icon">
+              <i class="fa-regular fa-file-lines"></i>
+            </div>
+
+            <div>
+
+              <strong>
+                Lucas Gabriel Oliveira
+              </strong>
+
+              <small>
+                18/08/2026 às 16:45
+              </small>
+
+              <p>
+                "Dificuldade em lógica, mas com melhora significativa."
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <button class="btn-todas">
+            Ver todas as observações
+          </button>
+
+        </div>
+
+      </aside>
+
+    </section>
+
+  </main>
+
+
+<footer class="site-footer">
+
+    <div class="linha-topo"></div>
+
+    <div class="footer-container">
+
+
+      <div class="footer-sobre" id="sobrenos">
+
+        <img src="./imagens/logo-branco.png" alt="Logo Senac" class="logo">
+
+        <p>
+          Instituição de educação profissional aberta a toda
+          a sociedade, com a missão de desenvolver pessoas e
+          organizações para o mundo do trabalho. O Serviço
+          Nacional de Aprendizagem Comercial – Senac, pessoa
+          jurídica de direito privado, sem fins lucrativos,
+          foi criado pelo Decreto-lei nº 8.621 de 10 de janeiro
+          de 1946. Neste mesmo ano, foi fundado também seu
+          Departamento Regional de Pernambuco, instalado em
+          14 de outubro.
+        </p>
+
+
+        <div class="footer-badges">
+
+          <img src="./imagens/prevencao.png" alt="Programa prevenção">
+
+          <img src="./imagens/logo.png" alt="Startê" class="starte-logo">
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-redes" id="contatos">
+
+        <h3>
+          Conecte-se
+        </h3>
+
+        <div class="social-icons">
+
+          <a href="#" aria-label="WhatsApp">
+
+            <img src="./imagens/telefoneverde.png" alt="">
+
+          </a>
+
+          <a href="#" aria-label="Twitter">
+
+            <img src="./imagens/twitter.png" alt="">
+
+          </a>
+
+          <a href="#" aria-label="Instagram">
+
+            <img src="./imagens/instagram.png" alt="">
+
+          </a>
+
+          <a href="#" aria-label="Facebook">
+
+            <img src="./imagens/facebook.png" alt="">
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-links">
+
+
+        <div class="titulo">
+
+          <div class="barra"></div>
+
+          <h2>
+            Pesquise
+          </h2>
+
+        </div>
+
+
+        <div class="footer-search">
+
+          <input type="text" id="footerSearch" placeholder="Pesquisar cursos e notícias" aria-label="Pesquisar no site">
+
+          <button id="footerSearchBtn" type="button" aria-label="Pesquisar">
+
+            <i class="fas fa-search" aria-hidden="true">
+            </i>
+
+          </button>
+
+        </div>
+
+
+        <div class="titulo parceiros-title">
+
+          <div class="barra"></div>
+
+          <h2>
+            Parceiros
+          </h2>
+
+        </div>
+
+
+        <div class="parceiros">
+
+          <a href="#">
+            Fecomércio Pernambuco
+          </a>
+
+          <span>|</span>
+
+          <a href="#">
+            Sesc Pernambuco
+          </a>
+
+        </div>
+
+      </div>
 
     </div>
 
 
-    <!-- ================================================================
-         FOOTER
-         ================================================================ -->
+    <div class="footer-local">
 
-    <footer class="site-footer">
+      <i class="fas fa-location-dot" aria-hidden="true">
+      </i>
 
+      <a href="https://maps.app.goo.gl/6A3dxDU1zrD2bHD7A" target="_blank" rel="noopener">
 
-        <div class="linha-topo"></div>
+        Pernambuco - Av. Visconde de Suassuna, 500 -
+        Santo Amaro - Recife
 
+      </a>
 
-        <div class="footer-container">
+    </div>
 
 
-            <!-- SOBRE -->
+    <div class="footer-bottom">
 
-            <div class="footer-sobre" id="sobrenos">
+      <img src="./imagens/logo-branco.png" alt="Senac">
 
+      <p>
+        © 2026 Todos os Direitos Reservados.
+      </p>
 
-                <img src="./imagens/logo-branco.png" alt="Logo Senac" class="logo">
 
+      <div class="empresa">
 
-                <p>
+        <strong>
+          Para sua empresa
+        </strong>
 
-                    Instituição de educação profissional aberta a toda
-                    a sociedade, com a missão de desenvolver pessoas e
-                    organizações para o mundo do trabalho. O Serviço
-                    Nacional de Aprendizagem Comercial – Senac, pessoa
-                    jurídica de direito privado, sem fins lucrativos,
-                    foi criado pelo Decreto-lei nº 8.621 de 10 de janeiro
-                    de 1946. Neste mesmo ano, foi fundado também seu
-                    Departamento Regional de Pernambuco, instalado em
-                    14 de outubro.
+        <a href="#">
+          Atendimento Corporativo
+        </a>
 
-                </p>
+        <a href="#">
+          Programa de Aprendizagem
+        </a>
 
+      </div>
 
-                <div class="footer-badges">
+    </div>
 
-                    <img src="./imagens/prevencao.png" alt="Programa prevenção">
+  </footer>
 
 
-                    <img src="./imagens/logo.png" alt="Startê" class="starte-logo">
+  <!-- =========================================================
+       VOLTAR AO TOPO
+  ========================================================== -->
 
-                </div>
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">
 
-            </div>
+    <i class="fas fa-chevron-up" aria-hidden="true">
+    </i>
 
+  </button>
 
-            <!-- REDES SOCIAIS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
 
-            <div class="footer-redes" id="contatos">
 
 
-                <h3>
-                    Conecte-se
-                </h3>
+  <!-- ================= MODAL ================= -->
 
+<div
+  class="modal-overlay"
+  id="modal"
+>
 
-                <div class="social-icons">
+  <div class="modal">
 
+    <!-- Botão fechar -->
+    <button
+      type="button"
+      class="fechar"
+      id="btnFecharModal"
+    >
+      ×
+    </button>
 
-                    <a href="#" aria-label="WhatsApp">
 
-                        <img src="./imagens/telefoneverde.png" alt="">
+    <span class="section-label">
+      NOVA OBSERVAÇÃO
+    </span>
 
-                    </a>
 
+    <h2>
+      Registrar feedback
+    </h2>
 
-                    <a href="#" aria-label="Twitter">
 
-                        <img src="./imagens/twitter.png" alt="">
+    <p class="modal-subtitulo">
+      Adicione uma observação sobre o desenvolvimento do aluno.
+    </p>
 
-                    </a>
 
+    <label>
+      Aluno
+    </label>
 
-                    <a href="#" aria-label="Instagram">
+    <input
+      type="text"
+      id="alunoSelecionado"
+      readonly
+    >
 
-                        <img src="./imagens/instagram.png" alt="">
 
-                    </a>
+    <label>
+      Tipo de observação
+    </label>
 
+    <select id="tipoObservacao">
 
-                    <a href="#" aria-label="Facebook">
+      <option value="Desempenho acadêmico">
+        Desempenho acadêmico
+      </option>
 
-                        <img src="./imagens/facebook.png" alt="">
+      <option value="Comportamento">
+        Comportamento
+      </option>
 
-                    </a>
+      <option value="Participação">
+        Participação
+      </option>
 
-                </div>
+      <option value="Frequência">
+        Frequência
+      </option>
 
-            </div>
+      <option value="Desenvolvimento">
+        Desenvolvimento
+      </option>
 
+      <option value="Outro">
+        Outro
+      </option>
 
-            <!-- PESQUISA E PARCEIROS -->
+    </select>
 
-            <div class="footer-links">
 
+    <label>
+      Observação
+    </label>
 
-                <div class="titulo">
+    <textarea
+      id="textoObservacao"
+      placeholder="Digite aqui sua observação sobre o aluno..."
+    ></textarea>
 
-                    <div class="barra"></div>
 
-                    <h2>
-                        Pesquise
-                    </h2>
+    <div class="modal-acoes">
 
-                </div>
+      <!-- Botão cancelar -->
+      <button
+        type="button"
+        class="btn-cancelar"
+        id="btnCancelarModal"
+      >
+        Cancelar
+      </button>
 
 
-                <form class="footer-search" id="footerSearchForm">
+      <!-- Botão salvar -->
+      <button
+        type="button"
+        class="btn-salvar"
+        onclick="salvarObservacao()"
+      >
+        Salvar observação
+      </button>
 
-                    <input type="search" id="footerSearch" placeholder="Pesquisar cursos e notícias"
-                        aria-label="Pesquisar no site">
+    </div>
 
+  </div>
 
-                    <button type="submit" id="footerSearchBtn" aria-label="Pesquisar">
-
-                        <i class="fas fa-search" aria-hidden="true">
-                        </i>
-
-                    </button>
-
-                </form>
-
-
-                <div class="titulo parceiros-title">
-
-                    <div class="barra"></div>
-
-                    <h2>
-                        Parceiros
-                    </h2>
-
-                </div>
-
-
-                <div class="parceiros">
-
-
-                    <a href="#">
-                        Fecomércio Pernambuco
-                    </a>
-
-
-                    <span>|</span>
-
-
-                    <a href="#">
-                        Sesc Pernambuco
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- LOCALIZAÇÃO -->
-
-        <div class="footer-local">
-
-            <i class="fas fa-location-dot" aria-hidden="true">
-            </i>
-
-
-            <a href="https://maps.app.goo.gl/6A3dxDU1zrD2bHD7A" target="_blank" rel="noopener noreferrer">
-
-                Pernambuco - Av. Visconde de Suassuna, 500 -
-                Santo Amaro - Recife
-
-            </a>
-
-        </div>
-
-
-        <!-- RODAPÉ INFERIOR -->
-
-        <div class="footer-bottom">
-
-
-            <img src="./imagens/logo-branco.png" alt="Senac">
-
-
-            <p>
-                © 2026 Todos os Direitos Reservados.
-            </p>
-
-
-            <div class="empresa">
-
-
-                <strong>
-                    Para sua empresa
-                </strong>
-
-
-                <a href="#">
-                    Atendimento Corporativo
-                </a>
-
-
-                <a href="#">
-                    Programa de Aprendizagem
-                </a>
-
-            </div>
-
-        </div>
-
-        <!-- ================================================================
-         BOTÃO VOLTAR AO TOPO
-         ================================================================ -->
-
-        <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
-
-            <i class="fas fa-chevron-up" aria-hidden="true">
-            </i>
-
-        </button>
-
-    </footer>
-
-
-    <!-- ================================================================
-         SCRIPTS
-         ================================================================ -->
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <script src="./js/auth.js"></script>
-
-    <script src="./js/mural.js"></script>
+</div>
 
 </body>
 
