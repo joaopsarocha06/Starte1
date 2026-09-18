@@ -2,7 +2,9 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Mural Docente | Startê SENAC</title>
@@ -10,17 +12,36 @@
     <meta name="description"
         content="Mural Docente Startê SENAC para acompanhamento de alunos, registros e observações pedagógicas.">
 
+
+    <!-- ================================================================
+         FONTES
+         ================================================================ -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
+
+    <!-- ================================================================
+         FONT AWESOME
+         ================================================================ -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+
+    <!-- ================================================================
+         CSS
+         ================================================================ -->
+
     <link rel="stylesheet" href="./css/mural.css">
+
 </head>
 
+
 <body>
+
 
     <!-- ================================================================
          HEADER
@@ -29,6 +50,7 @@
     <header class="main-header">
 
         <div class="container header-container">
+
 
             <!-- LOGO -->
 
@@ -50,33 +72,47 @@
                 <ul class="nav-list">
 
                     <li>
+
                         <a href="home.html" class="nav-link">
                             HOME
                         </a>
+
                     </li>
 
+
                     <li>
+
                         <a href="cursos.html" class="nav-link">
                             ÁREAS
                         </a>
+
                     </li>
 
+
                     <li>
+
                         <a href="conduta.html" class="nav-link">
                             CONDUTA
                         </a>
+
                     </li>
 
+
                     <li>
+
                         <a href="eventos.html" class="nav-link">
                             EVENTOS
                         </a>
+
                     </li>
 
+
                     <li>
+
                         <a href="mural.html" class="nav-link active" aria-current="page">
                             MURAL DOCENTE
                         </a>
+
                     </li>
 
                 </ul>
@@ -95,8 +131,7 @@
 
                         <span class="user-profile-icon">
 
-                            <i class="fas fa-user" aria-hidden="true">
-                            </i>
+                            <i class="fas fa-user" aria-hidden="true"></i>
 
                         </span>
 
@@ -107,6 +142,7 @@
                                 Bem-vindo
                             </span>
 
+
                             <span class="user-profile-name" id="userProfileName">
                                 Usuário
                             </span>
@@ -114,8 +150,7 @@
                         </span>
 
 
-                        <i class="fas fa-chevron-down user-profile-arrow" aria-hidden="true">
-                        </i>
+                        <i class="fas fa-chevron-down user-profile-arrow" aria-hidden="true"></i>
 
                     </button>
 
@@ -126,8 +161,7 @@
 
                         <button type="button" class="user-profile-menu-item" id="profileButton" role="menuitem">
 
-                            <i class="fas fa-user" aria-hidden="true">
-                            </i>
+                            <i class="fas fa-user" aria-hidden="true"></i>
 
                             <span>
                                 Meu perfil
@@ -141,8 +175,7 @@
 
                         <button type="button" class="user-profile-menu-item logout" id="logoutButton" role="menuitem">
 
-                            <i class="fas fa-right-from-bracket" aria-hidden="true">
-                            </i>
+                            <i class="fas fa-right-from-bracket" aria-hidden="true"></i>
 
                             <span>
                                 Sair
@@ -156,9 +189,20 @@
 
             </div>
 
+
+            <!-- MENU MOBILE -->
+
+            <button type="button" class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-controls="mainNav"
+                aria-expanded="false">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
         </div>
 
     </header>
+
 
 
     <!-- ================================================================
@@ -171,8 +215,7 @@
 
             <span class="section-label">
 
-                <i class="fa-solid fa-chalkboard-user" aria-hidden="true">
-                </i>
+                <i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>
 
                 MURAL DOCENTE
 
@@ -196,6 +239,7 @@
     </section>
 
 
+
     <!-- ================================================================
          CONTEÚDO
          ================================================================ -->
@@ -204,10 +248,377 @@
 
 
         <!-- ============================================================
+             GERENCIAMENTO DE TURMAS
+             ============================================================ -->
+
+        <section class="turmas-section" id="turmas">
+
+
+            <!-- CABEÇALHO DA SEÇÃO -->
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="section-label">
+
+                        <i class="fa-solid fa-users" aria-hidden="true"></i>
+
+                        GESTÃO ACADÊMICA
+
+                    </span>
+
+
+                    <h2 class="section-title">
+                        Turmas
+                    </h2>
+
+
+                    <p class="section-description">
+
+                        Cadastre e organize as turmas para facilitar
+                        o acompanhamento dos alunos e das atividades
+                        pedagógicas.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ========================================================
+                 FORMULÁRIO DE CADASTRO DE TURMA
+                 ======================================================== -->
+
+            <div class="turma-form-card">
+
+
+                <!-- CABEÇALHO -->
+
+                <div class="form-card-header">
+
+                    <div class="form-card-icon">
+
+                        <i class="fa-solid fa-users" aria-hidden="true"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Nova turma
+                        </h3>
+
+                        <p>
+                            Informe os dados da turma manualmente.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FORMULÁRIO -->
+
+                <form id="formTurma" class="turma-form">
+
+
+                    <!-- ==================================================
+                         NÚMERO DA TURMA
+                         ================================================== -->
+
+                    <div class="form-group">
+
+                        <label for="numeroTurma">
+
+                            Número da turma
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-hashtag" aria-hidden="true"></i>
+
+
+                            <input type="text" id="numeroTurma" name="numero_turma" placeholder="Ex.: 202601"
+                                autocomplete="off" maxlength="30" required>
+
+                        </div>
+
+
+                        <small class="field-help">
+
+                            Informe manualmente o número ou código
+                            utilizado para identificar a turma.
+
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         NOME DA TURMA
+                         ================================================== -->
+
+                    <div class="form-group">
+
+                        <label for="nomeTurma">
+
+                            Nome da turma
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-users" aria-hidden="true"></i>
+
+
+                            <input type="text" id="nomeTurma" name="nome_turma"
+                                placeholder="Ex.: Desenvolvimento de Sistemas" autocomplete="off" maxlength="120"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         CURSO
+                         ================================================== -->
+
+                    <div class="form-group">
+
+                        <label for="cursoTurma">
+
+                            Curso
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+
+
+                            <input type="text" id="cursoTurma" name="curso" placeholder="Ex.: Técnico em Informática"
+                                autocomplete="off" maxlength="150" required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         TURNO
+                         ================================================== -->
+
+                    <div class="form-group">
+
+                        <label for="turnoTurma">
+                            Turno
+                        </label>
+
+
+                        <div class="input-wrapper select-wrapper">
+
+                            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+
+
+                            <select id="turnoTurma" name="turno">
+
+                                <option value="">
+                                    Selecione o turno
+                                </option>
+
+
+                                <option value="matutino">
+                                    Matutino
+                                </option>
+
+
+                                <option value="vespertino">
+                                    Vespertino
+                                </option>
+
+
+                                <option value="noturno">
+                                    Noturno
+                                </option>
+
+
+                                <option value="integral">
+                                    Integral
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         ANO
+                         ================================================== -->
+
+                    <div class="form-group">
+
+                        <label for="anoTurma">
+                            Ano
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+
+
+                            <input type="number" id="anoTurma" name="ano" min="2020" max="2100" placeholder="Ex.: 2026">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         AÇÕES
+                         ================================================== -->
+
+                    <div class="form-actions">
+
+
+                        <button type="reset" class="btn-secondary" id="btnCancelarTurma">
+
+                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+
+                            Limpar
+
+                        </button>
+
+
+                        <button type="submit" class="btn-primary" id="btnSalvarTurma">
+
+                            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+
+                            Cadastrar turma
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+
+            <!-- ========================================================
+                 TURMAS CADASTRADAS
+                 ======================================================== -->
+
+            <div class="turmas-list-section">
+
+
+                <div class="list-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            TURMAS CADASTRADAS
+                        </span>
+
+
+                        <h3>
+                            Turmas disponíveis
+                        </h3>
+
+                    </div>
+
+
+                    <div class="turmas-counter" id="contadorTurmas">
+
+                        <strong>
+                            0
+                        </strong>
+
+                        <span>
+                            turmas
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ESTADO VAZIO -->
+
+                <div class="turmas-empty" id="turmasVazio">
+
+                    <div class="empty-icon">
+
+                        <i class="fa-solid fa-users-slash" aria-hidden="true"></i>
+
+                    </div>
+
+
+                    <h4>
+                        Nenhuma turma cadastrada
+                    </h4>
+
+
+                    <p>
+
+                        Cadastre uma turma utilizando
+                        o formulário acima.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- LISTA GERADA PELO JAVASCRIPT -->
+
+                <div class="turmas-grid" id="listaTurmas"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================================================
              FILTROS
              ============================================================ -->
 
         <section class="filtros">
+
+
+            <!-- BUSCA -->
 
             <div class="campo busca">
 
@@ -215,10 +626,11 @@
                     Buscar aluno
                 </label>
 
+
                 <div class="input-wrapper">
 
-                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true">
-                    </i>
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+
 
                     <input type="text" id="buscarAluno" placeholder="Buscar aluno por nome..." autocomplete="off">
 
@@ -227,11 +639,15 @@
             </div>
 
 
+
+            <!-- TURMA -->
+
             <div class="campo">
 
                 <label for="filtroTurma">
                     Turma
                 </label>
+
 
                 <select id="filtroTurma">
 
@@ -239,18 +655,18 @@
                         Todas as turmas
                     </option>
 
-                    <option value="2026.1">
-                        Turma 2026.1
-                    </option>
-
-                    <option value="2026.2">
-                        Turma 2026.2
-                    </option>
+                    <!--
+                        As turmas cadastradas serão inseridas
+                        pelo mural.js.
+                    -->
 
                 </select>
 
             </div>
 
+
+
+            <!-- CURSO -->
 
             <div class="campo">
 
@@ -258,15 +674,18 @@
                     Curso
                 </label>
 
+
                 <select id="filtroCurso">
 
                     <option value="">
                         Todos os cursos
                     </option>
 
+
                     <option value="informatica">
                         Técnico em Informática
                     </option>
+
 
                     <option value="administracao">
                         Técnico em Administração
@@ -277,16 +696,19 @@
             </div>
 
 
+
+            <!-- BOTÃO FILTRAR -->
+
             <button type="button" class="btn-filtrar" onclick="filtrarAlunos()">
 
-                <i class="fa-solid fa-filter" aria-hidden="true">
-                </i>
+                <i class="fa-solid fa-filter" aria-hidden="true"></i>
 
                 Filtrar
 
             </button>
 
         </section>
+
 
 
         <!-- ============================================================
@@ -302,6 +724,7 @@
 
             <div class="card alunos-card">
 
+
                 <div class="card-header">
 
                     <div>
@@ -309,6 +732,7 @@
                         <span class="card-kicker">
                             ACOMPANHAMENTO
                         </span>
+
 
                         <h2>
                             Alunos
@@ -324,17 +748,19 @@
                 </div>
 
 
+
                 <div id="listaAlunos">
 
 
-                    <!-- ALUNO 1 -->
+                    <!-- ==================================================
+                         ALUNO 1
+                         ================================================== -->
 
                     <article class="aluno" data-nome="João Pedro Silva" data-turma="2026.1" data-curso="informatica">
 
                         <div class="avatar">
 
-                            <i class="fa-solid fa-user" aria-hidden="true">
-                            </i>
+                            <i class="fa-solid fa-user" aria-hidden="true"></i>
 
                         </div>
 
@@ -345,10 +771,15 @@
                                 João Pedro Silva
                             </h3>
 
+
                             <span>
+
                                 Técnico em Informática
+
                                 <b>•</b>
+
                                 Turma 2026.1
+
                             </span>
 
                         </div>
@@ -357,15 +788,21 @@
                         <div class="ultima-observacao">
 
                             <span>
+
                                 Última observação:
+
                                 <strong>
                                     25/08/2026
                                 </strong>
+
                             </span>
 
+
                             <p>
+
                                 "Apresentou boa evolução nas
                                 atividades práticas..."
+
                             </p>
 
                         </div>
@@ -373,10 +810,10 @@
 
                         <div class="acoes">
 
+
                             <button type="button" class="btn-perfil">
 
-                                <i class="fa-regular fa-eye" aria-hidden="true">
-                                </i>
+                                <i class="fa-regular fa-eye" aria-hidden="true"></i>
 
                                 Ver perfil
 
@@ -385,8 +822,7 @@
 
                             <button type="button" class="btn-observacao" onclick="abrirModal('João Pedro Silva')">
 
-                                <i class="fa-solid fa-plus" aria-hidden="true">
-                                </i>
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
 
                                 Observação
 
@@ -397,15 +833,17 @@
                     </article>
 
 
-                    <!-- ALUNO 2 -->
+
+                    <!-- ==================================================
+                         ALUNO 2
+                         ================================================== -->
 
                     <article class="aluno" data-nome="Maria Eduarda Santos" data-turma="2026.1"
                         data-curso="informatica">
 
                         <div class="avatar">
 
-                            <i class="fa-solid fa-user" aria-hidden="true">
-                            </i>
+                            <i class="fa-solid fa-user" aria-hidden="true"></i>
 
                         </div>
 
@@ -416,10 +854,15 @@
                                 Maria Eduarda Santos
                             </h3>
 
+
                             <span>
+
                                 Técnico em Informática
+
                                 <b>•</b>
+
                                 Turma 2026.1
+
                             </span>
 
                         </div>
@@ -428,15 +871,21 @@
                         <div class="ultima-observacao">
 
                             <span>
+
                                 Última observação:
+
                                 <strong>
                                     20/08/2026
                                 </strong>
+
                             </span>
 
+
                             <p>
+
                                 "Participa ativamente das aulas
                                 e demonstra interesse..."
+
                             </p>
 
                         </div>
@@ -444,10 +893,10 @@
 
                         <div class="acoes">
 
+
                             <button type="button" class="btn-perfil">
 
-                                <i class="fa-regular fa-eye" aria-hidden="true">
-                                </i>
+                                <i class="fa-regular fa-eye" aria-hidden="true"></i>
 
                                 Ver perfil
 
@@ -456,8 +905,7 @@
 
                             <button type="button" class="btn-observacao" onclick="abrirModal('Maria Eduarda Santos')">
 
-                                <i class="fa-solid fa-plus" aria-hidden="true">
-                                </i>
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
 
                                 Observação
 
@@ -468,15 +916,17 @@
                     </article>
 
 
-                    <!-- ALUNO 3 -->
+
+                    <!-- ==================================================
+                         ALUNO 3
+                         ================================================== -->
 
                     <article class="aluno" data-nome="Lucas Gabriel Oliveira" data-turma="2026.1"
                         data-curso="informatica">
 
                         <div class="avatar">
 
-                            <i class="fa-solid fa-user" aria-hidden="true">
-                            </i>
+                            <i class="fa-solid fa-user" aria-hidden="true"></i>
 
                         </div>
 
@@ -487,10 +937,15 @@
                                 Lucas Gabriel Oliveira
                             </h3>
 
+
                             <span>
+
                                 Técnico em Informática
+
                                 <b>•</b>
+
                                 Turma 2026.1
+
                             </span>
 
                         </div>
@@ -499,15 +954,21 @@
                         <div class="ultima-observacao">
 
                             <span>
+
                                 Última observação:
+
                                 <strong>
                                     18/08/2026
                                 </strong>
+
                             </span>
 
+
                             <p>
+
                                 "Dificuldade em lógica, mas com
                                 melhora significativa."
+
                             </p>
 
                         </div>
@@ -515,10 +976,10 @@
 
                         <div class="acoes">
 
+
                             <button type="button" class="btn-perfil">
 
-                                <i class="fa-regular fa-eye" aria-hidden="true">
-                                </i>
+                                <i class="fa-regular fa-eye" aria-hidden="true"></i>
 
                                 Ver perfil
 
@@ -527,8 +988,7 @@
 
                             <button type="button" class="btn-observacao" onclick="abrirModal('Lucas Gabriel Oliveira')">
 
-                                <i class="fa-solid fa-plus" aria-hidden="true">
-                                </i>
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
 
                                 Observação
 
@@ -539,14 +999,16 @@
                     </article>
 
 
-                    <!-- ALUNO 4 -->
+
+                    <!-- ==================================================
+                         ALUNO 4
+                         ================================================== -->
 
                     <article class="aluno" data-nome="Ana Beatriz Lima" data-turma="2026.1" data-curso="informatica">
 
                         <div class="avatar">
 
-                            <i class="fa-solid fa-user" aria-hidden="true">
-                            </i>
+                            <i class="fa-solid fa-user" aria-hidden="true"></i>
 
                         </div>
 
@@ -557,10 +1019,15 @@
                                 Ana Beatriz Lima
                             </h3>
 
+
                             <span>
+
                                 Técnico em Informática
+
                                 <b>•</b>
+
                                 Turma 2026.1
+
                             </span>
 
                         </div>
@@ -569,15 +1036,21 @@
                         <div class="ultima-observacao">
 
                             <span>
+
                                 Última observação:
+
                                 <strong>
                                     15/08/2026
                                 </strong>
+
                             </span>
 
+
                             <p>
+
                                 "Excelente desempenho nas
                                 atividades práticas."
+
                             </p>
 
                         </div>
@@ -585,10 +1058,10 @@
 
                         <div class="acoes">
 
+
                             <button type="button" class="btn-perfil">
 
-                                <i class="fa-regular fa-eye" aria-hidden="true">
-                                </i>
+                                <i class="fa-regular fa-eye" aria-hidden="true"></i>
 
                                 Ver perfil
 
@@ -597,8 +1070,7 @@
 
                             <button type="button" class="btn-observacao" onclick="abrirModal('Ana Beatriz Lima')">
 
-                                <i class="fa-solid fa-plus" aria-hidden="true">
-                                </i>
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
 
                                 Observação
 
@@ -609,15 +1081,17 @@
                     </article>
 
 
-                    <!-- ALUNO 5 -->
+
+                    <!-- ==================================================
+                         ALUNO 5
+                         ================================================== -->
 
                     <article class="aluno" data-nome="Rafael Souza Pereira" data-turma="2026.1"
                         data-curso="informatica">
 
                         <div class="avatar">
 
-                            <i class="fa-solid fa-user" aria-hidden="true">
-                            </i>
+                            <i class="fa-solid fa-user" aria-hidden="true"></i>
 
                         </div>
 
@@ -628,10 +1102,15 @@
                                 Rafael Souza Pereira
                             </h3>
 
+
                             <span>
+
                                 Técnico em Informática
+
                                 <b>•</b>
+
                                 Turma 2026.1
+
                             </span>
 
                         </div>
@@ -643,9 +1122,12 @@
                                 Nenhuma observação registrada
                             </span>
 
+
                             <p>
+
                                 Seja o primeiro a registrar
                                 uma observação.
+
                             </p>
 
                         </div>
@@ -653,10 +1135,10 @@
 
                         <div class="acoes">
 
+
                             <button type="button" class="btn-perfil">
 
-                                <i class="fa-regular fa-eye" aria-hidden="true">
-                                </i>
+                                <i class="fa-regular fa-eye" aria-hidden="true"></i>
 
                                 Ver perfil
 
@@ -665,8 +1147,7 @@
 
                             <button type="button" class="btn-observacao" onclick="abrirModal('Rafael Souza Pereira')">
 
-                                <i class="fa-solid fa-plus" aria-hidden="true">
-                                </i>
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
 
                                 Observação
 
@@ -681,6 +1162,7 @@
             </div>
 
 
+
             <!-- ========================================================
                  SIDEBAR
                  ======================================================== -->
@@ -688,7 +1170,9 @@
             <aside class="sidebar">
 
 
-                <!-- RESUMO -->
+                <!-- ====================================================
+                     RESUMO
+                     ==================================================== -->
 
                 <div class="card resumo">
 
@@ -696,16 +1180,17 @@
 
                         <div class="icone-resumo">
 
-                            <i class="fa-solid fa-chart-column" aria-hidden="true">
-                            </i>
+                            <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
 
                         </div>
+
 
                         <div>
 
                             <span class="card-kicker">
                                 VISÃO GERAL
                             </span>
+
 
                             <h2>
                                 Resumo da turma
@@ -717,6 +1202,7 @@
 
 
                     <div class="estatisticas">
+
 
                         <div class="estatistica">
 
@@ -774,9 +1260,13 @@
                 </div>
 
 
-                <!-- OBSERVAÇÕES -->
+
+                <!-- ====================================================
+                     OBSERVAÇÕES
+                     ==================================================== -->
 
                 <div class="card observacoes">
+
 
                     <div class="card-header">
 
@@ -786,11 +1276,13 @@
                                 ACOMPANHAMENTO
                             </span>
 
+
                             <h2>
                                 Observações recentes
                             </h2>
 
                         </div>
+
 
                         <a href="#">
                             Ver todas
@@ -799,12 +1291,12 @@
                     </div>
 
 
+
                     <div class="observacao-item">
 
                         <div class="obs-icon">
 
-                            <i class="fa-regular fa-file-lines" aria-hidden="true">
-                            </i>
+                            <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
 
                         </div>
 
@@ -815,13 +1307,17 @@
                                 João Pedro Silva
                             </strong>
 
+
                             <small>
                                 25/08/2026 às 14:30
                             </small>
 
+
                             <p>
+
                                 "Apresentou boa evolução nas
                                 atividades práticas..."
+
                             </p>
 
                         </div>
@@ -829,12 +1325,12 @@
                     </div>
 
 
+
                     <div class="observacao-item">
 
                         <div class="obs-icon">
 
-                            <i class="fa-regular fa-file-lines" aria-hidden="true">
-                            </i>
+                            <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
 
                         </div>
 
@@ -845,13 +1341,17 @@
                                 Maria Eduarda Santos
                             </strong>
 
+
                             <small>
                                 20/08/2026 às 10:15
                             </small>
 
+
                             <p>
+
                                 "Participa ativamente das aulas
                                 e demonstra interesse..."
+
                             </p>
 
                         </div>
@@ -859,12 +1359,12 @@
                     </div>
 
 
+
                     <div class="observacao-item">
 
                         <div class="obs-icon">
 
-                            <i class="fa-regular fa-file-lines" aria-hidden="true">
-                            </i>
+                            <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
 
                         </div>
 
@@ -875,18 +1375,23 @@
                                 Lucas Gabriel Oliveira
                             </strong>
 
+
                             <small>
                                 18/08/2026 às 16:45
                             </small>
 
+
                             <p>
+
                                 "Dificuldade em lógica, mas com
                                 melhora significativa."
+
                             </p>
 
                         </div>
 
                     </div>
+
 
 
                     <button type="button" class="btn-todas">
@@ -902,6 +1407,7 @@
         </section>
 
     </main>
+
 
 
     <!-- ================================================================
@@ -931,21 +1437,31 @@
 
 
             <p class="modal-subtitulo">
+
                 Adicione uma observação sobre o desenvolvimento
                 do aluno.
+
             </p>
 
+
+
+            <!-- ALUNO -->
 
             <label for="alunoSelecionado">
                 Aluno
             </label>
 
+
             <input type="text" id="alunoSelecionado" readonly>
 
+
+
+            <!-- TIPO -->
 
             <label for="tipoObservacao">
                 Tipo de observação
             </label>
+
 
             <select id="tipoObservacao">
 
@@ -953,21 +1469,26 @@
                     Desempenho acadêmico
                 </option>
 
+
                 <option value="Comportamento">
                     Comportamento
                 </option>
+
 
                 <option value="Participação">
                     Participação
                 </option>
 
+
                 <option value="Frequência">
                     Frequência
                 </option>
 
+
                 <option value="Desenvolvimento">
                     Desenvolvimento
                 </option>
+
 
                 <option value="Outro">
                     Outro
@@ -976,14 +1497,22 @@
             </select>
 
 
+
+            <!-- OBSERVAÇÃO -->
+
             <label for="textoObservacao">
                 Observação
             </label>
 
+
             <textarea id="textoObservacao" placeholder="Digite aqui sua observação sobre o aluno..."></textarea>
 
 
+
+            <!-- AÇÕES -->
+
             <div class="modal-acoes">
+
 
                 <button type="button" class="btn-cancelar" id="btnCancelarModal">
 
@@ -1005,6 +1534,7 @@
         </div>
 
     </div>
+
 
 
     <!-- ================================================================
@@ -1055,10 +1585,10 @@
             </div>
 
 
+
             <!-- REDES SOCIAIS -->
 
             <div class="footer-redes" id="contatos">
-
 
                 <h3>
                     Conecte-se
@@ -1100,6 +1630,7 @@
             </div>
 
 
+
             <!-- PESQUISA E PARCEIROS -->
 
             <div class="footer-links">
@@ -1124,8 +1655,7 @@
 
                     <button type="submit" id="footerSearchBtn" aria-label="Pesquisar">
 
-                        <i class="fas fa-search" aria-hidden="true">
-                        </i>
+                        <i class="fas fa-search" aria-hidden="true"></i>
 
                     </button>
 
@@ -1151,7 +1681,9 @@
                     </a>
 
 
-                    <span>|</span>
+                    <span>
+                        |
+                    </span>
 
 
                     <a href="#">
@@ -1165,12 +1697,12 @@
         </div>
 
 
+
         <!-- LOCALIZAÇÃO -->
 
         <div class="footer-local">
 
-            <i class="fas fa-location-dot" aria-hidden="true">
-            </i>
+            <i class="fas fa-location-dot" aria-hidden="true"></i>
 
 
             <a href="https://maps.app.goo.gl/6A3dxDU1zrD2bHD7A" target="_blank" rel="noopener noreferrer">
@@ -1181,6 +1713,7 @@
             </a>
 
         </div>
+
 
 
         <!-- RODAPÉ INFERIOR -->
@@ -1217,18 +1750,20 @@
 
         </div>
 
-        <!-- ================================================================
-         BOTÃO VOLTAR AO TOPO
-         ================================================================ -->
+
+
+        <!-- ============================================================
+             BOTÃO VOLTAR AO TOPO
+             ============================================================ -->
 
         <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
 
-            <i class="fas fa-chevron-up" aria-hidden="true">
-            </i>
+            <i class="fas fa-chevron-up" aria-hidden="true"></i>
 
         </button>
 
     </footer>
+
 
 
     <!-- ================================================================

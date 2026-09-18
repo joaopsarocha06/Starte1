@@ -1,5 +1,6 @@
 /* ==========================================================================
    MURAL.CSS — STARTÊ / SENAC
+   Versão consolidada
    Padrão visual compartilhado com HOME / CURSOS / CONDUTA / EVENTOS
    ========================================================================== */
 
@@ -9,6 +10,7 @@
    ========================================================================== */
 
 :root {
+    /* Cores SENAC */
     --senac-blue: #0b5195;
     --senac-blue-dark: #004a94;
     --senac-blue-deep: #003f7d;
@@ -17,37 +19,44 @@
     --senac-orange-dark: #d68211;
     --senac-orange-light: #f7b84b;
 
+    /* Textos */
     --text-dark: #002f6c;
     --text-title: #19376d;
     --text-paragraph: #707070;
 
+    /* Fundos */
     --bg-light: #f7f9fb;
-
     --white: #ffffff;
     --black: #222222;
 
+    /* Bordas */
     --border-light: rgba(0, 47, 108, 0.08);
     --border-medium: rgba(11, 81, 149, 0.14);
 
+    /* Sombras */
     --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.06);
     --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.12);
 
+    /* Transições */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.45s ease;
 
+    /* Layout */
     --container-width: 90vw;
     --container-max-width: 1440px;
 
     --header-height: 90px;
 
+    /* Bordas */
     --radius-sm: 8px;
     --radius-md: 14px;
     --radius-lg: 20px;
     --radius-xl: 28px;
     --radius-pill: 999px;
 
+    /* Fonte */
     --font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -153,73 +162,6 @@ ul {
     width: min(var(--container-width),
             var(--container-max-width));
 
-    margin: 0 auto;
-
-    display: grid;
-
-    grid-template-columns:
-        180px minmax(0, 1fr) 240px;
-
-    align-items: center;
-
-    gap: 30px;
-}
-
-
-/* ==========================================================================
-   LOGO
-   ========================================================================== */
-
-.logo-area {
-    display: flex;
-    align-items: center;
-
-    pointer-events: auto;
-}
-
-.logo-area a {
-    display: flex;
-    align-items: center;
-
-    pointer-events: auto;
-}
-
-.logo-img {
-    width: auto;
-    height: 56px;
-
-    object-fit: contain;
-
-    transition:
-        transform var(--transition-normal),
-        opacity var(--transition-normal);
-}
-
-.logo-img:hover {
-    transform: scale(1.03);
-
-    opacity: 0.94;
-}
-
-
-.main-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-
-    background: transparent;
-
-    z-index: 1000;
-
-    pointer-events: none;
-}
-
-.header-container {
-    width: var(--container-width);
-    max-width: var(--container-max-width);
-
     min-height: var(--header-height);
 
     margin: 0 auto;
@@ -233,7 +175,7 @@ ul {
 
 
 /* ==========================================================================
-   02. LOGO
+   05. LOGO
    ========================================================================== */
 
 .logo-area {
@@ -248,6 +190,8 @@ ul {
 .logo-area a {
     display: flex;
     align-items: center;
+
+    pointer-events: auto;
 }
 
 .logo-img {
@@ -259,16 +203,19 @@ ul {
     object-fit: contain;
 
     transition:
-        transform var(--transition-fast);
+        transform var(--transition-fast),
+        opacity var(--transition-fast);
 }
 
 .logo-img:hover {
     transform: scale(1.03);
+
+    opacity: 0.94;
 }
 
 
 /* ==========================================================================
-   03. PÍLULA DE NAVEGAÇÃO
+   06. PÍLULA DE NAVEGAÇÃO
    ========================================================================== */
 
 .nav-menu {
@@ -288,18 +235,12 @@ ul {
     align-items: center;
     justify-content: center;
 
-    background-color: rgba(240,
-            242,
-            245,
-            0.88);
+    background-color: rgba(240, 242, 245, 0.88);
 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 
-    border: 1px solid rgba(255,
-            255,
-            255,
-            0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 
     border-radius: var(--radius-pill);
 
@@ -364,8 +305,7 @@ ul {
 
     transform: translateX(-50%);
 
-    transition:
-        width var(--transition-fast);
+    transition: width var(--transition-fast);
 }
 
 .nav-link:hover,
@@ -380,10 +320,12 @@ ul {
 
 
 /* ==========================================================================
-   04. ÁREA DE AÇÕES / PERFIL
+   07. ÁREA DE AÇÕES / PERFIL
    ========================================================================== */
 
 .action-area {
+    position: relative;
+
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -394,14 +336,12 @@ ul {
 
     pointer-events: auto;
 
-    position: relative;
-
     z-index: 2100;
 }
 
 
 /* ==========================================================================
-   05. PERFIL DO USUÁRIO
+   08. PERFIL DO USUÁRIO
    ========================================================================== */
 
 .user-profile {
@@ -495,7 +435,7 @@ ul {
 }
 
 .user-profile-name {
-    max-width: 100px;
+    max-width: 110px;
 
     overflow: hidden;
 
@@ -522,10 +462,7 @@ ul {
 
     border-radius: 50%;
 
-    background-color: rgba(11,
-            81,
-            149,
-            0.08);
+    background-color: rgba(11, 81, 149, 0.08);
 
     color: var(--senac-blue);
 
@@ -547,7 +484,7 @@ ul {
 
 
 /* ==========================================================================
-   06. MENU DO PERFIL
+   09. MENU DO PERFIL
    ========================================================================== */
 
 .user-profile-menu {
@@ -570,7 +507,6 @@ ul {
 
     opacity: 0;
     visibility: hidden;
-
     pointer-events: none;
 
     transform: translateY(-8px);
@@ -635,10 +571,7 @@ ul {
 }
 
 .user-profile-menu-item:hover {
-    background-color: rgba(11,
-            81,
-            149,
-            0.07);
+    background-color: rgba(11, 81, 149, 0.07);
 
     color: var(--senac-blue);
 }
@@ -652,10 +585,7 @@ ul {
 }
 
 .user-profile-menu-item.logout:hover {
-    background-color: rgba(196,
-            67,
-            67,
-            0.07);
+    background-color: rgba(196, 67, 67, 0.07);
 }
 
 .user-profile-divider {
@@ -667,8 +597,9 @@ ul {
     background-color: var(--border-light);
 }
 
+
 /* ==========================================================================
-   07. HERO
+   10. HERO
    ========================================================================== */
 
 .mural-hero {
@@ -679,8 +610,7 @@ ul {
 
     margin: 0 auto;
 
-    padding:
-        170px 20px 70px;
+    padding: 170px 20px 70px;
 
     display: flex;
     align-items: center;
@@ -708,6 +638,8 @@ ul {
     font-weight: 800;
 
     letter-spacing: 1px;
+
+    text-transform: uppercase;
 }
 
 .section-label i {
@@ -721,9 +653,7 @@ ul {
 
     color: var(--text-dark);
 
-    font-size: clamp(34px,
-            4vw,
-            48px);
+    font-size: clamp(34px, 4vw, 48px);
 
     font-weight: 800;
 
@@ -748,7 +678,7 @@ ul {
 
 
 /* ==========================================================================
-   08. CONTAINER DO MURAL
+   11. CONTAINER DO MURAL
    ========================================================================== */
 
 .mural-container {
@@ -762,7 +692,7 @@ ul {
 
 
 /* ==========================================================================
-   09. FILTROS
+   12. FILTROS
    ========================================================================== */
 
 .filtros {
@@ -818,6 +748,8 @@ ul {
     font-size: 13px;
 
     transform: translateY(-50%);
+
+    pointer-events: none;
 }
 
 .campo input,
@@ -853,10 +785,7 @@ ul {
     border-color: var(--senac-blue);
 
     box-shadow:
-        0 0 0 3px rgba(11,
-            81,
-            149,
-            0.08);
+        0 0 0 3px rgba(11, 81, 149, 0.08);
 }
 
 .btn-filtrar {
@@ -892,15 +821,12 @@ ul {
     transform: translateY(-2px);
 
     box-shadow:
-        0 8px 18px rgba(234,
-            148,
-            31,
-            0.20);
+        0 8px 18px rgba(234, 148, 31, 0.20);
 }
 
 
 /* ==========================================================================
-   10. DASHBOARD
+   13. DASHBOARD
    ========================================================================== */
 
 .dashboard {
@@ -926,7 +852,7 @@ ul {
 
 
 /* ==========================================================================
-   11. CARD ALUNOS
+   14. CARD DE ALUNOS
    ========================================================================== */
 
 .alunos-card {
@@ -955,6 +881,8 @@ ul {
     font-weight: 800;
 
     letter-spacing: 0.9px;
+
+    text-transform: uppercase;
 }
 
 .card-header h2,
@@ -973,10 +901,7 @@ ul {
 
     border-radius: var(--radius-pill);
 
-    background-color: rgba(234,
-            148,
-            31,
-            0.11);
+    background-color: rgba(234, 148, 31, 0.11);
 
     color: var(--senac-orange-dark);
 
@@ -989,7 +914,7 @@ ul {
 
 
 /* ==========================================================================
-   12. ALUNO
+   15. ALUNO
    ========================================================================== */
 
 .aluno {
@@ -1025,10 +950,7 @@ ul {
 }
 
 .aluno:hover {
-    border-color: rgba(11,
-            81,
-            149,
-            0.16);
+    border-color: rgba(11, 81, 149, 0.16);
 
     box-shadow: var(--shadow-sm);
 
@@ -1045,10 +967,7 @@ ul {
 
     border-radius: 50%;
 
-    background-color: rgba(11,
-            81,
-            149,
-            0.09);
+    background-color: rgba(11, 81, 149, 0.09);
 
     color: var(--senac-blue);
 
@@ -1086,6 +1005,11 @@ ul {
 
     padding: 0 2px;
 }
+
+
+/* ==========================================================================
+   16. ÚLTIMA OBSERVAÇÃO
+   ========================================================================== */
 
 .ultima-observacao {
     min-width: 0;
@@ -1137,7 +1061,7 @@ ul {
 
 
 /* ==========================================================================
-   AÇÕES
+   17. AÇÕES DO ALUNO
    ========================================================================== */
 
 .acoes {
@@ -1203,15 +1127,12 @@ ul {
     background-color: var(--senac-orange-dark);
 
     box-shadow:
-        0 6px 15px rgba(234,
-            148,
-            31,
-            0.20);
+        0 6px 15px rgba(234, 148, 31, 0.20);
 }
 
 
 /* ==========================================================================
-   13. SIDEBAR
+   18. SIDEBAR
    ========================================================================== */
 
 .sidebar {
@@ -1223,7 +1144,7 @@ ul {
 
 
 /* ==========================================================================
-   RESUMO
+   19. RESUMO
    ========================================================================== */
 
 .resumo {
@@ -1234,10 +1155,7 @@ ul {
             #fffaf0,
             #fff5df);
 
-    border-color: rgba(234,
-            148,
-            31,
-            0.15);
+    border-color: rgba(234, 148, 31, 0.15);
 }
 
 .resumo-title {
@@ -1288,10 +1206,7 @@ ul {
 
     background-color: var(--white);
 
-    border: 1px solid rgba(234,
-            148,
-            31,
-            0.10);
+    border: 1px solid rgba(234, 148, 31, 0.10);
 
     border-radius: var(--radius-md);
 }
@@ -1322,7 +1237,7 @@ ul {
 
 
 /* ==========================================================================
-   14. OBSERVAÇÕES RECENTES
+   20. OBSERVAÇÕES RECENTES
    ========================================================================== */
 
 .observacoes {
@@ -1340,8 +1255,7 @@ ul {
 
     font-weight: 800;
 
-    transition:
-        color var(--transition-fast);
+    transition: color var(--transition-fast);
 }
 
 .observacoes .card-header a:hover {
@@ -1358,6 +1272,10 @@ ul {
     border-bottom: 1px solid #edf0f3;
 }
 
+.observacao-item:last-of-type {
+    border-bottom: none;
+}
+
 .obs-icon {
     width: 38px;
     height: 38px;
@@ -1370,10 +1288,7 @@ ul {
 
     border-radius: 10px;
 
-    background-color: rgba(234,
-            148,
-            31,
-            0.11);
+    background-color: rgba(234, 148, 31, 0.11);
 
     color: var(--senac-orange-dark);
 
@@ -1421,10 +1336,7 @@ ul {
 
     margin-top: 18px;
 
-    border: 1px solid rgba(234,
-            148,
-            31,
-            0.55);
+    border: 1px solid rgba(234, 148, 31, 0.55);
 
     border-radius: var(--radius-pill);
 
@@ -1452,11 +1364,7 @@ ul {
 
 
 /* ==========================================================================
-   15. FOOTER
-   ========================================================================== */
-
-/* ==========================================================================
-   12. FOOTER
+   21. FOOTER
    ========================================================================== */
 
 .site-footer {
@@ -1473,7 +1381,8 @@ ul {
 }
 
 .footer-container {
-    width: min(var(--container-width), var(--container-max-width));
+    width: min(var(--container-width),
+            var(--container-max-width));
 
     margin: 0 auto;
 
@@ -1508,6 +1417,7 @@ ul {
     color: var(--white);
 
     font-size: 14px;
+
     font-weight: 700;
 
     line-height: 1.7;
@@ -1524,7 +1434,6 @@ ul {
 
 .footer-badges img {
     width: 80px;
-
     height: auto;
 
     object-fit: contain;
@@ -1553,6 +1462,7 @@ ul {
     color: var(--white);
 
     font-size: 20px;
+
     font-weight: 800;
 }
 
@@ -1631,6 +1541,7 @@ ul {
     color: var(--white);
 
     font-size: 20px;
+
     font-weight: 800;
 }
 
@@ -1654,6 +1565,7 @@ ul {
     padding: 0 15px;
 
     border: none;
+
     border-radius: 8px 0 0 8px;
 
     background-color: #2f5f98;
@@ -1661,6 +1573,7 @@ ul {
     color: var(--white);
 
     font-size: 14px;
+
     font-weight: 700;
 
     outline: none;
@@ -1675,6 +1588,8 @@ ul {
     height: 45px;
 
     flex-shrink: 0;
+
+    border: none;
 
     border-radius: 0 8px 8px 0;
 
@@ -1712,6 +1627,7 @@ ul {
     color: var(--white);
 
     font-size: 14px;
+
     font-weight: 700;
 
     transition:
@@ -1743,6 +1659,7 @@ ul {
     color: var(--white);
 
     font-size: 14px;
+
     font-weight: 700;
 
     text-align: center;
@@ -1764,7 +1681,8 @@ ul {
    -------------------------------------------------------------------------- */
 
 .footer-bottom {
-    width: min(var(--container-width), var(--container-max-width));
+    width: min(var(--container-width),
+            var(--container-max-width));
 
     margin: 0 auto;
 
@@ -1789,6 +1707,7 @@ ul {
     color: var(--white);
 
     font-size: 14px;
+
     font-weight: 700;
 }
 
@@ -1799,6 +1718,7 @@ ul {
     gap: 7px;
 
     font-size: 14px;
+
     font-weight: 700;
 }
 
@@ -1808,6 +1728,7 @@ ul {
     color: var(--white);
 
     font-size: 15px;
+
     font-weight: 800;
 }
 
@@ -1817,7 +1738,7 @@ ul {
 
 
 /* ==========================================================================
-   13. BOTÃO VOLTAR AO TOPO
+   22. BOTÃO VOLTAR AO TOPO
    ========================================================================== */
 
 .back-to-top {
@@ -1832,6 +1753,8 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    border: none;
 
     border-radius: 50%;
 
@@ -1862,6 +1785,7 @@ ul {
 
 .back-to-top.show {
     opacity: 1;
+
     visibility: visible;
 
     transform: translateY(0);
@@ -1875,7 +1799,7 @@ ul {
 
 
 /* ==========================================================================
-   14. EFEITO RIPPLE
+   23. EFEITO RIPPLE
    ========================================================================== */
 
 .ripple-effect {
@@ -1894,6 +1818,7 @@ ul {
 }
 
 @keyframes ripple-animation {
+
     to {
         transform: scale(4);
 
@@ -1901,13 +1826,10 @@ ul {
     }
 }
 
-/* ==========================================================================
-   15. MODAL — NOVA OBSERVAÇÃO
-   ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   FUNDO DO MODAL
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   24. MODAL — NOVA OBSERVAÇÃO
+   ========================================================================== */
 
 .modal-overlay {
     position: fixed;
@@ -1930,6 +1852,7 @@ ul {
 
     opacity: 0;
     visibility: hidden;
+
     pointer-events: none;
 
     z-index: 10000;
@@ -1938,8 +1861,6 @@ ul {
         opacity var(--transition-normal),
         visibility var(--transition-normal);
 }
-
-/* Modal aberto */
 
 .modal-overlay.show,
 .modal-overlay.active {
@@ -1980,8 +1901,6 @@ ul {
     transition:
         transform var(--transition-normal);
 }
-
-/* Animação ao abrir */
 
 .modal-overlay.show .modal,
 .modal-overlay.active .modal {
@@ -2025,10 +1944,7 @@ ul {
 }
 
 .fechar:hover {
-    background-color: rgba(234,
-            148,
-            31,
-            0.12);
+    background-color: rgba(234, 148, 31, 0.12);
 
     color: var(--senac-orange-dark);
 
@@ -2036,10 +1952,7 @@ ul {
 }
 
 .fechar:focus-visible {
-    outline: 3px solid rgba(234,
-            148,
-            31,
-            0.25);
+    outline: 3px solid rgba(234, 148, 31, 0.25);
 
     outline-offset: 2px;
 }
@@ -2108,8 +2021,7 @@ ul {
 .modal>label {
     display: block;
 
-    margin:
-        0 0 7px;
+    margin: 0 0 7px;
 
     color: var(--text-title);
 
@@ -2142,7 +2054,9 @@ ul {
 }
 
 
-/* Campo aluno */
+/* --------------------------------------------------------------------------
+   ALUNO SELECIONADO
+   -------------------------------------------------------------------------- */
 
 #alunoSelecionado {
     height: 46px;
@@ -2159,21 +2073,24 @@ ul {
 }
 
 
-/* Select */
+/* --------------------------------------------------------------------------
+   TIPO DE OBSERVAÇÃO
+   -------------------------------------------------------------------------- */
 
 #tipoObservacao {
     height: 46px;
 
     margin-bottom: 18px;
 
-    padding:
-        0 40px 0 14px;
+    padding: 0 40px 0 14px;
 
     cursor: pointer;
 }
 
 
-/* Textarea */
+/* --------------------------------------------------------------------------
+   TEXTO DA OBSERVAÇÃO
+   -------------------------------------------------------------------------- */
 
 #textoObservacao {
     min-height: 145px;
@@ -2195,7 +2112,7 @@ ul {
 
 
 /* --------------------------------------------------------------------------
-   FOCO DOS CAMPOS
+   FOCO
    -------------------------------------------------------------------------- */
 
 .modal>input:focus,
@@ -2206,10 +2123,7 @@ ul {
     background-color: var(--white);
 
     box-shadow:
-        0 0 0 3px rgba(11,
-            81,
-            149,
-            0.08);
+        0 0 0 3px rgba(11, 81, 149, 0.08);
 }
 
 
@@ -2237,8 +2151,7 @@ ul {
 
     gap: 8px;
 
-    padding:
-        9px 18px;
+    padding: 9px 18px;
 
     border-radius: var(--radius-pill);
 
@@ -2262,7 +2175,7 @@ ul {
 
 
 /* --------------------------------------------------------------------------
-   BOTÃO CANCELAR
+   CANCELAR
    -------------------------------------------------------------------------- */
 
 .btn-cancelar {
@@ -2283,7 +2196,7 @@ ul {
 
 
 /* --------------------------------------------------------------------------
-   BOTÃO SALVAR
+   SALVAR
    -------------------------------------------------------------------------- */
 
 .btn-salvar {
@@ -2294,10 +2207,7 @@ ul {
     color: var(--white);
 
     box-shadow:
-        0 6px 18px rgba(234,
-            148,
-            31,
-            0.16);
+        0 6px 18px rgba(234, 148, 31, 0.16);
 }
 
 .btn-salvar:hover {
@@ -2306,10 +2216,7 @@ ul {
     background-color: var(--senac-orange-dark);
 
     box-shadow:
-        0 9px 22px rgba(234,
-            148,
-            31,
-            0.22);
+        0 9px 22px rgba(234, 148, 31, 0.22);
 }
 
 .btn-salvar i {
@@ -2317,94 +2224,11 @@ ul {
 }
 
 
-/* --------------------------------------------------------------------------
-   RESPONSIVIDADE DO MODAL
-   -------------------------------------------------------------------------- */
-
-@media (max-width: 480px) {
-
-    .modal-overlay {
-        align-items: flex-end;
-
-        padding: 12px;
-    }
-
-    .modal {
-        width: 100%;
-
-        max-height: calc(100vh - 24px);
-
-        padding: 28px 20px 20px;
-
-        border-radius:
-            var(--radius-xl) var(--radius-xl) var(--radius-lg) var(--radius-lg);
-    }
-
-    .fechar {
-        top: 15px;
-        right: 15px;
-
-        width: 36px;
-        height: 36px;
-    }
-
-    .modal h2 {
-        margin-right: 40px;
-
-        font-size: 21px;
-    }
-
-    .modal-subtitulo {
-        font-size: 13px;
-
-        margin-bottom: 21px;
-    }
-
-    .modal>input,
-    .modal>select {
-        height: 44px;
-    }
-
-    #textoObservacao {
-        min-height: 130px;
-    }
-
-    .modal-acoes {
-        flex-direction: column-reverse;
-
-        align-items: stretch;
-    }
-
-    .modal-acoes button {
-        width: 100%;
-    }
-}
-
-
-/* --------------------------------------------------------------------------
-   ACESSIBILIDADE / REDUÇÃO DE MOVIMENTO
-   -------------------------------------------------------------------------- */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .modal-overlay,
-    .modal,
-    .fechar,
-    .modal-acoes button {
-        transition: none;
-    }
-}
-
 /* ==========================================================================
-   18. RESPONSIVIDADE — 1200PX
+   25. RESPONSIVIDADE — 1200PX
    ========================================================================== */
 
 @media (max-width: 1200px) {
-
-    .header-container {
-        grid-template-columns:
-            160px minmax(0, 1fr) 190px;
-    }
 
     .nav-menu {
         padding-left: 28px;
@@ -2416,7 +2240,7 @@ ul {
     }
 
     .nav-link {
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .dashboard {
@@ -2438,7 +2262,7 @@ ul {
 
 
 /* ==========================================================================
-   19. RESPONSIVIDADE — 992PX
+   26. RESPONSIVIDADE — 992PX
    ========================================================================== */
 
 @media (max-width: 992px) {
@@ -2517,7 +2341,7 @@ ul {
 
 
 /* ==========================================================================
-   20. RESPONSIVIDADE — 768PX
+   27. RESPONSIVIDADE — 768PX
    ========================================================================== */
 
 @media (max-width: 768px) {
@@ -2544,10 +2368,9 @@ ul {
     .nav-menu {
         top: 18px;
 
-        padding:
-            11px 16px;
-
         max-width: 94vw;
+
+        padding: 11px 16px;
     }
 
     .nav-list {
@@ -2655,11 +2478,15 @@ ul {
 
     .footer-local {
         width: 90vw;
+
+        margin: 0 auto;
     }
 
     .footer-bottom {
+        width: 90vw;
+
         padding:
-            20px 5vw;
+            20px 0;
 
         flex-direction: column;
 
@@ -2683,22 +2510,20 @@ ul {
 
 
 /* ==========================================================================
-   21. RESPONSIVIDADE — 480PX
+   28. RESPONSIVIDADE — 600PX
    ========================================================================== */
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
 
     .nav-menu {
-        top: 16px;
-
-        max-width: 92vw;
+        max-width: 96vw;
 
         padding:
-            10px 13px;
+            10px 12px;
     }
 
     .nav-list {
-        gap: 16px;
+        gap: 14px;
     }
 
     .nav-link {
@@ -2706,9 +2531,70 @@ ul {
     }
 
     .mural-hero {
+        padding-top: 195px;
+    }
+
+    .filtros {
+        padding: 18px;
+    }
+
+    .card-header {
+        align-items: flex-start;
+    }
+
+    .aluno {
+        padding: 14px;
+
+        gap: 12px;
+    }
+
+    .acoes {
+        flex-wrap: wrap;
+    }
+
+    .footer-badges {
+        flex-wrap: wrap;
+    }
+}
+
+
+/* ==========================================================================
+   29. RESPONSIVIDADE — 480PX
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+    .header-container {
+        width: 90vw;
+    }
+
+    .logo-img {
+        height: 44px;
+    }
+
+    .nav-menu {
+        top: 16px;
+
+        max-width: 94vw;
+
+        padding:
+            9px 10px;
+    }
+
+    .nav-list {
+        gap: 12px;
+    }
+
+    .nav-link {
+        font-size: 9px;
+
+        letter-spacing: 0.2px;
+    }
+
+    .mural-hero {
         width: 90vw;
 
-        padding-top: 200px;
+        padding-top: 190px;
     }
 
     .mural-hero h1 {
@@ -2729,6 +2615,12 @@ ul {
         padding: 18px;
     }
 
+    .card-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
     .card-header h2,
     .resumo-title h2 {
         font-size: 19px;
@@ -2742,9 +2634,17 @@ ul {
     }
 
     .aluno {
+        grid-template-columns:
+            40px minmax(0, 1fr);
+
         padding: 14px;
 
         gap: 12px;
+    }
+
+    .avatar {
+        width: 40px;
+        height: 40px;
     }
 
     .aluno-info h3 {
@@ -2764,6 +2664,8 @@ ul {
     }
 
     .acoes {
+        grid-column: 2;
+
         flex-wrap: wrap;
     }
 
@@ -2796,27 +2698,29 @@ ul {
         font-size: 13px;
     }
 
-    .modal {
-        padding: 27px 21px;
+    .footer-container {
+        padding:
+            45px 0 35px;
     }
 
-    .modal h2 {
-        font-size: 20px;
+    .footer-sobre .logo {
+        width: 135px;
     }
 
-    .modal-subtitulo {
-        font-size: 14px;
+    .footer-redes h3,
+    .footer-links h2 {
+        font-size: 18px;
     }
 
-    .modal-acoes {
-        flex-direction: column-reverse;
-    }
-
-    .modal-acoes button {
-        width: 100%;
+    .footer-search input {
+        font-size: 13px;
     }
 
     .footer-local {
+        width: 90vw;
+
+        padding: 14px;
+
         align-items: flex-start;
     }
 
@@ -2830,6 +2734,90 @@ ul {
 
         width: 44px;
         height: 44px;
+    }
+}
+
+
+/* ==========================================================================
+   30. MODAL — MOBILE
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+    .modal-overlay {
+        align-items: flex-end;
+
+        padding: 12px;
+    }
+
+    .modal {
+        width: 100%;
+
+        max-height: calc(100vh - 24px);
+
+        padding: 28px 20px 20px;
+
+        border-radius:
+            var(--radius-xl) var(--radius-xl) var(--radius-lg) var(--radius-lg);
+    }
+
+    .fechar {
+        top: 15px;
+        right: 15px;
+
+        width: 36px;
+        height: 36px;
+    }
+
+    .modal h2 {
+        margin-right: 40px;
+
+        font-size: 21px;
+    }
+
+    .modal-subtitulo {
+        font-size: 13px;
+
+        margin-bottom: 21px;
+    }
+
+    .modal>input,
+    .modal>select {
+        height: 44px;
+    }
+
+    #textoObservacao {
+        min-height: 130px;
+    }
+
+    .modal-acoes {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .modal-acoes button {
+        width: 100%;
+    }
+}
+
+
+/* ==========================================================================
+   31. ACESSIBILIDADE — REDUÇÃO DE MOVIMENTO
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
 
