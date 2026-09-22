@@ -87,54 +87,68 @@
 
   <main class="container">
 
-
     <!-- ================= FILTROS ================= -->
 
-    <section class="filtros">
+    <section class="filtros" aria-label="Filtros de alunos">
+
+      <!-- BUSCA -->
 
       <div class="campo busca">
 
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
 
-        <input type="text" id="buscarAluno" placeholder="Buscar aluno por nome...">
+        <label for="buscarAluno" class="sr-only">
+          Buscar aluno
+        </label>
+
+        <input type="search" id="buscarAluno" placeholder="Buscar aluno por nome..." autocomplete="off">
 
       </div>
 
 
+      <!-- TURMA -->
+
       <div class="campo">
 
-        <label>Turma</label>
+        <label for="filtroTurma">
+          Turma
+        </label>
 
         <select id="filtroTurma">
-          <option value="">Todas as turmas</option>
-          <option value="2026.1">Turma 2026.1</option>
-          <option value="2026.2">Turma 2026.2</option>
+
+          <option value="">
+            Todas as turmas
+          </option>
+
         </select>
 
       </div>
 
+
+      <!-- CURSO -->
 
       <div class="campo">
 
-        <label>Curso</label>
+        <label for="filtroCurso">
+          Curso
+        </label>
 
         <select id="filtroCurso">
-          <option value="">Todos os cursos</option>
-          <option value="informatica">
-            Técnico em Informática
+
+          <option value="">
+            Todos os cursos
           </option>
 
-          <option value="administracao">
-            Técnico em Administração
-          </option>
         </select>
 
       </div>
 
 
-      <button class="btn-filtrar" onclick="filtrarAlunos()">
+      <!-- FILTRAR -->
 
-        <i class="fa-solid fa-filter"></i>
+      <button type="button" class="btn-filtrar" id="btnFiltrar">
+
+        <i class="fa-solid fa-filter" aria-hidden="true"></i>
 
         Filtrar
 
@@ -154,268 +168,35 @@
 
         <div class="card-header">
 
-          <h2>Alunos</h2>
+          <div>
 
-          <span class="contador">
-            12 alunos
-          </span>
+            <h2>
+              Alunos
+            </h2>
+
+            <span class="contador" id="contadorAlunos">
+              Carregando...
+            </span>
+
+          </div>
 
         </div>
 
 
-        <div id="listaAlunos">
+        <!-- MENSAGEM DE STATUS -->
 
+        <div id="statusAlunos" class="status-alunos" aria-live="polite">
 
-          <!-- ALUNO 1 -->
+          <i class="fa-solid fa-spinner fa-spin"></i>
 
-          <article class="aluno" data-nome="João Pedro Silva" data-turma="2026.1" data-curso="informatica">
+          Carregando alunos...
 
-            <div class="avatar">
-              <i class="fa-solid fa-user"></i>
-            </div>
+        </div>
 
 
-            <div class="aluno-info">
+        <!-- LISTA -->
 
-              <h3>
-                João Pedro Silva
-              </h3>
-
-              <span>
-                Técnico em Informática • Turma 2026.1
-              </span>
-
-            </div>
-
-
-            <div class="ultima-observacao">
-
-              <span>
-                Última observação:
-                <strong>25/08/2026</strong>
-              </span>
-
-              <p>
-                "Apresentou boa evolução nas atividades práticas..."
-              </p>
-
-            </div>
-
-
-            <div class="acoes">
-
-              <button class="btn-perfil">
-                <i class="fa-regular fa-eye"></i>
-                Ver perfil
-              </button>
-
-              <button class="btn-observacao" onclick="abrirModal('João Pedro Silva')">
-                <i class="fa-solid fa-plus"></i>
-                Observação
-              </button>
-
-            </div>
-
-          </article>
-
-
-          <!-- ALUNO 2 -->
-
-          <article class="aluno" data-nome="Maria Eduarda Santos" data-turma="2026.1" data-curso="informatica">
-
-            <div class="avatar">
-              <i class="fa-solid fa-user"></i>
-            </div>
-
-            <div class="aluno-info">
-
-              <h3>
-                Maria Eduarda Santos
-              </h3>
-
-              <span>
-                Técnico em Informática • Turma 2026.1
-              </span>
-
-            </div>
-
-            <div class="ultima-observacao">
-
-              <span>
-                Última observação:
-                <strong>20/08/2026</strong>
-              </span>
-
-              <p>
-                "Participa ativamente das aulas e demonstra interesse..."
-              </p>
-
-            </div>
-
-            <div class="acoes">
-
-              <button class="btn-perfil">
-                <i class="fa-regular fa-eye"></i>
-                Ver perfil
-              </button>
-
-              <button class="btn-observacao" onclick="abrirModal('Maria Eduarda Santos')">
-                <i class="fa-solid fa-plus"></i>
-                Observação
-              </button>
-
-            </div>
-
-          </article>
-
-
-          <!-- ALUNO 3 -->
-
-          <article class="aluno" data-nome="Lucas Gabriel Oliveira" data-turma="2026.1" data-curso="informatica">
-
-            <div class="avatar">
-              <i class="fa-solid fa-user"></i>
-            </div>
-
-            <div class="aluno-info">
-
-              <h3>
-                Lucas Gabriel Oliveira
-              </h3>
-
-              <span>
-                Técnico em Informática • Turma 2026.1
-              </span>
-
-            </div>
-
-            <div class="ultima-observacao">
-
-              <span>
-                Última observação:
-                <strong>18/08/2026</strong>
-              </span>
-
-              <p>
-                "Dificuldade em lógica, mas com melhora significativa."
-              </p>
-
-            </div>
-
-            <div class="acoes">
-
-              <button class="btn-perfil">
-                <i class="fa-regular fa-eye"></i>
-                Ver perfil
-              </button>
-
-              <button class="btn-observacao" onclick="abrirModal('Lucas Gabriel Oliveira')">
-                <i class="fa-solid fa-plus"></i>
-                Observação
-              </button>
-
-            </div>
-
-          </article>
-
-
-          <!-- ALUNO 4 -->
-
-          <article class="aluno" data-nome="Ana Beatriz Lima" data-turma="2026.1" data-curso="informatica">
-
-            <div class="avatar">
-              <i class="fa-solid fa-user"></i>
-            </div>
-
-            <div class="aluno-info">
-
-              <h3>
-                Ana Beatriz Lima
-              </h3>
-
-              <span>
-                Técnico em Informática • Turma 2026.1
-              </span>
-
-            </div>
-
-            <div class="ultima-observacao">
-
-              <span>
-                Última observação:
-                <strong>15/08/2026</strong>
-              </span>
-
-              <p>
-                "Excelente desempenho nas atividades práticas."
-              </p>
-
-            </div>
-
-            <div class="acoes">
-
-              <button class="btn-perfil">
-                <i class="fa-regular fa-eye"></i>
-                Ver perfil
-              </button>
-
-              <button class="btn-observacao" onclick="abrirModal('Ana Beatriz Lima')">
-                <i class="fa-solid fa-plus"></i>
-                Observação
-              </button>
-
-            </div>
-
-          </article>
-
-
-          <!-- ALUNO 5 -->
-
-          <article class="aluno" data-nome="Rafael Souza Pereira" data-turma="2026.1" data-curso="informatica">
-
-            <div class="avatar">
-              <i class="fa-solid fa-user"></i>
-            </div>
-
-            <div class="aluno-info">
-
-              <h3>
-                Rafael Souza Pereira
-              </h3>
-
-              <span>
-                Técnico em Informática • Turma 2026.1
-              </span>
-
-            </div>
-
-            <div class="ultima-observacao sem-observacao">
-
-              <span>
-                Nenhuma observação registrada
-              </span>
-
-              <p>
-                Seja o primeiro a registrar uma observação.
-              </p>
-
-            </div>
-
-            <div class="acoes">
-
-              <button class="btn-perfil">
-                <i class="fa-regular fa-eye"></i>
-                Ver perfil
-              </button>
-
-              <button class="btn-observacao" onclick="abrirModal('Rafael Souza Pereira')">
-                <i class="fa-solid fa-plus"></i>
-                Observação
-              </button>
-
-            </div>
-
-          </article>
+        <div id="listaAlunos" class="lista-alunos">
 
         </div>
 
@@ -427,14 +208,16 @@
       <aside class="sidebar">
 
 
-        <!-- RESUMO -->
+        <!-- ================= RESUMO ================= -->
 
         <div class="card resumo">
 
           <div class="resumo-title">
 
             <div class="icone-resumo">
-              <i class="fa-solid fa-chart-column"></i>
+
+              <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
+
             </div>
 
             <h2>
@@ -446,9 +229,12 @@
 
           <div class="estatisticas">
 
+
             <div class="estatistica">
 
-              <strong>12</strong>
+              <strong id="totalAlunos">
+                0
+              </strong>
 
               <span>
                 Total de alunos
@@ -459,7 +245,9 @@
 
             <div class="estatistica">
 
-              <strong>8</strong>
+              <strong id="alunosComObservacao">
+                0
+              </strong>
 
               <span>
                 Com observações
@@ -470,7 +258,9 @@
 
             <div class="estatistica">
 
-              <strong>4</strong>
+              <strong id="alunosSemObservacao">
+                0
+              </strong>
 
               <span>
                 Sem observações
@@ -481,7 +271,9 @@
 
             <div class="estatistica">
 
-              <strong>66%</strong>
+              <strong id="percentualAcompanhados">
+                0%
+              </strong>
 
               <span>
                 Alunos acompanhados
@@ -489,12 +281,13 @@
 
             </div>
 
+
           </div>
 
         </div>
 
 
-        <!-- OBSERVAÇÕES -->
+        <!-- ================= OBSERVAÇÕES RECENTES ================= -->
 
         <div class="card observacoes">
 
@@ -504,89 +297,29 @@
               Observações recentes
             </h2>
 
-            <a href="#">
+            <button type="button" class="link-button" id="btnVerTodas">
               Ver todas
-            </a>
+            </button>
 
           </div>
 
 
-          <div class="observacao-item">
+          <div id="listaObservacoesRecentes">
 
-            <div class="obs-icon">
+            <div class="sem-observacoes">
+
               <i class="fa-regular fa-file-lines"></i>
-            </div>
 
-            <div>
-
-              <strong>
-                João Pedro Silva
-              </strong>
-
-              <small>
-                25/08/2026 às 14:30
-              </small>
-
-              <p>
-                "Apresentou boa evolução nas atividades práticas..."
-              </p>
+              <span>
+                Nenhuma observação registrada.
+              </span>
 
             </div>
 
           </div>
 
 
-          <div class="observacao-item">
-
-            <div class="obs-icon">
-              <i class="fa-regular fa-file-lines"></i>
-            </div>
-
-            <div>
-
-              <strong>
-                Maria Eduarda Santos
-              </strong>
-
-              <small>
-                20/08/2026 às 10:15
-              </small>
-
-              <p>
-                "Participa ativamente das aulas e demonstra interesse..."
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="observacao-item">
-
-            <div class="obs-icon">
-              <i class="fa-regular fa-file-lines"></i>
-            </div>
-
-            <div>
-
-              <strong>
-                Lucas Gabriel Oliveira
-              </strong>
-
-              <small>
-                18/08/2026 às 16:45
-              </small>
-
-              <p>
-                "Dificuldade em lógica, mas com melhora significativa."
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <button class="btn-todas">
+          <button type="button" class="btn-todas" id="btnTodasObservacoes">
             Ver todas as observações
           </button>
 
@@ -598,15 +331,18 @@
 
   </main>
 
-  <!-- ================= MODAL ================= -->
 
-  <div class="modal-overlay" id="modal">
+  <!-- ================= MODAL DE OBSERVAÇÃO ================= -->
 
-    <div class="modal">
+  <div class="modal-overlay" id="modal" aria-hidden="true">
 
-      <!-- Botão fechar -->
-      <button type="button" class="fechar" id="btnFecharModal">
-        ×
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloModal">
+
+
+      <!-- FECHAR -->
+
+      <button type="button" class="fechar" id="btnFecharModal" aria-label="Fechar janela">
+        &times;
       </button>
 
 
@@ -615,7 +351,7 @@
       </span>
 
 
-      <h2>
+      <h2 id="tituloModal">
         Registrar feedback
       </h2>
 
@@ -625,65 +361,121 @@
       </p>
 
 
-      <label>
-        Aluno
-      </label>
+      <!-- ALUNO -->
 
-      <input type="text" id="alunoSelecionado" readonly>
+      <div class="modal-campo">
 
+        <label for="alunoSelecionado">
+          Aluno
+        </label>
 
-      <label>
-        Tipo de observação
-      </label>
+        <input type="text" id="alunoSelecionado" readonly>
 
-      <select id="tipoObservacao">
+        <input type="hidden" id="alunoSelecionadoId">
 
-        <option value="Desempenho acadêmico">
-          Desempenho acadêmico
-        </option>
-
-        <option value="Comportamento">
-          Comportamento
-        </option>
-
-        <option value="Participação">
-          Participação
-        </option>
-
-        <option value="Frequência">
-          Frequência
-        </option>
-
-        <option value="Desenvolvimento">
-          Desenvolvimento
-        </option>
-
-        <option value="Outro">
-          Outro
-        </option>
-
-      </select>
+      </div>
 
 
-      <label>
-        Observação
-      </label>
+      <!-- TIPO -->
 
-      <textarea id="textoObservacao" placeholder="Digite aqui sua observação sobre o aluno..."></textarea>
+      <div class="modal-campo">
 
+        <label for="tipoObservacao">
+          Tipo de observação
+        </label>
+
+        <select id="tipoObservacao">
+
+          <option value="Desempenho acadêmico">
+            Desempenho acadêmico
+          </option>
+
+          <option value="Comportamento">
+            Comportamento
+          </option>
+
+          <option value="Participação">
+            Participação
+          </option>
+
+          <option value="Frequência">
+            Frequência
+          </option>
+
+          <option value="Desenvolvimento">
+            Desenvolvimento
+          </option>
+
+          <option value="Outro">
+            Outro
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- OBSERVAÇÃO -->
+
+      <div class="modal-campo">
+
+        <label for="textoObservacao">
+          Observação
+        </label>
+
+        <textarea id="textoObservacao" maxlength="1000"
+          placeholder="Digite aqui sua observação sobre o aluno..."></textarea>
+
+        <small id="contadorCaracteres">
+          0 / 1000
+        </small>
+
+      </div>
+
+
+      <!-- AÇÕES -->
 
       <div class="modal-acoes">
 
-        <!-- Botão cancelar -->
         <button type="button" class="btn-cancelar" id="btnCancelarModal">
           Cancelar
         </button>
 
 
-        <!-- Botão salvar -->
-        <button type="button" class="btn-salvar" onclick="salvarObservacao()">
+        <button type="button" class="btn-salvar" id="btnSalvarObservacao">
+
+          <i class="fa-solid fa-check" aria-hidden="true"></i>
+
           Salvar observação
+
         </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= MODAL DE TODAS AS OBSERVAÇÕES ================= -->
+
+  <div class="modal-overlay" id="modalObservacoes" aria-hidden="true">
+
+    <div class="modal modal-observacoes" role="dialog" aria-modal="true" aria-labelledby="tituloTodasObservacoes">
+
+      <button type="button" class="fechar" id="btnFecharObservacoes" aria-label="Fechar">
+        &times;
+      </button>
+
+      <span class="section-label">
+        HISTÓRICO
+      </span>
+
+      <h2 id="tituloTodasObservacoes">
+        Todas as observações
+      </h2>
+
+      <div id="listaTodasObservacoes" class="lista-todas-observacoes">
 
       </div>
 
