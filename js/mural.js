@@ -7,10 +7,6 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_KEY
 );
 
-
-
-
-
 const campoBusca = document.getElementById("buscarAluno");
 
 campoBusca.addEventListener("input", function () {

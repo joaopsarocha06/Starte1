@@ -5,11 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Mural Docente | SENAC</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  >
+  <title>Mural Docente - Startê</title>
+
+  <meta name="description"
+    content="Startê - Página inicial do Senac. Conheça cursos profissionalizantes, técnicos e de graduação.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Startê - SENAC">
+  <meta property="og:description" content="Educação profissional de excelência há mais de 75 anos.">
+  <meta property="og:image" content="imagens/logo-branco.png">
+  <meta property="og:url" content="https://www.exemplo.com/home.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <link rel="stylesheet" href="./css/mural.css">
 </head>
 
@@ -17,35 +30,37 @@
 
   <!-- ================= NAVBAR ================= -->
 
-  <header class="navbar">
-
-    <div class="logo">
-      Logo SENAC
-    </div>
-
-    <nav>
-      <a href="#">HOME</a>
-      <a href="#">CURSOS</a>
-      <a href="#">CONDUTA</a>
-      <a href="#">EVENTOS</a>
-      <a href="#" class="active">MURAL DOCENTE</a>
-    </nav>
-
-    <div class="perfil">
-      <div class="perfil-icon">
-        <i class="fa-solid fa-user"></i>
+  <header class="main-header">
+    <div class="container header-container"> <!-- LOGO -->
+      <div class="logo-area"> <a href="home.html" aria-label="Página inicial do Startê"> <img
+            src="imagens/Senac_logo.svg.webp" alt="Logo Senac" class="logo-img"> </a> </div> <!-- MENU PRINCIPAL -->
+      <nav class="nav-menu" id="mainNav" aria-label="Menu principal">
+        <ul class="nav-list">
+          <li> <a href="home.html" class="nav-link" aria-current="page"> HOME </a> </li>
+          <li> <a href="cursos.html" class="nav-link"> ÁREAS </a> </li>
+          <li> <a href="conduta.html" class="nav-link"> CONDUTA </a> </li>
+          <li> <a href="eventos.html" class="nav-link"> EVENTOS </a> </li>
+          <li> <a href="mural.html" class="nav-link active"> MURAL DOCENTE </a> </li>
+        </ul>
+      </nav> <!-- ÁREA DE AÇÕES -->
+      <div class="action-area"> <!-- PERFIL DO USUÁRIO -->
+        <div class="user-profile" id="userProfile"> <button type="button" class="user-profile-button"
+            id="userProfileButton" aria-expanded="false" aria-haspopup="true" aria-controls="userProfileMenu"> <span
+              class="user-profile-icon"> <i class="fas fa-user" aria-hidden="true"></i> </span> <span
+              class="user-profile-info"> <span class="user-profile-welcome"> Bem-vindo </span> <span
+                class="user-profile-name" id="userProfileName"> Usuário </span> </span> <i
+              class="fas fa-chevron-down user-profile-arrow" aria-hidden="true"></i> </button> <!-- MENU DO PERFIL -->
+          <div class="user-profile-menu" id="userProfileMenu" role="menu"> <button type="button"
+              class="user-profile-menu-item" id="profileButton" role="menuitem"> <i class="fas fa-user"
+                aria-hidden="true"></i> <span> Meu perfil </span> </button>
+            <div class="user-profile-divider"></div> <button type="button" class="user-profile-menu-item logout"
+              id="logoutButton" role="menuitem"> <i class="fas fa-right-from-bracket" aria-hidden="true"></i> <span>
+                Sair </span> </button>
+          </div>
+        </div>
       </div>
-
-      <div>
-        <span>Olá, Professor(a)!</span>
-        <strong>Seu perfil</strong>
-      </div>
-
-      <i class="fa-solid fa-chevron-down"></i>
     </div>
-
   </header>
-
 
   <!-- ================= HERO ================= -->
 
@@ -81,11 +96,7 @@
 
         <i class="fa-solid fa-magnifying-glass"></i>
 
-        <input
-          type="text"
-          id="buscarAluno"
-          placeholder="Buscar aluno por nome..."
-        >
+        <input type="text" id="buscarAluno" placeholder="Buscar aluno por nome...">
 
       </div>
 
@@ -157,12 +168,7 @@
 
           <!-- ALUNO 1 -->
 
-          <article
-            class="aluno"
-            data-nome="João Pedro Silva"
-            data-turma="2026.1"
-            data-curso="informatica"
-          >
+          <article class="aluno" data-nome="João Pedro Silva" data-turma="2026.1" data-curso="informatica">
 
             <div class="avatar">
               <i class="fa-solid fa-user"></i>
@@ -203,10 +209,7 @@
                 Ver perfil
               </button>
 
-              <button
-                class="btn-observacao"
-                onclick="abrirModal('João Pedro Silva')"
-              >
+              <button class="btn-observacao" onclick="abrirModal('João Pedro Silva')">
                 <i class="fa-solid fa-plus"></i>
                 Observação
               </button>
@@ -218,12 +221,7 @@
 
           <!-- ALUNO 2 -->
 
-          <article
-            class="aluno"
-            data-nome="Maria Eduarda Santos"
-            data-turma="2026.1"
-            data-curso="informatica"
-          >
+          <article class="aluno" data-nome="Maria Eduarda Santos" data-turma="2026.1" data-curso="informatica">
 
             <div class="avatar">
               <i class="fa-solid fa-user"></i>
@@ -261,10 +259,7 @@
                 Ver perfil
               </button>
 
-              <button
-                class="btn-observacao"
-                onclick="abrirModal('Maria Eduarda Santos')"
-              >
+              <button class="btn-observacao" onclick="abrirModal('Maria Eduarda Santos')">
                 <i class="fa-solid fa-plus"></i>
                 Observação
               </button>
@@ -276,12 +271,7 @@
 
           <!-- ALUNO 3 -->
 
-          <article
-            class="aluno"
-            data-nome="Lucas Gabriel Oliveira"
-            data-turma="2026.1"
-            data-curso="informatica"
-          >
+          <article class="aluno" data-nome="Lucas Gabriel Oliveira" data-turma="2026.1" data-curso="informatica">
 
             <div class="avatar">
               <i class="fa-solid fa-user"></i>
@@ -319,10 +309,7 @@
                 Ver perfil
               </button>
 
-              <button
-                class="btn-observacao"
-                onclick="abrirModal('Lucas Gabriel Oliveira')"
-              >
+              <button class="btn-observacao" onclick="abrirModal('Lucas Gabriel Oliveira')">
                 <i class="fa-solid fa-plus"></i>
                 Observação
               </button>
@@ -334,12 +321,7 @@
 
           <!-- ALUNO 4 -->
 
-          <article
-            class="aluno"
-            data-nome="Ana Beatriz Lima"
-            data-turma="2026.1"
-            data-curso="informatica"
-          >
+          <article class="aluno" data-nome="Ana Beatriz Lima" data-turma="2026.1" data-curso="informatica">
 
             <div class="avatar">
               <i class="fa-solid fa-user"></i>
@@ -377,10 +359,7 @@
                 Ver perfil
               </button>
 
-              <button
-                class="btn-observacao"
-                onclick="abrirModal('Ana Beatriz Lima')"
-              >
+              <button class="btn-observacao" onclick="abrirModal('Ana Beatriz Lima')">
                 <i class="fa-solid fa-plus"></i>
                 Observação
               </button>
@@ -392,12 +371,7 @@
 
           <!-- ALUNO 5 -->
 
-          <article
-            class="aluno"
-            data-nome="Rafael Souza Pereira"
-            data-turma="2026.1"
-            data-curso="informatica"
-          >
+          <article class="aluno" data-nome="Rafael Souza Pereira" data-turma="2026.1" data-curso="informatica">
 
             <div class="avatar">
               <i class="fa-solid fa-user"></i>
@@ -434,10 +408,7 @@
                 Ver perfil
               </button>
 
-              <button
-                class="btn-observacao"
-                onclick="abrirModal('Rafael Souza Pereira')"
-              >
+              <button class="btn-observacao" onclick="abrirModal('Rafael Souza Pereira')">
                 <i class="fa-solid fa-plus"></i>
                 Observação
               </button>
@@ -627,8 +598,103 @@
 
   </main>
 
+  <!-- ================= MODAL ================= -->
 
-<footer class="site-footer">
+  <div class="modal-overlay" id="modal">
+
+    <div class="modal">
+
+      <!-- Botão fechar -->
+      <button type="button" class="fechar" id="btnFecharModal">
+        ×
+      </button>
+
+
+      <span class="section-label">
+        NOVA OBSERVAÇÃO
+      </span>
+
+
+      <h2>
+        Registrar feedback
+      </h2>
+
+
+      <p class="modal-subtitulo">
+        Adicione uma observação sobre o desenvolvimento do aluno.
+      </p>
+
+
+      <label>
+        Aluno
+      </label>
+
+      <input type="text" id="alunoSelecionado" readonly>
+
+
+      <label>
+        Tipo de observação
+      </label>
+
+      <select id="tipoObservacao">
+
+        <option value="Desempenho acadêmico">
+          Desempenho acadêmico
+        </option>
+
+        <option value="Comportamento">
+          Comportamento
+        </option>
+
+        <option value="Participação">
+          Participação
+        </option>
+
+        <option value="Frequência">
+          Frequência
+        </option>
+
+        <option value="Desenvolvimento">
+          Desenvolvimento
+        </option>
+
+        <option value="Outro">
+          Outro
+        </option>
+
+      </select>
+
+
+      <label>
+        Observação
+      </label>
+
+      <textarea id="textoObservacao" placeholder="Digite aqui sua observação sobre o aluno..."></textarea>
+
+
+      <div class="modal-acoes">
+
+        <!-- Botão cancelar -->
+        <button type="button" class="btn-cancelar" id="btnCancelarModal">
+          Cancelar
+        </button>
+
+
+        <!-- Botão salvar -->
+        <button type="button" class="btn-salvar" onclick="salvarObservacao()">
+          Salvar observação
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer class="site-footer">
 
     <div class="linha-topo"></div>
 
@@ -802,7 +868,6 @@
 
   </footer>
 
-
   <!-- =========================================================
        VOLTAR AO TOPO
   ========================================================== -->
@@ -816,125 +881,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/auth.js"></script>
-  <script src="js/script.js"></script>
-
-
-
-  <!-- ================= MODAL ================= -->
-
-<div
-  class="modal-overlay"
-  id="modal"
->
-
-  <div class="modal">
-
-    <!-- Botão fechar -->
-    <button
-      type="button"
-      class="fechar"
-      id="btnFecharModal"
-    >
-      ×
-    </button>
-
-
-    <span class="section-label">
-      NOVA OBSERVAÇÃO
-    </span>
-
-
-    <h2>
-      Registrar feedback
-    </h2>
-
-
-    <p class="modal-subtitulo">
-      Adicione uma observação sobre o desenvolvimento do aluno.
-    </p>
-
-
-    <label>
-      Aluno
-    </label>
-
-    <input
-      type="text"
-      id="alunoSelecionado"
-      readonly
-    >
-
-
-    <label>
-      Tipo de observação
-    </label>
-
-    <select id="tipoObservacao">
-
-      <option value="Desempenho acadêmico">
-        Desempenho acadêmico
-      </option>
-
-      <option value="Comportamento">
-        Comportamento
-      </option>
-
-      <option value="Participação">
-        Participação
-      </option>
-
-      <option value="Frequência">
-        Frequência
-      </option>
-
-      <option value="Desenvolvimento">
-        Desenvolvimento
-      </option>
-
-      <option value="Outro">
-        Outro
-      </option>
-
-    </select>
-
-
-    <label>
-      Observação
-    </label>
-
-    <textarea
-      id="textoObservacao"
-      placeholder="Digite aqui sua observação sobre o aluno..."
-    ></textarea>
-
-
-    <div class="modal-acoes">
-
-      <!-- Botão cancelar -->
-      <button
-        type="button"
-        class="btn-cancelar"
-        id="btnCancelarModal"
-      >
-        Cancelar
-      </button>
-
-
-      <!-- Botão salvar -->
-      <button
-        type="button"
-        class="btn-salvar"
-        onclick="salvarObservacao()"
-      >
-        Salvar observação
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
+  <script src="./js/mural.js"></script>
 </body>
 
 </html>
