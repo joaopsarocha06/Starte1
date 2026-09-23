@@ -1775,18 +1775,14 @@ button,
   align-items: center;
   justify-content: center;
 
-  border-radius: 50%;
 
-  background-color: var(--senac-orange);
+
 
   color: var(--white);
 
   font-size: 16px;
 
   cursor: pointer;
-
-  opacity: 0;
-  visibility: hidden;
 
   transform: translateY(15px);
 
@@ -1795,22 +1791,13 @@ button,
   box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.18);
 
-  transition:
-    opacity var(--transition-normal),
-    visibility var(--transition-normal),
-    transform var(--transition-normal),
-    background-color var(--transition-fast);
+
 }
 
-.back-to-top.show {
-  opacity: 1;
-  visibility: visible;
 
-  transform: translateY(0);
-}
 
 .back-to-top:hover {
-  background-color: var(--senac-orange-dark);
+
 
   transform: translateY(-3px);
 }

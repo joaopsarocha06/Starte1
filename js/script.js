@@ -627,7 +627,7 @@ document.addEventListener("DOMContentLoaded", () => {
        BOTÃO VOLTAR AO TOPO
        ====================================================================== */
 
-    function updateBackToTop() {
+    /*function updateBackToTop() {
 
         if (!backToTop) {
             return;
@@ -675,7 +675,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         updateBackToTop();
-    }
+    }*/
 
 
     /* ======================================================================
