@@ -8,105 +8,251 @@
   <title>Mural Docente - Startê</title>
 
   <meta name="description"
-    content="Startê - Página inicial do Senac. Conheça cursos profissionalizantes, técnicos e de graduação.">
+    content="Mural Docente Startê - Acompanhe seus alunos, registre observações e acompanhe o desenvolvimento acadêmico.">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Startê - SENAC">
-  <meta property="og:description" content="Educação profissional de excelência há mais de 75 anos.">
+  <meta property="og:title" content="Mural Docente - Startê SENAC">
+  <meta property="og:description"
+    content="Acompanhe seus alunos e registre observações sobre o desenvolvimento acadêmico.">
   <meta property="og:image" content="imagens/logo-branco.png">
-  <meta property="og:url" content="https://www.exemplo.com/home.html">
+  <meta property="og:url" content="https://www.exemplo.com/mural.html">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <link rel="stylesheet" href="./css/mural.css">
 </head>
 
 <body>
 
-  <!-- ================= NAVBAR ================= -->
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
 
   <header class="main-header">
-    <div class="container header-container"> <!-- LOGO -->
-      <div class="logo-area"> <a href="home.html" aria-label="Página inicial do Startê"> <img
-            src="imagens/Senac_logo.svg.webp" alt="Logo Senac" class="logo-img"> </a> </div> <!-- MENU PRINCIPAL -->
-      <nav class="nav-menu" id="mainNav" aria-label="Menu principal">
-        <ul class="nav-list">
-          <li> <a href="home.html" class="nav-link" aria-current="page"> HOME </a> </li>
-          <li> <a href="cursos.html" class="nav-link"> ÁREAS </a> </li>
-          <li> <a href="conduta.html" class="nav-link"> CONDUTA </a> </li>
-          <li> <a href="eventos.html" class="nav-link"> EVENTOS </a> </li>
-          <li> <a href="mural.html" class="nav-link active"> MURAL DOCENTE </a> </li>
-        </ul>
-      </nav> <!-- ÁREA DE AÇÕES -->
-      <div class="action-area"> <!-- PERFIL DO USUÁRIO -->
-        <div class="user-profile" id="userProfile"> <button type="button" class="user-profile-button"
-            id="userProfileButton" aria-expanded="false" aria-haspopup="true" aria-controls="userProfileMenu"> <span
-              class="user-profile-icon"> <i class="fas fa-user" aria-hidden="true"></i> </span> <span
-              class="user-profile-info"> <span class="user-profile-welcome"> Bem-vindo </span> <span
-                class="user-profile-name" id="userProfileName"> Usuário </span> </span> <i
-              class="fas fa-chevron-down user-profile-arrow" aria-hidden="true"></i> </button> <!-- MENU DO PERFIL -->
-          <div class="user-profile-menu" id="userProfileMenu" role="menu"> <button type="button"
-              class="user-profile-menu-item" id="profileButton" role="menuitem"> <i class="fas fa-user"
-                aria-hidden="true"></i> <span> Meu perfil </span> </button>
-            <div class="user-profile-divider"></div> <button type="button" class="user-profile-menu-item logout"
-              id="logoutButton" role="menuitem"> <i class="fas fa-right-from-bracket" aria-hidden="true"></i> <span>
-                Sair </span> </button>
-          </div>
-        </div>
+
+    <div class="container header-container">
+
+      <!-- LOGO -->
+      <div class="logo-area">
+
+        <a href="home.html" aria-label="Página inicial do Startê">
+
+          <img
+            src="imagens/Senac_logo.svg.webp"
+            alt="Logo Senac"
+            class="logo-img">
+
+        </a>
+
       </div>
+
+
+      <!-- MENU PRINCIPAL -->
+      <nav class="nav-menu" id="mainNav" aria-label="Menu principal">
+
+        <ul class="nav-list">
+
+          <li>
+            <a href="home.html" class="nav-link">
+              HOME
+            </a>
+          </li>
+
+          <li>
+            <a href="cursos.html" class="nav-link">
+              ÁREAS
+            </a>
+          </li>
+
+          <li>
+            <a href="conduta.html" class="nav-link">
+              CONDUTA
+            </a>
+          </li>
+
+          <li>
+            <a href="eventos.html" class="nav-link">
+              EVENTOS
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="mural.html"
+              class="nav-link active"
+              aria-current="page">
+              MURAL DOCENTE
+            </a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+      <!-- ÁREA DE AÇÕES -->
+      <div class="action-area">
+
+        <!-- PERFIL -->
+        <div class="user-profile" id="userProfile">
+
+          <button
+            type="button"
+            class="user-profile-button"
+            id="userProfileButton"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-controls="userProfileMenu">
+
+            <span class="user-profile-icon">
+              <i class="fas fa-user" aria-hidden="true"></i>
+            </span>
+
+            <span class="user-profile-info">
+
+              <span class="user-profile-welcome">
+                Bem-vindo
+              </span>
+
+              <span
+                class="user-profile-name"
+                id="userProfileName">
+                Usuário
+              </span>
+
+            </span>
+
+            <i
+              class="fas fa-chevron-down user-profile-arrow"
+              aria-hidden="true">
+            </i>
+
+          </button>
+
+
+          <!-- MENU DO PERFIL -->
+          <div
+            class="user-profile-menu"
+            id="userProfileMenu"
+            role="menu">
+
+            <button
+              type="button"
+              class="user-profile-menu-item"
+              id="profileButton"
+              role="menuitem">
+
+              <i
+                class="fas fa-user"
+                aria-hidden="true">
+              </i>
+
+              <span>
+                Meu perfil
+              </span>
+
+            </button>
+
+
+            <div class="user-profile-divider"></div>
+
+
+            <button
+              type="button"
+              class="user-profile-menu-item logout"
+              id="logoutButton"
+              role="menuitem">
+
+              <i
+                class="fas fa-right-from-bracket"
+                aria-hidden="true">
+              </i>
+
+              <span>
+                Sair
+              </span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
+
   </header>
 
-  <!-- ================= HERO ================= -->
 
-  <section class="hero">
+  <!-- =========================================================
+       HERO
+  ========================================================== -->
 
-    <span class="section-label">
-      MURAL DOCENTE
-    </span>
+  <section class="mural-hero">
 
-    <h1>
-      Acompanhe seus alunos e registre observações
-      sobre o desenvolvimento acadêmico.
-    </h1>
+    <div class="container mural-hero-container">
 
-    <p>
-      Registre feedbacks, acompanhe a evolução e contribua
-      para o sucesso dos seus alunos.
-    </p>
+      <span class="section-label">
+        MURAL DOCENTE
+      </span>
+
+      <h1>
+        Acompanhe seus alunos e registre observações sobre o desenvolvimento acadêmico.
+      </h1>
+
+      <p>
+        Registre feedbacks, acompanhe a evolução e contribua para o sucesso dos seus alunos.
+      </p>
+
+    </div>
 
   </section>
 
 
-  <!-- ================= CONTEÚDO ================= -->
+  <!-- =========================================================
+       CONTEÚDO
+  ========================================================== -->
 
-  <main class="container">
+  <main class="container mural-main">
 
-    <!-- ================= FILTROS ================= -->
 
-    <section class="filtros" aria-label="Filtros de alunos">
+    <!-- =======================================================
+         FILTROS
+    ======================================================== -->
 
-      <!-- BUSCA -->
+    <section
+      class="filtros"
+      aria-label="Filtros de alunos">
 
       <div class="campo busca">
 
-        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <i
+          class="fa-solid fa-magnifying-glass"
+          aria-hidden="true">
+        </i>
 
-        <label for="buscarAluno" class="sr-only">
+        <label
+          for="buscarAluno"
+          class="sr-only">
           Buscar aluno
         </label>
 
-        <input type="search" id="buscarAluno" placeholder="Buscar aluno por nome..." autocomplete="off">
+        <input
+          type="search"
+          id="buscarAluno"
+          placeholder="Buscar aluno por nome..."
+          autocomplete="off">
 
       </div>
 
-
-      <!-- TURMA -->
 
       <div class="campo">
 
@@ -125,8 +271,6 @@
       </div>
 
 
-      <!-- CURSO -->
-
       <div class="campo">
 
         <label for="filtroCurso">
@@ -144,11 +288,15 @@
       </div>
 
 
-      <!-- FILTRAR -->
+      <button
+        type="button"
+        class="btn-filtrar"
+        id="btnFiltrar">
 
-      <button type="button" class="btn-filtrar" id="btnFiltrar">
-
-        <i class="fa-solid fa-filter" aria-hidden="true"></i>
+        <i
+          class="fa-solid fa-filter"
+          aria-hidden="true">
+        </i>
 
         Filtrar
 
@@ -157,12 +305,16 @@
     </section>
 
 
-    <!-- ================= GRID ================= -->
+    <!-- =======================================================
+         DASHBOARD
+    ======================================================== -->
 
     <section class="dashboard">
 
 
-      <!-- ================= ALUNOS ================= -->
+      <!-- =====================================================
+           ALUNOS
+      ====================================================== -->
 
       <div class="card alunos-card">
 
@@ -174,49 +326,75 @@
               Alunos
             </h2>
 
-            <span class="contador" id="contadorAlunos">
+            <span
+              class="contador"
+              id="contadorAlunos">
               Carregando...
             </span>
 
           </div>
 
+
+          <!-- NOVO BOTÃO -->
+          <button
+            type="button"
+            class="btn-cadastrar-aluno"
+            id="btnAbrirCadastroAluno">
+
+            <i
+              class="fa-solid fa-user-plus"
+              aria-hidden="true">
+            </i>
+
+            <span>
+              Cadastrar aluno
+            </span>
+
+          </button>
+
         </div>
 
 
-        <!-- MENSAGEM DE STATUS -->
+        <div
+          id="statusAlunos"
+          class="status-alunos"
+          aria-live="polite">
 
-        <div id="statusAlunos" class="status-alunos" aria-live="polite">
-
-          <i class="fa-solid fa-spinner fa-spin"></i>
+          <i
+            class="fa-solid fa-spinner fa-spin">
+          </i>
 
           Carregando alunos...
 
         </div>
 
 
-        <!-- LISTA -->
-
-        <div id="listaAlunos" class="lista-alunos">
-
+        <div
+          id="listaAlunos"
+          class="lista-alunos">
         </div>
 
       </div>
 
 
-      <!-- ================= SIDEBAR ================= -->
+      <!-- =====================================================
+           SIDEBAR
+      ====================================================== -->
 
       <aside class="sidebar">
 
 
-        <!-- ================= RESUMO ================= -->
-
+        <!-- RESUMO -->
         <div class="card resumo">
 
           <div class="resumo-title">
 
             <div class="icone-resumo">
 
-              <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
+              <i
+                class="fa-solid fa-chart-column"
+                aria-hidden="true">
+              </i>
 
             </div>
 
@@ -228,7 +406,6 @@
 
 
           <div class="estatisticas">
-
 
             <div class="estatistica">
 
@@ -281,14 +458,12 @@
 
             </div>
 
-
           </div>
 
         </div>
 
 
-        <!-- ================= OBSERVAÇÕES RECENTES ================= -->
-
+        <!-- OBSERVAÇÕES RECENTES -->
         <div class="card observacoes">
 
           <div class="card-header">
@@ -297,8 +472,13 @@
               Observações recentes
             </h2>
 
-            <button type="button" class="link-button" id="btnVerTodas">
+            <button
+              type="button"
+              class="link-button"
+              id="btnVerTodas">
+
               Ver todas
+
             </button>
 
           </div>
@@ -308,7 +488,9 @@
 
             <div class="sem-observacoes">
 
-              <i class="fa-regular fa-file-lines"></i>
+              <i
+                class="fa-regular fa-file-lines">
+              </i>
 
               <span>
                 Nenhuma observação registrada.
@@ -319,8 +501,13 @@
           </div>
 
 
-          <button type="button" class="btn-todas" id="btnTodasObservacoes">
+          <button
+            type="button"
+            class="btn-todas"
+            id="btnTodasObservacoes">
+
             Ver todas as observações
+
           </button>
 
         </div>
@@ -332,17 +519,264 @@
   </main>
 
 
-  <!-- ================= MODAL DE OBSERVAÇÃO ================= -->
+  <!-- =========================================================
+       MODAL — CADASTRAR ALUNO
+  ========================================================== -->
 
-  <div class="modal-overlay" id="modal" aria-hidden="true">
+  <div
+    class="modal-overlay"
+    id="modalCadastroAluno"
+    aria-hidden="true">
 
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloModal">
+    <div
+      class="modal modal-cadastro-aluno"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="tituloCadastroAluno">
 
+      <button
+        type="button"
+        class="fechar"
+        id="btnFecharCadastroAluno"
+        aria-label="Fechar janela">
 
-      <!-- FECHAR -->
-
-      <button type="button" class="fechar" id="btnFecharModal" aria-label="Fechar janela">
         &times;
+
+      </button>
+
+
+      <span class="section-label">
+        CADASTRO DE ALUNO
+      </span>
+
+
+      <h2 id="tituloCadastroAluno">
+        Cadastrar aluno
+      </h2>
+
+
+      <p class="modal-subtitulo">
+        Cadastre um novo aluno e vincule-o a uma turma existente.
+      </p>
+
+
+      <!-- FORMULÁRIO -->
+      <form
+        id="formCadastroAluno"
+        novalidate>
+
+
+        <div class="modal-campo">
+
+          <label for="nomeNovoAluno">
+            Nome completo
+          </label>
+
+          <input
+            type="text"
+            id="nomeNovoAluno"
+            name="nome"
+            placeholder="Digite o nome completo do aluno"
+            maxlength="120"
+            autocomplete="name"
+            required>
+
+          <small
+            class="campo-erro"
+            id="erroNomeAluno">
+          </small>
+
+        </div>
+
+
+        <div class="modal-campo">
+
+          <label for="turmaNovoAluno">
+            Turma
+          </label>
+
+          <select
+            id="turmaNovoAluno"
+            name="turma"
+            required>
+
+            <option value="">
+              Selecione uma turma
+            </option>
+
+          </select>
+
+          <small
+            class="campo-ajuda"
+            id="cursoSelecionadoInfo">
+
+            Selecione uma turma para visualizar o curso.
+
+          </small>
+
+          <small
+            class="campo-erro"
+            id="erroTurmaAluno">
+          </small>
+
+        </div>
+
+
+        <!-- NOVA TURMA -->
+        <div class="nova-turma-area">
+
+          <button
+            type="button"
+            class="btn-link-turma"
+            id="btnMostrarNovaTurma">
+
+            <i
+              class="fa-solid fa-plus"
+              aria-hidden="true">
+            </i>
+
+            Cadastrar nova turma
+
+          </button>
+
+
+          <div
+            class="nova-turma-form"
+            id="novaTurmaForm"
+            hidden>
+
+
+            <div class="nova-turma-titulo">
+
+              <i
+                class="fa-solid fa-layer-group"
+                aria-hidden="true">
+              </i>
+
+              <strong>
+                Nova turma
+              </strong>
+
+            </div>
+
+
+            <div class="modal-campo">
+
+              <label for="nomeNovaTurma">
+                Código da turma
+              </label>
+
+              <input
+                type="text"
+                id="nomeNovaTurma"
+                placeholder="Ex.: 13.2026.001"
+                maxlength="12"
+                autocomplete="off">
+
+              <small class="campo-ajuda">
+                Formato: 13.2026.XXX
+              </small>
+
+              <small
+                class="campo-erro"
+                id="erroNovaTurma">
+              </small>
+
+            </div>
+
+
+            <div class="modal-campo">
+
+              <label for="cursoNovaTurma">
+                Curso
+              </label>
+
+              <input
+                type="text"
+                id="cursoNovaTurma"
+                placeholder="Ex.: Técnico em Informática"
+                maxlength="150">
+
+            </div>
+
+
+            <button
+              type="button"
+              class="btn-salvar-turma"
+              id="btnSalvarTurma">
+
+              <i
+                class="fa-solid fa-plus"
+                aria-hidden="true">
+              </i>
+
+              Criar turma
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="modal-acoes">
+
+          <button
+            type="button"
+            class="btn-cancelar"
+            id="btnCancelarCadastroAluno">
+
+            Cancelar
+
+          </button>
+
+
+          <button
+            type="submit"
+            class="btn-salvar"
+            id="btnSalvarAluno">
+
+            <i
+              class="fa-solid fa-user-plus"
+              aria-hidden="true">
+            </i>
+
+            Cadastrar aluno
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       MODAL — OBSERVAÇÃO
+  ========================================================== -->
+
+  <div
+    class="modal-overlay"
+    id="modal"
+    aria-hidden="true">
+
+    <div
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="tituloModal">
+
+      <button
+        type="button"
+        class="fechar"
+        id="btnFecharModal"
+        aria-label="Fechar janela">
+
+        &times;
+
       </button>
 
 
@@ -361,22 +795,23 @@
       </p>
 
 
-      <!-- ALUNO -->
-
       <div class="modal-campo">
 
         <label for="alunoSelecionado">
           Aluno
         </label>
 
-        <input type="text" id="alunoSelecionado" readonly>
+        <input
+          type="text"
+          id="alunoSelecionado"
+          readonly>
 
-        <input type="hidden" id="alunoSelecionadoId">
+        <input
+          type="hidden"
+          id="alunoSelecionadoId">
 
       </div>
 
-
-      <!-- TIPO -->
 
       <div class="modal-campo">
 
@@ -415,16 +850,17 @@
       </div>
 
 
-      <!-- OBSERVAÇÃO -->
-
       <div class="modal-campo">
 
         <label for="textoObservacao">
           Observação
         </label>
 
-        <textarea id="textoObservacao" maxlength="1000"
-          placeholder="Digite aqui sua observação sobre o aluno..."></textarea>
+        <textarea
+          id="textoObservacao"
+          maxlength="1000"
+          placeholder="Digite aqui sua observação sobre o aluno...">
+        </textarea>
 
         <small id="contadorCaracteres">
           0 / 1000
@@ -433,18 +869,27 @@
       </div>
 
 
-      <!-- AÇÕES -->
-
       <div class="modal-acoes">
 
-        <button type="button" class="btn-cancelar" id="btnCancelarModal">
+        <button
+          type="button"
+          class="btn-cancelar"
+          id="btnCancelarModal">
+
           Cancelar
+
         </button>
 
 
-        <button type="button" class="btn-salvar" id="btnSalvarObservacao">
+        <button
+          type="button"
+          class="btn-salvar"
+          id="btnSalvarObservacao">
 
-          <i class="fa-solid fa-check" aria-hidden="true"></i>
+          <i
+            class="fa-solid fa-check"
+            aria-hidden="true">
+          </i>
 
           Salvar observação
 
@@ -457,26 +902,52 @@
   </div>
 
 
-  <!-- ================= MODAL DE TODAS AS OBSERVAÇÕES ================= -->
+  <!-- =========================================================
+       MODAL — TODAS AS OBSERVAÇÕES
+  ========================================================== -->
 
-  <div class="modal-overlay" id="modalObservacoes" aria-hidden="true">
+  <div
+    class="modal-overlay"
+    id="modalObservacoes"
+    aria-hidden="true">
 
-    <div class="modal modal-observacoes" role="dialog" aria-modal="true" aria-labelledby="tituloTodasObservacoes">
+    <div
+      class="modal modal-observacoes"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="tituloTodasObservacoes">
 
-      <button type="button" class="fechar" id="btnFecharObservacoes" aria-label="Fechar">
+      <button
+        type="button"
+        class="fechar"
+        id="btnFecharObservacoes"
+        aria-label="Fechar">
+
         &times;
+
       </button>
+
 
       <span class="section-label">
         HISTÓRICO
       </span>
 
+
       <h2 id="tituloTodasObservacoes">
         Todas as observações
       </h2>
 
-      <div id="listaTodasObservacoes" class="lista-todas-observacoes">
 
+      <p
+        class="modal-subtitulo"
+        id="subtituloHistorico">
+        Histórico completo das observações registradas.
+      </p>
+
+
+      <div
+        id="listaTodasObservacoes"
+        class="lista-todas-observacoes">
       </div>
 
     </div>
@@ -484,7 +955,9 @@
   </div>
 
 
-  <!-- ================= FOOTER ================= -->
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
 
   <footer class="site-footer">
 
@@ -495,7 +968,10 @@
 
       <div class="footer-sobre" id="sobrenos">
 
-        <img src="./imagens/logo-branco.png" alt="Logo Senac" class="logo">
+        <img
+          src="./imagens/logo-branco.png"
+          alt="Logo Senac"
+          class="logo">
 
         <p>
           Instituição de educação profissional aberta a toda
@@ -512,9 +988,14 @@
 
         <div class="footer-badges">
 
-          <img src="./imagens/prevencao.png" alt="Programa prevenção">
+          <img
+            src="./imagens/prevencao.png"
+            alt="Programa prevenção">
 
-          <img src="./imagens/logo.png" alt="Startê" class="starte-logo">
+          <img
+            src="./imagens/logo.png"
+            alt="Startê"
+            class="starte-logo">
 
         </div>
 
@@ -530,27 +1011,27 @@
         <div class="social-icons">
 
           <a href="#" aria-label="WhatsApp">
-
-            <img src="./imagens/telefoneverde.png" alt="">
-
+            <img
+              src="./imagens/telefoneverde.png"
+              alt="">
           </a>
 
           <a href="#" aria-label="Twitter">
-
-            <img src="./imagens/twitter.png" alt="">
-
+            <img
+              src="./imagens/twitter.png"
+              alt="">
           </a>
 
           <a href="#" aria-label="Instagram">
-
-            <img src="./imagens/instagram.png" alt="">
-
+            <img
+              src="./imagens/instagram.png"
+              alt="">
           </a>
 
           <a href="#" aria-label="Facebook">
-
-            <img src="./imagens/facebook.png" alt="">
-
+            <img
+              src="./imagens/facebook.png"
+              alt="">
           </a>
 
         </div>
@@ -559,7 +1040,6 @@
 
 
       <div class="footer-links">
-
 
         <div class="titulo">
 
@@ -574,11 +1054,20 @@
 
         <div class="footer-search">
 
-          <input type="text" id="footerSearch" placeholder="Pesquisar cursos e notícias" aria-label="Pesquisar no site">
+          <input
+            type="text"
+            id="footerSearch"
+            placeholder="Pesquisar cursos e notícias"
+            aria-label="Pesquisar no site">
 
-          <button id="footerSearchBtn" type="button" aria-label="Pesquisar">
+          <button
+            id="footerSearchBtn"
+            type="button"
+            aria-label="Pesquisar">
 
-            <i class="fas fa-search" aria-hidden="true">
+            <i
+              class="fas fa-search"
+              aria-hidden="true">
             </i>
 
           </button>
@@ -618,10 +1107,15 @@
 
     <div class="footer-local">
 
-      <i class="fas fa-location-dot" aria-hidden="true">
+      <i
+        class="fas fa-location-dot"
+        aria-hidden="true">
       </i>
 
-      <a href="https://maps.app.goo.gl/6A3dxDU1zrD2bHD7A" target="_blank" rel="noopener">
+      <a
+        href="https://maps.app.goo.gl/6A3dxDU1zrD2bHD7A"
+        target="_blank"
+        rel="noopener">
 
         Pernambuco - Av. Visconde de Suassuna, 500 -
         Santo Amaro - Recife
@@ -633,7 +1127,9 @@
 
     <div class="footer-bottom">
 
-      <img src="./imagens/logo-branco.png" alt="Senac">
+      <img
+        src="./imagens/logo-branco.png"
+        alt="Senac">
 
       <p>
         © 2026 Todos os Direitos Reservados.
@@ -660,20 +1156,33 @@
 
   </footer>
 
-  <!-- =========================================================
-       VOLTAR AO TOPO
-  ========================================================== -->
 
-  <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">
+  <!-- VOLTAR AO TOPO -->
 
-    <i class="fas fa-chevron-up" aria-hidden="true">
+  <button
+    class="back-to-top"
+    id="backToTop"
+    type="button"
+    aria-label="Voltar ao topo">
+
+    <i
+      class="fas fa-chevron-up"
+      aria-hidden="true">
     </i>
 
   </button>
 
+
+  <!-- =========================================================
+       SCRIPTS
+  ========================================================== -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/auth.js"></script>
+
+  <script src="./js/auth.js"></script>
+
   <script src="./js/mural.js"></script>
+
 </body>
 
 </html>

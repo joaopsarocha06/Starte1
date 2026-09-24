@@ -1,5 +1,13 @@
 /* ==========================================================================
-   MURAL DOCENTE — SUPABASE
+   STARTÊ — MURAL DOCENTE
+   Cadastro de alunos + turmas + observações
+   ========================================================================== */
+
+"use strict";
+
+
+/* ==========================================================================
+   01. SUPABASE
    ========================================================================== */
 
 const SUPABASE_URL =
@@ -8,51 +16,39 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
     "sb_publishable_G2loVvADj59-2OQZVNhl5w_PA4bIYgf";
 
-
-/* ==========================================================================
-   INICIALIZAÇÃO
-   ========================================================================== */
-
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
 /* ==========================================================================
-   ESTADO DA APLICAÇÃO
+   02. ESTADO
    ========================================================================== */
 
 let alunos = [];
+let turmas = [];
 let observacoes = [];
 
+let observacoesPorAluno = new Map();
+
 let alunoAtual = null;
+let historicoAlunoAtual = null;
 
 
 /* ==========================================================================
-   ELEMENTOS
+   03. ELEMENTOS
    ========================================================================== */
-
-const campoBusca =
-    document.getElementById("buscarAluno");
-
-const filtroTurma =
-    document.getElementById("filtroTurma");
-
-const filtroCurso =
-    document.getElementById("filtroCurso");
-
-const btnFiltrar =
-    document.getElementById("btnFiltrar");
 
 const listaAlunos =
     document.getElementById("listaAlunos");
 
-const contadorAlunos =
-    document.getElementById("contadorAlunos");
-
 const statusAlunos =
     document.getElementById("statusAlunos");
+
+const contadorAlunos =
+    document.getElementById("contadorAlunos");
 
 const totalAlunos =
     document.getElementById("totalAlunos");
@@ -66,102 +62,152 @@ const alunosSemObservacao =
 const percentualAcompanhados =
     document.getElementById("percentualAcompanhados");
 
-const listaObservacoesRecentes =
-    document.getElementById(
-        "listaObservacoesRecentes"
-    );
+const buscarAluno =
+    document.getElementById("buscarAluno");
+
+const filtroTurma =
+    document.getElementById("filtroTurma");
+
+const filtroCurso =
+    document.getElementById("filtroCurso");
+
+const btnFiltrar =
+    document.getElementById("btnFiltrar");
 
 
-/* MODAL */
+/* ==========================================================================
+   04. MODAL CADASTRO
+   ========================================================================== */
+
+const modalCadastroAluno =
+    document.getElementById("modalCadastroAluno");
+
+const formCadastroAluno =
+    document.getElementById("formCadastroAluno");
+
+const btnAbrirCadastroAluno =
+    document.getElementById("btnAbrirCadastroAluno");
+
+const btnFecharCadastroAluno =
+    document.getElementById("btnFecharCadastroAluno");
+
+const btnCancelarCadastroAluno =
+    document.getElementById("btnCancelarCadastroAluno");
+
+const nomeNovoAluno =
+    document.getElementById("nomeNovoAluno");
+
+const turmaNovoAluno =
+    document.getElementById("turmaNovoAluno");
+
+const cursoSelecionadoInfo =
+    document.getElementById("cursoSelecionadoInfo");
+
+const btnMostrarNovaTurma =
+    document.getElementById("btnMostrarNovaTurma");
+
+const novaTurmaForm =
+    document.getElementById("novaTurmaForm");
+
+const nomeNovaTurma =
+    document.getElementById("nomeNovaTurma");
+
+const cursoNovaTurma =
+    document.getElementById("cursoNovaTurma");
+
+const btnSalvarTurma =
+    document.getElementById("btnSalvarTurma");
+
+const btnSalvarAluno =
+    document.getElementById("btnSalvarAluno");
+
+const erroNomeAluno =
+    document.getElementById("erroNomeAluno");
+
+const erroTurmaAluno =
+    document.getElementById("erroTurmaAluno");
+
+const erroNovaTurma =
+    document.getElementById("erroNovaTurma");
+
+
+/* ==========================================================================
+   05. MODAL OBSERVAÇÃO
+   ========================================================================== */
 
 const modal =
     document.getElementById("modal");
 
-const alunoSelecionado =
-    document.getElementById(
-        "alunoSelecionado"
-    );
-
-const alunoSelecionadoId =
-    document.getElementById(
-        "alunoSelecionadoId"
-    );
-
-const tipoObservacao =
-    document.getElementById(
-        "tipoObservacao"
-    );
-
-const textoObservacao =
-    document.getElementById(
-        "textoObservacao"
-    );
-
-const btnSalvarObservacao =
-    document.getElementById(
-        "btnSalvarObservacao"
-    );
-
 const btnFecharModal =
-    document.getElementById(
-        "btnFecharModal"
-    );
+    document.getElementById("btnFecharModal");
 
 const btnCancelarModal =
-    document.getElementById(
-        "btnCancelarModal"
-    );
+    document.getElementById("btnCancelarModal");
+
+const btnSalvarObservacao =
+    document.getElementById("btnSalvarObservacao");
+
+const alunoSelecionado =
+    document.getElementById("alunoSelecionado");
+
+const alunoSelecionadoId =
+    document.getElementById("alunoSelecionadoId");
+
+const tipoObservacao =
+    document.getElementById("tipoObservacao");
+
+const textoObservacao =
+    document.getElementById("textoObservacao");
 
 const contadorCaracteres =
-    document.getElementById(
-        "contadorCaracteres"
-    );
-
-
-/* MODAL HISTÓRICO */
-
-const modalObservacoes =
-    document.getElementById(
-        "modalObservacoes"
-    );
-
-const listaTodasObservacoes =
-    document.getElementById(
-        "listaTodasObservacoes"
-    );
-
-const btnVerTodas =
-    document.getElementById(
-        "btnVerTodas"
-    );
-
-const btnTodasObservacoes =
-    document.getElementById(
-        "btnTodasObservacoes"
-    );
-
-const btnFecharObservacoes =
-    document.getElementById(
-        "btnFecharObservacoes"
-    );
+    document.getElementById("contadorCaracteres");
 
 
 /* ==========================================================================
-   UTILITÁRIOS
+   06. MODAL HISTÓRICO
    ========================================================================== */
 
-function escaparHTML(valor) {
+const modalObservacoes =
+    document.getElementById("modalObservacoes");
+
+const btnFecharObservacoes =
+    document.getElementById("btnFecharObservacoes");
+
+const btnVerTodas =
+    document.getElementById("btnVerTodas");
+
+const btnTodasObservacoes =
+    document.getElementById("btnTodasObservacoes");
+
+const listaTodasObservacoes =
+    document.getElementById("listaTodasObservacoes");
+
+const tituloTodasObservacoes =
+    document.getElementById("tituloTodasObservacoes");
+
+const subtituloHistorico =
+    document.getElementById("subtituloHistorico");
+
+const listaObservacoesRecentes =
+    document.getElementById("listaObservacoesRecentes");
+
+
+/* ==========================================================================
+   07. UTILITÁRIOS
+   ========================================================================== */
+
+function escapeHTML(valor) {
 
     if (valor === null || valor === undefined) {
         return "";
     }
 
     return String(valor)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 
@@ -175,37 +221,42 @@ function normalizarTexto(valor) {
 }
 
 
-function formatarData(data) {
+function obterIniciais(nome) {
 
-    if (!data) {
-        return "Sem data";
+    const partes =
+        String(nome || "")
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean);
+
+    if (!partes.length) {
+        return "AL";
     }
 
-    const dataObj = new Date(data);
-
-    if (Number.isNaN(dataObj.getTime())) {
-        return "Sem data";
+    if (partes.length === 1) {
+        return partes[0].substring(0, 2).toUpperCase();
     }
 
-    return dataObj.toLocaleDateString(
-        "pt-BR"
-    );
+    return (
+        partes[0][0] +
+        partes[partes.length - 1][0]
+    ).toUpperCase();
 }
 
 
-function formatarDataHora(data) {
+function formatarData(data) {
 
     if (!data) {
-        return "Sem data";
+        return "Data não informada";
     }
 
     const dataObj = new Date(data);
 
     if (Number.isNaN(dataObj.getTime())) {
-        return "Sem data";
+        return "Data não informada";
     }
 
-    return dataObj.toLocaleString(
+    return dataObj.toLocaleDateString(
         "pt-BR",
         {
             day: "2-digit",
@@ -218,89 +269,63 @@ function formatarDataHora(data) {
 }
 
 
-function obterNomeCurso(curso) {
-
-    const valor = normalizarTexto(curso);
-
-    if (valor.includes("informat")) {
-        return "Técnico em Informática";
-    }
-
-    if (
-        valor.includes("administr")
-    ) {
-        return "Técnico em Administração";
-    }
-
-    return curso || "Curso não informado";
-}
-
-
-/* ==========================================================================
-   STATUS
-   ========================================================================== */
-
-function mostrarStatusAlunos(
-    mensagem,
-    tipo = "loading"
-) {
+function mostrarStatus(mensagem, tipo = "") {
 
     if (!statusAlunos) {
         return;
     }
 
-    let icone =
-        '<i class="fa-solid fa-spinner fa-spin"></i>';
+    statusAlunos.className =
+        `status-alunos ${tipo}`;
 
-    if (tipo === "erro") {
-        icone =
-            '<i class="fa-solid fa-triangle-exclamation"></i>';
-    }
-
-    if (tipo === "vazio") {
-        icone =
-            '<i class="fa-regular fa-face-frown"></i>';
-    }
-
-    statusAlunos.innerHTML = `
-        ${icone}
-        <span>${escaparHTML(mensagem)}</span>
-    `;
-
-    statusAlunos.style.display = "flex";
+    statusAlunos.innerHTML =
+        escapeHTML(mensagem);
 }
 
 
-function esconderStatusAlunos() {
+function bloquearBotao(botao, bloqueado, textoOriginal) {
 
-    if (!statusAlunos) {
+    if (!botao) {
         return;
     }
 
-    statusAlunos.style.display = "none";
+    botao.disabled = bloqueado;
+
+    if (bloqueado) {
+
+        botao.dataset.textoOriginal =
+            textoOriginal ||
+            botao.textContent.trim();
+
+        botao.innerHTML =
+            `<i class="fa-solid fa-spinner fa-spin"></i> Aguarde...`;
+
+    } else {
+
+        botao.innerHTML =
+            textoOriginal ||
+            botao.dataset.textoOriginal ||
+            "Salvar";
+
+    }
 }
 
 
 /* ==========================================================================
-   CARREGAR TURMAS
+   08. CARREGAR TURMAS
    ========================================================================== */
 
 async function carregarTurmas() {
-
-    if (!filtroTurma) {
-        return;
-    }
 
     const {
         data,
         error
     } = await supabaseClient
         .from("turmas")
-        .select("id, nome, curso")
+        .select("id,nome,curso,created_at")
         .order("nome", {
             ascending: true
         });
-
 
     if (error) {
 
@@ -309,127 +334,214 @@ async function carregarTurmas() {
             error
         );
 
+        throw error;
+    }
+
+    turmas = data || [];
+
+    preencherSelectTurmas();
+
+    preencherSelectFiltroTurmas();
+    preencherSelectFiltroCursos();
+}
+
+
+/* ==========================================================================
+   09. SELECT DE TURMAS
+   ========================================================================== */
+
+function preencherSelectTurmas() {
+
+    if (!turmaNovoAluno) {
         return;
     }
 
+    const valorAtual =
+        turmaNovoAluno.value;
 
-    const turmas = data || [];
-
-    filtroTurma.innerHTML = `
-        <option value="">
-            Todas as turmas
-        </option>
-    `;
-
+    turmaNovoAluno.innerHTML = `
+    <option value="">
+      Selecione uma turma
+    </option>
+  `;
 
     turmas.forEach(turma => {
 
         const option =
             document.createElement("option");
 
-        option.value = turma.id;
+        option.value =
+            String(turma.id);
 
         option.textContent =
-            `${turma.nome || "Turma"}${
-                turma.curso
-                    ? ` — ${obterNomeCurso(turma.curso)}`
-                    : ""
-            }`;
+            `${turma.nome} — ${turma.curso}`;
+
+        turmaNovoAluno.appendChild(option);
+
+    });
+
+    if (
+        valorAtual &&
+        turmas.some(
+            turma => String(turma.id) === valorAtual
+        )
+    ) {
+
+        turmaNovoAluno.value =
+            valorAtual;
+
+    }
+
+    atualizarCursoTurma();
+}
+
+
+function preencherSelectFiltroTurmas() {
+
+    if (!filtroTurma) {
+        return;
+    }
+
+    const valorAtual =
+        filtroTurma.value;
+
+    filtroTurma.innerHTML = `
+    <option value="">
+      Todas as turmas
+    </option>
+  `;
+
+    turmas.forEach(turma => {
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            String(turma.id);
+
+        option.textContent =
+            turma.nome;
 
         filtroTurma.appendChild(option);
 
     });
 
+    if (
+        valorAtual &&
+        turmas.some(
+            turma => String(turma.id) === valorAtual
+        )
+    ) {
+
+        filtroTurma.value =
+            valorAtual;
+
+    }
 }
 
 
-/* ==========================================================================
-   CARREGAR CURSOS
-   ========================================================================== */
-
-async function carregarCursos() {
+function preencherSelectFiltroCursos() {
 
     if (!filtroCurso) {
         return;
     }
 
-    const cursosUnicos =
-        new Map();
-
-
-    alunos.forEach(aluno => {
-
-        const turma =
-            Array.isArray(aluno.turmas)
-                ? aluno.turmas[0]
-                : aluno.turmas;
-
-        if (!turma?.curso) {
-            return;
-        }
-
-        const cursoOriginal =
-            turma.curso;
-
-        const chave =
-            normalizarTexto(cursoOriginal);
-
-        if (!cursosUnicos.has(chave)) {
-
-            cursosUnicos.set(
-                chave,
-                cursoOriginal
+    const cursos =
+        [
+            ...new Set(
+                turmas
+                    .map(turma => turma.curso)
+                    .filter(Boolean)
+            )
+        ]
+            .sort((a, b) =>
+                a.localeCompare(
+                    b,
+                    "pt-BR"
+                )
             );
 
-        }
+    const valorAtual =
+        filtroCurso.value;
+
+    filtroCurso.innerHTML = `
+    <option value="">
+      Todos os cursos
+    </option>
+  `;
+
+    cursos.forEach(curso => {
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            curso;
+
+        option.textContent =
+            curso;
+
+        filtroCurso.appendChild(option);
 
     });
 
-
-    filtroCurso.innerHTML = `
-        <option value="">
-            Todos os cursos
-        </option>
-    `;
-
-
-    [...cursosUnicos.entries()]
-        .sort((a, b) =>
-            String(a[1]).localeCompare(
-                String(b[1]),
-                "pt-BR"
-            )
-        )
-        .forEach(
-            ([valorNormalizado, curso]) => {
-
-                const option =
-                    document.createElement("option");
-
-                option.value =
-                    valorNormalizado;
-
-                option.textContent =
-                    obterNomeCurso(curso);
-
-                filtroCurso.appendChild(option);
-
-            }
-        );
-
+    if (cursos.includes(valorAtual)) {
+        filtroCurso.value =
+            valorAtual;
+    }
 }
 
 
 /* ==========================================================================
-   CARREGAR ALUNOS
+   10. CURSO DA TURMA SELECIONADA
+   ========================================================================== */
+
+function atualizarCursoTurma() {
+
+    if (!turmaNovoAluno || !cursoSelecionadoInfo) {
+        return;
+    }
+
+    const turmaId =
+        turmaNovoAluno.value;
+
+    if (!turmaId) {
+
+        cursoSelecionadoInfo.textContent =
+            "Selecione uma turma para visualizar o curso.";
+
+        return;
+    }
+
+    const turma =
+        turmas.find(
+            item =>
+                String(item.id) ===
+                String(turmaId)
+        );
+
+    if (!turma) {
+
+        cursoSelecionadoInfo.textContent =
+            "Turma não encontrada.";
+
+        return;
+    }
+
+    cursoSelecionadoInfo.innerHTML =
+        `<strong>Curso:</strong> ${escapeHTML(turma.curso)}`;
+}
+
+
+/* ==========================================================================
+   11. CARREGAR ALUNOS
    ========================================================================== */
 
 async function carregarAlunos() {
 
-    mostrarStatusAlunos(
+    mostrarStatus(
         "Carregando alunos..."
     );
-
 
     const {
         data,
@@ -437,19 +549,19 @@ async function carregarAlunos() {
     } = await supabaseClient
         .from("alunos")
         .select(`
-            id,
-            nome,
-            turma_id,
-            turmas (
-                id,
-                nome,
-                curso
-            )
-        `)
+      id,
+      nome,
+      turma_id,
+      created_at,
+      turmas (
+        id,
+        nome,
+        curso
+      )
+    `)
         .order("nome", {
             ascending: true
         });
-
 
     if (error) {
 
@@ -458,468 +570,32 @@ async function carregarAlunos() {
             error
         );
 
-        mostrarStatusAlunos(
+        mostrarStatus(
             "Não foi possível carregar os alunos.",
             "erro"
         );
 
-        return;
+        throw error;
     }
-
 
     alunos = data || [];
 
+    atualizarMapaObservacoes();
 
-    await carregarCursos();
+    renderizarAlunos();
 
-    renderizarAlunos(alunos);
+    atualizarResumo();
 
-    atualizarResumo(alunos);
-
-}
-
-
-/* ==========================================================================
-   FILTROS
-   ========================================================================== */
-
-function obterAlunosFiltrados() {
-
-    const textoBusca =
-        normalizarTexto(
-            campoBusca?.value
-        );
-
-    const turmaSelecionada =
-        filtroTurma?.value || "";
-
-    const cursoSelecionado =
-        filtroCurso?.value || "";
-
-
-    return alunos.filter(aluno => {
-
-        const turma =
-            Array.isArray(aluno.turmas)
-                ? aluno.turmas[0]
-                : aluno.turmas;
-
-
-        const nomeAluno =
-            normalizarTexto(
-                aluno.nome
-            );
-
-
-        const cursoAluno =
-            normalizarTexto(
-                turma?.curso
-            );
-
-
-        const correspondeNome =
-            !textoBusca ||
-            nomeAluno.includes(
-                textoBusca
-            );
-
-
-        const correspondeTurma =
-            !turmaSelecionada ||
-            String(aluno.turma_id) ===
-                String(turmaSelecionada);
-
-
-        const correspondeCurso =
-            !cursoSelecionado ||
-            cursoAluno ===
-                cursoSelecionado;
-
-
-        return (
-            correspondeNome &&
-            correspondeTurma &&
-            correspondeCurso
-        );
-
-    });
-
-}
-
-
-/* ==========================================================================
-   FILTRAR
-   ========================================================================== */
-
-function filtrarAlunos() {
-
-    const alunosFiltrados =
-        obterAlunosFiltrados();
-
-    renderizarAlunos(
-        alunosFiltrados
+    mostrarStatus(
+        alunos.length
+            ? ""
+            : "Nenhum aluno cadastrado."
     );
-
-    atualizarResumo(
-        alunosFiltrados
-    );
-
-}
-
-
-/* Compatibilidade com código antigo */
-
-window.filtrarAlunos =
-    filtrarAlunos;
-
-
-/* ==========================================================================
-   RENDERIZAR ALUNOS
-   ========================================================================== */
-
-function renderizarAlunos(
-    lista
-) {
-
-    if (!listaAlunos) {
-        return;
-    }
-
-
-    listaAlunos.innerHTML = "";
-
-
-    if (!lista.length) {
-
-        mostrarStatusAlunos(
-            "Nenhum aluno encontrado com os filtros selecionados.",
-            "vazio"
-        );
-
-        atualizarContador(0);
-
-        return;
-    }
-
-
-    esconderStatusAlunos();
-
-
-    lista.forEach(aluno => {
-
-        const turma =
-            Array.isArray(aluno.turmas)
-                ? aluno.turmas[0]
-                : aluno.turmas;
-
-
-        const observacoesAluno =
-            observacoes.filter(
-                obs =>
-                    String(obs.aluno_id) ===
-                    String(aluno.id)
-            );
-
-
-        const ultimaObservacao =
-            observacoesAluno
-                .sort(
-                    (a, b) =>
-                        new Date(b.created_at) -
-                        new Date(a.created_at)
-                )[0];
-
-
-        const artigo =
-            document.createElement("article");
-
-        artigo.className =
-            "aluno";
-
-        artigo.dataset.nome =
-            aluno.nome || "";
-
-        artigo.dataset.turma =
-            turma?.nome || "";
-
-        artigo.dataset.curso =
-            turma?.curso || "";
-
-        artigo.dataset.id =
-            aluno.id;
-
-
-        artigo.innerHTML = criarCardAluno(
-            aluno,
-            turma,
-            ultimaObservacao
-        );
-
-
-        listaAlunos.appendChild(
-            artigo
-        );
-
-    });
-
-
-    atualizarContador(
-        lista.length
-    );
-
 }
 
 
 /* ==========================================================================
-   CARD DO ALUNO
-   ========================================================================== */
-
-function criarCardAluno(
-    aluno,
-    turma,
-    ultimaObservacao
-) {
-
-    const nome =
-        escaparHTML(
-            aluno.nome ||
-            "Aluno sem nome"
-        );
-
-
-    const curso =
-        escaparHTML(
-            obterNomeCurso(
-                turma?.curso
-            )
-        );
-
-
-    const nomeTurma =
-        escaparHTML(
-            turma?.nome ||
-            "Turma não informada"
-        );
-
-
-    let blocoObservacao = "";
-
-
-    if (ultimaObservacao) {
-
-        blocoObservacao = `
-            <div class="ultima-observacao">
-
-                <span>
-                    Última observação:
-                    <strong>
-                        ${escaparHTML(
-                            formatarData(
-                                ultimaObservacao.created_at
-                            )
-                        )}
-                    </strong>
-                </span>
-
-                <p>
-                    "${escaparHTML(
-                        ultimaObservacao.texto
-                    )}"
-                </p>
-
-            </div>
-        `;
-
-    } else {
-
-        blocoObservacao = `
-            <div class="ultima-observacao sem-observacao">
-
-                <span>
-                    Nenhuma observação registrada
-                </span>
-
-                <p>
-                    Seja o primeiro a registrar uma observação.
-                </p>
-
-            </div>
-        `;
-
-    }
-
-
-    return `
-
-        <div class="avatar">
-            <i class="fa-solid fa-user"></i>
-        </div>
-
-
-        <div class="aluno-info">
-
-            <h3>
-                ${nome}
-            </h3>
-
-            <span>
-                ${curso}
-                •
-                ${nomeTurma}
-            </span>
-
-        </div>
-
-
-        ${blocoObservacao}
-
-
-        <div class="acoes">
-
-            <button
-                type="button"
-                class="btn-perfil"
-                data-acao="perfil"
-                data-aluno-id="${escaparHTML(
-                    aluno.id
-                )}"
-            >
-
-                <i class="fa-regular fa-eye"></i>
-
-                Ver perfil
-
-            </button>
-
-
-            <button
-                type="button"
-                class="btn-observacao"
-                data-acao="observacao"
-                data-aluno-id="${escaparHTML(
-                    aluno.id
-                )}"
-            >
-
-                <i class="fa-solid fa-plus"></i>
-
-                Observação
-
-            </button>
-
-        </div>
-
-    `;
-
-}
-
-
-/* ==========================================================================
-   CONTADOR
-   ========================================================================== */
-
-function atualizarContador(
-    quantidade
-) {
-
-    if (!contadorAlunos) {
-        return;
-    }
-
-
-    contadorAlunos.textContent =
-        quantidade === 1
-            ? "1 aluno"
-            : `${quantidade} alunos`;
-
-}
-
-
-/* ==========================================================================
-   RESUMO
-   ========================================================================== */
-
-function atualizarResumo(
-    lista
-) {
-
-    const total =
-        lista.length;
-
-
-    const idsComObservacao =
-        new Set(
-            observacoes
-                .filter(obs =>
-                    lista.some(
-                        aluno =>
-                            String(
-                                aluno.id
-                            ) ===
-                            String(
-                                obs.aluno_id
-                            )
-                    )
-                )
-                .map(
-                    obs =>
-                        String(
-                            obs.aluno_id
-                        )
-                )
-        );
-
-
-    const comObservacao =
-        idsComObservacao.size;
-
-
-    const semObservacao =
-        Math.max(
-            total - comObservacao,
-            0
-        );
-
-
-    const percentual =
-        total > 0
-            ? Math.round(
-                (
-                    comObservacao /
-                    total
-                ) * 100
-            )
-            : 0;
-
-
-    if (totalAlunos) {
-        totalAlunos.textContent =
-            total;
-    }
-
-
-    if (alunosComObservacao) {
-        alunosComObservacao.textContent =
-            comObservacao;
-    }
-
-
-    if (alunosSemObservacao) {
-        alunosSemObservacao.textContent =
-            semObservacao;
-    }
-
-
-    if (percentualAcompanhados) {
-        percentualAcompanhados.textContent =
-            `${percentual}%`;
-    }
-
-}
-
-
-/* ==========================================================================
-   CARREGAR OBSERVAÇÕES
+   12. CARREGAR OBSERVAÇÕES
    ========================================================================== */
 
 async function carregarObservacoes() {
@@ -930,24 +606,25 @@ async function carregarObservacoes() {
     } = await supabaseClient
         .from("observacoes")
         .select(`
-            id,
-            aluno_id,
-            professor_id,
-            tipo,
-            texto,
-            created_at,
-            alunos (
-                id,
-                nome
-            )
-        `)
-        .order(
-            "created_at",
-            {
-                ascending: false
-            }
-        );
-
+      id,
+      aluno_id,
+      professor_id,
+      tipo,
+      texto,
+      created_at,
+      alunos (
+        id,
+        nome,
+        turma_id,
+        turmas (
+          nome,
+          curso
+        )
+      )
+    `)
+        .order("created_at", {
+            ascending: false
+        });
 
     if (error) {
 
@@ -956,221 +633,1007 @@ async function carregarObservacoes() {
             error
         );
 
-        observacoes = [];
-
-        renderizarObservacoesRecentes();
-
-        atualizarResumo(
-            obterAlunosFiltrados()
-        );
-
-        return;
+        throw error;
     }
-
 
     observacoes =
         data || [];
 
+    atualizarMapaObservacoes();
 
     renderizarObservacoesRecentes();
 
-    atualizarResumo(
-        obterAlunosFiltrados()
-    );
+    renderizarAlunos();
 
-    renderizarAlunos(
-        obterAlunosFiltrados()
-    );
-
+    atualizarResumo();
 }
 
 
 /* ==========================================================================
-   OBSERVAÇÕES RECENTES
+   13. MAPA DE OBSERVAÇÕES
    ========================================================================== */
 
-function renderizarObservacoesRecentes() {
+function atualizarMapaObservacoes() {
 
-    if (!listaObservacoesRecentes) {
+    observacoesPorAluno =
+        new Map();
+
+    observacoes.forEach(observacao => {
+
+        if (
+            !observacoesPorAluno.has(
+                observacao.aluno_id
+            )
+        ) {
+
+            observacoesPorAluno.set(
+                observacao.aluno_id,
+                []
+            );
+
+        }
+
+        observacoesPorAluno
+            .get(observacao.aluno_id)
+            .push(observacao);
+
+    });
+}
+
+
+/* ==========================================================================
+   14. RENDERIZAR ALUNOS
+   ========================================================================== */
+
+function obterAlunosFiltrados() {
+
+    const busca =
+        normalizarTexto(
+            buscarAluno?.value
+        );
+
+    const turmaSelecionada =
+        filtroTurma?.value || "";
+
+    const cursoSelecionado =
+        normalizarTexto(
+            filtroCurso?.value
+        );
+
+    return alunos.filter(aluno => {
+
+        const nomeAluno =
+            normalizarTexto(
+                aluno.nome
+            );
+
+        const cursoAluno =
+            normalizarTexto(
+                aluno.turmas?.curso
+            );
+
+        const nomeTurma =
+            normalizarTexto(
+                aluno.turmas?.nome
+            );
+
+        const correspondeBusca =
+            !busca ||
+            nomeAluno.includes(busca) ||
+            nomeTurma.includes(busca);
+
+        const correspondeTurma =
+            !turmaSelecionada ||
+            String(aluno.turma_id) ===
+            String(turmaSelecionada);
+
+        const correspondeCurso =
+            !cursoSelecionado ||
+            cursoAluno === cursoSelecionado;
+
+        return (
+            correspondeBusca &&
+            correspondeTurma &&
+            correspondeCurso
+        );
+
+    });
+}
+
+
+function renderizarAlunos() {
+
+    if (!listaAlunos) {
+        return;
+    }
+
+    const alunosFiltrados =
+        obterAlunosFiltrados();
+
+    contadorAlunos.textContent =
+        `${alunosFiltrados.length} aluno${alunosFiltrados.length === 1
+            ? ""
+            : "s"
+        }`;
+
+    if (!alunosFiltrados.length) {
+
+        listaAlunos.innerHTML = `
+      <div class="empty-state">
+        <i class="fa-solid fa-user-graduate"></i>
+        <strong>Nenhum aluno encontrado</strong>
+        <span>
+          Tente alterar os filtros ou cadastre um novo aluno.
+        </span>
+      </div>
+    `;
+
         return;
     }
 
 
-    const recentes =
-        observacoes
-            .slice()
-            .sort(
-                (a, b) =>
-                    new Date(b.created_at) -
-                    new Date(a.created_at)
-            )
-            .slice(0, 3);
+    listaAlunos.innerHTML =
+        alunosFiltrados
+            .map(aluno => {
 
+                const turma =
+                    aluno.turmas?.nome ||
+                    "Turma não informada";
 
-    if (!recentes.length) {
+                const curso =
+                    aluno.turmas?.curso ||
+                    "Curso não informado";
 
-        listaObservacoesRecentes.innerHTML = `
+                const observacoesAluno =
+                    observacoesPorAluno
+                        .get(aluno.id) ||
+                    [];
 
-            <div class="sem-observacoes">
+                const ultimaObservacao =
+                    observacoesAluno[0];
 
-                <i class="fa-regular fa-file-lines"></i>
+                const resumoObservacao =
+                    ultimaObservacao
+                        ? ultimaObservacao.texto
+                        : "Nenhuma observação registrada.";
 
-                <span>
-                    Nenhuma observação registrada.
-                </span>
+                return `
+          <article
+            class="aluno-card"
+            data-aluno-id="${aluno.id}">
+
+            <div class="aluno-topo">
+
+              <div class="aluno-avatar">
+                ${escapeHTML(
+                    obterIniciais(aluno.nome)
+                )}
+              </div>
+
+              <div class="aluno-identificacao">
+
+                <h3 title="${escapeHTML(aluno.nome)}">
+                  ${escapeHTML(aluno.nome)}
+                </h3>
+
+                <p>
+                  ${escapeHTML(turma)}
+                </p>
+
+              </div>
 
             </div>
 
+
+            <div class="aluno-info">
+
+              <div class="aluno-info-item">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                <span>
+                  ${escapeHTML(turma)}
+                </span>
+
+              </div>
+
+
+              <div class="aluno-info-item">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>
+                  ${escapeHTML(curso)}
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="aluno-observacao">
+
+              <strong>
+                Última observação:
+              </strong>
+
+              ${escapeHTML(
+                    resumoObservacao
+                )}
+
+            </div>
+
+
+            <div class="aluno-acoes">
+
+              <button
+                type="button"
+                class="btn-aluno"
+                data-action="perfil"
+                data-id="${aluno.id}">
+
+                <i class="fa-solid fa-user"></i>
+                Perfil
+
+              </button>
+
+
+              <button
+                type="button"
+                class="btn-aluno"
+                data-action="observacoes"
+                data-id="${aluno.id}">
+
+                <i class="fa-regular fa-file-lines"></i>
+                Observações
+
+              </button>
+
+
+              <button
+                type="button"
+                class="btn-aluno destaque"
+                data-action="adicionar"
+                data-id="${aluno.id}">
+
+                <i class="fa-solid fa-plus"></i>
+                Adicionar
+
+              </button>
+
+            </div>
+
+          </article>
         `;
+
+            })
+            .join("");
+}
+
+
+/* ==========================================================================
+   15. RESUMO
+   ========================================================================== */
+
+function atualizarResumo() {
+
+    const total =
+        alunos.length;
+
+    const alunosAcompanhados =
+        alunos.filter(aluno =>
+            (
+                observacoesPorAluno
+                    .get(aluno.id) ||
+                []
+            ).length > 0
+        ).length;
+
+    const semObservacao =
+        total -
+        alunosAcompanhados;
+
+    const percentual =
+        total > 0
+            ? Math.round(
+                (
+                    alunosAcompanhados /
+                    total
+                ) * 100
+            )
+            : 0;
+
+    totalAlunos.textContent =
+        total;
+
+    alunosComObservacao.textContent =
+        alunosAcompanhados;
+
+    alunosSemObservacao.textContent =
+        semObservacao;
+
+    percentualAcompanhados.textContent =
+        `${percentual}%`;
+}
+
+
+/* ==========================================================================
+   16. CADASTRO — ABRIR
+   ========================================================================== */
+
+function abrirModalCadastroAluno() {
+
+    limparFormularioCadastro();
+
+    modalCadastroAluno.classList.add("open");
+
+    modalCadastroAluno.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.classList.add(
+        "no-scroll"
+    );
+
+    setTimeout(() => {
+
+        nomeNovoAluno?.focus();
+
+    }, 100);
+}
+
+
+/* ==========================================================================
+   17. CADASTRO — FECHAR
+   ========================================================================== */
+
+function fecharModalCadastroAluno() {
+
+    modalCadastroAluno.classList.remove(
+        "open"
+    );
+
+    modalCadastroAluno.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.classList.remove(
+        "no-scroll"
+    );
+}
+
+
+function limparFormularioCadastro() {
+
+    formCadastroAluno?.reset();
+
+    if (erroNomeAluno) {
+        erroNomeAluno.textContent = "";
+    }
+
+    if (erroTurmaAluno) {
+        erroTurmaAluno.textContent = "";
+    }
+
+    if (erroNovaTurma) {
+        erroNovaTurma.textContent = "";
+    }
+
+    if (cursoSelecionadoInfo) {
+
+        cursoSelecionadoInfo.textContent =
+            "Selecione uma turma para visualizar o curso.";
+
+    }
+
+    if (novaTurmaForm) {
+
+        novaTurmaForm.hidden = true;
+
+    }
+
+    if (btnMostrarNovaTurma) {
+
+        btnMostrarNovaTurma.innerHTML = `
+      <i class="fa-solid fa-plus"></i>
+      Cadastrar nova turma
+    `;
+
+    }
+
+    bloquearBotao(
+        btnSalvarAluno,
+        false,
+        `<i class="fa-solid fa-user-plus"></i> Cadastrar aluno`
+    );
+
+    bloquearBotao(
+        btnSalvarTurma,
+        false,
+        `<i class="fa-solid fa-plus"></i> Criar turma`
+    );
+}
+
+
+/* ==========================================================================
+   18. VALIDAÇÃO DO ALUNO
+   ========================================================================== */
+
+function validarCadastroAluno() {
+
+    let valido = true;
+
+    erroNomeAluno.textContent = "";
+    erroTurmaAluno.textContent = "";
+
+    const nome =
+        nomeNovoAluno.value.trim();
+
+    const turmaId =
+        turmaNovoAluno.value;
+
+
+    if (nome.length < 3) {
+
+        erroNomeAluno.textContent =
+            "Digite o nome completo do aluno.";
+
+        valido = false;
+
+    }
+
+
+    if (!turmaId) {
+
+        erroTurmaAluno.textContent =
+            "Selecione uma turma.";
+
+        valido = false;
+
+    }
+
+    return {
+        valido,
+        nome,
+        turmaId
+    };
+}
+
+
+/* ==========================================================================
+   19. CADASTRAR ALUNO NO SUPABASE
+   ========================================================================== */
+
+async function cadastrarAluno(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+    const validacao =
+        validarCadastroAluno();
+
+    if (!validacao.valido) {
+        return;
+    }
+
+    const {
+        nome,
+        turmaId
+    } = validacao;
+
+
+    const turma =
+        turmas.find(
+            item =>
+                String(item.id) ===
+                String(turmaId)
+        );
+
+
+    if (!turma) {
+
+        erroTurmaAluno.textContent =
+            "A turma selecionada não existe.";
 
         return;
     }
 
 
-    listaObservacoesRecentes.innerHTML =
-        recentes
-            .map(obs => {
-
-                const nome =
-                    obs.alunos?.nome ||
-                    "Aluno";
+    bloquearBotao(
+        btnSalvarAluno,
+        true
+    );
 
 
-                return `
+    try {
 
-                    <div class="observacao-item">
+        /*
+         * Verifica se o mesmo aluno
+         * já existe na mesma turma.
+         */
 
-                        <div class="obs-icon">
+        const {
+            data: alunoExistente,
+            error: erroBusca
+        } = await supabaseClient
+            .from("alunos")
+            .select("id,nome")
+            .eq("turma_id", turmaId)
+            .ilike("nome", nome)
+            .limit(1);
 
-                            <i
-                                class="fa-regular fa-file-lines"
-                                aria-hidden="true"
-                            ></i>
 
-                        </div>
+        if (erroBusca) {
+            throw erroBusca;
+        }
 
 
-                        <div>
+        if (
+            alunoExistente &&
+            alunoExistente.length > 0
+        ) {
 
-                            <strong>
-                                ${escaparHTML(
-                                    nome
-                                )}
-                            </strong>
+            erroNomeAluno.textContent =
+                "Este aluno já está cadastrado nesta turma.";
 
-                            <small>
-                                ${escaparHTML(
-                                    formatarDataHora(
-                                        obs.created_at
-                                    )
-                                )}
-                            </small>
+            bloquearBotao(
+                btnSalvarAluno,
+                false,
+                `<i class="fa-solid fa-user-plus"></i> Cadastrar aluno`
+            );
 
-                            <p>
-                                "${escaparHTML(
-                                    obs.texto
-                                )}"
-                            </p>
+            return;
+        }
 
-                        </div>
 
-                    </div>
+        /*
+         * INSERÇÃO REAL NO SUPABASE
+         */
 
-                `;
-
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("alunos")
+            .insert({
+                nome,
+                turma_id: Number(turmaId)
             })
-            .join("");
+            .select(`
+        id,
+        nome,
+        turma_id,
+        created_at,
+        turmas (
+          id,
+          nome,
+          curso
+        )
+      `)
+            .single();
 
+
+        if (error) {
+            throw error;
+        }
+
+
+        console.log(
+            "Aluno cadastrado:",
+            data
+        );
+
+
+        /*
+         * Atualiza os dados da tela
+         */
+
+        alunos.push(data);
+
+        alunos.sort((a, b) =>
+            a.nome.localeCompare(
+                b.nome,
+                "pt-BR"
+            )
+        );
+
+
+        renderizarAlunos();
+
+        atualizarResumo();
+
+
+        /*
+         * Fecha o modal
+         */
+
+        fecharModalCadastroAluno();
+
+
+        /*
+         * Mensagem de sucesso
+         */
+
+        mostrarStatus(
+            `Aluno "${data.nome}" cadastrado com sucesso.`,
+            "sucesso"
+        );
+
+
+        /*
+         * Remove a mensagem depois de alguns segundos.
+         */
+
+        setTimeout(() => {
+
+            if (
+                statusAlunos &&
+                statusAlunos.classList.contains(
+                    "sucesso"
+                )
+            ) {
+
+                mostrarStatus("");
+
+            }
+
+        }, 4500);
+
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao cadastrar aluno:",
+            error
+        );
+
+
+        let mensagem =
+            "Não foi possível cadastrar o aluno.";
+
+
+        if (
+            error?.code === "42501"
+        ) {
+
+            mensagem =
+                "O cadastro foi bloqueado pelas políticas de segurança do Supabase.";
+
+        }
+
+
+        if (
+            error?.code === "23503"
+        ) {
+
+            mensagem =
+                "A turma selecionada não existe mais.";
+
+        }
+
+
+        mostrarStatus(
+            mensagem,
+            "erro"
+        );
+
+
+    } finally {
+
+        bloquearBotao(
+            btnSalvarAluno,
+            false,
+            `<i class="fa-solid fa-user-plus"></i> Cadastrar aluno`
+        );
+
+    }
 }
 
 
 /* ==========================================================================
-   ABRIR MODAL
+   20. MOSTRAR / ESCONDER NOVA TURMA
    ========================================================================== */
 
-function abrirModal(
-    alunoId
-) {
+function alternarNovaTurma() {
+
+    if (!novaTurmaForm) {
+        return;
+    }
+
+    novaTurmaForm.hidden =
+        !novaTurmaForm.hidden;
+
+
+    if (novaTurmaForm.hidden) {
+
+        btnMostrarNovaTurma.innerHTML = `
+      <i class="fa-solid fa-plus"></i>
+      Cadastrar nova turma
+    `;
+
+    } else {
+
+        btnMostrarNovaTurma.innerHTML = `
+      <i class="fa-solid fa-minus"></i>
+      Ocultar cadastro de turma
+    `;
+
+        nomeNovaTurma?.focus();
+
+    }
+}
+
+
+/* ==========================================================================
+   21. VALIDAR NOVA TURMA
+   ========================================================================== */
+
+function validarNovaTurma() {
+
+    erroNovaTurma.textContent = "";
+
+    const nome =
+        nomeNovaTurma.value
+            .trim()
+            .toUpperCase();
+
+    const curso =
+        cursoNovaTurma.value.trim();
+
+
+    /*
+     * Formato:
+     * 13.2026.001
+     */
+
+    const regexTurma =
+        /^\d{2}\.\d{4}\.\d{3}$/;
+
+
+    if (!regexTurma.test(nome)) {
+
+        erroNovaTurma.textContent =
+            "Use o formato 13.2026.XXX, por exemplo 13.2026.001.";
+
+        return {
+            valido: false,
+            nome,
+            curso
+        };
+    }
+
+
+    if (curso.length < 3) {
+
+        erroNovaTurma.textContent =
+            "Informe o curso da turma.";
+
+        return {
+            valido: false,
+            nome,
+            curso
+        };
+    }
+
+
+    const turmaExiste =
+        turmas.some(
+            turma =>
+                normalizarTexto(turma.nome) ===
+                normalizarTexto(nome)
+        );
+
+
+    if (turmaExiste) {
+
+        erroNovaTurma.textContent =
+            "Esta turma já está cadastrada.";
+
+        return {
+            valido: false,
+            nome,
+            curso
+        };
+    }
+
+
+    return {
+        valido: true,
+        nome,
+        curso
+    };
+}
+
+
+/* ==========================================================================
+   22. CRIAR TURMA
+   ========================================================================== */
+
+async function salvarNovaTurma() {
+
+    const validacao =
+        validarNovaTurma();
+
+    if (!validacao.valido) {
+        return;
+    }
+
+
+    bloquearBotao(
+        btnSalvarTurma,
+        true
+    );
+
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("turmas")
+            .insert({
+                nome: validacao.nome,
+                curso: validacao.curso
+            })
+            .select(
+                "id,nome,curso,created_at"
+            )
+            .single();
+
+
+        if (error) {
+            throw error;
+        }
+
+
+        /*
+         * Atualiza array local
+         */
+
+        turmas.push(data);
+
+        turmas.sort((a, b) =>
+            a.nome.localeCompare(
+                b.nome,
+                "pt-BR"
+            )
+        );
+
+
+        /*
+         * Atualiza selects
+         */
+
+        preencherSelectTurmas();
+
+        preencherSelectFiltroTurmas();
+        preencherSelectFiltroCursos();
+
+
+        /*
+         * Seleciona automaticamente
+         * a turma recém-criada.
+         */
+
+        turmaNovoAluno.value =
+            String(data.id);
+
+        atualizarCursoTurma();
+
+
+        /*
+         * Limpa formulário
+         */
+
+        nomeNovaTurma.value = "";
+        cursoNovaTurma.value = "";
+
+        erroNovaTurma.textContent = "";
+
+
+        /*
+         * Fecha área de nova turma
+         */
+
+        novaTurmaForm.hidden =
+            true;
+
+        btnMostrarNovaTurma.innerHTML = `
+      <i class="fa-solid fa-plus"></i>
+      Cadastrar nova turma
+    `;
+
+
+        alert(
+            `Turma ${data.nome} cadastrada com sucesso.`
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao criar turma:",
+            error
+        );
+
+
+        erroNovaTurma.textContent =
+            "Não foi possível criar a turma. Verifique as permissões do Supabase.";
+
+
+    } finally {
+
+        bloquearBotao(
+            btnSalvarTurma,
+            false,
+            `<i class="fa-solid fa-plus"></i> Criar turma`
+        );
+
+    }
+}
+
+
+/* ==========================================================================
+   23. MODAL DE OBSERVAÇÃO
+   ========================================================================== */
+
+function abrirModalObservacao(id) {
 
     const aluno =
         alunos.find(
             item =>
                 String(item.id) ===
-                String(alunoId)
+                String(id)
         );
-
 
     if (!aluno) {
-
-        console.error(
-            "Aluno não encontrado:",
-            alunoId
-        );
-
         return;
     }
-
 
     alunoAtual =
         aluno;
 
-
     alunoSelecionado.value =
-        aluno.nome || "";
-
+        aluno.nome;
 
     alunoSelecionadoId.value =
         aluno.id;
 
-
     tipoObservacao.value =
         "Desempenho acadêmico";
-
 
     textoObservacao.value =
         "";
 
-
     atualizarContadorCaracteres();
 
-
-    modal.classList.add(
-        "active"
-    );
+    modal.classList.add("open");
 
     modal.setAttribute(
         "aria-hidden",
         "false"
     );
 
-
-    document.body.style.overflow =
-        "hidden";
-
+    document.body.classList.add(
+        "no-scroll"
+    );
 
     setTimeout(() => {
 
         textoObservacao.focus();
 
     }, 100);
-
 }
 
 
-/* Compatibilidade */
-
-window.abrirModal =
-    abrirModal;
-
-
-/* ==========================================================================
-   FECHAR MODAL
-   ========================================================================== */
-
-function fecharModal() {
+function fecharModalObservacao() {
 
     modal.classList.remove(
-        "active"
+        "open"
     );
 
     modal.setAttribute(
@@ -1178,38 +1641,59 @@ function fecharModal() {
         "true"
     );
 
+    document.body.classList.remove(
+        "no-scroll"
+    );
 
-    document.body.style.overflow =
-        "";
-
-
-    alunoAtual =
-        null;
-
+    alunoAtual = null;
 }
 
 
 /* ==========================================================================
-   SALVAR OBSERVAÇÃO
+   24. CONTADOR DE CARACTERES
+   ========================================================================== */
+
+function atualizarContadorCaracteres() {
+
+    if (!contadorCaracteres) {
+        return;
+    }
+
+    const quantidade =
+        textoObservacao.value.length;
+
+    contadorCaracteres.textContent =
+        `${quantidade} / 1000`;
+}
+
+
+/* ==========================================================================
+   25. SALVAR OBSERVAÇÃO
    ========================================================================== */
 
 async function salvarObservacao() {
 
-    if (!alunoAtual) {
+    const alunoId =
+        alunoSelecionadoId.value;
+
+    const tipo =
+        tipoObservacao.value;
+
+    const texto =
+        textoObservacao.value.trim();
+
+
+    if (!alunoId) {
 
         alert(
-            "Selecione um aluno antes de salvar."
+            "Nenhum aluno foi selecionado."
         );
 
         return;
     }
 
 
-    const texto =
-        textoObservacao.value.trim();
-
-
-    if (!texto) {
+    if (texto.length < 3) {
 
         alert(
             "Digite uma observação antes de salvar."
@@ -1221,41 +1705,30 @@ async function salvarObservacao() {
     }
 
 
-    if (texto.length < 3) {
-
-        alert(
-            "A observação precisa ter pelo menos 3 caracteres."
-        );
-
-        textoObservacao.focus();
-
-        return;
-    }
-
-
-    btnSalvarObservacao.disabled =
-        true;
-
-
-    btnSalvarObservacao.innerHTML = `
-        <i class="fa-solid fa-spinner fa-spin"></i>
-        Salvando...
-    `;
+    bloquearBotao(
+        btnSalvarObservacao,
+        true
+    );
 
 
     try {
 
         const {
-            data: {
-                user
-            }
-        } =
-            await supabaseClient
-                .auth
-                .getUser();
+            data: sessionData,
+            error: sessionError
+        } = await supabaseClient.auth.getSession();
 
 
-        if (!user) {
+        if (sessionError) {
+            throw sessionError;
+        }
+
+
+        const session =
+            sessionData?.session;
+
+
+        if (!session?.user?.id) {
 
             alert(
                 "Sua sessão expirou. Faça login novamente."
@@ -1265,45 +1738,26 @@ async function salvarObservacao() {
         }
 
 
-        const novaObservacao = {
-
-            aluno_id:
-                alunoAtual.id,
-
-            professor_id:
-                user.id,
-
-            tipo:
-                tipoObservacao.value,
-
-            texto:
-                texto
-
-        };
-
-
         const {
             data,
             error
-        } =
-            await supabaseClient
-                .from("observacoes")
-                .insert(
-                    novaObservacao
-                )
-                .select(`
-                    id,
-                    aluno_id,
-                    professor_id,
-                    tipo,
-                    texto,
-                    created_at,
-                    alunos (
-                        id,
-                        nome
-                    )
-                `)
-                .single();
+        } = await supabaseClient
+            .from("observacoes")
+            .insert({
+                aluno_id: Number(alunoId),
+                professor_id: session.user.id,
+                tipo,
+                texto
+            })
+            .select(`
+        id,
+        aluno_id,
+        professor_id,
+        tipo,
+        texto,
+        created_at
+      `)
+            .single();
 
 
         if (error) {
@@ -1311,34 +1765,50 @@ async function salvarObservacao() {
         }
 
 
-        observacoes.unshift(
-            data
-        );
+        const aluno =
+            alunos.find(
+                item =>
+                    String(item.id) ===
+                    String(alunoId)
+            );
 
 
-        alert(
-            "Observação registrada com sucesso!"
-        );
+        observacoes.unshift({
+            ...data,
+            alunos: aluno
+        });
 
 
-        fecharModal();
-
+        atualizarMapaObservacoes();
 
         renderizarObservacoesRecentes();
 
+        renderizarAlunos();
 
-        const alunosFiltrados =
-            obterAlunosFiltrados();
+        atualizarResumo();
+
+        fecharModalObservacao();
 
 
-        renderizarAlunos(
-            alunosFiltrados
+        mostrarStatus(
+            "Observação registrada com sucesso.",
+            "sucesso"
         );
 
 
-        atualizarResumo(
-            alunosFiltrados
-        );
+        setTimeout(() => {
+
+            if (
+                statusAlunos.classList.contains(
+                    "sucesso"
+                )
+            ) {
+
+                mostrarStatus("");
+
+            }
+
+        }, 4000);
 
 
     } catch (error) {
@@ -1350,119 +1820,104 @@ async function salvarObservacao() {
 
 
         alert(
-            "Não foi possível salvar a observação. Verifique sua conexão e tente novamente."
+            "Não foi possível salvar a observação. Verifique as permissões do Supabase."
         );
+
 
     } finally {
 
-        btnSalvarObservacao.disabled =
-            false;
-
-        btnSalvarObservacao.innerHTML = `
-            <i class="fa-solid fa-check"></i>
-            Salvar observação
-        `;
+        bloquearBotao(
+            btnSalvarObservacao,
+            false,
+            `<i class="fa-solid fa-check"></i> Salvar observação`
+        );
 
     }
-
 }
 
 
 /* ==========================================================================
-   HISTÓRICO COMPLETO
+   26. OBSERVAÇÕES RECENTES
    ========================================================================== */
 
-function abrirTodasObservacoes() {
+function renderizarObservacoesRecentes() {
 
-    if (!modalObservacoes) {
+    if (!listaObservacoesRecentes) {
         return;
     }
 
 
-    if (!observacoes.length) {
-
-        listaTodasObservacoes.innerHTML = `
-
-            <div class="lista-vazia">
-
-                <i class="fa-regular fa-file-lines"></i>
-
-                <span>
-                    Nenhuma observação foi registrada.
-                </span>
-
-            </div>
-
-        `;
-
-    } else {
-
-        listaTodasObservacoes.innerHTML =
-            observacoes
-                .slice()
-                .sort(
-                    (a, b) =>
-                        new Date(b.created_at) -
-                        new Date(a.created_at)
-                )
-                .map(obs => {
-
-                    const nome =
-                        obs.alunos?.nome ||
-                        "Aluno";
+    const recentes =
+        observacoes.slice(0, 5);
 
 
-                    return `
+    if (!recentes.length) {
 
-                        <article class="observacao-historico">
+        listaObservacoesRecentes.innerHTML = `
+      <div class="sem-observacoes">
 
-                            <div class="observacao-historico-topo">
+        <i class="fa-regular fa-file-lines"></i>
 
-                                <strong>
-                                    ${escaparHTML(
-                                        nome
-                                    )}
-                                </strong>
+        <span>
+          Nenhuma observação registrada.
+        </span>
 
-                                <small>
-                                    ${escaparHTML(
-                                        formatarDataHora(
-                                            obs.created_at
-                                        )
-                                    )}
-                                </small>
+      </div>
+    `;
 
-                            </div>
-
-
-                            <span class="observacao-tipo">
-
-                                ${escaparHTML(
-                                    obs.tipo ||
-                                    "Observação"
-                                )}
-
-                            </span>
-
-
-                            <p>
-                                ${escaparHTML(
-                                    obs.texto
-                                )}
-                            </p>
-
-                        </article>
-
-                    `;
-
-                })
-                .join("");
-
+        return;
     }
 
 
+    listaObservacoesRecentes.innerHTML =
+        recentes
+            .map(observacao => {
+
+                const nome =
+                    observacao.alunos?.nome ||
+                    "Aluno";
+
+                return `
+          <div class="observacao-recente">
+
+            <strong>
+              ${escapeHTML(nome)}
+            </strong>
+
+            <span>
+              ${escapeHTML(observacao.tipo)}
+              •
+              ${formatarData(observacao.created_at)}
+            </span>
+
+            <p>
+              ${escapeHTML(observacao.texto)}
+            </p>
+
+          </div>
+        `;
+
+            })
+            .join("");
+}
+
+
+/* ==========================================================================
+   27. HISTÓRICO
+   ========================================================================== */
+
+function abrirHistorico(alunoId = null) {
+
+    historicoAlunoAtual =
+        alunoId
+            ? Number(alunoId)
+            : null;
+
+
+    renderizarHistorico();
+
     modalObservacoes.classList.add(
-        "active"
+        "open"
     );
 
     modalObservacoes.setAttribute(
@@ -1470,20 +1925,16 @@ function abrirTodasObservacoes() {
         "false"
     );
 
-    document.body.style.overflow =
-        "hidden";
-
+    document.body.classList.add(
+        "no-scroll"
+    );
 }
 
 
-/* ==========================================================================
-   FECHAR HISTÓRICO
-   ========================================================================== */
-
-function fecharTodasObservacoes() {
+function fecharHistorico() {
 
     modalObservacoes.classList.remove(
-        "active"
+        "open"
     );
 
     modalObservacoes.setAttribute(
@@ -1491,318 +1942,375 @@ function fecharTodasObservacoes() {
         "true"
     );
 
-    document.body.style.overflow =
-        "";
+    document.body.classList.remove(
+        "no-scroll"
+    );
 
+    historicoAlunoAtual = null;
 }
 
 
-/* ==========================================================================
-   CONTADOR DE CARACTERES
-   ========================================================================== */
+function renderizarHistorico() {
 
-function atualizarContadorCaracteres() {
+    let dados =
+        observacoes;
 
-    if (!contadorCaracteres) {
+
+    if (historicoAlunoAtual) {
+
+        dados =
+            observacoes.filter(
+                observacao =>
+                    Number(
+                        observacao.aluno_id
+                    ) ===
+                    Number(
+                        historicoAlunoAtual
+                    )
+            );
+
+        const aluno =
+            alunos.find(
+                item =>
+                    Number(item.id) ===
+                    Number(historicoAlunoAtual)
+            );
+
+        tituloTodasObservacoes.textContent =
+            aluno
+                ? `Observações de ${aluno.nome}`
+                : "Observações do aluno";
+
+        subtituloHistorico.textContent =
+            `${dados.length} observação${dados.length === 1
+                ? ""
+                : "ões"
+            } registrada${dados.length === 1
+                ? ""
+                : "s"
+            } para este aluno.`;
+
+    } else {
+
+        tituloTodasObservacoes.textContent =
+            "Todas as observações";
+
+        subtituloHistorico.textContent =
+            `${dados.length} observação${dados.length === 1
+                ? ""
+                : "ões"
+            } registrada${dados.length === 1
+                ? ""
+                : "s"
+            } no mural.`;
+
+    }
+
+
+    if (!dados.length) {
+
+        listaTodasObservacoes.innerHTML = `
+      <div class="sem-observacoes">
+
+        <i class="fa-regular fa-file-lines"></i>
+
+        <span>
+          Nenhuma observação encontrada.
+        </span>
+
+      </div>
+    `;
+
         return;
     }
 
 
-    const quantidade =
-        textoObservacao.value.length;
+    listaTodasObservacoes.innerHTML =
+        dados
+            .map(observacao => {
 
+                const nome =
+                    observacao.alunos?.nome ||
+                    alunos.find(
+                        aluno =>
+                            Number(aluno.id) ===
+                            Number(observacao.aluno_id)
+                    )?.nome ||
+                    "Aluno";
 
-    contadorCaracteres.textContent =
-        `${quantidade} / 1000`;
+                return `
+          <article class="historico-item">
 
+            <div class="historico-topo">
+
+              <strong class="historico-aluno">
+                ${escapeHTML(nome)}
+              </strong>
+
+              <span class="historico-data">
+                ${formatarData(
+                    observacao.created_at
+                )}
+              </span>
+
+            </div>
+
+            <span class="historico-tipo">
+              ${escapeHTML(
+                    observacao.tipo
+                )}
+            </span>
+
+            <p class="historico-texto">
+              ${escapeHTML(
+                    observacao.texto
+                )}
+            </p>
+
+          </article>
+        `;
+
+            })
+            .join("");
 }
 
 
 /* ==========================================================================
-   PERFIL DO ALUNO
+   28. PERFIL DO ALUNO
    ========================================================================== */
 
-function visualizarPerfilAluno(
-    alunoId
-) {
+function abrirPerfilAluno(id) {
 
     const aluno =
         alunos.find(
             item =>
                 String(item.id) ===
-                String(alunoId)
+                String(id)
         );
-
 
     if (!aluno) {
         return;
     }
 
-
-    /*
-     * Mantemos o botão funcional sem criar
-     * uma página inexistente.
-     *
-     * Quando perfil.html estiver preparado
-     * para receber o ID do aluno, podemos
-     * trocar por:
-     *
-     * perfil.html?id=${aluno.id}
-     */
-
-    alert(
-        `Perfil do aluno:\n\n${aluno.nome}`
-    );
-
+    window.location.href =
+        `perfil.html?id=${encodeURIComponent(id)}`;
 }
 
 
 /* ==========================================================================
-   EVENTOS
+   29. EVENTOS DOS CARDS
    ========================================================================== */
 
-if (campoBusca) {
-
-    campoBusca.addEventListener(
-        "input",
-        filtrarAlunos
-    );
-
-}
-
-
-if (btnFiltrar) {
-
-    btnFiltrar.addEventListener(
-        "click",
-        filtrarAlunos
-    );
-
-}
-
-
-if (filtroTurma) {
-
-    filtroTurma.addEventListener(
-        "change",
-        filtrarAlunos
-    );
-
-}
-
-
-if (filtroCurso) {
-
-    filtroCurso.addEventListener(
-        "change",
-        filtrarAlunos
-    );
-
-}
-
-
-/* DELEGAÇÃO DE EVENTOS DOS ALUNOS */
-
-if (listaAlunos) {
-
-    listaAlunos.addEventListener(
-        "click",
-        event => {
-
-            const botao =
-                event.target.closest(
-                    "button[data-acao]"
-                );
-
-
-            if (!botao) {
-                return;
-            }
-
-
-            const alunoId =
-                botao.dataset.alunoId;
-
-
-            if (
-                botao.dataset.acao ===
-                "observacao"
-            ) {
-
-                abrirModal(
-                    alunoId
-                );
-
-            }
-
-
-            if (
-                botao.dataset.acao ===
-                "perfil"
-            ) {
-
-                visualizarPerfilAluno(
-                    alunoId
-                );
-
-            }
-
-        }
-    );
-
-}
-
-
-/* MODAL */
-
-if (btnFecharModal) {
-
-    btnFecharModal.addEventListener(
-        "click",
-        fecharModal
-    );
-
-}
-
-
-if (btnCancelarModal) {
-
-    btnCancelarModal.addEventListener(
-        "click",
-        fecharModal
-    );
-
-}
-
-
-if (btnSalvarObservacao) {
-
-    btnSalvarObservacao.addEventListener(
-        "click",
-        salvarObservacao
-    );
-
-}
-
-
-if (textoObservacao) {
-
-    textoObservacao.addEventListener(
-        "input",
-        atualizarContadorCaracteres
-    );
-
-}
-
-
-/* HISTÓRICO */
-
-if (btnVerTodas) {
-
-    btnVerTodas.addEventListener(
-        "click",
-        abrirTodasObservacoes
-    );
-
-}
-
-
-if (btnTodasObservacoes) {
-
-    btnTodasObservacoes.addEventListener(
-        "click",
-        abrirTodasObservacoes
-    );
-
-}
-
-
-if (btnFecharObservacoes) {
-
-    btnFecharObservacoes.addEventListener(
-        "click",
-        fecharTodasObservacoes
-    );
-
-}
-
-
-/* FECHAR CLICANDO NO FUNDO */
-
-if (modal) {
-
-    modal.addEventListener(
-        "click",
-        event => {
-
-            if (
-                event.target ===
-                modal
-            ) {
-
-                fecharModal();
-
-            }
-
-        }
-    );
-
-}
-
-
-if (modalObservacoes) {
-
-    modalObservacoes.addEventListener(
-        "click",
-        event => {
-
-            if (
-                event.target ===
-                modalObservacoes
-            ) {
-
-                fecharTodasObservacoes();
-
-            }
-
-        }
-    );
-
-}
-
-
-/* ESC */
-
-document.addEventListener(
-    "keydown",
+listaAlunos?.addEventListener(
+    "click",
     event => {
 
-        if (
-            event.key !==
-            "Escape"
-        ) {
+        const botao =
+            event.target.closest(
+                "[data-action]"
+            );
+
+        if (!botao) {
+            return;
+        }
+
+        const id =
+            botao.dataset.id;
+
+        const action =
+            botao.dataset.action;
+
+
+        if (action === "perfil") {
+
+            abrirPerfilAluno(id);
+
             return;
         }
 
 
-        if (
-            modal?.classList.contains(
-                "active"
-            )
-        ) {
+        if (action === "observacoes") {
 
-            fecharModal();
+            abrirHistorico(id);
 
+            return;
         }
 
 
+        if (action === "adicionar") {
+
+            abrirModalObservacao(id);
+
+            return;
+        }
+
+    }
+);
+
+
+/* ==========================================================================
+   30. FILTROS
+   ========================================================================== */
+
+function filtrarAlunos() {
+
+    renderizarAlunos();
+
+}
+
+
+buscarAluno?.addEventListener(
+    "input",
+    filtrarAlunos
+);
+
+filtroTurma?.addEventListener(
+    "change",
+    filtrarAlunos
+);
+
+filtroCurso?.addEventListener(
+    "change",
+    filtrarAlunos
+);
+
+btnFiltrar?.addEventListener(
+    "click",
+    filtrarAlunos
+);
+
+
+/* ==========================================================================
+   31. EVENTOS — CADASTRO
+   ========================================================================== */
+
+btnAbrirCadastroAluno?.addEventListener(
+    "click",
+    abrirModalCadastroAluno
+);
+
+btnFecharCadastroAluno?.addEventListener(
+    "click",
+    fecharModalCadastroAluno
+);
+
+btnCancelarCadastroAluno?.addEventListener(
+    "click",
+    fecharModalCadastroAluno
+);
+
+formCadastroAluno?.addEventListener(
+    "submit",
+    cadastrarAluno
+);
+
+turmaNovoAluno?.addEventListener(
+    "change",
+    atualizarCursoTurma
+);
+
+btnMostrarNovaTurma?.addEventListener(
+    "click",
+    alternarNovaTurma
+);
+
+btnSalvarTurma?.addEventListener(
+    "click",
+    salvarNovaTurma
+);
+
+
+/* ==========================================================================
+   32. EVENTOS — OBSERVAÇÃO
+   ========================================================================== */
+
+btnFecharModal?.addEventListener(
+    "click",
+    fecharModalObservacao
+);
+
+btnCancelarModal?.addEventListener(
+    "click",
+    fecharModalObservacao
+);
+
+btnSalvarObservacao?.addEventListener(
+    "click",
+    salvarObservacao
+);
+
+textoObservacao?.addEventListener(
+    "input",
+    atualizarContadorCaracteres
+);
+
+
+/* ==========================================================================
+   33. EVENTOS — HISTÓRICO
+   ========================================================================== */
+
+btnFecharObservacoes?.addEventListener(
+    "click",
+    fecharHistorico
+);
+
+btnVerTodas?.addEventListener(
+    "click",
+    () => abrirHistorico()
+);
+
+btnTodasObservacoes?.addEventListener(
+    "click",
+    () => abrirHistorico()
+);
+
+
+/* ==========================================================================
+   34. FECHAR MODAIS CLICANDO FORA
+   ========================================================================== */
+
+modalCadastroAluno?.addEventListener(
+    "click",
+    event => {
+
         if (
-            modalObservacoes?.classList.contains(
-                "active"
-            )
+            event.target ===
+            modalCadastroAluno
         ) {
 
-            fecharTodasObservacoes();
+            fecharModalCadastroAluno();
+
+        }
+
+    }
+);
+
+
+modal?.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target === modal
+        ) {
+
+            fecharModalObservacao();
+
+        }
+
+    }
+);
+
+
+modalObservacoes?.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target === modalObservacoes
+        ) {
+
+            fecharHistorico();
 
         }
 
@@ -1811,42 +2319,245 @@ document.addEventListener(
 
 
 /* ==========================================================================
-   INICIALIZAÇÃO
+   35. ESC
+   ========================================================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key !== "Escape") {
+            return;
+        }
+
+        if (
+            modalCadastroAluno?.classList.contains(
+                "open"
+            )
+        ) {
+
+            fecharModalCadastroAluno();
+
+            return;
+        }
+
+        if (
+            modal?.classList.contains(
+                "open"
+            )
+        ) {
+
+            fecharModalObservacao();
+
+            return;
+        }
+
+        if (
+            modalObservacoes?.classList.contains(
+                "open"
+            )
+        ) {
+
+            fecharHistorico();
+
+        }
+
+    }
+);
+
+
+/* ==========================================================================
+   36. NOVA TURMA — FORMATAÇÃO
+   ========================================================================== */
+
+nomeNovaTurma?.addEventListener(
+    "input",
+    () => {
+
+        let valor =
+            nomeNovaTurma.value
+                .replace(/[^\d]/g, "");
+
+        /*
+         * Mantém somente os 9 números:
+         * 13 2026 001
+         */
+
+        valor =
+            valor.substring(0, 9);
+
+
+        let formatado =
+            valor;
+
+
+        if (valor.length > 2) {
+
+            formatado =
+                `${valor.substring(0, 2)}.${valor.substring(2)}`;
+
+        }
+
+        if (valor.length > 6) {
+
+            formatado =
+                `${valor.substring(0, 2)}.${valor.substring(2, 6)}.${valor.substring(6)}`;
+
+        }
+
+
+        nomeNovaTurma.value =
+            formatado;
+    }
+);
+
+
+/* ==========================================================================
+   37. BOTÃO VOLTAR AO TOPO
+   ========================================================================== */
+
+const backToTop =
+    document.getElementById(
+        "backToTop"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if (!backToTop) {
+            return;
+        }
+
+        if (window.scrollY > 500) {
+
+            backToTop.classList.add(
+                "show"
+            );
+
+        } else {
+
+            backToTop.classList.remove(
+                "show"
+            );
+
+        }
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+backToTop?.addEventListener(
+    "click",
+    () => {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+);
+
+
+/* ==========================================================================
+   38. PESQUISA DO FOOTER
+   ========================================================================== */
+
+const footerSearch =
+    document.getElementById(
+        "footerSearch"
+    );
+
+const footerSearchBtn =
+    document.getElementById(
+        "footerSearchBtn"
+    );
+
+
+function executarPesquisaFooter() {
+
+    const termo =
+        footerSearch?.value.trim();
+
+    if (!termo) {
+        return;
+    }
+
+    window.location.href =
+        `cursos.html?busca=${encodeURIComponent(termo)}`;
+}
+
+
+footerSearchBtn?.addEventListener(
+    "click",
+    executarPesquisaFooter
+);
+
+footerSearch?.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key === "Enter") {
+
+            event.preventDefault();
+
+            executarPesquisaFooter();
+
+        }
+
+    }
+);
+
+
+/* ==========================================================================
+   39. EXPOR FUNÇÕES
+   Compatibilidade com código antigo
+   ========================================================================== */
+
+window.filtrarAlunos =
+    filtrarAlunos;
+
+window.salvarObservacao =
+    salvarObservacao;
+
+window.abrirModalObservacao =
+    abrirModalObservacao;
+
+window.cadastrarAluno =
+    cadastrarAluno;
+
+window.abrirModalCadastroAluno =
+    abrirModalCadastroAluno;
+
+
+/* ==========================================================================
+   40. INICIALIZAÇÃO
    ========================================================================== */
 
 async function inicializarMural() {
 
     try {
 
-        mostrarStatusAlunos(
-            "Carregando mural..."
+        mostrarStatus(
+            "Carregando dados do mural..."
         );
+
+
+        await carregarTurmas();
 
 
         await carregarAlunos();
 
-        await carregarTurmas();
 
         await carregarObservacoes();
 
 
-        /*
-         * Re-renderiza depois de carregar
-         * as observações.
-         */
-
-        const filtrados =
-            obterAlunosFiltrados();
-
-
-        renderizarAlunos(
-            filtrados
-        );
-
-
-        atualizarResumo(
-            filtrados
-        );
+        mostrarStatus("");
 
 
     } catch (error) {
@@ -1857,8 +2568,8 @@ async function inicializarMural() {
         );
 
 
-        mostrarStatusAlunos(
-            "Ocorreu um erro ao carregar o mural.",
+        mostrarStatus(
+            "Não foi possível carregar o Mural Docente. Verifique sua conexão e as permissões do Supabase.",
             "erro"
         );
 
@@ -1866,8 +2577,6 @@ async function inicializarMural() {
 
 }
 
-
-/* INICIA */
 
 document.addEventListener(
     "DOMContentLoaded",
